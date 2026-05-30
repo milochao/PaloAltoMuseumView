@@ -427,7 +427,7 @@ svg.wv { width: 100%; max-width: 520px; height: 34px; overflow: visible; }
 
 /* ─── CODA ───────────────────────────────────────────────────────── */
 .coda { min-height: 100vh; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; padding: 10vh 8vw; z-index: 2; }
-.coda-bg { position: absolute; inset: 0; background-image: url('El_Palo_Alto.png'); background-size: cover; background-position: center 40%; filter: grayscale(15%); }
+.coda-bg { position: absolute; inset: 0; background-color: #1C1F1A; background-image: url('El_Palo_Alto.png'); background-size: cover; background-position: center 40%; filter: grayscale(15%); }
 .coda-vignette { position: absolute; inset: 0; background: linear-gradient(to right, rgba(28,31,26,0.88) 0%, rgba(28,31,26,0.72) 50%, rgba(28,31,26,0.45) 100%), linear-gradient(to top, rgba(28,31,26,0.85) 0%, transparent 50%); }
 .coda-content { position: relative; z-index: 2; width: 100%; max-width: 1100px; display: flex; align-items: center; justify-content: space-between; gap: 5vw; flex-wrap: wrap; }
 .coda-text { flex: 1; min-width: 280px; }
@@ -436,14 +436,14 @@ svg.wv { width: 100%; max-width: 520px; height: 34px; overflow: visible; }
 .coda-sub { font-family: var(--type-body); font-size: clamp(1rem, 1.8vw, 1.2rem); color: var(--fog); max-width: 44ch; margin: 2.2rem 0 0; line-height: 1.72; }
 .coda-pencil {
   flex-shrink: 0;
-  width: clamp(80px, 12vw, 180px);
+  width: clamp(120px, 16vw, 260px);
   position: relative;
   opacity: 0;
   transform: translateY(60px);
   transition: opacity 1.8s var(--expo) 0.6s, transform 1.8s var(--expo) 0.6s;
 }
 .coda-pencil.shown { opacity: 1; transform: translateY(0); }
-.coda-pencil img { width: 100%; display: block; filter: drop-shadow(0 12px 40px rgba(0,0,0,0.6)); }
+.coda-pencil img { width: 100%; display: block; filter: drop-shadow(0 20px 60px rgba(0,0,0,0.8)); }
 .coda-marks { position: absolute; inset: 0; pointer-events: none; }
 .coda-mark { position: absolute; width: 3px; height: 3px; border-radius: 50%; background: var(--rust); opacity: 0; transition: opacity 0.5s var(--expo); }
 
@@ -1252,8 +1252,8 @@ svg.wv { width: 100%; max-width: 520px; height: 34px; overflow: visible; }
     <div class="case-pair">
       <div>
         <!-- Dia:Beacon photo -->
-        <div class="case-photo" style="margin-bottom:1.2rem;">
-          <img src="Dia_Beacon.jpg" alt="Dia:Beacon museum interior" style="aspect-ratio:4/3;" onerror="this.parentElement.style.display='none';">
+        <div class="case-photo" style="margin-bottom:1.2rem;height:260px;">
+          <img src="Dia_Beacon.jpg" alt="Dia:Beacon museum interior" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.style.display='none';">
           <div class="case-photo-caption">Dia:Beacon, former Nabisco factory, Beacon NY</div>
         </div>
         <div class="case-card">
@@ -1268,10 +1268,9 @@ svg.wv { width: 100%; max-width: 520px; height: 34px; overflow: visible; }
       </div><!-- end Dia wrapper -->
       <div class="vs-col">and</div>
       <div>
-        <!-- 92Y: no photo in asset list; use architectural decorative treatment -->
-        <div style="background:linear-gradient(135deg,#1C1F1A 0%,#2D3329 100%);aspect-ratio:4/3;margin-bottom:1.2rem;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0.5rem;padding:1rem;">
-          <div style="font-family:var(--type-head);font-size:2.8rem;color:rgba(200,184,154,0.25);line-height:1;text-align:center;">92</div>
-          <div style="font-family:var(--type-body);font-size:0.65rem;letter-spacing:0.25em;text-transform:uppercase;color:rgba(200,184,154,0.35);text-align:center;">92nd Street Y<br>New York</div>
+        <div class="case-photo" style="margin-bottom:1.2rem;height:260px;">
+          <img src="92_NY.jpg" alt="92nd Street Y, New York" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.style.display='none';">
+          <div class="case-photo-caption">92nd Street Y, New York</div>
         </div>
         <div class="case-card">
           <div class="case-who">92nd Street Y, New York</div>
@@ -1299,25 +1298,31 @@ svg.wv { width: 100%; max-width: 520px; height: 34px; overflow: visible; }
     <div class="col-3" style="margin-top:1.4rem;">
       <div class="gift-card" id="gift1">
         <div class="gift-card-portrait">
-          <img src="Tom_DuBois.jpg" alt="Tom DuBois" onerror="this.parentElement.style.display='none';">
+          <img src="Hal_Mickelson.png" alt="Hal Mickelson" onerror="this.parentElement.style.display='none';">
         </div>
         <div class="gift-card-label">Metropolitan Family</div>
+        <div class="gift-card-name" style="font-family:var(--type-head);font-size:1rem;color:var(--cream);margin-bottom:0.3rem;">Hal Mickelson</div>
+        <div class="gift-card-bio" style="font-family:var(--type-body);font-size:0.72rem;color:var(--fog);margin-bottom:0.8rem;line-height:1.4;">Stanford AB, Harvard JD. HP attorney, 33 years. Rotary president. Old-line civic establishment.</div>
         <div class="gift-card-ask">Endow the convening function itself. The naming object is a living civic role, not a vault. The family whose name is on it made the room possible.</div>
         <div class="gift-card-signal">Civic pride. Formal legacy.</div>
       </div>
       <div class="gift-card" id="gift2">
         <div class="gift-card-portrait">
-          <img src="Dean_Clark.png" alt="Dean Clark" onerror="this.parentElement.style.display='none';">
+          <img src="Tom_Dubois.png" alt="Tom DuBois" onerror="this.parentElement.style.display='none';">
         </div>
         <div class="gift-card-label">Impact-Driven Tech</div>
+        <div class="gift-card-name" style="font-family:var(--type-head);font-size:1rem;color:var(--cream);margin-bottom:0.3rem;">Tom DuBois</div>
+        <div class="gift-card-bio" style="font-family:var(--type-body);font-size:0.72rem;color:var(--fog);margin-bottom:0.8rem;line-height:1.4;">Carnegie Mellon engineer. Google, Intel, EA. Startup founder. Two-term City Councilmember. Mayor 2021.</div>
         <div class="gift-card-ask">Fund the measurable repair. Endow the director of civic engagement, the named season, the measurable program that demonstrates the repair.</div>
         <div class="gift-card-signal">Outcome + proof. A solvable problem.</div>
       </div>
       <div class="gift-card" id="gift3">
         <div class="gift-card-portrait">
-          <img src="Dr_Esther_B_Clark.jpg" alt="Dr. Esther B. Clark" onerror="this.parentElement.style.display='none';">
+          <img src="Karen_Holmes.jpg" alt="Karen Holman" onerror="this.parentElement.style.display='none';">
         </div>
         <div class="gift-card-label">Resident Member</div>
+        <div class="gift-card-name" style="font-family:var(--type-head);font-size:1rem;color:var(--cream);margin-bottom:0.3rem;">Karen Holman</div>
+        <div class="gift-card-bio" style="font-family:var(--type-body);font-size:0.72rem;color:var(--fog);margin-bottom:0.8rem;line-height:1.4;">20 years as Mayor, Councilmember, Planning Commissioner. Founder of the Palo Alto History Museum. She is why this building exists.</div>
         <div class="gift-card-ask">A membership in a range comparable to peer civic institutions. The room belongs to the town and you are the town. The broad base is not the smallest tier. It is the one whose participation makes the claim true.</div>
         <div class="gift-card-signal">Belonging. Earned revenue. Proof of honesty.</div>
       </div>
@@ -1379,15 +1384,20 @@ svg.wv { width: 100%; max-width: 520px; height: 34px; overflow: visible; }
   <div><div class="act-num" style="color:var(--rust);">Act VIII</div><div class="act-title">A Tuesday in October</div></div>
 </div>
 
-<section class="scroll-section light" id="actVIII">
-  <div class="inner">
+<section class="scroll-section light" id="actVIII" style="position:relative;overflow:hidden;background:transparent;">
+  <!-- Fresco full-bleed background -->
+  <div style="position:absolute;inset:0;z-index:0;">
+    <img src="Fresco_Artwork.png" alt="" aria-hidden="true" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;filter:saturate(0.7) brightness(1.05);">
+    <div style="position:absolute;inset:0;background:linear-gradient(to right, rgba(247,244,238,0.97) 0%, rgba(247,244,238,0.94) 45%, rgba(247,244,238,0.80) 70%, rgba(247,244,238,0.55) 100%), linear-gradient(to bottom, rgba(247,244,238,0.0) 0%, rgba(247,244,238,0.5) 100%);"></div>
+  </div>
+  <div class="inner" style="position:relative;z-index:2;">
     <div class="eyebrow rust reveal" data-reveal>What it looks like when it works</div>
     <div class="rule reveal delay-1" data-reveal></div>
     <p class="display-md reveal delay-2" data-reveal style="color:var(--charcoal);margin-bottom:0.5rem;">A Tuesday in October.</p>
     <p class="display-sm reveal delay-3" data-reveal style="font-family:var(--type-head);color:var(--rust);font-style:italic;margin-bottom:1.8rem;">Not an opening night. Not a Saturday.</p>
-    <!-- Ambient sound player -->
+    <!-- Sound player (now auto-plays on scroll entry) -->
     <div class="sound-player reveal delay-4" data-reveal>
-      <button class="sound-btn" id="soundBtn" aria-label="Play ambient museum chatter">&#9654;</button>
+      <button class="sound-btn" id="soundBtn" aria-label="Toggle ambient museum chatter">&#9654;</button>
       <div class="sound-label">Ambient chatter<br><span style="opacity:0.6;font-size:0.68rem;">A room full of people, talking</span></div>
       <div class="sound-bars" id="soundBars">
         <div class="sound-bar" id="sb1"></div>
@@ -1399,6 +1409,8 @@ svg.wv { width: 100%; max-width: 520px; height: 34px; overflow: visible; }
         <div class="sound-bar" id="sb7"></div>
       </div>
     </div>
+    <!-- Hidden audio element -->
+    <audio id="chatAudio" src="Sound.mp3" loop preload="auto"></audio>
     <div style="height:1rem;"></div>
 
     <div style="display:flex;gap:5vw;align-items:flex-start;flex-wrap:wrap;">
@@ -1413,10 +1425,6 @@ svg.wv { width: 100%; max-width: 520px; height: 34px; overflow: visible; }
           <text x="348" y="57" text-anchor="middle" font-family="Calibri,sans-serif" font-size="7" fill="rgba(184,91,58,0)" id="boothLabel">BOOTH</text>
           <g id="chairs"></g>
         </svg>
-        <div class="photo-card" style="margin-top:0.5rem;">
-          <img src="Fresco_Artwork.png" alt="Arnautoff fresco" style="aspect-ratio:16/5;object-fit:cover;object-position:center 20%;">
-          <div class="photo-card-label">The fresco slows everyone at the door</div>
-        </div>
       </div>
 
       <div style="flex:1;min-width:260px;">
@@ -1670,95 +1678,75 @@ if (codaMarks) {
   });
 })();
 
-// ─── WEB AUDIO AMBIENT CHATTER ────────────────────────────────────
+// ─── REAL AUDIO — Sound.mp3, auto-plays when section enters view ───
 (function() {
+  const audio = document.getElementById('chatAudio');
   const btn = document.getElementById('soundBtn');
   const bars = document.getElementById('soundBars');
   const barEls = bars ? Array.from(bars.querySelectorAll('.sound-bar')) : [];
-  if (!btn) return;
+  if (!audio || !btn) return;
 
-  let ctx = null;
   let playing = false;
-  let nodes = [];
   let animFrame = null;
-
-  function buildChatter() {
-    ctx = new (window.AudioContext || window.webkitAudioContext)();
-    nodes = [];
-
-    // Create 18 "voices" — bandpass filtered noise bursts to simulate chatter
-    for (let i = 0; i < 18; i++) {
-      const bufferSize = ctx.sampleRate * 2;
-      const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
-      const data = buffer.getChannelData(0);
-      for (let s = 0; s < bufferSize; s++) {
-        data[s] = (Math.random() * 2 - 1);
-      }
-
-      const source = ctx.createBufferSource();
-      source.buffer = buffer;
-      source.loop = true;
-
-      // Bandpass at voice frequencies (200–3000 Hz range)
-      const bp = ctx.createBiquadFilter();
-      bp.type = 'bandpass';
-      bp.frequency.value = 200 + Math.random() * 2800;
-      bp.Q.value = 0.8 + Math.random() * 4;
-
-      // LFO to modulate gain (simulate speech rhythm)
-      const lfo = ctx.createOscillator();
-      lfo.frequency.value = 0.5 + Math.random() * 3.5;
-      const lfoGain = ctx.createGain();
-      lfoGain.gain.value = 0.3 + Math.random() * 0.3;
-
-      const voiceGain = ctx.createGain();
-      voiceGain.gain.value = 0.02 + Math.random() * 0.04;
-
-      lfo.connect(lfoGain);
-      lfoGain.connect(voiceGain.gain);
-      source.connect(bp);
-      bp.connect(voiceGain);
-      voiceGain.connect(ctx.destination);
-
-      // Room reverb via convolver
-      source.start(ctx.currentTime + Math.random() * 0.5);
-      lfo.start();
-      nodes.push({ source, bp, lfo, voiceGain });
-    }
-
-    // Master gain fade in
-    const masterGain = ctx.createGain();
-    masterGain.gain.setValueAtTime(0, ctx.currentTime);
-    masterGain.gain.linearRampToValueAtTime(1, ctx.currentTime + 2);
-  }
 
   function animateBars() {
     if (!playing) return;
-    barEls.forEach((bar, i) => {
-      const h = 4 + Math.random() * 16;
-      bar.style.height = h + 'px';
-    });
+    barEls.forEach(bar => { bar.style.height = (4 + Math.random() * 16) + 'px'; });
     animFrame = setTimeout(animateBars, 120);
   }
 
-  btn.addEventListener('click', () => {
-    if (!playing) {
-      if (!ctx) buildChatter();
-      else if (ctx.state === 'suspended') ctx.resume();
+  function startAudio() {
+    audio.volume = 0;
+    audio.play().then(() => {
       playing = true;
       btn.innerHTML = '&#9646;&#9646;';
       btn.classList.add('playing');
       bars.classList.add('active');
       animateBars();
-    } else {
-      if (ctx) ctx.suspend();
-      playing = false;
-      btn.innerHTML = '&#9654;';
-      btn.classList.remove('playing');
-      bars.classList.remove('active');
-      clearTimeout(animFrame);
-      barEls.forEach(b => b.style.height = '4px');
-    }
+      // Fade in over 2 seconds
+      let vol = 0;
+      const fadeIn = setInterval(() => {
+        vol = Math.min(vol + 0.04, 0.7);
+        audio.volume = vol;
+        if (vol >= 0.7) clearInterval(fadeIn);
+      }, 80);
+    }).catch(() => {
+      // Autoplay blocked — user must click
+    });
+  }
+
+  function stopAudio() {
+    // Fade out then pause
+    let vol = audio.volume;
+    const fadeOut = setInterval(() => {
+      vol = Math.max(vol - 0.05, 0);
+      audio.volume = vol;
+      if (vol <= 0) { clearInterval(fadeOut); audio.pause(); }
+    }, 60);
+    playing = false;
+    btn.innerHTML = '&#9654;';
+    btn.classList.remove('playing');
+    bars.classList.remove('active');
+    clearTimeout(animFrame);
+    barEls.forEach(b => b.style.height = '4px');
+  }
+
+  // Auto-play when section scrolls into view
+  const section = document.getElementById('actVIII');
+  if (section) {
+    const autoObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting && !playing) startAudio();
+        else if (!e.isIntersecting && playing) stopAudio();
+      });
+    }, { threshold: 0.3 });
+    autoObs.observe(section);
+  }
+
+  // Manual toggle
+  btn.addEventListener('click', () => {
+    if (playing) stopAudio();
+    else startAudio();
   });
 })();
 </script>
