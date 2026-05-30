@@ -8,106 +8,171 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&display=swap" rel="stylesheet">
 <style>
-/* ─────────────────────────────────────────────────────────────
-   PALO ALTO MUSEUM · v2
-   Token kit: paper / charcoal / green #55BA5C
-   Display: Playfair Display · Body: Source Serif 4
-   ───────────────────────────────────────────────────────────── */
 :root {
   --black: #0f0f0d;
-  --white: #FFFFFF;
   --paper: #F4F0E8;
-  --plaster: #E6E0D0;
   --green: #55BA5C;
   --green-deep: #2a6e30;
-  --green-muted: #3d8a44;
   --ink1: #1a1916;
   --ink2: #3d3a32;
   --ink3: #7a756a;
   --line: #d8d2c4;
   --line2: #c2bbaa;
-  --maxw: 660px;
+  --maxw: 640px;
   --ease: cubic-bezier(0.19, 1, 0.22, 1);
-  --mass-heavy: 1.8s;
-  --mass-standard: 1.2s;
-  --mass-light: 0.6s;
+  --mh: 1.8s; --ms: 1.2s; --ml: 0.6s;
 }
-
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body {
   background: var(--paper);
   color: var(--ink1);
   font-family: "Source Serif 4", Georgia, serif;
-  font-size: clamp(16px, 1.8vw, 19px);
+  font-size: clamp(16px, 1.75vw, 19px);
   font-weight: 300;
-  line-height: 1.7;
+  line-height: 1.68;
   -webkit-font-smoothing: antialiased;
 }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
 
-/* ── type tiers ── */
-.t-zone { font-family: "Source Serif 4", serif; font-size: 10px; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--green-deep); }
-.t-cat  { font-size: 11px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--ink3); }
-.t-annot { font-size: 11px; letter-spacing: .04em; color: var(--ink3); line-height: 1.5; }
+.t-zone { font-size: 9px; font-weight: 600; letter-spacing: .26em; text-transform: uppercase; color: var(--green-deep); font-family: "Source Serif 4", serif; }
 
-/* ── prose ── */
-.prose { max-width: var(--maxw); margin: 0 auto; padding: clamp(2.4rem, 8vh, 5.5rem) clamp(1.4rem, 5vw, 2.2rem); }
-.prose p { margin-bottom: 1.2rem; }
+.prose { max-width: var(--maxw); margin: 0 auto; padding: clamp(1.8rem, 5vh, 3.5rem) clamp(1.4rem, 5vw, 2.2rem); }
+.prose p { margin-bottom: 1.1rem; }
 .prose p:last-child { margin-bottom: 0; }
-.lead { font-size: clamp(20px, 2.6vw, 26px); line-height: 1.48; font-weight: 300; font-style: italic; }
+.lead { font-size: clamp(19px, 2.4vw, 24px); line-height: 1.48; font-weight: 300; font-style: italic; }
 .loved { color: var(--green-deep); font-style: italic; }
 .dropline {
   font-family: "Playfair Display", Georgia, serif;
-  font-size: clamp(2rem, 5.6vw, 3.4rem);
-  line-height: 1.02;
-  letter-spacing: -.015em;
-  font-weight: 700;
-  margin: .3rem 0 .7rem;
+  font-size: clamp(1.9rem, 5.2vw, 3.2rem);
+  line-height: 1.02; letter-spacing: -.015em; font-weight: 700;
+  margin: .2rem 0 .6rem;
 }
-sup.cite { font-size: .58em; font-weight: 600; color: var(--green-deep); vertical-align: super; line-height: 0; margin-left: 1px; }
+/* Citation: more breathing room */
+sup.cite {
+  font-size: .62em;
+  font-weight: 600;
+  color: var(--green-deep);
+  vertical-align: super;
+  line-height: 0;
+  padding-left: 2.5px;
+  padding-right: 1px;
+}
 
-/* ── orchestration primitive ── */
 .orc {
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(38px);
-  filter: blur(5px);
-  contain: paint layout;
-  will-change: transform, opacity, filter;
+  opacity: 0; visibility: hidden;
+  transform: translateY(32px); filter: blur(4px);
+  contain: paint layout; will-change: transform, opacity, filter;
   transition:
-    opacity var(--mass-standard) var(--ease),
-    transform var(--mass-standard) var(--ease),
-    filter var(--mass-standard) var(--ease),
-    visibility 0s linear var(--mass-standard);
+    opacity var(--ms) var(--ease),
+    transform var(--ms) var(--ease),
+    filter var(--ms) var(--ease),
+    visibility 0s linear var(--ms);
 }
 .orc.is-orchestrated {
-  opacity: 1;
-  visibility: visible;
-  transform: none;
-  filter: none;
+  opacity: 1; visibility: visible; transform: none; filter: none;
   transition:
-    opacity var(--mass-standard) var(--ease),
-    transform var(--mass-standard) var(--ease),
-    filter var(--mass-standard) var(--ease),
+    opacity var(--ms) var(--ease),
+    transform var(--ms) var(--ease),
+    filter var(--ms) var(--ease),
     visibility 0s linear 0s;
 }
-.orc.heavy { transition-duration: var(--mass-heavy); }
-.orc.light { transition-duration: var(--mass-light); }
+.orc.heavy { transition-duration: var(--mh); }
+.orc.light  { transition-duration: var(--ml); }
 
-/* ── act header ── */
-.acthead { max-width: var(--maxw); margin: 0 auto; padding: clamp(3.5rem, 10vh, 7rem) clamp(1.4rem, 5vw, 2.2rem) 0; }
-.acthead .t-zone { display: block; margin-bottom: .8rem; }
+.acthead { max-width: var(--maxw); margin: 0 auto; padding: clamp(2.5rem, 7vh, 5rem) clamp(1.4rem, 5vw, 2.2rem) 0; }
+.acthead .t-zone { display: block; margin-bottom: .7rem; }
 .acthead h2 {
   font-family: "Playfair Display", Georgia, serif;
-  font-size: clamp(2.4rem, 6.8vw, 4rem);
-  line-height: .96;
-  letter-spacing: -.02em;
-  font-weight: 700;
+  font-size: clamp(2.2rem, 6.2vw, 3.8rem);
+  line-height: .96; letter-spacing: -.02em; font-weight: 700;
 }
-.acthead .rule { height: 4px; width: 44px; background: var(--green); margin-top: 1.2rem; }
+.acthead .rule { height: 4px; width: 40px; background: var(--green); margin-top: 1rem; }
 
-/* ── sticky scene scaffold ── */
+/* ─── FULL-BLEED IMAGE ─── */
+.fullbleed {
+  width: 100%;
+  margin: 1.4rem 0 1.8rem;
+}
+.fullbleed .frame {
+  position: relative;
+  width: 100%;
+  height: clamp(48vh, 70vh, 78vh);
+  overflow: hidden;
+  background: #c8c2b4;
+}
+.fullbleed .frame img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(.4) contrast(1.04);
+}
+.fullbleed figcaption {
+  max-width: var(--maxw);
+  margin: .7rem auto 0;
+  padding: 0 clamp(1.4rem, 5vw, 2.2rem);
+  font-size: 11px;
+  color: var(--ink3);
+  font-style: italic;
+  letter-spacing: .02em;
+}
+
+/* ─── TWO-COLUMN PROSE WITH STICKY PORTRAIT ─── */
+.with-portrait {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: clamp(1.8rem, 5vh, 3.5rem) clamp(1.4rem, 5vw, 2.2rem);
+  display: grid;
+  grid-template-columns: 1fr 240px;
+  gap: clamp(1.6rem, 3.5vw, 2.8rem);
+  align-items: start;
+}
+.with-portrait .text {
+  font-size: clamp(16px, 1.75vw, 19px);
+  line-height: 1.68;
+  font-weight: 300;
+}
+.with-portrait .text p { margin-bottom: 1.1rem; }
+.with-portrait .text p:last-child { margin-bottom: 0; }
+.with-portrait .text .lead {
+  font-size: clamp(19px, 2.4vw, 24px);
+  line-height: 1.48;
+  font-style: italic;
+  font-weight: 300;
+}
+.with-portrait .portrait-side {
+  position: sticky;
+  top: 5rem;
+}
+.with-portrait .portrait-side img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: grayscale(.55) contrast(1.03);
+  background: #c8c2b4;
+}
+.with-portrait .portrait-side figcaption {
+  font-size: 10px;
+  color: var(--ink3);
+  font-style: italic;
+  margin-top: .5rem;
+  letter-spacing: .02em;
+  text-align: center;
+  line-height: 1.45;
+}
+@media (max-width: 700px) {
+  .with-portrait {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+  .with-portrait .portrait-side {
+    position: relative;
+    top: 0;
+    max-width: 280px;
+    order: -1;
+  }
+}
+
 .scene { position: relative; }
 .scene .stage {
   position: sticky; top: 0; height: 100vh;
@@ -116,228 +181,264 @@ sup.cite { font-size: .58em; font-weight: 600; color: var(--green-deep); vertica
 }
 .scene .steps { position: relative; z-index: 3; }
 .step {
-  min-height: 80vh; display: flex; align-items: center;
-  max-width: var(--maxw); margin: 0 auto;
-  padding: 0 clamp(1.4rem, 5vw, 2.2rem);
+  min-height: 80vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 clamp(1.4rem, 4vw, 3rem);
+  gap: 3rem;
 }
 .step .card {
-  background: rgba(244,240,232,.93);
+  background: rgba(244,240,232,.94);
   border: 1px solid var(--line);
-  padding: 1.6rem 1.8rem;
+  padding: 1.5rem 1.7rem;
   backdrop-filter: blur(3px);
-  box-shadow: 0 14px 48px rgba(15,15,13,.07);
+  box-shadow: 0 12px 42px rgba(15,15,13,.07);
 }
 .scene.dark .step .card {
-  background: rgba(15,15,13,.84);
-  border-color: #2a2a26;
+  background: rgba(15,15,13,.86);
+  border-color: #262620;
   color: #ede8de;
 }
 .scene.dark .step .card .loved { color: var(--green); }
 
-/* ─────────────── HERO ─────────────── */
-#hero {
-  position: relative;
-  height: 300vh;
-  background: var(--black);
-  color: #ede8de;
-}
+/* ─── HERO ─── */
+#hero { position: relative; height: 280vh; background: var(--black); color: #ede8de; }
 #hero .sticky {
   position: sticky; top: 0; height: 100vh;
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
+  display: grid;
+  grid-template-rows: 1fr auto auto;
+  align-items: center;
+  justify-items: center;
   overflow: hidden;
+  padding: 2rem 1.5rem 1.5rem;
+  gap: 1rem;
 }
-/* filmstrip container */
+#hero .projector {
+  width: min(72vw, 580px);
+  aspect-ratio: 3/2;
+  position: relative; overflow: hidden;
+  background: #111;
+  align-self: end;
+}
+#hero .projector img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  filter: grayscale(1) contrast(1.1);
+}
 #hero .filmstrip {
-  width: min(88vw, 820px);
+  width: min(72vw, 580px);
   display: grid;
   grid-template-columns: repeat(16, 1fr);
-  gap: 3px;
-  margin-bottom: 1.8rem;
+  gap: 2px;
 }
 #hero .frame {
-  aspect-ratio: 3/2;
-  overflow: hidden;
-  position: relative;
-  background: #0e0e0c;
-  border: 1px solid #1e1e1a;
-  cursor: pointer;
-  transition: border-color .25s ease;
+  aspect-ratio: 3/2; overflow: hidden; position: relative;
+  background: #0e0e0c; border: 1px solid #1e1e1a;
+  transition: border-color .2s ease;
 }
 #hero .frame img {
   position: absolute; inset: 0;
-  width: 100%; height: 100%;
-  object-fit: cover;
-  display: block;
+  width: 100%; height: 100%; object-fit: cover; display: block;
   filter: grayscale(1) contrast(1.08);
-  opacity: .55;
-  transition: opacity .25s ease;
+  opacity: .5; transition: opacity .2s ease;
 }
 #hero .frame.active { border-color: var(--green); }
 #hero .frame.active img { opacity: 1; }
 #hero .frame .fn {
-  position: absolute; top: 2px; left: 4px; z-index: 2;
-  font-size: 7px; font-weight: 700; letter-spacing: .06em;
-  color: #aaa; font-family: monospace;
-  transition: color .25s ease;
+  position: absolute; top: 1px; left: 3px; z-index: 2;
+  font-size: 6px; font-weight: 700; color: #888; font-family: monospace;
+  transition: color .2s ease;
 }
 #hero .frame.active .fn { color: var(--green); }
-
-/* projection cell */
-#hero .projector {
-  width: min(52vw, 380px);
-  aspect-ratio: 3/2;
-  position: relative;
-  overflow: hidden;
-  background: #0e0e0c;
-  border: 1px solid #2a2a26;
-  margin-bottom: 1.8rem;
-}
-#hero .projector img {
-  position: absolute; inset: 0;
-  width: 100%; height: 100%;
-  object-fit: cover; display: block;
-  filter: grayscale(1) contrast(1.1);
-}
 #hero .hero-text {
-  text-align: center;
-  opacity: 0; transform: translateY(14px);
-  transition: opacity .9s var(--ease) .2s, transform .9s var(--ease) .2s;
+  text-align: center; align-self: start;
+  opacity: 0; transform: translateY(12px);
+  transition: opacity .9s var(--ease) .15s, transform .9s var(--ease) .15s;
 }
 #hero .sticky.show .hero-text { opacity: 1; transform: none; }
 #hero h1 {
   font-family: "Playfair Display", Georgia, serif;
-  font-size: clamp(1.9rem, 5.8vw, 4rem);
-  line-height: .94;
-  letter-spacing: -.02em;
-  font-weight: 700;
-  text-align: center;
-  max-width: 18ch;
-  margin: 0 auto .9rem;
-}
-#hero .kick {
-  max-width: 36ch; margin: 0 auto;
-  color: #9a9488;
-  font-family: "Source Serif 4", serif;
-  font-size: clamp(13px, 1.5vw, 16px);
-  font-style: italic;
+  font-size: clamp(1.7rem, 4.8vw, 3.4rem);
+  line-height: .96; letter-spacing: -.02em; font-weight: 700;
+  max-width: 20ch; margin: 0 auto;
 }
 #hero .scrollhint {
-  position: absolute; bottom: 22px; left: 50%; transform: translateX(-50%);
-  font-size: 9px; letter-spacing: .26em; text-transform: uppercase; color: #5a5650;
+  position: absolute; bottom: 18px; left: 50%; transform: translateX(-50%);
+  font-size: 8px; letter-spacing: .28em; text-transform: uppercase; color: #4a4640;
   animation: hint 2.6s ease-in-out infinite;
 }
-@keyframes hint { 0%,100%{opacity:.3} 50%{opacity:.75} }
+@keyframes hint { 0%,100%{opacity:.25} 50%{opacity:.7} }
 
-/* ─────────────── EMPTY GROUND (negation) ─────────────── */
-/* Replaced competitive-positioning boxes with a typographic void composition */
+/* ─── NEG SCENE ─── */
 #neg { background: var(--paper); }
-#neg .stage { background: var(--paper); }
-#neg .void-stage {
-  width: min(88vw, 600px);
+#neg .stage { background: var(--paper); align-items: stretch; }
+#neg .void-full {
+  width: 100%; height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 2px 2fr 2px 1fr;
+  grid-template-rows: 1fr;
   position: relative;
+}
+#neg .vdivide {
+  background: var(--line);
+  align-self: stretch;
+  opacity: 0;
+  transition: opacity .8s ease;
+}
+#neg .void-full.go .vdivide { opacity: 1; }
+#neg .col-left {
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 0 clamp(1.5rem, 3vw, 3rem);
+  gap: 2.5rem;
+}
+#neg .col-right {
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 0 clamp(1.5rem, 3vw, 3rem);
+}
+#neg .col-center {
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  padding: 0 clamp(1.5rem, 3vw, 2.5rem);
+  text-align: center;
+}
+.comp-entry {
+  opacity: 0; transform: translateX(-12px);
+  transition: opacity .7s var(--ease), transform .7s var(--ease);
+}
+#neg .col-right .comp-entry { transform: translateX(12px); }
+#neg .void-full.go .comp-entry { opacity: 1; transform: none; }
+.comp-name {
+  font-size: clamp(10px, 1.1vw, 13px);
+  font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--ink2); display: block; margin-bottom: .3rem;
+}
+.comp-desc {
+  font-size: clamp(11px, 1.1vw, 13px);
+  color: var(--ink3); line-height: 1.45; font-style: italic;
+}
+#neg .void-question {
+  font-family: "Playfair Display", serif; font-style: italic;
+  font-size: clamp(1.2rem, 2.4vw, 2rem);
+  line-height: 1.3; color: var(--ink3);
+  margin-bottom: 1.2rem;
+  opacity: 0; transition: opacity .9s ease .2s;
+}
+#neg .void-full.go .void-question { opacity: 1; }
+#neg .void-answer {
+  font-family: "Playfair Display", serif; font-weight: 700;
+  font-size: clamp(1.3rem, 2.8vw, 2.4rem);
+  line-height: 1.1; color: var(--green-deep);
+  opacity: 0; transform: translateY(10px);
+  transition: opacity .7s ease, transform .7s var(--ease);
+}
+#neg .void-full.claim .void-answer { opacity: 1; transform: none; }
+#neg .void-rule {
+  width: 36px; height: 3px; background: var(--green);
+  margin: .8rem auto 0;
+  opacity: 0; transition: opacity .5s ease .3s;
+}
+#neg .void-full.claim .void-rule { opacity: 1; }
+#neg .step { grid-template-columns: 1fr; max-width: var(--maxw); }
+
+/* ─── ANIMAL: STATIC TRIPTYCH FIGURE ─── */
+.triptych-figure {
+  background: var(--black);
+  margin: 1.8rem 0 1.2rem;
+  padding: 0 0 1.4rem;
+}
+.triptych-figure .triptych-zone {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 1.5rem clamp(1.4rem, 5vw, 2.2rem) 1rem;
+  color: var(--green);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .26em;
+  text-transform: uppercase;
+  font-family: "Source Serif 4", serif;
+}
+.triptych-figure .triptych {
+  width: 100%;
+  height: clamp(50vh, 68vh, 75vh);
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: auto auto auto;
-  gap: 14px;
+  gap: 3px;
+  background: #0a0a0a;
 }
-#neg .competitor {
-  border-top: 2px solid var(--line2);
-  padding: .8rem 0 0;
-  opacity: 0;
-  transform: translateY(12px);
-  transition: opacity .8s var(--ease), transform .8s var(--ease);
-}
-#neg .void-stage.go .competitor { opacity: 1; transform: none; }
-#neg .competitor .c-name { font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--ink2); display: block; margin-bottom: .25rem; }
-#neg .competitor .c-desc { font-size: 11px; color: var(--ink3); line-height: 1.45; font-style: italic; }
-#neg .void-center {
-  grid-column: 2;
-  grid-row: 1 / 3;
-  display: flex; align-items: center; justify-content: center;
+.triptych-figure .panel {
   position: relative;
-}
-#neg .void-box {
-  border: 1.5px dashed var(--line2);
-  padding: 1.4rem 1rem;
-  text-align: center;
-  width: 100%;
-  transition: border-color .9s var(--ease), background .9s var(--ease);
-}
-#neg .void-box .q {
-  font-family: "Playfair Display", serif;
-  font-style: italic;
-  font-size: clamp(13px, 1.4vw, 15px);
-  color: var(--ink3);
-  line-height: 1.4;
-  transition: color .7s ease;
-}
-#neg .void-box .pam-label {
-  font-size: 10px; font-weight: 700; letter-spacing: .18em;
-  text-transform: uppercase; color: var(--white);
-  display: block; margin-top: .5rem;
-  opacity: 0; transition: opacity .7s ease .3s;
-}
-#neg .void-stage.claim .void-box {
-  border-color: var(--green);
-  background: var(--green);
-  box-shadow: 0 12px 32px rgba(85,186,92,.22);
-}
-#neg .void-stage.claim .void-box .q { color: var(--white); font-weight: 600; }
-#neg .void-stage.claim .void-box .pam-label { opacity: 1; }
-
-/* ─────────────── ONE ANIMAL ─────────────── */
-#animal { background: var(--black); }
-#animal .stage { background: var(--black); }
-#animal .twin { width: min(88vw, 560px); }
-
-/* portrait + annotation layout */
-#animal .portrait-wrap {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 3/4;
   overflow: hidden;
-  background: #111;
+  background: #181815;
 }
-#animal .portrait-wrap img {
-  position: absolute; inset: 0;
+.triptych-figure .panel img {
   width: 100%; height: 100%;
   object-fit: cover;
+  object-position: center 22%;
   display: block;
-  filter: grayscale(1) contrast(1.04);
+  filter: grayscale(1) contrast(1.06);
 }
-/* annotation overlay */
-#animal .annot-layer {
-  position: absolute; inset: 0;
-  opacity: 0;
-  transition: opacity 1s ease .3s;
-  pointer-events: none;
+.triptych-figure .panel-meta {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,.75) 50%, rgba(0,0,0,.96) 100%);
+  padding: 3.4rem 1.1rem 1.2rem;
+  z-index: 2;
 }
-#animal .portrait-wrap.annotated .annot-layer { opacity: 1; }
-/* the whitewash: a white panel sweeps in, then retreats */
-#animal .ww {
-  position: absolute; inset: 0;
-  background: #f4f0e8;
-  clip-path: inset(0 100% 0 0);
-  transition: clip-path var(--mass-heavy) var(--ease);
-  z-index: 5;
+.triptych-figure .panel-year {
+  display: block;
+  font-size: 9px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: #a8a497;
+  margin-bottom: .4rem;
 }
-#animal .portrait-wrap.painting .ww { clip-path: inset(0 0 0 0); }
-#animal .portrait-wrap.revealed .ww { clip-path: inset(0 0 0 100%); }
-#animal .caption { font-size: 11px; color: #6a665e; letter-spacing: .04em; margin-top: .7rem; text-align: center; font-style: italic; }
+.triptych-figure .panel-name {
+  display: block;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(15px, 1.7vw, 20px);
+  font-weight: 700;
+  color: #ede8de;
+  line-height: 1.06;
+  margin-bottom: .4rem;
+}
+.triptych-figure .panel-role {
+  display: block;
+  font-family: "Source Serif 4", serif;
+  font-style: italic;
+  font-size: clamp(11px, 1.25vw, 13px);
+  color: #c4c0b3;
+  line-height: 1.4;
+}
+.triptych-figure figcaption {
+  max-width: var(--maxw);
+  margin: 1.1rem auto 0;
+  padding: 0 clamp(1.4rem, 5vw, 2.2rem);
+  font-size: 11px;
+  font-style: italic;
+  color: #a8a497;
+  letter-spacing: .02em;
+  line-height: 1.55;
+}
+@media (max-width: 700px) {
+  .triptych-figure .triptych {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    height: 110vh;
+  }
+}
 
-/* ─────────────── MAUSOLEUM → MOUSEION ─────────────── */
-#muse { background: var(--paper); text-align: center; }
+/* ─── MUSE ─── */
+#muse { background: var(--paper); }
 #muse .wordstage {
-  position: relative; display: inline-block; padding: .05em .15em;
-  margin-bottom: 1.6rem;
+  position: relative; display: inline-block; padding: .05em .1em;
+  margin-bottom: 1.4rem;
 }
 #muse .w {
   font-family: "Playfair Display", Georgia, serif;
-  font-size: clamp(2.4rem, 9vw, 5.8rem);
-  letter-spacing: -.015em;
-  line-height: 1;
-  font-weight: 700;
+  font-size: clamp(2.2rem, 8.5vw, 5.6rem);
+  letter-spacing: -.015em; line-height: 1; font-weight: 700;
 }
 #muse .dead { color: var(--ink3); }
 #muse .alive {
@@ -345,266 +446,188 @@ sup.cite { font-size: .58em; font-weight: 600; color: var(--green-deep); vertica
   position: absolute; inset: 0;
   display: flex; align-items: center; justify-content: center;
   clip-path: inset(0 100% 0 0);
-  transition: clip-path var(--mass-heavy) var(--ease);
+  transition: clip-path var(--mh) var(--ease);
 }
 #muse .wordstage.swept .alive { clip-path: inset(0 0 0 0); }
-#muse .wordstage.swept .dead { opacity: .15; transition: opacity .9s ease; }
+#muse .wordstage.swept .dead { opacity: .14; transition: opacity .9s ease; }
 
-/* ─────────────── THE DOOR (fresco) ─────────────── */
+/* ─── DOOR ─── */
 #door { background: var(--paper); }
-#door .stage { background: var(--paper); padding: 0 clamp(1rem, 4vw, 2rem); }
+#door .stage { background: var(--paper); padding: 0; }
 #door .fresco-wrap {
-  position: relative;
-  width: min(92vw, 960px);
-  overflow: hidden;
-  box-shadow: 0 28px 80px rgba(15,15,13,.18);
+  position: relative; width: 100%; height: 100%; overflow: hidden;
 }
 #door .fresco-wrap img.fresco-img {
-  width: 100%; height: auto; display: block;
+  width: 100%; height: 100%; object-fit: cover; object-position: center;
+  display: block;
 }
-/* green reveal strip at top */
 #door .fresco-strip {
   position: absolute; top: 0; left: 0; right: 0; height: 4px;
   background: var(--green); opacity: 0;
   transition: opacity .7s ease; z-index: 6;
 }
 #door .fresco-wrap.restored .fresco-strip { opacity: 1; }
-/* whitewash sweep */
 #door .fresco-ww {
-  position: absolute; inset: 0;
-  background: #f4f0e8;
+  position: absolute; inset: 0; background: #f4f0e8;
   clip-path: inset(0 0 100% 0);
-  transition: clip-path var(--mass-heavy) var(--ease); z-index: 4;
+  transition: clip-path var(--mh) var(--ease); z-index: 4;
 }
 #door .fresco-wrap.painted .fresco-ww { clip-path: inset(0 0 0 0); }
 #door .fresco-wrap.restored .fresco-ww { clip-path: inset(0 0 0 100%); }
-#door figcaption {
-  font-size: 11px; color: var(--ink3); letter-spacing: .02em;
-  margin-top: .9rem; text-align: center; max-width: 66ch;
-  line-height: 1.5; font-style: italic;
+#door .step {
+  grid-template-columns: minmax(280px, 460px) 1fr;
+  position: relative; z-index: 4;
 }
 
-/* ─────────────── THE WALL ─────────────── */
+/* ─── WALL ─── */
 #wall { background: var(--black); color: #ede8de; }
 #wall .stage { background: var(--black); }
-#wall .faces {
-  display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  gap: 6px;
-  width: min(88vw, 560px);
-}
-#wall .face {
-  aspect-ratio: 1/1;
-  background: #181816;
-  border: 1px solid #252520;
-  overflow: hidden;
-  opacity: 0;
-  transform: scale(.82);
-  transition: opacity .5s var(--ease), transform .5s var(--ease);
-}
-#wall .faces.go .face { opacity: 1; transform: none; }
-#wall .face img {
-  width: 100%; height: 100%;
-  object-fit: cover; display: block;
-  filter: grayscale(1) contrast(1.05);
-}
-#wall .face.you {
-  border: 1.5px solid var(--green);
-  background: #15201a;
-}
-#wall .face.you-inner {
+#wall .faces-stage {
   width: 100%; height: 100%;
   display: flex; align-items: center; justify-content: center;
 }
-#wall .you-mark {
-  width: 60%; height: 60%;
-  border: 1px dashed var(--green);
-  opacity: .7;
+#wall .faces {
+  display: grid; grid-template-columns: repeat(8, 1fr);
+  gap: 5px; width: min(72vw, 520px);
 }
-#wall .facewrap { display: flex; flex-direction: column; align-items: center; }
+#wall .face {
+  aspect-ratio: 1/1; background: #181816; border: 1px solid #222220;
+  overflow: hidden; opacity: 0; transform: scale(.84);
+  transition: opacity .5s var(--ease), transform .5s var(--ease);
+}
+#wall .faces.go .face { opacity: 1; transform: none; }
+#wall .face img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(1) contrast(1.04); }
+#wall .face.you { border: 1.5px solid var(--green); background: #14201a; }
+#wall .you-inner { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+#wall .you-mark { width: 55%; height: 55%; border: 1px dashed var(--green); opacity: .65; }
 #wall .youtag {
-  font-family: "Source Serif 4", serif;
-  font-style: italic;
-  font-size: 11px;
-  letter-spacing: .12em;
-  color: var(--green);
-  margin-top: 1.1rem;
-  opacity: 0;
-  transition: opacity .8s ease .8s;
+  font-style: italic; font-size: 11px; letter-spacing: .1em; color: var(--green);
+  text-align: center; margin-top: .9rem;
+  opacity: 0; transition: opacity .8s ease .7s;
 }
 #wall .faces.go ~ .youtag { opacity: 1; }
+#wall .step { grid-template-columns: 1fr; max-width: var(--maxw); }
 
-/* ─────────────── SINGLE FIGURE · 79% ─────────────── */
+/* ─── SPLIT (79%) ─── */
 .split {
   max-width: 960px; margin: 0 auto;
-  padding: clamp(3.5rem, 12vh, 8rem) clamp(1.4rem, 5vw, 2.4rem);
-  display: grid;
-  grid-template-columns: 1fr 1px 1fr;
-  gap: clamp(2rem, 5vw, 4rem);
-  align-items: center;
+  padding: clamp(2.8rem, 9vh, 6rem) clamp(1.4rem, 5vw, 2.4rem);
+  display: grid; grid-template-columns: 1fr 1px 1fr;
+  gap: clamp(1.8rem, 4.5vw, 3.8rem); align-items: center;
 }
 .split .divider { background: var(--line); align-self: stretch; }
-@media (max-width: 720px) {
-  .split { grid-template-columns: 1fr; gap: 1.8rem; }
-  .split .divider { display: none; }
-}
-.figstage { display: flex; gap: clamp(14px, 2vw, 20px); align-items: stretch; }
+@media (max-width: 700px) { .split { grid-template-columns: 1fr; gap: 1.6rem; } .split .divider { display: none; } }
+.figstage { display: flex; gap: 16px; align-items: stretch; }
 .figstage .frule { width: 3px; background: var(--green); flex: none; align-self: stretch; }
 .bignum {
   font-family: "Playfair Display", serif;
-  font-size: clamp(4.2rem, 16vw, 9rem);
-  line-height: .78;
-  letter-spacing: -.025em;
-  color: var(--ink1);
-  font-weight: 700;
+  font-size: clamp(4.5rem, 17vw, 9.5rem);
+  line-height: .76; letter-spacing: -.025em; color: var(--ink1); font-weight: 700;
 }
-.numlab {
-  font-size: 10px; font-weight: 600; letter-spacing: .22em;
-  text-transform: uppercase; color: var(--ink3);
-  margin-top: 1.1rem; max-width: 24ch; line-height: 1.6;
-}
-.split .body { font-size: clamp(16px, 1.85vw, 19px); line-height: 1.68; color: var(--ink2); }
+.numlab { font-size: 10px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--ink3); margin-top: 1rem; max-width: 22ch; line-height: 1.6; }
+.split .body { font-size: clamp(15px, 1.7vw, 18px); line-height: 1.68; color: var(--ink2); }
 .split .body p { margin-bottom: 1rem; }
 .split .body .kicker {
-  font-family: "Playfair Display", serif;
-  font-style: italic;
-  font-size: clamp(1.1rem, 2.4vw, 1.5rem);
-  line-height: 1.14;
-  color: var(--green-deep);
-  letter-spacing: -.005em;
-  margin-top: .4rem;
+  font-family: "Playfair Display", serif; font-style: italic;
+  font-size: clamp(1.05rem, 2.2vw, 1.45rem);
+  line-height: 1.14; color: var(--green-deep); margin-top: .4rem;
 }
-.split .srcline { font-size: 11px; letter-spacing: .04em; color: var(--ink3); margin-top: 1.5rem; padding-top: .9rem; border-top: 1px solid var(--line); }
 
-/* ── refusals ── */
 .refuse { max-width: var(--maxw); margin: 0 auto; padding: 0 clamp(1.4rem, 5vw, 2.2rem); }
-.refuse .item {
-  border-top: 1px solid var(--line);
-  padding: 1.1rem 0;
-  display: flex; gap: 16px; align-items: baseline;
-}
-.refuse .item .x { color: var(--ink3); font-size: 12px; font-weight: 600; letter-spacing: .1em; flex: none; font-variant-numeric: tabular-nums; }
+.refuse .item { border-top: 1px solid var(--line); padding: 1rem 0; display: flex; gap: 15px; align-items: baseline; }
+.refuse .item .x { color: var(--ink3); font-size: 11px; font-weight: 600; letter-spacing: .1em; flex: none; }
 .refuse .item .t { color: var(--ink2); }
 .refuse .item .t b { color: var(--ink1); }
 
-/* ── bar · coda tests ── */
-.bar {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  max-width: var(--maxw); margin: 0 auto;
-  padding: 1rem clamp(1.4rem, 5vw, 2.2rem);
-}
-@media (max-width: 580px) { .bar { grid-template-columns: 1fr; } }
-.bar .t { border-top: 3px solid var(--green); padding-top: .9rem; }
-.bar .t .h { font-family: "Playfair Display", serif; font-size: 15px; font-weight: 700; letter-spacing: .02em; margin-bottom: .4rem; }
-.bar .t .b { font-size: 13px; color: var(--ink2); line-height: 1.55; }
+.bar { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; max-width: var(--maxw); margin: 0 auto; padding: 1rem clamp(1.4rem, 5vw, 2.2rem); }
+@media (max-width: 560px) { .bar { grid-template-columns: 1fr; } }
+.bar .t { border-top: 3px solid var(--green); padding-top: .8rem; }
+.bar .t .h { font-family: "Playfair Display", serif; font-size: 14px; font-weight: 700; margin-bottom: .35rem; }
+.bar .t .b { font-size: 13px; color: var(--ink2); line-height: 1.52; }
 
-.finale {
-  background: var(--black);
-  color: #f0ece2;
-  text-align: center;
-  padding: clamp(5rem, 18vh, 10rem) clamp(1.4rem, 5vw, 2.2rem);
-}
-.finale .small { color: #7a756a; font-size: clamp(14px, 1.7vw, 17px); margin-bottom: 1.1rem; font-style: italic; }
-.finale .big {
-  font-family: "Playfair Display", serif;
-  font-size: clamp(1.8rem, 5.8vw, 3.4rem);
-  line-height: 1.04;
-  letter-spacing: -.01em;
-  font-weight: 700;
-  max-width: 18ch;
-  margin: 0 auto;
-}
+.finale { background: var(--black); color: #f0ece2; text-align: center; padding: clamp(4.5rem, 16vh, 9rem) clamp(1.4rem, 5vw, 2.2rem); }
+.finale .small { color: #6a665e; font-size: clamp(13px, 1.6vw, 16px); margin-bottom: 1rem; font-style: italic; }
+.finale .big { font-family: "Playfair Display", serif; font-size: clamp(1.8rem, 5.6vw, 3.4rem); line-height: 1.04; letter-spacing: -.01em; font-weight: 700; max-width: 18ch; margin: 0 auto; }
 .finale .big em { color: var(--green); font-style: italic; }
 
-/* ── editorial image slot ── */
-figure.shot { max-width: var(--maxw); margin: 2rem auto; padding: 0 clamp(1.4rem, 5vw, 2.2rem); }
-figure.shot .slot {
-  position: relative; aspect-ratio: 3/2;
-  overflow: hidden;
-  background: #ccc9be;
-}
-figure.shot img {
-  position: absolute; inset: 0;
-  width: 100%; height: 100%;
-  object-fit: cover; display: block;
-  filter: grayscale(.6) contrast(1.03);
-}
-figure.shot figcaption { font-size: 11px; color: var(--ink3); margin-top: .65rem; letter-spacing: .02em; font-style: italic; }
-
-/* ── sources ── */
-.sources { max-width: var(--maxw); margin: 0 auto; padding: 2.6rem clamp(1.4rem, 5vw, 2.2rem) 1rem; }
-.sources .t-zone { display: block; margin-bottom: 1rem; }
-.sources .note { font-size: 12px; color: var(--ink2); line-height: 1.65; margin-bottom: 1.4rem; max-width: 60ch; }
-.sources ol { list-style: none; display: grid; gap: .6rem; counter-reset: s; }
-.sources li { counter-increment: s; display: flex; gap: .8rem; font-size: 12px; color: var(--ink3); line-height: 1.55; }
-.sources li::before { content: counter(s); font-weight: 700; color: var(--green-deep); flex: none; min-width: 1.6em; font-size: 11px; text-align: right; }
+.sources { max-width: var(--maxw); margin: 0 auto; padding: 2.2rem clamp(1.4rem, 5vw, 2.2rem) 1rem; }
+.sources .t-zone { display: block; margin-bottom: .9rem; }
+.sources .note { font-size: 11px; color: var(--ink2); line-height: 1.62; margin-bottom: 1.3rem; max-width: 58ch; }
+.sources ol { list-style: none; display: grid; gap: .5rem; counter-reset: s; }
+.sources li { counter-increment: s; display: flex; gap: .8rem; font-size: 11px; color: var(--ink3); line-height: 1.52; }
+.sources li::before { content: counter(s); font-weight: 700; color: var(--green-deep); flex: none; min-width: 1.5em; font-size: 10px; text-align: right; }
 .sources li b { color: var(--ink2); font-weight: 600; }
 
-footer {
-  background: var(--paper);
-  border-top: 1px solid var(--line);
-  max-width: var(--maxw); margin: 0 auto;
-  padding: 2.6rem clamp(1.4rem, 5vw, 2.2rem) 4.5rem;
-}
-footer p { font-size: 12px; color: var(--ink3); line-height: 1.65; margin-bottom: .9rem; }
+footer { background: var(--paper); border-top: 1px solid var(--line); max-width: var(--maxw); margin: 0 auto; padding: 2rem clamp(1.4rem, 5vw, 2.2rem) 4rem; }
+footer p { font-size: 11px; color: var(--ink3); line-height: 1.62; margin-bottom: .8rem; }
 
-@media (max-width: 580px) {
-  #hero .filmstrip { grid-template-columns: repeat(8, 1fr); }
-  #wall .faces { grid-template-columns: repeat(6, 1fr); }
+@media (max-width: 600px) {
+  #hero .filmstrip { grid-template-columns: repeat(8,1fr); }
+  #wall .faces { grid-template-columns: repeat(6,1fr); }
+  .step { grid-template-columns: 1fr !important; }
+  #neg .void-full { grid-template-columns: 1fr; grid-template-rows: auto auto auto; }
+  #neg .vdivide { display: none; }
 }
 </style>
 </head>
 <body>
 
-<!-- ═══════════════ HERO · THE MOVING IMAGE ═══════════════ -->
+<!-- ═══════════════ HERO ═══════════════ -->
 <section id="hero">
   <div class="sticky" id="heroSticky">
-    <!-- filmstrip contact sheet -->
+    <div class="projector"><img id="projImg" src="" alt="Muybridge motion study, 1878"></div>
     <div class="filmstrip" id="filmstrip"></div>
-    <!-- projection cell -->
-    <div class="projector"><img id="projImg" src="" alt="Muybridge motion study"></div>
-    <!-- headline -->
     <div class="hero-text">
       <h1>The world already owns Palo Alto</h1>
-      <p class="kick">Not the town. The idea of it. The most talked-about town in America almost never gets to talk back.</p>
     </div>
-    <div class="scrollhint">scroll · run the frames</div>
+    <div class="scrollhint">scroll</div>
   </div>
 </section>
 
-<!-- ═══════════════ ACT ONE · THE TELLING ═══════════════ -->
+<!-- ═══════════════ ACT ONE ═══════════════ -->
 <div class="acthead orc"><span class="t-zone">Act One</span><h2>The Telling</h2><div class="rule"></div></div>
 
 <div class="prose orc">
   <p class="lead">The world already owns Palo Alto.</p>
   <p>Not the town. The idea of it.</p>
   <p>Two words that mean disruption, money, the garage, the future arriving early, and the loneliness all of that exported to everyone else.</p>
-  <p>Malcolm Harris wrote the definitive version<sup class="cite">1</sup> and the rest of the world reads it as the truth. The most talked-about town in America almost never gets to talk back.</p>
+  <p>Malcolm Harris wrote the definitive version<sup class="cite">1</sup> and the rest of the world reads it as the truth. The most talked-about town in America almost never gets to talk about itself.</p>
 </div>
 
-<!-- negation arena -->
+<!-- NEW: Palo Alto full-bleed at first mention -->
+<figure class="fullbleed orc">
+  <div class="frame">
+    <img src="https://raw.githubusercontent.com/milochao/PaloAltoMuseumView/main/Palo_Alto.jpg" alt="Palo Alto, California" onerror="this.closest('.frame').style.background='#c8c2b4'">
+  </div>
+  <figcaption>Palo Alto, California. Two words the world thinks it knows.</figcaption>
+</figure>
+
+<!-- NEG SCENE -->
 <section class="scene" id="neg">
   <div class="stage">
-    <div class="void-stage" id="voidStage">
-      <div class="competitor" style="grid-column:1; grid-row:1; transition-delay:.08s">
-        <span class="c-name">MOAH</span>
-        <span class="c-desc">the charming free stop, down the street</span>
-      </div>
-      <div class="void-center">
-        <div class="void-box">
-          <span class="q">who gets to say what Palo Alto is</span>
-          <span class="pam-label">Palo Alto Museum</span>
+    <div class="void-full" id="voidFull">
+      <div class="col-left">
+        <div class="comp-entry" style="transition-delay:.05s">
+          <span class="comp-name">MOAH</span>
+          <span class="comp-desc">the charming free stop, down the street</span>
+        </div>
+        <div class="comp-entry" style="transition-delay:.18s">
+          <span class="comp-name">New Museum Los Gatos</span>
+          <span class="comp-desc">a decade on, still earns cute, hidden gem, small</span>
         </div>
       </div>
-      <div class="competitor" style="grid-column:3; grid-row:1; transition-delay:.16s">
-        <span class="c-name">Computer History Museum</span>
-        <span class="c-desc">tells the world the valley changed it</span>
+      <div class="vdivide"></div>
+      <div class="col-center">
+        <div class="void-question">who gets to say what Palo Alto is</div>
+        <div class="void-answer">Palo Alto Museum</div>
+        <div class="void-rule"></div>
       </div>
-      <div class="competitor" style="grid-column:1; grid-row:2; transition-delay:.24s">
-        <span class="c-name">New Museum Los Gatos</span>
-        <span class="c-desc">a decade on, still earns cute, hidden gem, small</span>
+      <div class="vdivide" style="transition-delay:.1s"></div>
+      <div class="col-right">
+        <div class="comp-entry" style="transition-delay:.1s">
+          <span class="comp-name">Computer History Museum</span>
+          <span class="comp-desc">tells the world the valley changed it</span>
+        </div>
       </div>
     </div>
   </div>
@@ -630,78 +653,84 @@ footer p { font-size: 12px; color: var(--ink3); line-height: 1.65; margin-bottom
   <p>Muybridge froze a galloping horse here and invented the moving image<sup class="cite">2</sup>. The garage. Stanford. The conviction, deeper than any street, that the future is something you build and not something you wait for.</p>
 </div>
 
-<figure class="shot orc">
-  <div class="slot">
-    <img src="https://raw.githubusercontent.com/milochao/PaloAltoMuseumView/main/Heritage_Park.jpg" alt="Heritage Park, Palo Alto" onerror="this.closest('.slot').style.background='#ccc9be'">
-  </div>
-  <figcaption>Heritage Park, Palo Alto. The Roth Building sits at the center of it.</figcaption>
-</figure>
+<!-- Heritage Park image removed from this position -->
 
-<!-- ═══════════════ ACT TWO · ONE ANIMAL ═══════════════ -->
+<!-- ═══════════════ ACT TWO ═══════════════ -->
 <div class="acthead orc"><span class="t-zone">Act Two</span><h2>One Animal</h2><div class="rule"></div></div>
 
-<div class="prose orc">
-  <p>The building itself is the proof, not a metaphor.</p>
-  <p>Russell Lee invented the multi-specialty group practice inside these walls, contracted prepaid care with Stanford in 1946, ran one of the country's first outpatient cancer radiation units by 1950, and prefigured the HMO by decades<sup class="cite">3</sup>,</p>
-  <p>all of it against a county medical society that tried to throw the founders out for what it called socialized medicine<sup class="cite">3</sup>.</p>
-  <p>The garage gets the legend. The clinic did it first, and did it here, against resistance, which is the whole point.</p>
+<!-- CHANGED: Russell Lee prose now in with-portrait layout -->
+<div class="with-portrait orc">
+  <div class="text">
+    <p>The building itself is the proof, not a metaphor.</p>
+    <p>Russell Lee invented the multi-specialty group practice inside these walls, contracted prepaid care with Stanford in 1946, ran one of the country's first outpatient cancer radiation units by 1950, and prefigured the HMO by decades<sup class="cite">3</sup>,</p>
+    <p>all of it against a county medical society that tried to throw the founders out for what it called socialized medicine<sup class="cite">3</sup>.</p>
+    <p>The garage gets the legend. The clinic did it first, and did it here, against resistance, which is the whole point.</p>
+  </div>
+  <figure class="portrait-side">
+    <img src="https://raw.githubusercontent.com/milochao/PaloAltoMuseumView/main/Dr_Russell_Lee_and_Birge_Clark.jpg" alt="Dr. Russell Lee and Birge Clark" onerror="this.style.background='#c8c2b4'">
+    <figcaption>Dr. Russell Lee (left) and architect Birge Clark.</figcaption>
+  </figure>
 </div>
 
-<div class="prose orc">
-  <p class="lead">That faith is the swagger.</p>
-  <p>It is also where the trouble lives.</p>
-  <p>Leland Stanford built this town on the belief that you could optimize a bloodline, and the belief did not stop at horses.</p>
+<!-- CHANGED: Leland Stanford prose now in with-portrait layout -->
+<div class="with-portrait orc">
+  <div class="text">
+    <p class="lead">That faith is the swagger.</p>
+    <p>It is also where the trouble lives.</p>
+    <p>Leland Stanford built this town on the belief that you could optimize a bloodline, and the belief did not stop at horses.</p>
+  </div>
+  <figure class="portrait-side">
+    <img src="https://raw.githubusercontent.com/milochao/PaloAltoMuseumView/main/Leland_Stanford.jpg" alt="Leland Stanford" onerror="this.style.background='#c8c2b4'">
+    <figcaption>Leland Stanford.</figcaption>
+  </figure>
 </div>
 
-<!-- one-animal scene: Muybridge portrait → annotation as breeding study -->
-<section class="scene dark" id="animal">
-  <div class="stage">
-    <div class="twin">
-      <div class="portrait-wrap" id="animalPortrait">
-        <img src="https://raw.githubusercontent.com/milochao/PaloAltoMuseumView/main/Eadweard_Muybridge.jpg" alt="Eadweard Muybridge, photographer, 1878">
-        <!-- annotation layer: SVG brackets over the portrait -->
-        <svg class="annot-layer" viewBox="0 0 100 133" preserveAspectRatio="none" aria-hidden="true">
-          <defs>
-            <style>
-              .atick { stroke: #55BA5C; stroke-width: .6; fill: none; }
-              .alabel { fill: #55BA5C; font-size: 4.2px; font-family: "Source Serif 4", serif; font-style: italic; letter-spacing: .04em; paint-order: stroke; stroke: #111; stroke-width: .4px; }
-            </style>
-          </defs>
-          <!-- top bracket: breed the best -->
-          <line class="atick" x1="12" y1="10" x2="88" y2="10"/>
-          <line class="atick" x1="12" y1="7" x2="12" y2="13"/>
-          <line class="atick" x1="88" y1="7" x2="88" y2="13"/>
-          <text class="alabel" x="50" y="7.5" text-anchor="middle">breed the best</text>
-          <!-- bottom bracket: cull the rest -->
-          <line class="atick" x1="12" y1="126" x2="88" y2="126"/>
-          <line class="atick" x1="12" y1="122" x2="12" y2="129"/>
-          <line class="atick" x1="88" y1="122" x2="88" y2="129"/>
-          <text class="alabel" x="50" y="133" text-anchor="middle">cull the rest</text>
-          <!-- vertical: the same stock -->
-          <line class="atick" x1="50" y1="10" x2="50" y2="126" stroke-dasharray="2 2"/>
-          <text class="alabel" x="53" y="70" text-anchor="start">the same stock</text>
-        </svg>
-        <!-- whitewash sweep -->
-        <div class="ww"></div>
+<!-- ANIMAL: STATIC TRIPTYCH FIGURE + PROSE -->
+<figure class="triptych-figure orc">
+  <div class="triptych-zone">Stanford&rsquo;s Palo Alto System &mdash; three figures, one logic</div>
+  <div class="triptych">
+    <div class="panel">
+      <img src="https://raw.githubusercontent.com/milochao/PaloAltoMuseumView/main/Eadweard_Muybridge.jpg" alt="Eadweard Muybridge" onerror="this.closest('.panel').style.background='#222'">
+      <div class="panel-meta">
+        <span class="panel-year">photographer &middot; 1878</span>
+        <span class="panel-name">Eadweard Muybridge</span>
+        <span class="panel-role">commissioned by Stanford to freeze the galloping horse.</span>
       </div>
-      <p class="caption">Eadweard Muybridge, c. 1882. The same commission that froze the horse.</p>
+    </div>
+    <div class="panel">
+      <img src="https://raw.githubusercontent.com/milochao/PaloAltoMuseumView/main/David_Starr_Jordon.jpg" alt="David Starr Jordan" onerror="this.closest('.panel').style.background='#222'">
+      <div class="panel-meta">
+        <span class="panel-year">Stanford&rsquo;s first president &middot; 1891&ndash;1913</span>
+        <span class="panel-name">David Starr Jordan</span>
+        <span class="panel-role">advocated forced sterilization as state policy.</span>
+      </div>
+    </div>
+    <div class="panel">
+      <img src="https://raw.githubusercontent.com/milochao/PaloAltoMuseumView/main/Lewis_Madison_Terman.jpg" alt="Lewis Terman" onerror="this.closest('.panel').style.background='#222'">
+      <div class="panel-meta">
+        <span class="panel-year">Stanford psychologist &middot; 1916</span>
+        <span class="panel-name">Lewis Terman</span>
+        <span class="panel-role">built the Stanford&ndash;Binet IQ test to rank human beings.</span>
+      </div>
     </div>
   </div>
-  <div class="steps">
-    <div class="step"><div class="card orc">
-      <p>The same Stanford who hired Muybridge to freeze his galloping horse ran what Harris calls the Palo Alto System<sup class="cite">4</sup>, breed the best and cull the rest,</p>
-      <p>The university's founding president David Starr Jordan and the psychologist Lewis Terman carried that logic into people. They became advocates for sterilization and built the IQ test to rank human beings the way Stanford ranked horses<sup class="cite">5</sup>.</p>
-    </div></div>
-    <div class="step"><div class="card orc">
-      <p class="dropline">The genius and the hubris are one animal.</p>
-      <p>The horse that gave the world the moving image is the same stock that gave the world a method for ranking human beings.</p>
-    </div></div>
-    <div class="step"><div class="card orc">
-      <p>Stanford has already begun that reckoning. It struck Jordan's name from a building in 2020<sup class="cite">6</sup> over this exact record.</p>
-      <p>The town's own university faced its founder. <span class="loved">The museum is where the town does the same.</span></p>
-    </div></div>
-  </div>
-</section>
+  <figcaption>One Stanford commission, three applications. The method that froze the horse is the method that ranked the people.</figcaption>
+</figure>
+
+<div class="prose orc">
+  <p>The same Stanford who hired Muybridge to freeze his galloping horse ran what Harris calls the Palo Alto System<sup class="cite">4</sup>, breed the best and cull the rest,</p>
+  <p>The university's founding president David Starr Jordan and the psychologist Lewis Terman carried that logic into people. They became advocates for sterilization and built the IQ test to rank human beings the way Stanford ranked horses<sup class="cite">5</sup>.</p>
+</div>
+
+<div class="prose orc">
+  <p class="dropline">The genius and the hubris are one animal.</p>
+  <p>The horse that gave the world the moving image is the same stock that gave the world a method for ranking human beings.</p>
+</div>
+
+<div class="prose orc">
+  <p>Stanford has already begun that reckoning. It struck Jordan's name from a building in 2020<sup class="cite">6</sup> over this exact record.</p>
+  <p>The town's own university faced its founder. <span class="loved">The museum is where the town does the same.</span></p>
+</div>
 
 <div class="prose orc">
   <p>From Hooves to Hollywood, an exhibit opening on the wall, is that entire story when it is told whole.</p>
@@ -709,10 +738,10 @@ footer p { font-size: 12px; color: var(--ink3); line-height: 1.65; margin-bottom
   <p>A museum honest enough to keep the horse and its shadow in one room is the only one worth crossing town for.</p>
 </div>
 
-<!-- ═══════════════ MAUSOLEUM → MOUSEION ═══════════════ -->
+<!-- MAUSOLEUM → MOUSEION -->
 <section id="muse">
   <div class="prose">
-    <div class="orc" style="margin-bottom: 1.8rem; text-align:center">
+    <div class="orc" style="margin-bottom:1.5rem;text-align:center">
       <div class="wordstage" id="wordstage">
         <span class="w dead">Mausoleum</span>
         <span class="w alive">Mouseion</span>
@@ -728,7 +757,7 @@ footer p { font-size: 12px; color: var(--ink3); line-height: 1.65; margin-bottom
   </div>
 </section>
 
-<!-- ═══════════════ ACT THREE · THE DOOR ═══════════════ -->
+<!-- ═══════════════ ACT THREE ═══════════════ -->
 <div class="acthead orc"><span class="t-zone">Act Three</span><h2>The Door</h2><div class="rule"></div></div>
 
 <div class="prose orc">
@@ -741,17 +770,24 @@ footer p { font-size: 12px; color: var(--ink3); line-height: 1.65; margin-bottom
   <p>That is the soul under the swagger, and the reason the awe does not turn cold.</p>
 </div>
 
-<figure class="shot orc">
-  <div class="slot">
-    <img src="https://raw.githubusercontent.com/milochao/PaloAltoMuseumView/main/Dr_Russell_Lee_and_Birge_Clark.jpg" alt="Dr. Russell Lee and Birge Clark" onerror="this.closest('.slot').style.background='#ccc9be'">
+<!-- CHANGED: Was Russell Lee + Birge Clark image; now The Roth Building -->
+<figure class="fullbleed orc">
+  <div class="frame">
+    <img src="https://raw.githubusercontent.com/milochao/PaloAltoMuseumView/main/The_Roth.jpg" alt="The Roth Building" onerror="this.closest('.frame').style.background='#c8c2b4'">
   </div>
-  <figcaption>Dr. Russell Lee and architect Birge Clark. The two men who built the Roth Building's character.</figcaption>
+  <figcaption>The Roth Building, Palo Alto. Birge Clark, 1932. Spanish Colonial Revival, on the National Register of Historic Places.</figcaption>
 </figure>
 
-<div class="prose orc">
-  <p>And the building's own family is still in the room.</p>
-  <p>Honorary Board member Dean Clark, MD, connects the museum to the Palo Alto medical and architectural lineage that shaped the Roth Building.<sup class="cite">15</sup></p>
-  <p>The people who made the place are vouching for what it becomes.</p>
+<div class="with-portrait orc">
+  <div class="text">
+    <p>And the building's own family is still in the room.</p>
+    <p>Honorary Board member Dean Clark, MD, connects the museum to the Palo Alto medical and architectural lineage that shaped the Roth Building.<sup class="cite">15</sup></p>
+    <p>The people who made the place are vouching for what it becomes.</p>
+  </div>
+  <figure class="portrait-side">
+    <img src="https://raw.githubusercontent.com/milochao/PaloAltoMuseumView/main/Dean_Clark.png" alt="Dean Clark, MD" onerror="this.style.background='#c8c2b4'">
+    <figcaption>Dean Clark, MD. Honorary Board member.</figcaption>
+  </figure>
 </div>
 
 <div class="prose orc">
@@ -760,40 +796,45 @@ footer p { font-size: 12px; color: var(--ink3); line-height: 1.65; margin-bottom
   <p>In 1932 Victor Arnautoff, fresh from assisting Diego Rivera<sup class="cite">7</sup>, painted Modern and Ancient Medicine into the clinic's entrance in true fresco, the paint bonded into wet plaster so the art is the wall and cannot be removed without destroying it<sup class="cite">8</sup>.</p>
 </div>
 
-<!-- the literal whitewash: the centerpiece -->
+<!-- DOOR SCENE -->
 <section class="scene" id="door">
   <div class="stage">
-    <figure>
-      <div class="fresco-wrap" id="frescoWrap">
-        <div class="fresco-strip"></div>
-        <img class="fresco-img"
-          src="https://raw.githubusercontent.com/milochao/PaloAltoMuseumView/main/Fresco_Artwork.png"
-          alt="Victor Arnautoff, Modern and Ancient Medicine, 1932, Roth Building entrance"
-          onerror="this.closest('.fresco-wrap').style.background='#c8c2b4'">
-        <div class="fresco-ww"></div>
-      </div>
-      <figcaption>Victor Arnautoff, <em>Modern and Ancient Medicine</em>, 1932. The Roth Building entrance: two of the four color panels flank the door, the grisaille skull above it, the monochrome panels below.<sup class="cite">8</sup></figcaption>
-    </figure>
+    <div class="fresco-wrap" id="frescoWrap">
+      <div class="fresco-strip"></div>
+      <img class="fresco-img"
+        src="https://raw.githubusercontent.com/milochao/PaloAltoMuseumView/main/Fresco_Artwork.png"
+        alt="Victor Arnautoff, Modern and Ancient Medicine, 1932"
+        onerror="this.closest('.fresco-wrap').style.background='#c8c2b4'">
+      <div class="fresco-ww"></div>
+    </div>
   </div>
   <div class="steps">
-    <div class="step"><div class="card orc">
-      <p>Four color panels.</p>
-      <p>A doctor lifting a naked infant toward its mother. An old physician bent with a stethoscope over a bare-chested woman. A masked surgical team mid-operation. A young man stripped to the waist under an early X-ray, the patient a self-portrait of the artist.</p>
-      <p>Faces, bodies, attention. The clinic's values, painted at its door.</p>
-    </div></div>
-    <div class="step"><div class="card orc">
-      <p>Below the color panels run the monochrome ones, the practices the clinic called primitive, among them a Flathead infant's head pressed into shape because a sloping forehead was thought to mark intelligence.</p>
-      <p>The ladder of who counts as advanced is in the same wall.</p>
-      <p>The genius and its shadow, at the door, in plaster.</p>
-    </div></div>
-    <div class="step"><div class="card orc">
-      <p>The town could not handle the color panels. Bare breasts on a public building.</p>
-      <p>The San Francisco Chronicle ran "Murals and Morals,"<sup class="cite">9</sup> cars jammed Homer Avenue to gawk, and Dr. Fritz Roth, the surgeon, threatened to whitewash the walls before he would move his practice in<sup class="cite">9</sup>.</p>
-    </div></div>
-    <div class="step"><div class="card orc">
-      <p>The murals stayed.</p>
-      <p class="dropline" style="color: var(--green-deep)">The town learned not to whitewash.</p>
-    </div></div>
+    <div class="step">
+      <div class="card orc">
+        <p>Four color panels.</p>
+        <p>A doctor lifting a naked infant toward its mother. An old physician bent with a stethoscope over a bare-chested woman. A masked surgical team mid-operation. A young man stripped to the waist under an early X-ray, the patient a self-portrait of the artist.</p>
+        <p>Faces, bodies, attention. The clinic's values, painted at its door.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="card orc">
+        <p>Below the color panels run the monochrome ones, the practices the clinic called primitive, among them a Flathead infant's head pressed into shape because a sloping forehead was thought to mark intelligence.</p>
+        <p>The ladder of who counts as advanced is in the same wall.</p>
+        <p>The genius and its shadow, at the door, in plaster.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="card orc">
+        <p>The town could not handle the color panels. Bare breasts on a public building.</p>
+        <p>The San Francisco Chronicle ran "Murals and Morals,"<sup class="cite">9</sup> cars jammed Homer Avenue to gawk, and Dr. Fritz Roth, the surgeon, threatened to whitewash the walls before he would move his practice in<sup class="cite">9</sup>.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="card orc">
+        <p>The murals stayed.</p>
+        <p class="dropline" style="color:var(--green-deep)">The town learned not to whitewash.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -805,7 +846,7 @@ footer p { font-size: 12px; color: var(--ink3); line-height: 1.65; margin-bottom
   <p>The reckoning is not a risk the museum runs. It is the building's oldest habit.</p>
 </div>
 
-<!-- ═══════════════ ACT FOUR · THE WALL ═══════════════ -->
+<!-- ═══════════════ ACT FOUR ═══════════════ -->
 <div class="acthead orc"><span class="t-zone">Act Four</span><h2>The Wall</h2><div class="rule"></div></div>
 
 <div class="prose orc">
@@ -817,30 +858,31 @@ footer p { font-size: 12px; color: var(--ink3); line-height: 1.65; margin-bottom
 
 <section class="scene dark" id="wall">
   <div class="stage">
-    <div class="facewrap">
-      <div class="faces" id="faces"></div>
-      <div class="youtag">you look up, and you are on the wall</div>
+    <div class="faces-stage">
+      <div>
+        <div class="faces" id="faces"></div>
+        <div class="youtag">you look up, and you are on the wall</div>
+      </div>
     </div>
   </div>
   <div class="steps">
-    <div class="step"><div class="card orc" style="background:rgba(15,15,13,.84);border-color:#2a2a26;color:#ede8de">
+    <div class="step"><div class="card orc" style="background:rgba(15,15,13,.86);border-color:#262620;color:#ede8de">
       <p>Arnautoff put faces at the door in 1932. This wall puts the living town's faces there now.</p>
       <p>The same gesture, ninety years apart.</p>
     </div></div>
-    <div class="step"><div class="card orc" style="background:rgba(15,15,13,.84);border-color:#2a2a26;color:#ede8de">
+    <div class="step"><div class="card orc" style="background:rgba(15,15,13,.86);border-color:#262620;color:#ede8de">
       <p>You do not get told you belong to Palo Alto. You look up, and you are on the wall, between an icon and the family three doors down.</p>
       <p>Belonging is never argued. It is conferred by the act of being in the room.</p>
     </div></div>
-    <div class="step"><div class="card orc" style="background:rgba(15,15,13,.84);border-color:#2a2a26;color:#ede8de">
+    <div class="step"><div class="card orc" style="background:rgba(15,15,13,.86);border-color:#262620;color:#ede8de">
       <p>The one question that decides everything is whether that wall is allowed to hold a hard story or only a proud one.</p>
       <p>If it can hold both, her instinct and this position are the same museum.</p>
     </div></div>
   </div>
 </section>
 
-<!-- what it refuses -->
 <div class="acthead orc" style="padding-bottom:0"><span class="t-zone">What it refuses</span></div>
-<div class="prose orc" style="padding-bottom:1rem">
+<div class="prose orc" style="padding-bottom:.8rem">
   <p>A position is the things it will not be. This one refuses three.</p>
 </div>
 <div class="refuse orc">
@@ -848,11 +890,11 @@ footer p { font-size: 12px; color: var(--ink3); line-height: 1.65; margin-bottom
   <div class="item"><span class="x">02</span><span class="t">It is <b>not the broadcast</b> that tells the world Palo Alto matters. That is the Computer History Museum's war, the world already believes it, and the audit is brutal: the claim never survives a visit.</span></div>
   <div class="item"><span class="x">03</span><span class="t">And it is <b>not the safe blend</b> of all three that every board can nod at and no resident can feel. The blend is how a museum ends up sounding like every other museum.</span></div>
 </div>
-<div class="prose orc" style="padding-top:1.5rem">
+<div class="prose orc" style="padding-top:1.3rem">
   <p class="dropline" style="color:var(--green-deep)">This one chooses.</p>
 </div>
 
-<!-- ═══════════════ WHO HOLDS THE PEN ═══════════════ -->
+<!-- WHO HOLDS THE PEN -->
 <div class="acthead orc"><span class="t-zone">Who holds the pen</span><h2>One pen, two hands</h2><div class="rule"></div></div>
 
 <div class="prose orc">
@@ -870,7 +912,7 @@ footer p { font-size: 12px; color: var(--ink3); line-height: 1.65; margin-bottom
 
 <section class="split orc">
   <div>
-    <div style="font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--green-deep);margin-bottom:1.3rem">Silicon Valley giving &middot; 2024</div>
+    <div style="font-size:9px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--green-deep);margin-bottom:1.2rem">Silicon Valley giving &middot; 2024</div>
     <div class="figstage">
       <div class="frule"></div>
       <div>
@@ -898,9 +940,7 @@ footer p { font-size: 12px; color: var(--ink3); line-height: 1.65; margin-bottom
   <p class="lead">The fight does not change. Only the hand does.</p>
 </div>
 
-<!-- ═══════════════ THE HAND THAT LIVED IT ═══════════════ -->
 <div class="acthead orc"><span class="t-zone">The hand that lived it</span><div class="rule"></div></div>
-
 <div class="prose orc">
   <p class="lead">If the story is already yours, the museum is where you write it down before someone else does.</p>
   <p>You lived the version the world never asks about. Harris will not tell it. The world will not. You will, or no one will.</p>
@@ -909,9 +949,7 @@ footer p { font-size: 12px; color: var(--ink3); line-height: 1.65; margin-bottom
   <p class="lead" style="color:var(--green-deep)">Take the pen. Write yourself in.</p>
 </div>
 
-<!-- ═══════════════ THE HAND THAT CAN BUILD THE ROOM ═══════════════ -->
 <div class="acthead orc"><span class="t-zone">The hand that can build the room</span><div class="rule"></div></div>
-
 <div class="prose orc">
   <p class="lead">If the story is not yours yet, you do not inherit your way in. You build it.</p>
   <p>You did not grow up here. The memory is not yours, and pretending otherwise is the cheap move. But the town the world will not stop talking about has never had an institution worthy of telling its own story. That is the thing that is not there yet. That is the thing to make.</p>
@@ -920,9 +958,8 @@ footer p { font-size: 12px; color: var(--ink3); line-height: 1.65; margin-bottom
   <p class="lead" style="color:var(--green-deep)">Take the pen. Build the room it writes in.</p>
 </div>
 
-<!-- ═══════════════ THE FIRST CHAPTER ═══════════════ -->
+<!-- THE FIRST CHAPTER -->
 <div class="acthead orc"><span class="t-zone">The first chapter</span></div>
-
 <div class="prose orc">
   <p>Opening day, the program is not yet the argument. It is the raw material of two different museums, and you can see both fighting for the building.</p>
   <p>Three exhibits anchor the real museum: I Am Palo Alto, the people wall and the belonging engine. From Hooves to Hollywood, the horse that gave the world the moving image and the optimization method that became <span class="loved">eugenics.</span> Juana Briones, who held her own ground in court as Palo Alto shifted from Mexican to American territory and refused to disappear from history.</p>
@@ -938,7 +975,14 @@ footer p { font-size: 12px; color: var(--ink3); line-height: 1.65; margin-bottom
   <p>Not a memorial. A working room.</p>
 </div>
 
-<!-- ═══════════════ THE BAR ═══════════════ -->
+<!-- Heritage Park image now lives near the lease mention -->
+<figure class="fullbleed orc">
+  <div class="frame">
+    <img src="https://raw.githubusercontent.com/milochao/PaloAltoMuseumView/main/Heritage_Park.jpg" alt="Heritage Park, Palo Alto" onerror="this.closest('.frame').style.background='#c8c2b4'">
+  </div>
+  <figcaption>Heritage Park, Palo Alto. The Roth Building sits at its center, leased from the City for a dollar a year.</figcaption>
+</figure>
+
 <div class="acthead orc"><span class="t-zone">The bar</span></div>
 <div class="bar orc">
   <div class="t"><div class="h">Distinct</div><div class="b">No one else is fighting for the telling of Palo Alto, and no one else has the town's own clinic, the frescoes that already won the whitewash fight, and the architect's family and former mayors on its board, to fight from.</div></div>
@@ -946,34 +990,32 @@ footer p { font-size: 12px; color: var(--ink3); line-height: 1.65; margin-bottom
   <div class="t"><div class="h">Resonant</div><div class="b">Every resident feels the gap between the Palo Alto the world discusses and the one they live in. This is the place that closes it.</div></div>
 </div>
 
-<!-- ═══════════════ FINALE ═══════════════ -->
 <div class="finale">
   <p class="small">What this town built, the world inherited.</p>
   <p class="big">The Palo Alto Museum is where the town finally <em>inherits itself.</em></p>
 </div>
 
-<!-- ═══════════════ SOURCES ═══════════════ -->
 <section class="sources">
   <span class="t-zone">Sources &amp; method</span>
-  <p class="note">Prose is the Palo Alto Museum positioning, version 3, audited May 2026. Board language and the Dean Clark reference reflect that audit. One figure is flagged below as awaiting a primary source.</p>
+  <p class="note">Prose is the Palo Alto Museum positioning, version 3, audited May 2026.</p>
   <ol>
     <li><b>Malcolm Harris, Palo Alto (2023).</b> The dominant published narrative of the region and its eugenic record.</li>
     <li><b>Muybridge, 1878, Stanford Stock Farm.</b> The motion study commissioned by Leland Stanford; foundational to cinema.</li>
     <li><b>Roth Building: A Deep Historical Study.</b> Russell Lee's group practice, the 1946 prepaid care contract, the 1950 outpatient radiation unit, and the county medical society's opposition.</li>
-    <li><b>Harness Racing Museum; Stanford materials.</b> The Palo Alto System as a historically attested term for the farm's breeding and training regime, not a coinage.</li>
+    <li><b>Harness Racing Museum; Stanford materials.</b> The Palo Alto System as a historically attested term for the farm's breeding and training regime.</li>
     <li><b>Harris; Stanford records; Terman, The Measurement of Intelligence (1916).</b> Jordan's eugenics advocacy and Terman's use of the Stanford-Binet.</li>
     <li><b>Stanford Daily, Oct 7 2020; Stanford Report.</b> The Board of Trustees striking Jordan's name from the building.</li>
     <li><b>Roth Building Deep Historical Study.</b> Arnautoff as Diego Rivera's assistant in late-1920s Mexico.</li>
     <li><b>Roth Building Deep Historical Study.</b> Arnautoff's Modern and Ancient Medicine, 1932, buon fresco bonded into wet plaster.</li>
     <li><b>Roth Building Deep Historical Study.</b> The San Francisco Chronicle's Murals and Morals, and Roth's threat to whitewash before moving in.</li>
     <li><b>Palo Alto Online; project files.</b> Birge Clark's 1932 design of the Roth Building, Spanish Colonial Revival, National Register of Historic Places.</li>
-    <li><b>Palo Alto Online, 2017.</b> More than 600 families had contributed to the museum campaign (board member Rich Green).</li>
-    <li><b>Palo Alto Online, December 2017.</b> Mayor Greg Scharff stated the board had raised $1.4 million from donors; the City Council set a challenge to raise $1.75 million by year-end or lose the lease on the Roth Building.</li>
-    <li><b>Silicon Valley Community Foundation 2024-25 Year in Review, via San Jose Spotlight.</b> Of $1.52 billion in donor giving, 8.6 percent went to local Santa Clara and San Mateo needs; 79 percent left the region.</li>
-    <li><b>Roth Building Deep Historical Study.</b> The dollar-a-year municipal lease: at least twenty public hours a week and upkeep of the Heritage Park restrooms.</li>
+    <li><b>Palo Alto Online, 2017.</b> More than 600 families had contributed to the museum campaign.</li>
+    <li><b>Palo Alto Online, December 2017.</b> Mayor Greg Scharff stated the board had raised $1.4 million from donors; the City Council set a challenge to raise $1.75 million by year-end or lose the lease.</li>
+    <li><b>Silicon Valley Community Foundation 2024-25 Year in Review, via San Jose Spotlight.</b> Of $1.52 billion in donor giving, 8.6 percent went to local needs; 79 percent left the region.</li>
+    <li><b>Roth Building Deep Historical Study.</b> The dollar-a-year municipal lease terms.</li>
     <li><b>Palo Alto Museum board roster, 2025.</b> Karen Holman, former mayor and Vice Chair; Dean Clark, MD, Honorary Board.</li>
-    <li><b>Computer History Museum (institutional history); Wikipedia.</b> Len Shustek founded the museum; its capital campaign reached roughly $125 million.</li>
-    <li><b>Palo Alto Online, 2021, lease-negotiation coverage.</b> Council member Greg Tanaka framed the choice as investing in the past, the history, or the future.</li>
+    <li><b>Computer History Museum (institutional history); Wikipedia.</b> Len Shustek founded the museum; capital campaign reached roughly $125 million.</li>
+    <li><b>Palo Alto Online, 2021.</b> Council member Greg Tanaka framed the choice as investing in the past, the history, or the future.</li>
     <li><b>Marguerite Gong Hancock, via Palo Alto Online, 2025.</b> I Am Palo Alto is designed to grow as visitors contribute their own stories.</li>
     <li><b>Palo Alto Online; project verification.</b> Juana Briones defended her landholding through litigation that reached the US Supreme Court.</li>
     <li><b>Competitive positioning audit, this project.</b> Across institutions, participatory programs outperform collections in generating emotional visitor response.</li>
@@ -981,7 +1023,7 @@ footer p { font-size: 12px; color: var(--ink3); line-height: 1.65; margin-bottom
 </section>
 
 <footer>
-  <p>Archival images render with a desaturated treatment. Color is reserved for the fresco and the green signal. Image credits attach to each photograph on placement.</p>
+  <p>Archival images render with a desaturated treatment. Color is reserved for the fresco and the green signal.</p>
 </footer>
 
 <script>
@@ -990,187 +1032,136 @@ footer p { font-size: 12px; color: var(--ink3); line-height: 1.65; margin-bottom
 
   var BASE = "https://raw.githubusercontent.com/milochao/PaloAltoMuseumView/main/";
   var FRAMES = 16;
-  var FRAMESRC = [];
-  for (var i = 1; i <= FRAMES; i++) {
-    FRAMESRC.push(BASE + i + "_H.jpg");
-  }
+  var src = [];
+  for (var i = 1; i <= FRAMES; i++) src.push(BASE + i + "_H.jpg");
 
-  /* ── BUILD FILMSTRIP ── */
-  var filmstrip = document.getElementById("filmstrip");
-  var projImg   = document.getElementById("projImg");
-  var frameCells = [];
+  var strip = document.getElementById("filmstrip");
+  var proj  = document.getElementById("projImg");
+  var cells = [];
 
   for (var f = 0; f < FRAMES; f++) {
-    var cell = document.createElement("div");
-    cell.className = "frame";
-    var fn = document.createElement("span");
-    fn.className = "fn";
-    fn.textContent = f + 1;
-    var img = document.createElement("img");
-    img.src = FRAMESRC[f];
-    img.alt = "frame " + (f + 1);
-    img.loading = "lazy";
-    cell.appendChild(fn);
-    cell.appendChild(img);
-    filmstrip.appendChild(cell);
-    frameCells.push(cell);
+    var c = document.createElement("div"); c.className = "frame";
+    var fn = document.createElement("span"); fn.className = "fn"; fn.textContent = f + 1;
+    var im = document.createElement("img"); im.src = src[f]; im.alt = ""; im.loading = "lazy";
+    c.appendChild(fn); c.appendChild(im);
+    strip.appendChild(c); cells.push(c);
   }
-
-  projImg.src = FRAMESRC[0];
+  proj.src = src[0];
 
   function setFrame(idx) {
     idx = Math.max(0, Math.min(FRAMES - 1, idx));
-    frameCells.forEach(function (c, i) { c.classList.toggle("active", i === idx); });
-    projImg.src = FRAMESRC[idx];
+    cells.forEach(function (c, i) { c.classList.toggle("active", i === idx); });
+    proj.src = src[idx];
   }
 
-  /* ── HERO SCROLL ── */
-  var heroEl     = document.getElementById("hero");
-  var heroSticky = document.getElementById("heroSticky");
-  var heroTicking = false;
+  var heroEl = document.getElementById("hero");
+  var sticky = document.getElementById("heroSticky");
+  var ticking = false;
 
-  function onHeroScroll() {
-    if (heroTicking) return;
-    heroTicking = true;
+  function heroScroll() {
+    if (ticking) return; ticking = true;
     requestAnimationFrame(function () {
       var r = heroEl.getBoundingClientRect();
       var total = heroEl.offsetHeight - window.innerHeight;
       var prog = Math.min(1, Math.max(0, -r.top / total));
       setFrame(Math.floor(prog * FRAMES));
-      heroSticky.classList.toggle("show", prog > 0.15);
-      heroTicking = false;
+      sticky.classList.toggle("show", prog > 0.12);
+      ticking = false;
     });
   }
 
   setFrame(0);
-  heroSticky.classList.remove("show");
-  window.addEventListener("scroll", onHeroScroll, { passive: true });
-  window.addEventListener("resize", onHeroScroll, { passive: true });
+  window.addEventListener("scroll", heroScroll, { passive: true });
+  window.addEventListener("resize", heroScroll, { passive: true });
 
-  /* ambient animation when idle */
-  var amb = 0, isIdle = true;
-  window.addEventListener("scroll", function () { isIdle = false; }, { passive: true, once: true });
-  setInterval(function () { if (isIdle) { amb = (amb + 1) % FRAMES; setFrame(amb); } }, 160);
+  var amb = 0, idle = true;
+  window.addEventListener("scroll", function () { idle = false; }, { passive: true, once: true });
+  setInterval(function () { if (idle) { amb = (amb + 1) % FRAMES; setFrame(amb); } }, 150);
 
-  /* ── LOG STAGGER HELPER ── */
-  function logStagger(nodes) {
+  function logStagger(nodes, base) {
+    base = base || 0;
     nodes.forEach(function (n, i) {
-      n.style.transitionDelay = (Math.log10(i + 1) * 0.4).toFixed(2) + "s";
+      n.style.transitionDelay = (base + Math.log10(i + 1) * 0.38).toFixed(2) + "s";
     });
   }
 
-  /* ── GENERIC ORCHESTRATION OBSERVER (threshold 0.15) ── */
   var io = new IntersectionObserver(function (entries) {
     entries.forEach(function (e) {
-      if (e.isIntersecting) {
-        e.target.classList.add("is-orchestrated");
-        io.unobserve(e.target);
-      }
+      if (e.isIntersecting) { e.target.classList.add("is-orchestrated"); io.unobserve(e.target); }
     });
-  }, { threshold: 0.15 });
+  }, { threshold: 0.14 });
+  document.querySelectorAll(".orc").forEach(function (n) { io.observe(n); });
 
-  document.querySelectorAll(".orc").forEach(function (n) {
-    io.observe(n);
-  });
-
-  /* ── STEP-DRIVEN SCENE STATES ── */
-  function onStep(selector, cb) {
-    var steps = Array.from(document.querySelectorAll(selector));
+  function onStep(sel, cb) {
+    var steps = Array.from(document.querySelectorAll(sel));
     var so = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) { cb(steps.indexOf(e.target)); }
-      });
-    }, { threshold: 0.55 });
+      entries.forEach(function (e) { if (e.isIntersecting) cb(steps.indexOf(e.target)); });
+    }, { threshold: 0.5 });
     steps.forEach(function (s) { so.observe(s); });
   }
 
-  /* negation void stage */
-  var voidStage = document.getElementById("voidStage");
+  var voidFull = document.getElementById("voidFull");
   onStep("#neg .step", function (i) {
-    if (i >= 0) voidStage.classList.add("go");
-    if (i >= 2) voidStage.classList.add("claim");
-    else        voidStage.classList.remove("claim");
+    if (i >= 0) voidFull.classList.add("go");
+    if (i >= 1) voidFull.classList.add("claim");
+    else        voidFull.classList.remove("claim");
   });
 
-  /* one-animal portrait */
-  var portrait = document.getElementById("animalPortrait");
-  onStep("#animal .step", function (i) {
-    if (i === 0) { portrait.classList.remove("painting", "revealed"); }
-    if (i === 1) { portrait.classList.add("annotated"); portrait.classList.add("painting"); portrait.classList.remove("revealed"); }
-    if (i >= 2)  { portrait.classList.add("painting", "revealed"); }
-  });
+  // Animal scene is now a static figure; no step handler needed.
 
-  /* fresco whitewash */
   var frescoWrap = document.getElementById("frescoWrap");
   onStep("#door .step", function (i) {
-    if (i === 0) { frescoWrap.classList.remove("painted", "restored"); }
-    if (i === 1) { frescoWrap.classList.remove("painted", "restored"); }
+    if (i <= 1) { frescoWrap.classList.remove("painted", "restored"); }
     if (i === 2) { frescoWrap.classList.add("painted"); frescoWrap.classList.remove("restored"); }
     if (i >= 3)  { frescoWrap.classList.add("painted", "restored"); }
   });
 
-  /* mausoleum → mouseion */
   var ws = document.getElementById("wordstage");
-  new IntersectionObserver(function (entries) {
-    entries.forEach(function (e) {
-      if (e.isIntersecting) { setTimeout(function () { ws.classList.add("swept"); }, 380); }
+  new IntersectionObserver(function (e) {
+    e.forEach(function (ev) {
+      if (ev.isIntersecting) setTimeout(function () { ws.classList.add("swept"); }, 360);
     });
   }, { threshold: 0.65 }).observe(ws);
 
-  /* ── WALL OF FACES ── */
   var facesEl = document.getElementById("faces");
   var faceNodes = [];
-  var FACE_COUNT = 32;
-  var YOU_INDEX  = 19;
-
-  /* real image anchors available in the repo */
-  var REAL_FACES = [
+  var COUNT = 32, YOU = 19;
+  var REAL = [
     BASE + "Eadweard_Muybridge.jpg",
     BASE + "Diego_Rivera.jpg",
     BASE + "David_Starr_Jordon.jpg",
     BASE + "Dr_Esther_B_Clark.jpg",
-    BASE + "Dr_Russell_Lee_and_Birge_Clark.jpg"
+    BASE + "Dr_Russell_Lee_and_Birge_Clark.jpg",
+    BASE + "Leland_Stanford.jpg",
+    BASE + "Lewis_Madison_Terman.jpg",
+    BASE + "Victor_Arnautoff.png",
+    BASE + "Juana_Briones.png"
   ];
 
-  for (var w = 0; w < FACE_COUNT; w++) {
-    var d = document.createElement("div");
-    d.className = "face";
-
-    if (w === YOU_INDEX) {
+  for (var w = 0; w < COUNT; w++) {
+    var d = document.createElement("div"); d.className = "face";
+    if (w === YOU) {
       d.classList.add("you");
-      var inner = document.createElement("div");
-      inner.className = "you-inner";
-      var mark = document.createElement("div");
-      mark.className = "you-mark";
-      inner.appendChild(mark);
-      d.appendChild(inner);
-    } else if (w < REAL_FACES.length) {
+      d.innerHTML = '<div class="you-inner"><div class="you-mark"></div></div>';
+    } else if (w < REAL.length) {
       var fi = document.createElement("img");
-      fi.src = REAL_FACES[w];
-      fi.alt = "portrait";
-      fi.loading = "lazy";
+      fi.src = REAL[w]; fi.alt = ""; fi.loading = "lazy";
       d.appendChild(fi);
     } else {
-      /* generated SVG silhouette for remaining cells */
-      var hue = 20 + ((w * 53) % 60);
-      var sk  = "hsl(" + hue + ",18%," + (56 + (w * 7) % 18) + "%)";
+      var h = 20 + ((w * 53) % 60);
+      var sk = "hsl(" + h + ",16%," + (54 + (w * 7) % 18) + "%)";
       d.innerHTML = '<svg viewBox="0 0 40 40"><rect width="40" height="40" fill="#181816"/>'
         + '<circle cx="20" cy="15" r="6.5" fill="' + sk + '"/>'
         + '<path d="M7 40 C7 27 33 27 33 40 Z" fill="' + sk + '"/></svg>';
     }
-
-    facesEl.appendChild(d);
-    faceNodes.push(d);
+    facesEl.appendChild(d); faceNodes.push(d);
   }
 
   new IntersectionObserver(function (entries) {
     entries.forEach(function (e) {
-      if (e.isIntersecting) {
-        logStagger(faceNodes);
-        facesEl.classList.add("go");
-      }
+      if (e.isIntersecting) { logStagger(faceNodes); facesEl.classList.add("go"); }
     });
-  }, { threshold: 0.25 }).observe(facesEl);
+  }, { threshold: 0.2 }).observe(facesEl);
 
 })();
 </script>
