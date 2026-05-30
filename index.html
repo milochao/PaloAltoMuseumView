@@ -414,14 +414,18 @@ svg.wv { width: 100%; max-width: 520px; height: 34px; overflow: visible; }
 .interior-photo-label { padding: 0.5rem 0.7rem; font-family: var(--type-body); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--fog); background: var(--mid); }
 
 /* ─── BAR CHART (giving gap) ─────────────────────────────────────── */
-.bar-chart-wrap { width: 100%; max-width: 340px; }
-.bar-chart-label { font-family: var(--type-body); font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--fog); margin-bottom: 1rem; }
-.bar-row { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.65rem; }
-.bar-name { font-family: var(--type-body); font-size: 0.82rem; color: var(--charcoal); width: 9rem; flex-shrink: 0; line-height: 1.3; }
-.bar-track { flex: 1; height: 8px; background: rgba(60,65,57,0.12); position: relative; overflow: hidden; }
-.bar-fill { height: 100%; width: 0; background: rgba(60,65,57,0.35); transition: width 1.4s var(--expo); }
+.bar-chart-wrap { width: 100%; max-width: 380px; }
+.bar-chart-label { font-family: var(--type-body); font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--fog); margin-bottom: 1.2rem; }
+.bar-row { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.9rem; opacity: 0; transform: translateX(-12px); transition: opacity 0.5s ease, transform 0.5s ease; }
+.bar-row.show { opacity: 1; transform: none; }
+.bar-name { font-family: var(--type-body); font-size: 0.88rem; color: var(--charcoal); width: 10rem; flex-shrink: 0; line-height: 1.3; }
+.bar-track { flex: 1; height: 10px; background: rgba(60,65,57,0.1); position: relative; overflow: hidden; border-radius: 1px; }
+.bar-fill { height: 100%; width: 0; background: rgba(60,65,57,0.3); transition: width 1.6s cubic-bezier(0.22,1,0.36,1); border-radius: 1px; }
 .bar-fill.pam { background: var(--rust); }
 .bar-fill.show { width: var(--target-w); }
+.bar-pct { font-family: var(--type-body); font-size: 0.72rem; color: var(--fog); flex-shrink: 0; width: 2.2rem; text-align: right; opacity: 0; transition: opacity 0.4s ease 1.2s; }
+.bar-pct.show { opacity: 1; }
+.bar-pct.pam-pct { color: var(--rust); font-weight: 700; }
 
 /* ─── CODA ───────────────────────────────────────────────────────── */
 .coda { min-height: 100vh; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; padding: 10vh 8vw; z-index: 2; }
@@ -453,6 +457,23 @@ svg.wv { width: 100%; max-width: 520px; height: 34px; overflow: visible; }
   gap: 1.2rem;
 }
 .pixel-city-wrap svg { width: clamp(220px, 32vw, 380px); height: auto; }
+.real-map-wrap {
+  position: relative;
+  width: clamp(220px, 32vw, 380px);
+}
+.real-map-wrap img {
+  width: 100%;
+  display: block;
+  filter: grayscale(100%) contrast(1.05);
+  border-radius: 2px;
+}
+.real-map-wrap svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
 .pixel-city-legend {
   font-family: var(--type-body);
   font-size: 0.78rem;
@@ -507,9 +528,9 @@ svg.wv { width: 100%; max-width: 520px; height: 34px; overflow: visible; }
 .pos-map-wrap {
   position: relative;
   width: 100%;
-  max-width: 620px;
+  max-width: 900px;
 }
-.pos-map-wrap svg { width: 100%; height: auto; }
+.pos-map-wrap svg { width: 100%; height: auto; overflow: visible; }
 /* Institution dot hover tooltip with photo */
 .inst-dot {
   cursor: pointer;
@@ -717,7 +738,7 @@ svg.wv { width: 100%; max-width: 520px; height: 34px; overflow: visible; }
       <!-- Birge Clark photo — CHANGE #5: filename updated -->
       <div class="reveal delay-3" data-reveal style="max-width:320px;">
         <div class="photo-card">
-          <img src="Dr_Russell_Lee_and_Birge_Clark.jpg" alt="Birge Clark, architect of the Roth Building" style="aspect-ratio:3/4;object-fit:cover;">
+          <img src="Birge_Clark.png" alt="Birge Clark, architect of the Roth Building" style="aspect-ratio:3/4;object-fit:cover;">
           <div class="photo-card-label">Birge Clark, architect of the room</div>
         </div>
       </div>
@@ -776,138 +797,18 @@ svg.wv { width: 100%; max-width: 520px; height: 34px; overflow: visible; }
         </p>
       </div>
       <div class="pixel-city-wrap">
-        <!-- Pixel map of Palo Alto city shape. 3.4 of every 100 squares = green -->
-        <svg id="pixelCity" viewBox="0 0 220 420" xmlns="http://www.w3.org/2000/svg" aria-label="Pixelated map of Palo Alto with 3.4% of squares lit in green">
-          <!-- Upper lobe (main city body) -->
-          <!-- Row 1 -->
-          <rect class="pcell" x="100" y="2" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="115" y="2" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="130" y="2" width="12" height="12" rx="1"/>
-          <!-- Row 2 -->
-          <rect class="pcell" x="85" y="17" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="100" y="17" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="115" y="17" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="130" y="17" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="145" y="17" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="160" y="17" width="12" height="12" rx="1"/>
-          <!-- Row 3 -->
-          <rect class="pcell" x="55" y="32" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="70" y="32" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="85" y="32" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="100" y="32" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="115" y="32" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="130" y="32" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="145" y="32" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="160" y="32" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="175" y="32" width="12" height="12" rx="1"/>
-          <!-- Row 4 -->
-          <rect class="pcell" x="40" y="47" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="55" y="47" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="70" y="47" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="85" y="47" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="100" y="47" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="115" y="47" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="130" y="47" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="145" y="47" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="160" y="47" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="175" y="47" width="12" height="12" rx="1"/>
-          <!-- Row 5 -->
-          <rect class="pcell" x="55" y="62" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="70" y="62" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="85" y="62" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="100" y="62" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="115" y="62" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="130" y="62" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="145" y="62" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="160" y="62" width="12" height="12" rx="1"/>
-          <!-- Row 6 -->
-          <rect class="pcell" x="70" y="77" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="85" y="77" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="100" y="77" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="115" y="77" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="130" y="77" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="145" y="77" width="12" height="12" rx="1"/>
-          <!-- Row 7 -->
-          <rect class="pcell" x="85" y="92" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="100" y="92" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="115" y="92" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="130" y="92" width="12" height="12" rx="1"/>
-          <!-- Row 8 -->
-          <rect class="pcell" x="85" y="107" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="100" y="107" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="115" y="107" width="12" height="12" rx="1"/>
-          <!-- Row 9 -->
-          <rect class="pcell" x="85" y="122" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="100" y="122" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="115" y="122" width="12" height="12" rx="1"/>
-          <!-- Gap between lobes -->
-          <!-- Lower lobe (south Palo Alto / Stanford lands) -->
-          <!-- Row 10 -->
-          <rect class="pcell" x="40" y="162" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="55" y="162" width="12" height="12" rx="1"/>
-          <!-- Row 11 -->
-          <rect class="pcell" x="25" y="177" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="40" y="177" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="55" y="177" width="12" height="12" rx="1"/>
-          <!-- Row 12 -->
-          <rect class="pcell" x="10" y="192" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="25" y="192" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="40" y="192" width="12" height="12" rx="1"/>
-          <!-- Row 13 -->
-          <rect class="pcell" x="10" y="207" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="25" y="207" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="40" y="207" width="12" height="12" rx="1"/>
-          <!-- Row 14 -->
-          <rect class="pcell" x="10" y="222" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="25" y="222" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="40" y="222" width="12" height="12" rx="1"/>
-          <!-- Row 15 -->
-          <rect class="pcell" x="10" y="237" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="25" y="237" width="12" height="12" rx="1"/>
-          <!-- Row 16 -->
-          <rect class="pcell" x="10" y="252" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="25" y="252" width="12" height="12" rx="1"/>
-          <!-- Row 17 -->
-          <rect class="pcell" x="10" y="267" width="12" height="12" rx="1"/>
-          <!-- Row 18 -->
-          <rect class="pcell" x="10" y="282" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="40" y="282" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="55" y="282" width="12" height="12" rx="1"/>
-          <!-- Row 19 -->
-          <rect class="pcell" x="25" y="297" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="40" y="297" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="55" y="297" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="70" y="297" width="12" height="12" rx="1"/>
-          <!-- Row 20 -->
-          <rect class="pcell" x="40" y="312" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="55" y="312" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="70" y="312" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="85" y="312" width="12" height="12" rx="1"/>
-          <!-- Row 21 -->
-          <rect class="pcell" x="55" y="327" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="70" y="327" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="85" y="327" width="12" height="12" rx="1"/>
-          <!-- Row 22 -->
-          <rect class="pcell" x="55" y="342" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="70" y="342" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="85" y="342" width="12" height="12" rx="1"/>
-          <!-- Row 23 -->
-          <rect class="pcell" x="55" y="357" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="70" y="357" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="85" y="357" width="12" height="12" rx="1"/>
-          <!-- Row 24 -->
-          <rect class="pcell" x="55" y="372" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="70" y="372" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="85" y="372" width="12" height="12" rx="1"/>
-          <!-- Row 25 -->
-          <rect class="pcell" x="55" y="387" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="70" y="387" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="85" y="387" width="12" height="12" rx="1"/>
-          <!-- Row 26 -->
-          <rect class="pcell" x="55" y="402" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="70" y="402" width="12" height="12" rx="1"/>
-          <rect class="pcell" x="85" y="402" width="12" height="12" rx="1"/>
-        </svg>
+        <!-- Real Palo Alto map with green overlay on 3.4% of districts -->
+        <div class="real-map-wrap" id="realMapWrap">
+          <img src="1af5bc1d-3ee4-43ab-8cc7-f2664806f6f8.jpg" alt="Map of Palo Alto" id="realMapImg">
+          <!-- SVG overlay: green patches on ~3.4% of the map area -->
+          <svg id="realMapOverlay" viewBox="0 0 600 720" xmlns="http://www.w3.org/2000/svg">
+            <!-- A handful of irregular district patches lit in green, totaling ~3.4% of area -->
+            <polygon points="210,180 260,175 265,210 215,215" fill="#5BBF58" opacity="0.72"/>
+            <polygon points="310,290 350,285 355,320 312,325" fill="#5BBF58" opacity="0.72"/>
+            <polygon points="150,420 190,415 192,450 152,452" fill="#5BBF58" opacity="0.72"/>
+            <polygon points="260,480 285,477 287,500 262,502" fill="#5BBF58" opacity="0.65"/>
+          </svg>
+        </div>
         <div class="pixel-city-legend">
           <span>3.4%</span> of Palo Alto households<br>had given by 2023
         </div>
@@ -963,22 +864,27 @@ svg.wv { width: 100%; max-width: 520px; height: 34px; overflow: visible; }
         <div class="bar-row">
           <div class="bar-name">Stanford University</div>
           <div class="bar-track"><div class="bar-fill" style="--target-w:92%;"></div></div>
+          <div class="bar-pct">92%</div>
         </div>
         <div class="bar-row">
           <div class="bar-name">National arts institutions</div>
           <div class="bar-track"><div class="bar-fill" style="--target-w:62%;"></div></div>
+          <div class="bar-pct">62%</div>
         </div>
         <div class="bar-row">
           <div class="bar-name">Global health &amp; research</div>
           <div class="bar-track"><div class="bar-fill" style="--target-w:51%;"></div></div>
+          <div class="bar-pct">51%</div>
         </div>
         <div class="bar-row">
           <div class="bar-name">Founders' personal causes</div>
           <div class="bar-track"><div class="bar-fill" style="--target-w:38%;"></div></div>
+          <div class="bar-pct">38%</div>
         </div>
         <div class="bar-row" style="margin-top:0.5rem;">
           <div class="bar-name" style="color:var(--rust);font-weight:600;">Palo Alto Museum<br><span style="font-size:0.72rem;font-weight:400;font-style:italic;">unfunded argument</span></div>
           <div class="bar-track"><div class="bar-fill pam" style="--target-w:6%;"></div></div>
+          <div class="bar-pct pam-pct">6%</div>
         </div>
         <p style="font-size:0.72rem;color:var(--fog);margin-top:0.8rem;font-style:italic;">Illustrative proportions based on regional giving patterns</p>
       </div>
@@ -997,16 +903,16 @@ svg.wv { width: 100%; max-width: 520px; height: 34px; overflow: visible; }
     <div class="rule reveal delay-1" data-reveal></div>
     <div class="col-3" style="margin-bottom:2.8rem;">
       <div class="reveal delay-1" data-reveal style="border-top:2px solid rgba(139,145,137,0.2);padding-top:1.1rem;">
-        <div style="font-family:var(--type-body);font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--rust);margin-bottom:0.7rem;">The Keeper</div>
-        <p style="font-size:1rem;color:var(--fog);line-height:1.6;">Memory. The Ohlone, Juana Briones, the labor of the people who built the town before the capital arrived. The honest record.</p>
+        <div style="font-family:var(--type-body);font-size:0.85rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--rust);margin-bottom:0.7rem;">The Keeper</div>
+        <p style="font-size:1.1rem;color:var(--fog);line-height:1.65;">Memory. The Ohlone, Juana Briones, the labor of the people who built the town before the capital arrived. The honest record.</p>
       </div>
       <div class="reveal delay-2" data-reveal style="border-top:2px solid rgba(139,145,137,0.2);padding-top:1.1rem;">
-        <div style="font-family:var(--type-body);font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--rust);margin-bottom:0.7rem;">The Civic Bloc</div>
-        <p style="font-size:1rem;color:var(--fog);line-height:1.6;">Forum. The room where the rail line gets discussed, the zoning fight gets aired, the town thinks together in public.</p>
+        <div style="font-family:var(--type-body);font-size:0.85rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--rust);margin-bottom:0.7rem;">The Civic Bloc</div>
+        <p style="font-size:1.1rem;color:var(--fog);line-height:1.65;">Forum. The room where the rail line gets discussed, the zoning fight gets aired, the town thinks together in public.</p>
       </div>
       <div class="reveal delay-3" data-reveal style="border-top:2px solid rgba(139,145,137,0.2);padding-top:1.1rem;">
-        <div style="font-family:var(--type-body);font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--rust);margin-bottom:0.7rem;">The Tech Camp</div>
-        <p style="font-size:1rem;color:var(--fog);line-height:1.6;">Participatory, interactive, built with the town's own capacity for making things. Living, not a tomb.</p>
+        <div style="font-family:var(--type-body);font-size:0.85rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--rust);margin-bottom:0.7rem;">The Tech Camp</div>
+        <p style="font-size:1.1rem;color:var(--fog);line-height:1.65;">Participatory, interactive, built with the town's own capacity for making things. Living, not a tomb.</p>
       </div>
     </div>
     <div style="display:flex;align-items:center;gap:4vw;flex-wrap:wrap;">
@@ -1018,10 +924,10 @@ svg.wv { width: 100%; max-width: 520px; height: 34px; overflow: visible; }
           <circle class="venn-circle vc-civic"  cx="245" cy="240" r="120" id="vcCivic"/>
           <circle class="venn-circle vc-tech"   cx="200" cy="165" r="120" id="vcTech"/>
           <!-- Labels -->
-          <text class="venn-label vc-keeper-lbl" x="68"  y="280" text-anchor="middle" id="lKeeper">KEEPER</text>
-          <text class="venn-label vc-civic-lbl"  x="332" y="280" text-anchor="middle" id="lCivic">CIVIC</text>
-          <text class="venn-label vc-tech-lbl"   x="200" y="60"  text-anchor="middle" id="lTech">TECH</text>
-          <text class="venn-label vc-empty-lbl"  x="200" y="228" text-anchor="middle" id="lEmpty">EMPTY</text>
+          <text class="venn-label vc-keeper-lbl" x="68"  y="280" text-anchor="middle" id="lKeeper" font-size="16">KEEPER</text>
+          <text class="venn-label vc-civic-lbl"  x="332" y="280" text-anchor="middle" id="lCivic"  font-size="16">CIVIC</text>
+          <text class="venn-label vc-tech-lbl"   x="200" y="60"  text-anchor="middle" id="lTech"   font-size="16">TECH</text>
+          <text class="venn-label vc-empty-lbl"  x="200" y="228" text-anchor="middle" id="lEmpty"  font-size="12">EMPTY</text>
         </svg>
       </div>
       <div style="max-width:38ch;" class="reveal delay-3" data-reveal>
@@ -1119,13 +1025,13 @@ svg.wv { width: 100%; max-width: 520px; height: 34px; overflow: visible; }
     </div>
     <div class="case-rule"></div>
     <div class="case-pair">
-      <div>
+      <div style="display:flex;flex-direction:column;">
         <!-- Roth Building photo -->
-        <div class="case-photo" style="margin-bottom:1.2rem;">
-          <img src="The_Roth.jpg" alt="The Roth Building, 300 Homer Avenue, Palo Alto" style="aspect-ratio:4/3;" onerror="this.parentElement.style.display='none';">
+        <div class="case-photo" style="margin-bottom:1.2rem;height:260px;">
+          <img src="The_Roth.jpg" alt="The Roth Building, 300 Homer Avenue, Palo Alto" style="height:100%;width:100%;object-fit:cover;" onerror="this.parentElement.style.display='none';">
           <div class="case-photo-caption">300 Homer Avenue — the building that almost went</div>
         </div>
-        <div class="case-card">
+        <div class="case-card" style="flex:1;">
           <div class="case-who">The Roth Building, 2012–2015</div>
           <div class="case-what">300 Homer Avenue, Palo Alto. The near-demolition.</div>
           <span class="case-concept">Loss aversion: the room almost gone</span>
@@ -1136,13 +1042,13 @@ svg.wv { width: 100%; max-width: 520px; height: 34px; overflow: visible; }
         </div>
       </div>
       <div class="vs-col">and</div>
-      <div>
-        <!-- Larimer Square photo — CHANGE #12 -->
-        <div class="case-photo" style="margin-bottom:1.2rem;">
-          <img src="Larimer_Square.jpg" alt="Larimer Square, Denver" style="aspect-ratio:4/3;" onerror="this.parentElement.style.display='none';">
+      <div style="display:flex;flex-direction:column;">
+        <!-- Larimer Square photo -->
+        <div class="case-photo" style="margin-bottom:1.2rem;height:260px;">
+          <img src="Larimer_Square.jpg" alt="Larimer Square, Denver" style="height:100%;width:100%;object-fit:cover;" onerror="this.parentElement.style.display='none';">
           <div class="case-photo-caption">Larimer Square, Denver — the block that proved irreplaceable</div>
         </div>
-        <div class="case-card">
+        <div class="case-card" style="flex:1;">
           <div class="case-who">Larimer Square, Denver</div>
           <div class="case-what">Denver, CO, 2019 preservation fight</div>
           <span class="case-concept">Liability reframed as the only irreplaceable thing</span>
@@ -1166,6 +1072,11 @@ svg.wv { width: 100%; max-width: 520px; height: 34px; overflow: visible; }
     <div class="case-rule"></div>
     <div class="case-grid wide">
       <div style="padding:1rem 0;">
+        <!-- Exploratorium photo -->
+        <div class="case-photo" style="margin-bottom:1.4rem;">
+          <img src="Exploratorium.jpg" alt="The Exploratorium, Pier 15, San Francisco" style="aspect-ratio:16/9;object-fit:cover;" onerror="this.parentElement.style.display='none';">
+          <div class="case-photo-caption">The Exploratorium, Pier 15 — the answer made physical</div>
+        </div>
         <div class="case-card" style="border:none;padding:0;background:transparent;">
           <div class="case-who">The Exploratorium, San Francisco</div>
           <div class="case-what" style="margin-bottom:1rem;">Palace of Fine Arts (1969–2013) → Pier 15 (2013–present)</div>
@@ -1233,66 +1144,66 @@ svg.wv { width: 100%; max-width: 520px; height: 34px; overflow: visible; }
           <line x1="20" y1="200" x2="500" y2="200" stroke="rgba(60,65,57,0.18)" stroke-width="1"/>
           <line x1="260" y1="20" x2="260" y2="380" stroke="rgba(60,65,57,0.18)" stroke-width="1"/>
           <!-- Quadrant labels -->
-          <text x="26" y="38" font-family="Calibri,sans-serif" font-size="10" fill="rgba(60,65,57,0.5)" font-style="italic">civic memory of this place</text>
-          <text x="264" y="38" font-family="Calibri,sans-serif" font-size="10" fill="rgba(60,65,57,0.5)" font-style="italic">public forum for ideas</text>
-          <text x="26" y="385" font-family="Calibri,sans-serif" font-size="10" fill="rgba(60,65,57,0.5)" font-style="italic">charming heritage house</text>
-          <text x="264" y="385" font-family="Calibri,sans-serif" font-size="10" fill="rgba(60,65,57,0.5)" font-style="italic">fun tech day out</text>
+          <text x="26" y="38" font-family="Calibri,sans-serif" font-size="14" fill="rgba(60,65,57,0.5)" font-style="italic">civic memory of this place</text>
+          <text x="264" y="38" font-family="Calibri,sans-serif" font-size="14" fill="rgba(60,65,57,0.5)" font-style="italic">public forum for ideas</text>
+          <text x="26" y="385" font-family="Calibri,sans-serif" font-size="14" fill="rgba(60,65,57,0.5)" font-style="italic">charming heritage house</text>
+          <text x="264" y="385" font-family="Calibri,sans-serif" font-size="14" fill="rgba(60,65,57,0.5)" font-style="italic">fun tech day out</text>
           <!-- Y axis labels -->
-          <text x="12" y="90" font-family="Calibri,sans-serif" font-size="9" fill="rgba(60,65,57,0.55)" transform="rotate(-90,12,90)" text-anchor="middle">a place to take part</text>
-          <text x="12" y="310" font-family="Calibri,sans-serif" font-size="9" fill="rgba(60,65,57,0.55)" transform="rotate(-90,12,310)" text-anchor="middle">a collection to view</text>
+          <text x="12" y="90" font-family="Calibri,sans-serif" font-size="12" fill="rgba(60,65,57,0.55)" transform="rotate(-90,12,90)" text-anchor="middle">a place to take part</text>
+          <text x="12" y="310" font-family="Calibri,sans-serif" font-size="12" fill="rgba(60,65,57,0.55)" transform="rotate(-90,12,310)" text-anchor="middle">a collection to view</text>
           <!-- X axis labels -->
-          <text x="100" y="398" font-family="Calibri,sans-serif" font-size="10" fill="#5BBF58" font-weight="bold" text-anchor="middle">place &amp; heritage</text>
-          <text x="420" y="398" font-family="Calibri,sans-serif" font-size="10" fill="#5BBF58" font-weight="bold" text-anchor="middle">ideas &amp; future</text>
+          <text x="100" y="398" font-family="Calibri,sans-serif" font-size="13" fill="#5BBF58" font-weight="bold" text-anchor="middle">place &amp; heritage</text>
+          <text x="420" y="398" font-family="Calibri,sans-serif" font-size="13" fill="#5BBF58" font-weight="bold" text-anchor="middle">ideas &amp; future</text>
           <!-- Institution dots (x=left-right axis ideas/heritage, y=top-bottom participate/view) -->
           <!-- Oakland Museum of California -->
           <g class="inst-dot" data-name="Oakland Museum of California" data-img="OMCA.jpg" data-x="155" data-y="165">
             <circle cx="155" cy="165" r="5" fill="none" stroke="rgba(60,65,57,0.4)" stroke-width="1.5"/>
-            <text x="168" y="169" font-family="Calibri,sans-serif" font-size="9" fill="rgba(60,65,57,0.7)" font-style="italic">Oakland Museum of California</text>
+            <text x="168" y="169" font-family="Calibri,sans-serif" font-size="12" fill="rgba(60,65,57,0.7)" font-style="italic">Oakland Museum of California</text>
           </g>
           <!-- Cooper Union -->
           <g class="inst-dot" data-name="Cooper Union Great Hall" data-img="Foundling_Museum.jpg" data-x="320" data-y="120">
             <circle cx="320" cy="120" r="5" fill="none" stroke="rgba(60,65,57,0.4)" stroke-width="1.5"/>
-            <text x="333" y="124" font-family="Calibri,sans-serif" font-size="9" fill="rgba(60,65,57,0.7)" font-style="italic">Cooper Union Great Hall</text>
+            <text x="333" y="124" font-family="Calibri,sans-serif" font-size="12" fill="rgba(60,65,57,0.7)" font-style="italic">Cooper Union Great Hall</text>
           </g>
           <!-- 92NY -->
           <g class="inst-dot" data-name="92nd Street Y" data-img="Tate_Modern_Turbine.jpg" data-x="390" data-y="145">
             <circle cx="390" cy="145" r="5" fill="none" stroke="rgba(60,65,57,0.4)" stroke-width="1.5"/>
-            <text x="403" y="149" font-family="Calibri,sans-serif" font-size="9" fill="rgba(60,65,57,0.7)" font-style="italic">92NY</text>
+            <text x="403" y="149" font-family="Calibri,sans-serif" font-size="12" fill="rgba(60,65,57,0.7)" font-style="italic">92NY</text>
           </g>
           <!-- Newberry -->
           <g class="inst-dot" data-name="Newberry Library" data-img="Mitchell_Park_Library.jpg" data-x="310" data-y="170">
             <circle cx="310" cy="170" r="5" fill="none" stroke="rgba(60,65,57,0.4)" stroke-width="1.5"/>
-            <text x="323" y="174" font-family="Calibri,sans-serif" font-size="9" fill="rgba(60,65,57,0.7)" font-style="italic">Newberry Library</text>
+            <text x="323" y="174" font-family="Calibri,sans-serif" font-size="12" fill="rgba(60,65,57,0.7)" font-style="italic">Newberry Library</text>
           </g>
           <!-- New Museum Los Gatos -->
           <g class="inst-dot" data-name="New Museum Los Gatos" data-img="NUMU.jpg" data-x="280" data-y="195">
             <circle cx="280" cy="195" r="5" fill="none" stroke="rgba(60,65,57,0.4)" stroke-width="1.5"/>
-            <text x="293" y="199" font-family="Calibri,sans-serif" font-size="9" fill="rgba(60,65,57,0.7)" font-style="italic">New Museum Los Gatos</text>
+            <text x="293" y="199" font-family="Calibri,sans-serif" font-size="12" fill="rgba(60,65,57,0.7)" font-style="italic">New Museum Los Gatos</text>
           </g>
           <!-- San Mateo County -->
           <g class="inst-dot" data-name="San Mateo County History Museum" data-img="Palo_Alto_Malcolm_Harris.jpg" data-x="140" data-y="265">
             <circle cx="140" cy="265" r="5" fill="none" stroke="rgba(60,65,57,0.4)" stroke-width="1.5"/>
-            <text x="28" y="260" font-family="Calibri,sans-serif" font-size="9" fill="rgba(60,65,57,0.7)" font-style="italic" text-anchor="start">San Mateo County History Museum</text>
+            <text x="28" y="260" font-family="Calibri,sans-serif" font-size="12" fill="rgba(60,65,57,0.7)" font-style="italic" text-anchor="start">San Mateo County History Museum</text>
           </g>
           <!-- Computer History Museum -->
           <g class="inst-dot" data-name="Computer History Museum" data-img="Stanford_University.jpg" data-x="400" data-y="270">
             <rect x="393" y="263" width="14" height="14" fill="none" stroke="rgba(60,65,57,0.7)" stroke-width="1.5"/>
-            <text x="415" y="274" font-family="Calibri,sans-serif" font-size="10" fill="rgba(60,65,57,0.85)" font-weight="bold">Computer History Museum</text>
+            <text x="415" y="274" font-family="Calibri,sans-serif" font-size="13" fill="rgba(60,65,57,0.85)" font-weight="bold">Computer History Museum</text>
           </g>
           <!-- Cantor -->
           <g class="inst-dot" data-name="Cantor Arts Center" data-img="Jordon_Hall_Stanford_University.jpg" data-x="390" data-y="300">
             <rect x="383" y="293" width="14" height="14" fill="none" stroke="rgba(60,65,57,0.7)" stroke-width="1.5"/>
-            <text x="405" y="304" font-family="Calibri,sans-serif" font-size="10" fill="rgba(60,65,57,0.85)" font-weight="bold">Cantor Arts Center</text>
+            <text x="405" y="304" font-family="Calibri,sans-serif" font-size="13" fill="rgba(60,65,57,0.85)" font-weight="bold">Cantor Arts Center</text>
           </g>
           <!-- MOAH -->
           <g class="inst-dot" data-name="Museum of American Heritage" data-img="MOAH.jpg" data-x="290" data-y="315">
             <rect x="283" y="308" width="14" height="14" fill="none" stroke="rgba(60,65,57,0.7)" stroke-width="1.5"/>
-            <text x="305" y="319" font-family="Calibri,sans-serif" font-size="10" fill="rgba(60,65,57,0.85)" font-weight="bold">Museum of American Heritage</text>
+            <text x="305" y="319" font-family="Calibri,sans-serif" font-size="13" fill="rgba(60,65,57,0.85)" font-weight="bold">Museum of American Heritage</text>
           </g>
           <!-- Mitchell Park Library -->
           <g class="inst-dot" data-name="Mitchell Park Library" data-img="Mitchell_Park_Library.jpg" data-x="280" data-y="335">
             <rect x="273" y="328" width="14" height="14" fill="none" stroke="rgba(60,65,57,0.7)" stroke-width="1.5"/>
-            <text x="295" y="339" font-family="Calibri,sans-serif" font-size="10" fill="rgba(60,65,57,0.85)" font-weight="bold">Mitchell Park Library</text>
+            <text x="295" y="339" font-family="Calibri,sans-serif" font-size="13" fill="rgba(60,65,57,0.85)" font-weight="bold">Mitchell Park Library</text>
           </g>
           <!-- Palo Alto Museum — target position (dashed circle, stands here today label) -->
           <g id="pamTarget">
@@ -1300,17 +1211,17 @@ svg.wv { width: 100%; max-width: 520px; height: 34px; overflow: visible; }
             <!-- Museum icon inside -->
             <rect x="458" y="112" width="20" height="16" fill="#5BBF58" rx="2" opacity="0.2"/>
             <text x="468" y="125" text-anchor="middle" font-family="Calibri,sans-serif" font-size="6" fill="#5BBF58" font-weight="bold">Museum</text>
-            <text x="448" y="148" font-family="Calibri,sans-serif" font-size="9" fill="#5BBF58" font-style="italic" text-anchor="middle">stands here</text>
+            <text x="448" y="148" font-family="Calibri,sans-serif" font-size="12" fill="#5BBF58" font-style="italic" text-anchor="middle">stands here</text>
           </g>
           <!-- EJI Legacy Museum (top right reference) -->
           <g class="inst-dot" data-name="EJI Legacy Museum" data-img="Tate_Modern_Turbine.jpg" data-x="400" data-y="90">
             <circle cx="400" cy="90" r="5" fill="none" stroke="rgba(60,65,57,0.4)" stroke-width="1.5"/>
-            <text x="413" y="94" font-family="Calibri,sans-serif" font-size="9" fill="rgba(60,65,57,0.7)" font-style="italic">EJI Legacy Museum</text>
+            <text x="413" y="94" font-family="Calibri,sans-serif" font-size="12" fill="rgba(60,65,57,0.7)" font-style="italic">EJI Legacy Museum</text>
           </g>
           <!-- Los Altos History Museum -->
           <g class="inst-dot" data-name="Los Altos History Museum" data-img="MOAH.jpg" data-x="195" data-y="300">
             <circle cx="195" cy="300" r="5" fill="none" stroke="rgba(60,65,57,0.4)" stroke-width="1.5"/>
-            <text x="208" y="304" font-family="Calibri,sans-serif" font-size="9" fill="rgba(60,65,57,0.7)" font-style="italic">Los Altos History Museum</text>
+            <text x="208" y="304" font-family="Calibri,sans-serif" font-size="12" fill="rgba(60,65,57,0.7)" font-style="italic">Los Altos History Museum</text>
           </g>
         </svg>
         <!-- Hover tooltip -->
@@ -1603,8 +1514,15 @@ if (givingChart) {
   const barObs = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) {
-        givingChart.querySelectorAll('.bar-fill').forEach((bar, i) => {
-          setTimeout(() => bar.classList.add('show'), i * 160);
+        givingChart.querySelectorAll('.bar-row').forEach((row, i) => {
+          const delay = i * 180;
+          setTimeout(() => {
+            row.classList.add('show');
+            const fill = row.querySelector('.bar-fill');
+            if (fill) setTimeout(() => fill.classList.add('show'), 60);
+            const pct = row.querySelector('.bar-pct');
+            if (pct) setTimeout(() => pct.classList.add('show'), 1300);
+          }, delay);
         });
         barObs.unobserve(e.target);
       }
@@ -1733,45 +1651,6 @@ if (codaMarks) {
   }, { threshold: 0.2 });
   codaObs.observe(codaMarks);
 }
-
-// ─── PIXEL CITY MAP — color 3.4% in green ─────────────────────────
-(function() {
-  const svg = document.getElementById('pixelCity');
-  if (!svg) return;
-  const cells = Array.from(svg.querySelectorAll('.pcell'));
-  const total = cells.length;
-  // Pick roughly 3.4% — first ~4 cells become green
-  const greenCount = Math.round(total * 0.034);
-  // Shuffle array to distribute green randomly across the map
-  const indices = cells.map((_,i)=>i);
-  for (let i = indices.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i+1));
-    [indices[i], indices[j]] = [indices[j], indices[i]];
-  }
-  cells.forEach((cell, i) => {
-    if (indices.indexOf(i) < greenCount) {
-      cell.setAttribute('fill', '#5BBF58');
-    } else {
-      cell.setAttribute('fill', 'rgba(184,91,58,0.18)');
-    }
-    cell.setAttribute('opacity', '0');
-  });
-  // Animate in on scroll
-  const pxObs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        cells.forEach((cell, i) => {
-          setTimeout(() => {
-            cell.setAttribute('opacity', '1');
-            cell.style.transition = 'opacity 0.4s ease';
-          }, Math.min(i * 14, 900));
-        });
-        pxObs.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.2 });
-  pxObs.observe(svg);
-})();
 
 // ─── POSITIONING MAP TOOLTIP ───────────────────────────────────────
 (function() {
