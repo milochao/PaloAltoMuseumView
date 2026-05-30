@@ -562,7 +562,7 @@ svg.wv { width: 100%; max-width: 520px; height: 34px; overflow: visible; }
 /* ─── GIFT PORTRAIT CARDS ────────────────────────────────────────── */
 .gift-card-portrait {
   width: 100%;
-  aspect-ratio: 4/3;
+  aspect-ratio: 3/2;
   overflow: hidden;
   margin-bottom: 0.6rem;
 }
@@ -570,7 +570,7 @@ svg.wv { width: 100%; max-width: 520px; height: 34px; overflow: visible; }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center top;
+  object-position: center 15%;
   filter: grayscale(40%) contrast(1.05);
   transition: filter 0.6s ease;
 }
@@ -1460,7 +1460,7 @@ svg.wv { width: 100%; max-width: 520px; height: 34px; overflow: visible; }
   <div class="coda-marks" id="codaMarks"></div>
   <div class="coda-content">
     <div class="coda-text">
-      <span class="coda-line reveal heavy" data-reveal>The pen</span>
+      <span class="coda-line reveal heavy" data-reveal>The pencil</span>
       <span class="coda-line rust reveal heavy delay-2" data-reveal>came home.</span>
       <p class="coda-sub reveal delay-4" data-reveal>
         The Palo Alto Museum is where Palo Alto tells its own story. The building exists. The position is clear. The seat is empty. The only question is who makes it possible.
@@ -1688,6 +1688,21 @@ if (codaMarks) {
 
   let playing = false;
   let animFrame = null;
+  let unlocked = false;
+  let pendingPlay = false;
+
+  // Unlock audio context on first user gesture anywhere on the page
+  function unlock() {
+    if (unlocked) return;
+    unlocked = true;
+    if (pendingPlay) startAudio();
+    document.removeEventListener('click', unlock);
+    document.removeEventListener('scroll', unlock);
+    document.removeEventListener('keydown', unlock);
+  }
+  document.addEventListener('click', unlock, { passive: true });
+  document.addEventListener('scroll', unlock, { passive: true });
+  document.addEventListener('keydown', unlock, { passive: true });
 
   function animateBars() {
     if (!playing) return;
@@ -1696,27 +1711,26 @@ if (codaMarks) {
   }
 
   function startAudio() {
+    if (!unlocked) { pendingPlay = true; return; }
     audio.volume = 0;
     audio.play().then(() => {
       playing = true;
+      pendingPlay = false;
       btn.innerHTML = '&#9646;&#9646;';
       btn.classList.add('playing');
       bars.classList.add('active');
       animateBars();
-      // Fade in over 2 seconds
       let vol = 0;
       const fadeIn = setInterval(() => {
         vol = Math.min(vol + 0.04, 0.7);
         audio.volume = vol;
         if (vol >= 0.7) clearInterval(fadeIn);
       }, 80);
-    }).catch(() => {
-      // Autoplay blocked — user must click
-    });
+    }).catch(() => { pendingPlay = true; });
   }
 
   function stopAudio() {
-    // Fade out then pause
+    pendingPlay = false;
     let vol = audio.volume;
     const fadeOut = setInterval(() => {
       vol = Math.max(vol - 0.05, 0);
@@ -1739,12 +1753,13 @@ if (codaMarks) {
         if (e.isIntersecting && !playing) startAudio();
         else if (!e.isIntersecting && playing) stopAudio();
       });
-    }, { threshold: 0.3 });
+    }, { threshold: 0.15 });
     autoObs.observe(section);
   }
 
   // Manual toggle
   btn.addEventListener('click', () => {
+    unlock();
     if (playing) stopAudio();
     else startAudio();
   });
