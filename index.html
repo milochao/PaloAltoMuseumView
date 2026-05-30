@@ -38,7 +38,6 @@ body {
 }
 
 /* ─── REDWOOD SPINE ──────────────────────────────────────────────── */
-/* The tree runs as a fixed left element behind the entire scroll */
 #redwood-spine {
   position: fixed;
   left: 3.2vw;
@@ -48,31 +47,10 @@ body {
   z-index: 1;
   pointer-events: none;
 }
-#redwood-spine svg {
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-}
-.spine-track {
-  stroke: rgba(184,91,58,0.12);
-  stroke-width: 1.5;
-  fill: none;
-}
-.spine-progress {
-  stroke: rgba(184,91,58,0.45);
-  stroke-width: 2;
-  fill: none;
-  stroke-dasharray: 1000;
-  stroke-dashoffset: 1000;
-  transition: stroke-dashoffset 0.1s linear;
-  will-change: stroke-dashoffset;
-}
-/* Branch marks -- decorative nubs off the spine */
-.spine-branch {
-  stroke: rgba(184,91,58,0.2);
-  stroke-width: 1;
-  fill: none;
-}
+#redwood-spine svg { width: 100%; height: 100%; overflow: visible; }
+.spine-track { stroke: rgba(184,91,58,0.12); stroke-width: 1.5; fill: none; }
+.spine-progress { stroke: rgba(184,91,58,0.45); stroke-width: 2; fill: none; stroke-dasharray: 1000; stroke-dashoffset: 1000; transition: stroke-dashoffset 0.1s linear; will-change: stroke-dashoffset; }
+.spine-branch { stroke: rgba(184,91,58,0.2); stroke-width: 1; fill: none; }
 
 /* ─── PHOTO BACKGROUNDS ──────────────────────────────────────────── */
 .photo-bg {
@@ -95,12 +73,9 @@ body {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom,
-    transparent 50%,
-    rgba(28,31,26,0.95) 100%);
+  background: linear-gradient(to bottom, transparent 50%, rgba(28,31,26,0.95) 100%);
   z-index: 1;
 }
-/* For light sections */
 .photo-bg.light-overlay::after {
   background: linear-gradient(to right,
     rgba(247,244,238,0.92) 0%,
@@ -108,27 +83,16 @@ body {
     rgba(247,244,238,0.45) 100%);
 }
 
-/* ─── REVEAL SYSTEM ──────────────────────────────────────────────── */
+/* ─── REVEAL ─────────────────────────────────────────────────────── */
 .reveal {
   opacity: 0;
   transform: translateY(40px);
   filter: blur(4px);
-  transition:
-    opacity    var(--mass-standard) var(--expo),
-    transform  var(--mass-standard) var(--expo),
-    filter     var(--mass-standard) var(--expo);
+  transition: opacity var(--mass-standard) var(--expo), transform var(--mass-standard) var(--expo), filter var(--mass-standard) var(--expo);
   will-change: transform, opacity, filter;
 }
-.reveal.heavy {
-  transition-duration: var(--mass-heavy);
-  transform: translateY(60px) skewY(2deg);
-  filter: blur(12px) brightness(1.2);
-}
-.reveal.light-anim {
-  transition-duration: var(--mass-light);
-  transform: translateY(20px);
-  filter: blur(2px);
-}
+.reveal.heavy { transition-duration: var(--mass-heavy); transform: translateY(60px) skewY(2deg); filter: blur(12px) brightness(1.2); }
+.reveal.light-anim { transition-duration: var(--mass-light); transform: translateY(20px); filter: blur(2px); }
 .reveal.is-visible { opacity: 1; transform: none; filter: none; }
 .delay-1 { transition-delay: 0.12s; }
 .delay-2 { transition-delay: 0.24s; }
@@ -150,13 +114,12 @@ body {
 .scroll-section.mid   { background: var(--mid); }
 .scroll-section.dark  { background: var(--dark); }
 .scroll-section.photo { background: var(--dark); }
-
 .inner { width: 100%; max-width: 1100px; position: relative; z-index: 2; }
 
-/* ─── TYPOGRAPHY ─────────────────────────────────────────────────── */
+/* ─── TYPOGRAPHY — ALL SIZES INCREASED ~20% ──────────────────────── */
 .eyebrow {
   font-family: var(--type-body);
-  font-size: 0.5rem;
+  font-size: 0.72rem; /* was 0.5rem */
   font-weight: 700;
   letter-spacing: 0.28em;
   text-transform: uppercase;
@@ -167,21 +130,17 @@ body {
 .eyebrow.fog  { color: var(--fog); }
 .eyebrow.charcoal { color: var(--charcoal); }
 
-.rule {
-  height: 2px;
-  width: 3rem;
-  background: var(--rust);
-  margin-bottom: 1.8rem;
-}
+.rule { height: 2px; width: 3rem; background: var(--rust); margin-bottom: 1.8rem; }
 
-.display-xl { font-family: var(--type-head); font-weight: 400; font-size: clamp(2.8rem, 7.5vw, 6rem); line-height: 1.08; letter-spacing: -0.025em; }
-.display-lg { font-family: var(--type-head); font-weight: 400; font-size: clamp(2rem, 4.8vw, 3.6rem); line-height: 1.12; letter-spacing: -0.02em; }
-.display-md { font-family: var(--type-head); font-weight: 400; font-size: clamp(1.5rem, 3.2vw, 2.4rem); line-height: 1.2; }
-.display-sm { font-family: var(--type-head); font-weight: 400; font-size: clamp(1.1rem, 2.2vw, 1.6rem); line-height: 1.3; }
+.display-xl { font-family: var(--type-head); font-weight: 400; font-size: clamp(3.4rem, 8.5vw, 7rem); line-height: 1.08; letter-spacing: -0.025em; }
+.display-lg { font-family: var(--type-head); font-weight: 400; font-size: clamp(2.4rem, 5.5vw, 4.2rem); line-height: 1.12; letter-spacing: -0.02em; }
+.display-md { font-family: var(--type-head); font-weight: 400; font-size: clamp(1.8rem, 3.8vw, 2.9rem); line-height: 1.2; }
+.display-sm { font-family: var(--type-head); font-weight: 400; font-size: clamp(1.35rem, 2.6vw, 1.9rem); line-height: 1.3; }
 
+/* PROSE: was clamp(0.88rem, 1.6vw, 1rem) — now meaningfully readable */
 .prose {
   font-family: var(--type-body);
-  font-size: clamp(0.88rem, 1.6vw, 1rem);
+  font-size: clamp(1rem, 1.8vw, 1.22rem);
   line-height: 1.72;
   max-width: 60ch;
 }
@@ -189,7 +148,7 @@ body {
 
 .bignum {
   font-family: var(--type-head);
-  font-size: clamp(5rem, 17vw, 13rem);
+  font-size: clamp(6rem, 20vw, 15rem);
   font-weight: 400;
   color: var(--rust);
   line-height: 0.88;
@@ -202,11 +161,45 @@ body {
 .col-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3vw; align-items: start; }
 .col-text-vis { display: grid; grid-template-columns: 46% 48%; gap: 6%; align-items: center; }
 
-/* ─── AUTHOR PORTRAIT CYCLING ────────────────────────────────────── */
+/* ─── PHOTO CARD (caption BELOW image, not overlay) ──────────────── */
+.photo-card {
+  position: relative;
+  overflow: hidden;
+  background: var(--mid);
+  display: flex;
+  flex-direction: column;
+}
+.photo-card img {
+  width: 100%;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(20%);
+  transition: transform 6s ease, filter 1s ease;
+}
+.photo-card:hover img { transform: scale(1.03); filter: grayscale(0%); }
+.photo-card-label {
+  padding: 0.6rem 0.8rem;
+  font-family: var(--type-body);
+  font-size: 0.78rem; /* was 0.62rem */
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fog);
+  background: var(--mid);
+  flex-shrink: 0;
+}
+.scroll-section.light .photo-card-label { background: #D8D0C4; color: var(--charcoal); }
+
+/* ─── PORTRAIT CYCLING ───────────────────────────────────────────── */
 .portrait-stage {
   position: relative;
   width: 100%;
-  max-width: 340px;
+  max-width: 440px; /* was 340px */
+  display: flex;
+  flex-direction: column;
+}
+.portrait-wrap {
+  position: relative;
+  width: 100%;
   aspect-ratio: 3/4;
   overflow: hidden;
 }
@@ -223,61 +216,27 @@ body {
 }
 .portrait-img.active { opacity: 1; }
 .portrait-caption {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 1rem 1.2rem 0.8rem;
-  background: linear-gradient(to top, rgba(28,31,26,0.92), transparent);
+  padding: 0.7rem 0.8rem;
   font-family: var(--type-body);
-  font-size: 0.68rem;
-  letter-spacing: 0.12em;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--sand);
-}
-
-/* ─── PHOTO REVEAL CARD ──────────────────────────────────────────── */
-.photo-card {
-  position: relative;
-  overflow: hidden;
   background: var(--mid);
-}
-.photo-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  filter: grayscale(20%);
-  transition: transform 6s ease, filter 1s ease;
-}
-.photo-card:hover img { transform: scale(1.03); filter: grayscale(0%); }
-.photo-card-label {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 0.8rem 1rem;
-  background: linear-gradient(to top, rgba(28,31,26,0.9), transparent);
-  font-family: var(--type-body);
-  font-size: 0.62rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--sand);
 }
 
 /* ─── DOT GRID ───────────────────────────────────────────────────── */
 .dot-grid {
   display: grid;
   grid-template-columns: repeat(10, 1fr);
-  gap: clamp(4px, 0.7vw, 9px);
-  max-width: 300px;
+  gap: clamp(6px, 0.9vw, 12px);
+  max-width: 340px;
 }
 .dot {
   aspect-ratio: 1;
   border-radius: 50%;
   background: rgba(200,184,154,0.15);
   transition: background 0.4s var(--expo), transform 0.3s var(--expo);
-  will-change: background, transform;
 }
 .dot.lit { background: var(--rust); transform: scale(1.3); box-shadow: 0 0 10px rgba(184,91,58,0.35); }
 
@@ -292,24 +251,23 @@ body {
   z-index: 2;
 }
 .act-divider.light { background: var(--cream); border-color: rgba(60,65,57,0.08); }
-.act-num { font-family: var(--type-body); font-size: 0.52rem; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--rust); margin-bottom: 0.7rem; }
-.act-title { font-family: var(--type-head); font-size: clamp(1.8rem, 3.8vw, 2.8rem); font-weight: 400; line-height: 1.18; max-width: 18ch; }
+.act-num { font-family: var(--type-body); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--rust); margin-bottom: 0.7rem; }
+.act-title { font-family: var(--type-head); font-size: clamp(2.2rem, 4.5vw, 3.6rem); font-weight: 400; line-height: 1.18; max-width: 18ch; }
 .act-divider.light .act-title { color: var(--charcoal); }
 
 /* ─── COMPETITOR MAP ─────────────────────────────────────────────── */
 .comp-grid { display: flex; flex-wrap: wrap; gap: 0.8rem; max-width: 480px; }
 .comp-node {
-  padding: 0.5rem 1rem;
+  padding: 0.55rem 1.1rem;
   border: 1px solid rgba(139,145,137,0.25);
   font-family: var(--type-body);
-  font-size: 0.65rem;
+  font-size: 0.78rem; /* was 0.65rem */
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--fog);
   opacity: 0;
   transform: translateY(8px);
   transition: opacity 0.5s var(--expo), transform 0.5s var(--expo);
-  will-change: opacity, transform;
 }
 .comp-node.empty-seat { border-color: var(--rust); color: var(--rust); animation: seat-pulse 2.6s ease-in-out infinite; }
 .comp-node.show { opacity: 1; transform: none; }
@@ -328,30 +286,22 @@ body {
   opacity: 0;
   transform: translateY(28px);
   transition: opacity var(--mass-standard) var(--expo), transform var(--mass-standard) var(--expo);
-  will-change: opacity, transform;
 }
 .gift-card.show { opacity: 1; transform: none; }
-.gift-card-label { font-family: var(--type-body); font-size: 0.56rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--rust); }
-.gift-card-ask { font-family: var(--type-body); font-size: 0.85rem; line-height: 1.55; color: var(--cream); }
-.gift-card-signal { font-family: var(--type-body); font-size: 0.73rem; color: var(--fog); font-style: italic; padding-top: 0.6rem; border-top: 1px solid rgba(139,145,137,0.12); }
+.gift-card-label { font-family: var(--type-body); font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--rust); }
+.gift-card-ask { font-family: var(--type-body); font-size: 1rem; line-height: 1.55; color: var(--cream); }
+.gift-card-signal { font-family: var(--type-body); font-size: 0.88rem; color: var(--fog); font-style: italic; padding-top: 0.6rem; border-top: 1px solid rgba(139,145,137,0.12); }
 
 /* ─── WAVEFORM ───────────────────────────────────────────────────── */
-.waveform-row {
-  margin-bottom: 2rem;
-  opacity: 0;
-  transform: translateX(-18px);
-  transition: opacity 1s var(--expo), transform 1s var(--expo);
-  will-change: opacity, transform;
-}
+.waveform-row { margin-bottom: 2rem; opacity: 0; transform: translateX(-18px); transition: opacity 1s var(--expo), transform 1s var(--expo); }
 .waveform-row.show { opacity: 1; transform: none; }
-.waveform-name { font-family: var(--type-body); font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--rust); margin-bottom: 0.4rem; }
-.waveform-desc { font-size: 0.8rem; color: var(--fog); margin-top: 0.35rem; line-height: 1.5; }
+.waveform-name { font-family: var(--type-body); font-size: 0.78rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--rust); margin-bottom: 0.4rem; }
+.waveform-desc { font-size: 0.95rem; color: var(--fog); margin-top: 0.35rem; line-height: 1.5; }
 svg.wv { width: 100%; max-width: 520px; height: 34px; overflow: visible; }
-.wave-path { fill: none; stroke: var(--rust); stroke-width: 1.5; stroke-dasharray: 600; stroke-dashoffset: 600; transition: stroke-dashoffset 1.8s var(--expo); will-change: stroke-dashoffset; }
+.wave-path { fill: none; stroke: var(--rust); stroke-width: 1.5; stroke-dasharray: 600; stroke-dashoffset: 600; transition: stroke-dashoffset 1.8s var(--expo); }
 .wave-path.draw { stroke-dashoffset: 0; }
 
 /* ─── CASE INSET ─────────────────────────────────────────────────── */
-/* Replaces the academic inset with a real-case card */
 .case-section {
   background: var(--annotbg);
   color: var(--charcoal);
@@ -361,140 +311,311 @@ svg.wv { width: 100%; max-width: 520px; height: 34px; overflow: visible; }
   position: relative;
   z-index: 2;
 }
-.case-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 0.5rem;
-}
-.case-label { font-family: var(--type-body); font-size: 0.52rem; font-weight: 700; letter-spacing: 0.32em; text-transform: uppercase; color: #A09080; }
-.case-anchor { font-family: var(--type-body); font-size: 0.58rem; color: var(--fog); }
+.case-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem; }
+.case-label { font-family: var(--type-body); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.32em; text-transform: uppercase; color: #A09080; }
+.case-anchor { font-family: var(--type-body); font-size: 0.78rem; color: var(--fog); }
 .case-rule { height: 1px; background: rgba(160,144,128,0.3); margin: 0.8rem 0 1.8rem; }
 .case-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
 .case-grid.wide { grid-template-columns: 52% 44%; }
 
-/* Photo side */
+/* Case photo — caption below */
 .case-photo {
   position: relative;
   overflow: hidden;
   background: #D8D0C4;
+  display: flex;
+  flex-direction: column;
 }
-.case-photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  filter: grayscale(15%);
-  transition: transform 5s ease;
-}
+.case-photo img { width: 100%; object-fit: cover; display: block; filter: grayscale(15%); transition: transform 5s ease; }
 .case-photo:hover img { transform: scale(1.04); }
 .case-photo-caption {
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  padding: 0.7rem 0.9rem;
-  background: linear-gradient(to top, rgba(60,65,57,0.85), transparent);
+  padding: 0.6rem 0.9rem;
   font-family: var(--type-body);
-  font-size: 0.58rem;
+  font-size: 0.72rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(247,244,238,0.8);
+  color: var(--charcoal);
+  background: #C8C0B2;
 }
 
-/* Text side */
+/* Case card */
 .case-card {
   background: var(--white);
   padding: 1.7rem;
   border: 1px solid #D8D0C4;
   position: relative;
 }
-.case-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0;
-  width: 4px; height: 100%;
-  background: var(--rust);
-}
-.case-who { font-family: var(--type-head); font-size: 1rem; color: #5A4A3A; margin-bottom: 0.2rem; }
-.case-what { font-family: var(--type-body); font-size: 0.65rem; color: var(--fog); margin-bottom: 0.85rem; }
-.case-concept { display: inline-block; font-family: var(--type-body); font-size: 0.56rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--rust); background: #F0EBE3; padding: 0.2rem 0.55rem; margin-bottom: 0.95rem; }
-.case-argument { font-family: var(--type-body); font-size: 0.88rem; line-height: 1.62; color: var(--charcoal); margin-bottom: 1rem; }
-.case-outcome { font-family: var(--type-body); font-size: 0.8rem; line-height: 1.55; color: #5A4A3A; font-style: italic; padding: 0.7rem 0.9rem; background: #F5F0E8; border-left: 2px solid var(--rust); margin-bottom: 0.9rem; }
-.case-pam { font-family: var(--type-body); font-size: 0.78rem; line-height: 1.55; color: var(--fog); }
+.case-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--rust); }
+.case-who { font-family: var(--type-head); font-size: 1.15rem; color: #5A4A3A; margin-bottom: 0.2rem; }
+.case-what { font-family: var(--type-body); font-size: 0.78rem; color: var(--fog); margin-bottom: 0.85rem; }
+.case-concept { display: inline-block; font-family: var(--type-body); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--rust); background: #F0EBE3; padding: 0.2rem 0.55rem; margin-bottom: 0.95rem; }
+.case-argument { font-family: var(--type-body); font-size: 0.98rem; line-height: 1.65; color: var(--charcoal); margin-bottom: 1rem; }
+.case-outcome { font-family: var(--type-body); font-size: 0.92rem; line-height: 1.58; color: #5A4A3A; font-style: italic; padding: 0.7rem 0.9rem; background: #F5F0E8; border-left: 2px solid var(--rust); margin-bottom: 0.9rem; }
+.case-pam { font-family: var(--type-body); font-size: 0.92rem; line-height: 1.58; color: var(--fog); }
 .case-pam strong { color: var(--charcoal); }
-.case-verdict { font-family: var(--type-body); font-size: 0.56rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #2D6A2D; margin-top: 0.8rem; }
+.case-verdict { font-family: var(--type-body); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #2D6A2D; margin-top: 0.8rem; }
 .case-verdict.corrective { color: #4A4A6A; }
 
-/* Disagreement pair */
+/* Pair layout */
 .case-pair { display: grid; grid-template-columns: 1fr auto 1fr; gap: 0; align-items: stretch; }
-.vs-col { display: flex; align-items: center; justify-content: center; padding: 0 1.2rem; font-family: var(--type-body); font-size: 0.7rem; color: var(--fog); }
-.case-synthesis { font-family: var(--type-body); font-size: 0.82rem; font-style: italic; color: #5A4A3A; text-align: center; margin-top: 1.8rem; padding-top: 1.2rem; border-top: 1px solid rgba(160,144,128,0.25); }
+.vs-col { display: flex; align-items: center; justify-content: center; padding: 0 1.2rem; font-family: var(--type-body); font-size: 0.85rem; color: var(--fog); }
+.case-synthesis { font-family: var(--type-body); font-size: 0.92rem; font-style: italic; color: #5A4A3A; text-align: center; margin-top: 1.8rem; padding-top: 1.2rem; border-top: 1px solid rgba(160,144,128,0.25); }
 
 /* ─── HERO ───────────────────────────────────────────────────────── */
-.hero {
-  height: 100vh;
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  align-items: flex-end;
-  padding: 0 8vw 8vh;
-  z-index: 2;
-}
-.hero-bg {
-  position: absolute;
-  inset: 0;
-  background-image: url('Palo_Alto.jpg');
-  background-size: cover;
-  background-position: center 30%;
-  filter: grayscale(30%);
-  transform: scale(1.04);
-  animation: hero-drift 18s ease-in-out infinite alternate;
-  will-change: transform;
-}
+.hero { height: 100vh; position: relative; overflow: hidden; display: flex; align-items: flex-end; padding: 0 8vw 8vh; z-index: 2; }
+.hero-bg { position: absolute; inset: 0; background-image: url('Palo_Alto.jpg'); background-size: cover; background-position: center 30%; filter: grayscale(30%); transform: scale(1.04); animation: hero-drift 18s ease-in-out infinite alternate; }
 @keyframes hero-drift { from { transform: scale(1.04) translateX(0); } to { transform: scale(1.04) translateX(-1.5%); } }
-.hero-vignette {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(to right, rgba(28,31,26,0.85) 0%, rgba(28,31,26,0.55) 60%, rgba(28,31,26,0.2) 100%),
-    linear-gradient(to top, rgba(28,31,26,0.9) 0%, transparent 40%);
-}
-.hero-tree-line {
-  position: absolute;
-  left: 8vw;
-  top: 0;
-  width: 2px;
-  height: 100%;
-  background: linear-gradient(to bottom, rgba(184,91,58,0), rgba(184,91,58,0.5) 30%, rgba(184,91,58,0.3) 70%, rgba(184,91,58,0));
-  transform-origin: top;
-  transform: scaleY(0);
-  transition: transform 2.4s var(--expo);
-  will-change: transform;
-  z-index: 3;
-}
+.hero-vignette { position: absolute; inset: 0; background: linear-gradient(to right, rgba(28,31,26,0.85) 0%, rgba(28,31,26,0.55) 60%, rgba(28,31,26,0.2) 100%), linear-gradient(to top, rgba(28,31,26,0.9) 0%, transparent 40%); }
+.hero-tree-line { position: absolute; left: 8vw; top: 0; width: 2px; height: 100%; background: linear-gradient(to bottom, rgba(184,91,58,0), rgba(184,91,58,0.5) 30%, rgba(184,91,58,0.3) 70%, rgba(184,91,58,0)); transform-origin: top; transform: scaleY(0); transition: transform 2.4s var(--expo); z-index: 3; }
 .hero-tree-line.grown { transform: scaleY(1); }
 .hero-content { position: relative; z-index: 4; }
-.hero-kicker { font-family: var(--type-body); font-size: 0.55rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--fog); margin-bottom: 1.6rem; }
-.hero-title { font-family: var(--type-head); font-size: clamp(3.2rem, 8.5vw, 7rem); font-weight: 400; color: var(--white); line-height: 1.04; letter-spacing: -0.03em; margin-bottom: 1.2rem; opacity: 0; transform: translateY(60px) skewY(2deg); filter: blur(12px) brightness(1.2); transition: opacity 1.6s var(--expo), transform 1.6s var(--expo), filter 1.6s var(--expo); transition-delay: 0.7s; will-change: transform, opacity, filter; }
+.hero-kicker { font-family: var(--type-body); font-size: 0.72rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--fog); margin-bottom: 1.6rem; }
+.hero-title { font-family: var(--type-head); font-size: clamp(4.5rem, 9vw, 8rem); font-weight: 400; color: var(--white); line-height: 1.04; letter-spacing: -0.03em; margin-bottom: 1.4rem; opacity: 0; transform: translateY(60px) skewY(2deg); filter: blur(12px) brightness(1.2); transition: opacity 1.6s var(--expo), transform 1.6s var(--expo), filter 1.6s var(--expo); transition-delay: 0.7s; }
 .hero-title.show { opacity: 1; transform: none; filter: none; }
-.hero-sub { font-family: var(--type-body); font-size: clamp(0.85rem, 1.7vw, 1rem); color: var(--fog); max-width: 40ch; line-height: 1.65; opacity: 0; transform: translateY(18px); transition: opacity 1.2s var(--expo), transform 1.2s var(--expo); transition-delay: 1.3s; will-change: transform, opacity; }
+.hero-sub { font-family: var(--type-body); font-size: clamp(1.1rem, 2.2vw, 1.35rem); color: var(--fog); max-width: 40ch; line-height: 1.65; opacity: 0; transform: translateY(18px); transition: opacity 1.2s var(--expo), transform 1.2s var(--expo); transition-delay: 1.3s; }
 .hero-sub.show { opacity: 1; transform: none; }
+
+/* ─── KINETIC VENN ───────────────────────────────────────────────── */
+.venn-wrap {
+  position: relative;
+  width: clamp(260px, 42vw, 440px);
+  aspect-ratio: 1;
+}
+.venn-wrap svg { width: 100%; height: 100%; }
+/* Circles drawn with stroke only, transparent fill */
+.venn-circle {
+  fill: none;
+  stroke-width: 2;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  transition: stroke-dashoffset 1.8s var(--expo);
+}
+.venn-circle.draw { stroke-dashoffset: 0; }
+.vc-keeper { stroke: var(--rust); }
+.vc-civic  { stroke: var(--sand); }
+.vc-tech   { stroke: var(--fog); }
+.venn-label { font-family: var(--type-body); font-size: 11px; letter-spacing: 2px; fill: currentColor; opacity: 0; transition: opacity 0.6s ease; }
+.venn-label.show { opacity: 1; }
+.vc-keeper-lbl { fill: var(--rust); }
+.vc-civic-lbl  { fill: var(--sand); }
+.vc-tech-lbl   { fill: var(--fog); }
+.vc-empty-lbl  { fill: rgba(139,145,137,0.7); font-size: 9px; }
+
+/* ─── INTERIOR IMAGE PLACEHOLDER ────────────────────────────────── */
+.interior-photo {
+  width: clamp(160px, 26vw, 280px);
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+}
+.interior-photo img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(20%); }
+.interior-photo-label { padding: 0.5rem 0.7rem; font-family: var(--type-body); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--fog); background: var(--mid); }
+
+/* ─── BAR CHART (giving gap) ─────────────────────────────────────── */
+.bar-chart-wrap { width: 100%; max-width: 340px; }
+.bar-chart-label { font-family: var(--type-body); font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--fog); margin-bottom: 1rem; }
+.bar-row { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.65rem; }
+.bar-name { font-family: var(--type-body); font-size: 0.82rem; color: var(--charcoal); width: 9rem; flex-shrink: 0; line-height: 1.3; }
+.bar-track { flex: 1; height: 8px; background: rgba(60,65,57,0.12); position: relative; overflow: hidden; }
+.bar-fill { height: 100%; width: 0; background: rgba(60,65,57,0.35); transition: width 1.4s var(--expo); }
+.bar-fill.pam { background: var(--rust); }
+.bar-fill.show { width: var(--target-w); }
 
 /* ─── CODA ───────────────────────────────────────────────────────── */
 .coda { min-height: 100vh; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; padding: 10vh 8vw; z-index: 2; }
-.coda-bg { position: absolute; inset: 0; background-image: url('Heritage_Park.jpg'); background-size: cover; background-position: center; filter: grayscale(40%); }
-.coda-vignette { position: absolute; inset: 0; background: rgba(28,31,26,0.75); }
-.coda-content { position: relative; z-index: 2; text-align: center; }
-.coda-line { font-family: var(--type-head); font-size: clamp(3.2rem, 8vw, 6rem); font-weight: 400; color: var(--white); line-height: 1.1; display: block; }
+.coda-bg { position: absolute; inset: 0; background-image: url('El_Palo_Alto.png'); background-size: cover; background-position: center 40%; filter: grayscale(15%); }
+.coda-vignette { position: absolute; inset: 0; background: linear-gradient(to right, rgba(28,31,26,0.88) 0%, rgba(28,31,26,0.72) 50%, rgba(28,31,26,0.45) 100%), linear-gradient(to top, rgba(28,31,26,0.85) 0%, transparent 50%); }
+.coda-content { position: relative; z-index: 2; width: 100%; max-width: 1100px; display: flex; align-items: center; justify-content: space-between; gap: 5vw; flex-wrap: wrap; }
+.coda-text { flex: 1; min-width: 280px; }
+.coda-line { font-family: var(--type-head); font-size: clamp(3.8rem, 9vw, 7rem); font-weight: 400; color: var(--white); line-height: 1.1; display: block; }
 .coda-line.rust { color: var(--rust); }
-.coda-sub { font-family: var(--type-body); font-size: clamp(0.82rem, 1.5vw, 0.95rem); color: var(--fog); max-width: 52ch; margin: 2.2rem auto 0; line-height: 1.72; }
+.coda-sub { font-family: var(--type-body); font-size: clamp(1rem, 1.8vw, 1.2rem); color: var(--fog); max-width: 44ch; margin: 2.2rem 0 0; line-height: 1.72; }
+.coda-pencil {
+  flex-shrink: 0;
+  width: clamp(80px, 12vw, 180px);
+  position: relative;
+  opacity: 0;
+  transform: translateY(60px);
+  transition: opacity 1.8s var(--expo) 0.6s, transform 1.8s var(--expo) 0.6s;
+}
+.coda-pencil.shown { opacity: 1; transform: translateY(0); }
+.coda-pencil img { width: 100%; display: block; filter: drop-shadow(0 12px 40px rgba(0,0,0,0.6)); }
 .coda-marks { position: absolute; inset: 0; pointer-events: none; }
 .coda-mark { position: absolute; width: 3px; height: 3px; border-radius: 50%; background: var(--rust); opacity: 0; transition: opacity 0.5s var(--expo); }
+
+/* ─── PIXEL CITY MAP ─────────────────────────────────────────────── */
+.pixel-city-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+}
+.pixel-city-wrap svg { width: clamp(220px, 32vw, 380px); height: auto; }
+.pixel-city-legend {
+  font-family: var(--type-body);
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fog);
+  text-align: center;
+  max-width: 24ch;
+}
+.pixel-city-legend span { color: #5BBF58; font-weight: 700; }
+
+/* ─── FULL-BLEED FRESCO ──────────────────────────────────────────── */
+.fresco-bleed-section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10vh 8vw;
+  z-index: 2;
+  overflow: hidden;
+}
+.fresco-bleed-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('Fresco_Artwork.png');
+  background-size: cover;
+  background-position: center 20%;
+  z-index: 0;
+}
+.fresco-bleed-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(247,244,238,0.97) 0%,
+    rgba(247,244,238,0.88) 40%,
+    rgba(247,244,238,0.60) 70%,
+    rgba(247,244,238,0.30) 100%
+  );
+}
+.fresco-bleed-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1100px;
+  color: var(--charcoal);
+}
+
+/* ─── POSITIONING MAP ────────────────────────────────────────────── */
+.pos-map-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 620px;
+}
+.pos-map-wrap svg { width: 100%; height: auto; }
+/* Institution dot hover tooltip with photo */
+.inst-dot {
+  cursor: pointer;
+  transition: r 0.2s ease;
+}
+.inst-dot:hover circle { r: 8; }
+.map-tooltip {
+  position: absolute;
+  pointer-events: none;
+  background: var(--white);
+  border: 1px solid #D8D0C4;
+  padding: 0.4rem;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  z-index: 10;
+  width: 120px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+}
+.map-tooltip.visible { opacity: 1; }
+.map-tooltip img { width: 100%; display: block; aspect-ratio: 4/3; object-fit: cover; }
+.map-tooltip-name {
+  font-family: var(--type-body);
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--charcoal);
+  padding: 0.3rem 0.2rem 0;
+  line-height: 1.3;
+}
+
+/* ─── GIFT PORTRAIT CARDS ────────────────────────────────────────── */
+.gift-card-portrait {
+  width: 100%;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  margin-bottom: 0.6rem;
+}
+.gift-card-portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  filter: grayscale(40%) contrast(1.05);
+  transition: filter 0.6s ease;
+}
+.gift-card:hover .gift-card-portrait img { filter: grayscale(0%) contrast(1.05); }
+
+/* ─── SOUND PLAYER ───────────────────────────────────────────────── */
+.sound-player {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 1.6rem;
+  padding: 0.7rem 1rem;
+  border: 1px solid rgba(139,145,137,0.25);
+  background: rgba(60,65,57,0.08);
+  max-width: 320px;
+}
+.sound-btn {
+  background: none;
+  border: 1px solid var(--rust);
+  color: var(--rust);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 0.9rem;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.sound-btn:hover { background: var(--rust); color: var(--white); }
+.sound-btn.playing { background: var(--rust); color: var(--white); }
+.sound-label {
+  font-family: var(--type-body);
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fog);
+  line-height: 1.35;
+}
+/* Sound waveform animation (visual only) */
+.sound-bars {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  height: 20px;
+  margin-left: auto;
+}
+.sound-bar {
+  width: 3px;
+  background: var(--rust);
+  border-radius: 1px;
+  height: 4px;
+  opacity: 0.3;
+  transition: height 0.1s ease, opacity 0.1s ease;
+}
+.sound-bars.active .sound-bar { opacity: 0.8; }
 
 /* ─── RESPONSIVE ─────────────────────────────────────────────────── */
 @media (max-width: 720px) {
   .col-2, .col-3, .col-text-vis, .case-grid, .case-grid.wide, .case-pair { grid-template-columns: 1fr; }
   .vs-col { padding: 0.6rem 0; }
-  .bignum { font-size: clamp(4rem, 22vw, 8rem); }
+  .bignum { font-size: clamp(5rem, 28vw, 10rem); }
   #redwood-spine { display: none; }
   .scroll-section { padding: 8vh 5vw; }
 }
@@ -502,14 +623,11 @@ svg.wv { width: 100%; max-width: 520px; height: 34px; overflow: visible; }
 </head>
 <body>
 
-<!-- ─── REDWOOD SPINE (fixed left rail) ──────────────────────────── -->
+<!-- ─── REDWOOD SPINE ──────────────────────────────────────────────── -->
 <div id="redwood-spine" aria-hidden="true">
   <svg viewBox="0 0 2 1000" preserveAspectRatio="none">
-    <!-- Track: faint full height -->
     <line class="spine-track" x1="1" y1="0" x2="1" y2="1000"/>
-    <!-- Progress: fills as reader scrolls -->
     <line class="spine-progress" id="spineProgress" x1="1" y1="0" x2="1" y2="1000"/>
-    <!-- Branch nubs at irregular intervals -->
     <line class="spine-branch" x1="1" y1="80"  x2="8"  y2="75"/>
     <line class="spine-branch" x1="1" y1="160" x2="-5" y2="155"/>
     <line class="spine-branch" x1="1" y1="255" x2="7"  y2="250"/>
@@ -524,9 +642,7 @@ svg.wv { width: 100%; max-width: 520px; height: 34px; overflow: visible; }
   </svg>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<!-- HERO                                                           -->
-<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- ═══════════════════════════ HERO ═══════════════════════════════ -->
 <section class="hero" id="hero">
   <div class="hero-bg"></div>
   <div class="hero-vignette"></div>
@@ -538,9 +654,7 @@ svg.wv { width: 100%; max-width: 520px; height: 34px; overflow: visible; }
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<!-- ACT I: THE SHADOW                                              -->
-<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- ═══════════════════════════ ACT I ══════════════════════════════ -->
 <div class="act-divider dark reveal" data-reveal>
   <div><div class="act-num">Act I</div><div class="act-title">The Shadow</div></div>
 </div>
@@ -557,25 +671,25 @@ svg.wv { width: 100%; max-width: 520px; height: 34px; overflow: visible; }
         <p class="prose reveal delay-3" data-reveal style="margin-top:1.1em;color:var(--fog);">
           Stanford wrote the origin chapter. The press wrote the middle. The critics wrote the counter-chapters. For most of two centuries the town has been the object of its own story, never the author.
         </p>
-        <p class="prose reveal delay-4" data-reveal style="margin-top:1.1em;color:var(--sand);font-family:var(--type-head);font-size:1.05rem;">
+        <p class="prose reveal delay-4" data-reveal style="margin-top:1.1em;color:var(--sand);font-family:var(--type-head);font-size:1.25rem;">
           It has the most talked-about streets in America, and nowhere to talk back.
         </p>
       </div>
-      <!-- Portrait cycling: Stanford, Jordan, Muybridge, Harris -->
-      <div class="portrait-stage reveal delay-2" data-reveal style="max-width:320px;">
-        <img class="portrait-img active" src="Leland_Stanford.jpg"      alt="Leland Stanford"      id="p0">
-        <img class="portrait-img"        src="David_Starr_Jordon.jpg"   alt="David Starr Jordan"   id="p1">
-        <img class="portrait-img"        src="Eadweard_Muybridge.jpg"   alt="Eadweard Muybridge"   id="p2">
-        <img class="portrait-img"        src="Lewis_Madison_Terman.jpg" alt="Lewis Madison Terman" id="p3">
+      <!-- Portrait cycling — caption BELOW image -->
+      <div class="portrait-stage reveal delay-2" data-reveal>
+        <div class="portrait-wrap">
+          <img class="portrait-img active" src="Leland_Stanford.jpg"      alt="Leland Stanford"      id="p0">
+          <img class="portrait-img"        src="David_Starr_Jordon.jpg"   alt="David Starr Jordan"   id="p1">
+          <img class="portrait-img"        src="Eadweard_Muybridge.jpg"   alt="Eadweard Muybridge"   id="p2">
+          <img class="portrait-img"        src="Lewis_Madison_Terman.jpg" alt="Lewis Madison Terman" id="p3">
+        </div>
         <div class="portrait-caption" id="portraitCaption">Leland Stanford: wrote the origin</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<!-- ACT II: THE FALSE DAWN                                         -->
-<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- ═══════════════════════════ ACT II ═════════════════════════════ -->
 <div class="act-divider light reveal" data-reveal>
   <div><div class="act-num" style="color:var(--rust);">Act II</div><div class="act-title">The False Dawn</div></div>
 </div>
@@ -596,22 +710,22 @@ svg.wv { width: 100%; max-width: 520px; height: 34px; overflow: visible; }
         <p class="prose reveal delay-4" data-reveal style="margin-top:1.1em;font-style:italic;color:var(--fog);">
           The shadow did not announce itself. It arrived quietly inside the silence of the next question: and then what?
         </p>
-        <p class="reveal delay-5" data-reveal style="margin-top:1.4rem;font-family:var(--type-head);font-size:1.25rem;color:var(--charcoal);line-height:1.25;max-width:28ch;">
+        <p class="reveal delay-5" data-reveal style="margin-top:1.4rem;font-family:var(--type-head);font-size:1.5rem;color:var(--charcoal);line-height:1.25;max-width:28ch;">
           The hardest work had not yet been named.
         </p>
       </div>
-      <!-- Russell Lee / Birge Clark photo -->
-      <div class="photo-card reveal delay-3" data-reveal style="aspect-ratio:3/4;max-width:300px;">
-        <img src="Dr_Russell_Lee_and_Birge_Clark.jpg" alt="Russell Lee and Birge Clark">
-        <div class="photo-card-label">Birge Clark, architect of the room</div>
+      <!-- Birge Clark photo — CHANGE #5: filename updated -->
+      <div class="reveal delay-3" data-reveal style="max-width:320px;">
+        <div class="photo-card">
+          <img src="Dr_Russell_Lee_and_Birge_Clark.jpg" alt="Birge Clark, architect of the Roth Building" style="aspect-ratio:3/4;object-fit:cover;">
+          <div class="photo-card-label">Birge Clark, architect of the room</div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<!-- ACT III: THE GRAVE                                             -->
-<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- ═══════════════════════════ ACT III ════════════════════════════ -->
 <div class="act-divider dark reveal" data-reveal>
   <div><div class="act-num">Act III</div><div class="act-title">The Grave</div></div>
 </div>
@@ -628,17 +742,17 @@ svg.wv { width: 100%; max-width: 520px; height: 34px; overflow: visible; }
         </p>
       </div>
       <div style="padding-top:0.5rem;">
-        <div class="photo-card reveal delay-2" data-reveal style="aspect-ratio:4/3;margin-bottom:1.2rem;">
-          <img src="bellevue_arts_museum.jpg" alt="Bellevue Arts Museum">
+        <div class="photo-card reveal delay-2" data-reveal style="max-width:360px;margin-bottom:1.2rem;">
+          <img src="bellevue_arts_museum.jpg" alt="Bellevue Arts Museum" style="aspect-ratio:4/3;object-fit:cover;">
           <div class="photo-card-label">Bellevue Arts Museum, 2001</div>
         </div>
         <div class="reveal delay-3" data-reveal style="border-left:3px solid rgba(139,145,137,0.2);padding-left:1.2rem;margin-bottom:1rem;">
-          <p style="color:var(--fog);font-size:0.85rem;line-height:1.6;">Lead gifts. Grants. Architectural acclaim.</p>
+          <p style="color:var(--fog);font-size:1rem;line-height:1.6;">Lead gifts. Grants. Architectural acclaim.</p>
         </div>
         <div class="reveal delay-4" data-reveal style="border-left:3px solid var(--rust);padding-left:1.2rem;">
-          <p style="color:var(--cream);font-size:0.88rem;font-weight:600;line-height:1.6;">No earned-revenue floor.<br>No reason to return.</p>
+          <p style="color:var(--cream);font-size:1.05rem;font-weight:600;line-height:1.6;">No earned-revenue floor.<br>No reason to return.</p>
         </div>
-        <p class="prose reveal delay-5" data-reveal style="color:var(--fog);font-size:0.8rem;margin-top:1.2rem;">
+        <p class="prose reveal delay-5" data-reveal style="color:var(--fog);margin-top:1.2rem;">
           The American Alliance of Museums benchmarks sustainable museums at 32 percent of operating budget from earned income. That ratio is not a preference. It is a survival condition.
         </p>
       </div>
@@ -654,24 +768,155 @@ svg.wv { width: 100%; max-width: 520px; height: 34px; overflow: visible; }
         <div class="eyebrow reveal" data-reveal>The reach gap</div>
         <div class="rule reveal delay-1" data-reveal></div>
         <div class="bignum reveal heavy delay-2" data-reveal>3.4%</div>
-        <p class="prose reveal delay-3" data-reveal style="margin-top:1.2rem;color:var(--fog);">
+        <p class="prose reveal delay-3" data-reveal style="margin-top:1.4rem;color:var(--fog);">
           of Palo Alto households had given to the museum by the July 2023 groundbreaking: 900 donors in a city of roughly 26,000 households.
         </p>
-        <p class="prose reveal delay-4" data-reveal style="margin-top:0.9rem;font-style:italic;color:var(--sand);">
+        <p class="prose reveal delay-4" data-reveal style="margin-top:1rem;font-style:italic;color:var(--sand);">
           Even after a major capital campaign. This is not a passion problem. It is a reach problem.
         </p>
       </div>
-      <div style="display:flex;flex-direction:column;align-items:center;gap:1rem;">
-        <div class="dot-grid" id="dotGrid"></div>
-        <p style="font-family:var(--type-body);font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--fog);text-align:center;max-width:22ch;">
-          3.4 of every 100 households had given by 2023
-        </p>
+      <div class="pixel-city-wrap">
+        <!-- Pixel map of Palo Alto city shape. 3.4 of every 100 squares = green -->
+        <svg id="pixelCity" viewBox="0 0 220 420" xmlns="http://www.w3.org/2000/svg" aria-label="Pixelated map of Palo Alto with 3.4% of squares lit in green">
+          <!-- Upper lobe (main city body) -->
+          <!-- Row 1 -->
+          <rect class="pcell" x="100" y="2" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="115" y="2" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="130" y="2" width="12" height="12" rx="1"/>
+          <!-- Row 2 -->
+          <rect class="pcell" x="85" y="17" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="100" y="17" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="115" y="17" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="130" y="17" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="145" y="17" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="160" y="17" width="12" height="12" rx="1"/>
+          <!-- Row 3 -->
+          <rect class="pcell" x="55" y="32" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="70" y="32" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="85" y="32" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="100" y="32" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="115" y="32" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="130" y="32" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="145" y="32" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="160" y="32" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="175" y="32" width="12" height="12" rx="1"/>
+          <!-- Row 4 -->
+          <rect class="pcell" x="40" y="47" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="55" y="47" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="70" y="47" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="85" y="47" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="100" y="47" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="115" y="47" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="130" y="47" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="145" y="47" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="160" y="47" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="175" y="47" width="12" height="12" rx="1"/>
+          <!-- Row 5 -->
+          <rect class="pcell" x="55" y="62" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="70" y="62" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="85" y="62" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="100" y="62" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="115" y="62" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="130" y="62" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="145" y="62" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="160" y="62" width="12" height="12" rx="1"/>
+          <!-- Row 6 -->
+          <rect class="pcell" x="70" y="77" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="85" y="77" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="100" y="77" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="115" y="77" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="130" y="77" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="145" y="77" width="12" height="12" rx="1"/>
+          <!-- Row 7 -->
+          <rect class="pcell" x="85" y="92" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="100" y="92" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="115" y="92" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="130" y="92" width="12" height="12" rx="1"/>
+          <!-- Row 8 -->
+          <rect class="pcell" x="85" y="107" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="100" y="107" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="115" y="107" width="12" height="12" rx="1"/>
+          <!-- Row 9 -->
+          <rect class="pcell" x="85" y="122" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="100" y="122" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="115" y="122" width="12" height="12" rx="1"/>
+          <!-- Gap between lobes -->
+          <!-- Lower lobe (south Palo Alto / Stanford lands) -->
+          <!-- Row 10 -->
+          <rect class="pcell" x="40" y="162" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="55" y="162" width="12" height="12" rx="1"/>
+          <!-- Row 11 -->
+          <rect class="pcell" x="25" y="177" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="40" y="177" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="55" y="177" width="12" height="12" rx="1"/>
+          <!-- Row 12 -->
+          <rect class="pcell" x="10" y="192" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="25" y="192" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="40" y="192" width="12" height="12" rx="1"/>
+          <!-- Row 13 -->
+          <rect class="pcell" x="10" y="207" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="25" y="207" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="40" y="207" width="12" height="12" rx="1"/>
+          <!-- Row 14 -->
+          <rect class="pcell" x="10" y="222" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="25" y="222" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="40" y="222" width="12" height="12" rx="1"/>
+          <!-- Row 15 -->
+          <rect class="pcell" x="10" y="237" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="25" y="237" width="12" height="12" rx="1"/>
+          <!-- Row 16 -->
+          <rect class="pcell" x="10" y="252" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="25" y="252" width="12" height="12" rx="1"/>
+          <!-- Row 17 -->
+          <rect class="pcell" x="10" y="267" width="12" height="12" rx="1"/>
+          <!-- Row 18 -->
+          <rect class="pcell" x="10" y="282" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="40" y="282" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="55" y="282" width="12" height="12" rx="1"/>
+          <!-- Row 19 -->
+          <rect class="pcell" x="25" y="297" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="40" y="297" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="55" y="297" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="70" y="297" width="12" height="12" rx="1"/>
+          <!-- Row 20 -->
+          <rect class="pcell" x="40" y="312" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="55" y="312" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="70" y="312" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="85" y="312" width="12" height="12" rx="1"/>
+          <!-- Row 21 -->
+          <rect class="pcell" x="55" y="327" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="70" y="327" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="85" y="327" width="12" height="12" rx="1"/>
+          <!-- Row 22 -->
+          <rect class="pcell" x="55" y="342" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="70" y="342" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="85" y="342" width="12" height="12" rx="1"/>
+          <!-- Row 23 -->
+          <rect class="pcell" x="55" y="357" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="70" y="357" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="85" y="357" width="12" height="12" rx="1"/>
+          <!-- Row 24 -->
+          <rect class="pcell" x="55" y="372" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="70" y="372" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="85" y="372" width="12" height="12" rx="1"/>
+          <!-- Row 25 -->
+          <rect class="pcell" x="55" y="387" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="70" y="387" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="85" y="387" width="12" height="12" rx="1"/>
+          <!-- Row 26 -->
+          <rect class="pcell" x="55" y="402" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="70" y="402" width="12" height="12" rx="1"/>
+          <rect class="pcell" x="85" y="402" width="12" height="12" rx="1"/>
+        </svg>
+        <div class="pixel-city-legend">
+          <span>3.4%</span> of Palo Alto households<br>had given by 2023
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CASE INSET: OMCA replaces Sharp/Ehrenberg + Romaniuk -->
+<!-- CASE INSET: OMCA -->
 <div class="case-section reveal" data-reveal id="case3">
   <div style="max-width:1100px;margin:0 auto;">
     <div class="case-header">
@@ -680,24 +925,24 @@ svg.wv { width: 100%; max-width: 520px; height: 34px; overflow: visible; }
     </div>
     <div class="case-rule"></div>
     <div class="case-grid wide">
-      <div class="case-photo" style="aspect-ratio:4/3;">
-        <img src="OMCA.jpg" alt="Oakland Museum of California" onerror="this.parentElement.style.background='#2D3329';">
+      <div class="case-photo">
+        <img src="OMCA.jpg" alt="Oakland Museum of California" style="aspect-ratio:4/3;" onerror="this.parentElement.style.background='#2D3329';">
         <div class="case-photo-caption">Oakland Museum of California, First Fridays</div>
       </div>
       <div class="case-card">
         <div class="case-who">Oakland Museum of California</div>
         <div class="case-what">Oakland, CA. Comparable civic institution, comparable donor-penetration challenge.</div>
         <span class="case-concept">Penetration through entry points, not loyalty depth</span>
-        <p class="case-argument">OMCA faced the same geometry: a small base of committed donors, a large base of aware non-givers. Their intervention was not a deeper loyalty program for the existing donors. It was First Fridays: a recurring evening event that gave the 96 percent who had no existing relationship with the museum a named reason to walk in.</p>
-        <div class="case-outcome">First Fridays grew from 200 attendees to 4,000-plus per event. Membership penetration increased. The entry point, not the collection, not the brand, was the mechanism.</div>
-        <p class="case-pam"><strong>For PAM:</strong> The recording booth, the Tuesday forum, the community room rental are not program amenities. They are the entry points. Named occasions for the 96 percent who have not yet walked in.</p>
+        <p class="case-argument">The Oakland Museum of California faced the same geometry: a small base of committed donors, a large base of aware non-givers. Their intervention was not a deeper loyalty program for existing donors. It was First Fridays: a recurring evening event that gave the 96 percent who had no existing relationship with the museum a named reason to walk in.</p>
+        <div class="case-outcome">First Fridays grew from 200 attendees to 4,000-plus per event. Membership penetration increased. The entry point, not the collection, not the brand, was the driver.</div>
+        <p class="case-pam"><strong>For the Palo Alto Museum:</strong> The recording booth, the Tuesday forum, the community room rental are not program amenities. They are the entry points. Named occasions for the 96 percent who have not yet walked in.</p>
         <div class="case-verdict">The case holds</div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- The giving gap -->
+<!-- Giving gap — CHANGE #9: bar chart added -->
 <section class="scroll-section light" id="givinggap">
   <div class="inner">
     <div class="col-text-vis" style="align-items:center;">
@@ -708,27 +953,40 @@ svg.wv { width: 100%; max-width: 520px; height: 34px; overflow: visible; }
         <p class="prose reveal delay-3" data-reveal style="margin-top:1.3rem;">
           Stanford. The Met. National causes. Global foundations. The personal passions of people whose fortunes were made in forty miles of geography. The region produces extraordinary wealth and exports most of its charitable expression of that wealth.
         </p>
-        <p class="prose reveal delay-4" data-reveal style="margin-top:0.9rem;font-style:italic;color:var(--fog);">
+        <p class="prose reveal delay-4" data-reveal style="margin-top:1rem;font-style:italic;color:var(--fog);">
           Nothing here has made a sufficiently fundable argument that the place itself is worth funding.
         </p>
       </div>
-      <div style="max-width:300px;width:100%;" class="reveal delay-3" data-reveal>
-        <p style="font-family:var(--type-body);font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--fog);margin-bottom:1rem;">Where giving from this region concentrates</p>
-        <div style="display:flex;flex-direction:column;gap:0.55rem;">
-          <div style="font-size:0.85rem;color:var(--charcoal);padding:0.55rem 0.8rem;border-left:3px solid rgba(60,65,57,0.22);">Stanford University</div>
-          <div style="font-size:0.85rem;color:var(--charcoal);padding:0.55rem 0.8rem;border-left:3px solid rgba(60,65,57,0.18);">National arts institutions</div>
-          <div style="font-size:0.85rem;color:var(--charcoal);padding:0.55rem 0.8rem;border-left:3px solid rgba(60,65,57,0.13);">Global health &amp; research</div>
-          <div style="font-size:0.85rem;color:var(--charcoal);padding:0.55rem 0.8rem;border-left:3px solid rgba(60,65,57,0.09);">Founders' personal causes</div>
-          <div style="margin-top:0.3rem;font-size:0.85rem;color:var(--rust);padding:0.55rem 0.8rem;border-left:3px solid var(--rust);font-weight:600;">PAM: unfunded argument</div>
+      <!-- Bar chart — replacing the previous static list -->
+      <div class="reveal delay-3" data-reveal id="givingChart">
+        <div class="bar-chart-label">Where giving from this region concentrates</div>
+        <div class="bar-row">
+          <div class="bar-name">Stanford University</div>
+          <div class="bar-track"><div class="bar-fill" style="--target-w:92%;"></div></div>
         </div>
+        <div class="bar-row">
+          <div class="bar-name">National arts institutions</div>
+          <div class="bar-track"><div class="bar-fill" style="--target-w:62%;"></div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-name">Global health &amp; research</div>
+          <div class="bar-track"><div class="bar-fill" style="--target-w:51%;"></div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-name">Founders' personal causes</div>
+          <div class="bar-track"><div class="bar-fill" style="--target-w:38%;"></div></div>
+        </div>
+        <div class="bar-row" style="margin-top:0.5rem;">
+          <div class="bar-name" style="color:var(--rust);font-weight:600;">Palo Alto Museum<br><span style="font-size:0.72rem;font-weight:400;font-style:italic;">unfunded argument</span></div>
+          <div class="bar-track"><div class="bar-fill pam" style="--target-w:6%;"></div></div>
+        </div>
+        <p style="font-size:0.72rem;color:var(--fog);margin-top:0.8rem;font-style:italic;">Illustrative proportions based on regional giving patterns</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<!-- ACT IV: THE BLEND TRAP                                         -->
-<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- ═══════════════════════════ ACT IV ═════════════════════════════ -->
 <div class="act-divider dark reveal" data-reveal>
   <div><div class="act-num">Act IV</div><div class="act-title">The Blend Trap</div></div>
 </div>
@@ -739,40 +997,42 @@ svg.wv { width: 100%; max-width: 520px; height: 34px; overflow: visible; }
     <div class="rule reveal delay-1" data-reveal></div>
     <div class="col-3" style="margin-bottom:2.8rem;">
       <div class="reveal delay-1" data-reveal style="border-top:2px solid rgba(139,145,137,0.2);padding-top:1.1rem;">
-        <div style="font-family:var(--type-body);font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--rust);margin-bottom:0.7rem;">The Keeper</div>
-        <p style="font-size:0.86rem;color:var(--fog);line-height:1.6;">Memory. The Ohlone, Juana Briones, the labor of the people who built the town before the capital arrived. The honest record.</p>
+        <div style="font-family:var(--type-body);font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--rust);margin-bottom:0.7rem;">The Keeper</div>
+        <p style="font-size:1rem;color:var(--fog);line-height:1.6;">Memory. The Ohlone, Juana Briones, the labor of the people who built the town before the capital arrived. The honest record.</p>
       </div>
       <div class="reveal delay-2" data-reveal style="border-top:2px solid rgba(139,145,137,0.2);padding-top:1.1rem;">
-        <div style="font-family:var(--type-body);font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--rust);margin-bottom:0.7rem;">The Civic Bloc</div>
-        <p style="font-size:0.86rem;color:var(--fog);line-height:1.6;">Forum. The room where the rail line gets discussed, the zoning fight gets aired, the town thinks together in public.</p>
+        <div style="font-family:var(--type-body);font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--rust);margin-bottom:0.7rem;">The Civic Bloc</div>
+        <p style="font-size:1rem;color:var(--fog);line-height:1.6;">Forum. The room where the rail line gets discussed, the zoning fight gets aired, the town thinks together in public.</p>
       </div>
       <div class="reveal delay-3" data-reveal style="border-top:2px solid rgba(139,145,137,0.2);padding-top:1.1rem;">
-        <div style="font-family:var(--type-body);font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--rust);margin-bottom:0.7rem;">The Tech Camp</div>
-        <p style="font-size:0.86rem;color:var(--fog);line-height:1.6;">Participatory, interactive, built with the town's own capacity for making things. Living, not a tomb.</p>
+        <div style="font-family:var(--type-body);font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--rust);margin-bottom:0.7rem;">The Tech Camp</div>
+        <p style="font-size:1rem;color:var(--fog);line-height:1.6;">Participatory, interactive, built with the town's own capacity for making things. Living, not a tomb.</p>
       </div>
     </div>
     <div style="display:flex;align-items:center;gap:4vw;flex-wrap:wrap;">
-      <!-- Inverted Venn -->
-      <div class="reveal delay-2" data-reveal style="flex-shrink:0;">
-        <svg viewBox="0 0 360 240" fill="none" style="width:clamp(240px,38vw,400px);">
-          <circle cx="130" cy="120" r="80" fill="rgba(184,91,58,0.07)" stroke="rgba(184,91,58,0.28)" stroke-width="1.5"/>
-          <circle cx="230" cy="120" r="80" fill="rgba(139,145,137,0.05)" stroke="rgba(139,145,137,0.2)" stroke-width="1.5"/>
-          <circle cx="180" cy="46" r="80" fill="rgba(200,184,154,0.04)" stroke="rgba(200,184,154,0.14)" stroke-width="1.5"/>
-          <text x="180" y="126" text-anchor="middle" font-family="Calibri,sans-serif" font-size="9" fill="rgba(139,145,137,0.55)" letter-spacing="2">EMPTY</text>
-          <text x="88" y="168" text-anchor="middle" font-family="Calibri,sans-serif" font-size="8" fill="rgba(184,91,58,0.65)" letter-spacing="1">KEEPER</text>
-          <text x="272" y="168" text-anchor="middle" font-family="Calibri,sans-serif" font-size="8" fill="rgba(139,145,137,0.65)" letter-spacing="1">CIVIC</text>
-          <text x="180" y="19"  text-anchor="middle" font-family="Calibri,sans-serif" font-size="8" fill="rgba(200,184,154,0.65)" letter-spacing="1">TECH</text>
+      <!-- CHANGE #10: Kinetic Venn — stroke only, no fill, animated draw -->
+      <div class="venn-wrap reveal delay-2" data-reveal id="vennWrap">
+        <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg" id="vennSvg">
+          <!-- Three circles: Keeper (lower-left), Civic (lower-right), Tech (top) -->
+          <circle class="venn-circle vc-keeper" cx="155" cy="240" r="120" id="vcKeeper"/>
+          <circle class="venn-circle vc-civic"  cx="245" cy="240" r="120" id="vcCivic"/>
+          <circle class="venn-circle vc-tech"   cx="200" cy="165" r="120" id="vcTech"/>
+          <!-- Labels -->
+          <text class="venn-label vc-keeper-lbl" x="68"  y="280" text-anchor="middle" id="lKeeper">KEEPER</text>
+          <text class="venn-label vc-civic-lbl"  x="332" y="280" text-anchor="middle" id="lCivic">CIVIC</text>
+          <text class="venn-label vc-tech-lbl"   x="200" y="60"  text-anchor="middle" id="lTech">TECH</text>
+          <text class="venn-label vc-empty-lbl"  x="200" y="228" text-anchor="middle" id="lEmpty">EMPTY</text>
         </svg>
       </div>
       <div style="max-width:38ch;" class="reveal delay-3" data-reveal>
-        <p class="display-sm" style="font-family:var(--type-head);color:var(--cream);margin-bottom:0.9rem;line-height:1.28;">The space where all three overlap is where you find no one.</p>
+        <p class="display-sm" style="font-family:var(--type-head);color:var(--cream);margin-bottom:1rem;line-height:1.28;">The space where all three overlap is where you find no one.</p>
         <p class="prose" style="color:var(--fog);">The blend that keeps the board from fighting leaves the institution without a position. A museum without a position in a transient town with a 16 percent annual mover rate has to reintroduce itself every year to a town that has already moved on.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CASE INSET: CHM replaces Morgan -->
+<!-- CASE INSET: CHM -->
 <div class="case-section reveal" data-reveal id="case4">
   <div style="max-width:1100px;margin:0 auto;">
     <div class="case-header">
@@ -781,33 +1041,30 @@ svg.wv { width: 100%; max-width: 520px; height: 34px; overflow: visible; }
     </div>
     <div class="case-rule"></div>
     <div class="case-grid wide">
-      <div class="case-photo" style="aspect-ratio:4/3;">
-        <img src="CHM.jpg" alt="Computer History Museum" onerror="this.parentElement.style.background='#2D3329';">
+      <div class="case-photo">
+        <img src="CHM.jpg" alt="Computer History Museum" style="aspect-ratio:4/3;" onerror="this.parentElement.style.background='#2D3329';">
         <div class="case-photo-caption">Computer History Museum, Mountain View</div>
       </div>
       <div class="case-card">
         <div class="case-who">Computer History Museum</div>
-        <div class="case-what">Mountain View, CA. PAM's most direct competitor for civic identity.</div>
+        <div class="case-what">Mountain View, CA. The Palo Alto Museum's most direct competitor for civic identity.</div>
         <span class="case-concept">Sacrifice earns the Lighthouse Identity</span>
-        <p class="case-argument">CHM spent years trying to be everything Silicon Valley: interactive, historical, educational, inspirational, community-facing. The position was diffuse. The moment they committed to a single identity (the museum of the computer, the machine itself) and donations stabilized and the school program grew. They sacrificed the broad claim for the precise one.</p>
-        <div class="case-outcome">"What are you prepared to sacrifice?" is the question Adam Morgan asks every challenger brand. CHM answered it. The answer is on every label in the building.</div>
-        <p class="case-pam"><strong>For PAM:</strong> CHM now owns "the computer." That seat is taken. The seat CHM cannot take, because it was never their mission, is the room where the town itself gathers. That seat is empty and adjacent to theirs.</p>
+        <p class="case-argument">The Computer History Museum spent years trying to be everything Silicon Valley: interactive, historical, educational, inspirational, community-facing. The position was diffuse. When they committed to a single identity — the museum of the computer, the machine itself — donations stabilized and the school program grew. They sacrificed the broad claim for the precise one.</p>
+        <div class="case-outcome">"What are you prepared to sacrifice?" is the question Adam Morgan asks every challenger brand. The Computer History Museum answered it. The answer is on every label in the building.</div>
+        <p class="case-pam"><strong>For the Palo Alto Museum:</strong> The Computer History Museum now owns "the computer." That seat is taken. The seat the Computer History Museum cannot take, because it was never their mission, is the room where the town itself gathers. That seat is empty and adjacent to theirs.</p>
         <div class="case-verdict">The case holds</div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<!-- ACT V: THE TURN                                                -->
-<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- ═══════════════════════════ ACT V ══════════════════════════════ -->
 <div class="act-divider dark reveal" data-reveal>
   <div><div class="act-num">Act V</div><div class="act-title">The Turn</div></div>
 </div>
 
 <section class="scroll-section dark" id="actV">
   <div class="inner">
-    <!-- The wound -->
     <div style="display:flex;align-items:center;gap:5vw;flex-wrap:wrap;margin-bottom:4.5rem;">
       <div style="max-width:44ch;" class="reveal" data-reveal>
         <div class="eyebrow reveal delay-1" data-reveal>The wound</div>
@@ -816,16 +1073,21 @@ svg.wv { width: 100%; max-width: 520px; height: 34px; overflow: visible; }
           The museum does not have a collection. It has been treated as a wound. The aesthetic benefactors who fund the Met and the Broad give money to art and to the authority that art confers. Without a collection there is no canvas for that gift.
         </p>
       </div>
-      <!-- Empty plinth -->
-      <div class="reveal delay-3" data-reveal style="flex-shrink:0;">
-        <svg viewBox="0 0 220 200" fill="none" style="width:clamp(140px,22vw,220px);">
-          <rect x="60" y="140" width="100" height="12" fill="rgba(200,184,154,0.1)" stroke="rgba(200,184,154,0.18)" stroke-width="1"/>
-          <rect x="70" y="80" width="80" height="60" fill="rgba(200,184,154,0.04)" stroke="rgba(200,184,154,0.12)" stroke-width="1"/>
-          <rect x="55" y="76" width="110" height="8" fill="rgba(200,184,154,0.07)" stroke="rgba(200,184,154,0.18)" stroke-width="1"/>
-          <text x="110" y="57" text-anchor="middle" font-family="Calibri,sans-serif" font-size="8" fill="rgba(184,91,58,0.55)" letter-spacing="3">NO COLLECTION</text>
-          <line x1="90" y1="62" x2="130" y2="62" stroke="rgba(184,91,58,0.22)" stroke-width="1"/>
-          <line x1="110" y1="62" x2="110" y2="76" stroke="rgba(184,91,58,0.18)" stroke-width="1"/>
-        </svg>
+      <!-- CHANGE #11: Interior image instead of plinth SVG -->
+      <div class="interior-photo reveal delay-3" data-reveal>
+        <img src="The_Roth_Interior.jpg" alt="Interior of the Palo Alto Museum at the Roth Building" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <!-- Fallback plinth if image missing -->
+        <div style="display:none;width:100%;flex:1;align-items:center;justify-content:center;background:rgba(200,184,154,0.04);border:1px solid rgba(200,184,154,0.12);">
+          <svg viewBox="0 0 220 200" fill="none" style="width:clamp(140px,22vw,220px);">
+            <rect x="60" y="140" width="100" height="12" fill="rgba(200,184,154,0.1)" stroke="rgba(200,184,154,0.18)" stroke-width="1"/>
+            <rect x="70" y="80" width="80" height="60" fill="rgba(200,184,154,0.04)" stroke="rgba(200,184,154,0.12)" stroke-width="1"/>
+            <rect x="55" y="76" width="110" height="8" fill="rgba(200,184,154,0.07)" stroke="rgba(200,184,154,0.18)" stroke-width="1"/>
+            <text x="110" y="57" text-anchor="middle" font-family="Calibri,sans-serif" font-size="9" fill="rgba(184,91,58,0.55)" letter-spacing="3">NO COLLECTION</text>
+            <line x1="90" y1="62" x2="130" y2="62" stroke="rgba(184,91,58,0.22)" stroke-width="1"/>
+            <line x1="110" y1="62" x2="110" y2="76" stroke="rgba(184,91,58,0.18)" stroke-width="1"/>
+          </svg>
+        </div>
+        <div class="interior-photo-label">No collection. The room is what it has.</div>
       </div>
     </div>
     <!-- The liberation -->
@@ -837,18 +1099,18 @@ svg.wv { width: 100%; max-width: 520px; height: 34px; overflow: visible; }
     </div>
     <div class="col-2" style="margin-top:1.8rem;">
       <div class="reveal delay-2" data-reveal style="border-top:1px solid rgba(139,145,137,0.18);padding-top:1.1rem;">
-        <p style="font-family:var(--type-body);font-size:0.58rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--fog);margin-bottom:0.7rem;">With a collection</p>
-        <p style="font-size:0.86rem;color:var(--fog);line-height:1.6;">Compete for objects against Stanford, the Computer History Museum, Cantor. Chase aesthetic benefactors who have nothing to buy here. Lose.</p>
+        <p style="font-family:var(--type-body);font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--fog);margin-bottom:0.7rem;">With a collection</p>
+        <p style="font-size:1rem;color:var(--fog);line-height:1.6;">Compete for objects against Stanford, the Computer History Museum, Cantor. Chase aesthetic benefactors who have nothing to buy here. Lose.</p>
       </div>
       <div class="reveal delay-3" data-reveal style="border-top:1px solid var(--rust);padding-top:1.1rem;">
-        <p style="font-family:var(--type-body);font-size:0.58rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--rust);margin-bottom:0.7rem;">Without a collection</p>
-        <p style="font-size:0.86rem;color:var(--cream);line-height:1.6;">Every dead position is impossible. Only one position remains. And that position is unoccupied.</p>
+        <p style="font-family:var(--type-body);font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--rust);margin-bottom:0.7rem;">Without a collection</p>
+        <p style="font-size:1rem;color:var(--cream);line-height:1.6;">Every dead position is impossible. Only one position remains. And that position is unoccupied.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CASE INSET: Larimer Square + Roth near-loss replaces Sutherland -->
+<!-- CASE INSET: Roth + Larimer — CHANGE #12: photos added -->
 <div class="case-section reveal" data-reveal id="case5">
   <div style="max-width:1100px;margin:0 auto;">
     <div class="case-header">
@@ -857,30 +1119,44 @@ svg.wv { width: 100%; max-width: 520px; height: 34px; overflow: visible; }
     </div>
     <div class="case-rule"></div>
     <div class="case-pair">
-      <div class="case-card">
-        <div class="case-who">The Roth Building, 2012–2015</div>
-        <div class="case-what">300 Homer Avenue, Palo Alto. The near-demolition.</div>
-        <span class="case-concept">Loss aversion: the room almost gone</span>
-        <p class="case-argument">Before the museum took residency, the Roth Building's fate was genuinely uncertain. The lease negotiation with the city nearly collapsed. Demolition was a live option. The building that the town now has one chance to make into its civic commons almost ceased to exist before the argument for it was made.</p>
-        <div class="case-outcome">The near-loss is the correct loss-aversion moment. Not "we have no collection": an absence nobody grieves. But "the room almost disappeared": a presence the town almost forfeited before understanding what it was.</div>
-        <p class="case-pam"><strong>For PAM:</strong> The founding story is not "we saved the building." It is "the building almost went, and with it the only room this town has ever had that could be its own."</p>
-        <div class="case-verdict">The correct instance</div>
+      <div>
+        <!-- Roth Building photo -->
+        <div class="case-photo" style="margin-bottom:1.2rem;">
+          <img src="The_Roth.jpg" alt="The Roth Building, 300 Homer Avenue, Palo Alto" style="aspect-ratio:4/3;" onerror="this.parentElement.style.display='none';">
+          <div class="case-photo-caption">300 Homer Avenue — the building that almost went</div>
+        </div>
+        <div class="case-card">
+          <div class="case-who">The Roth Building, 2012–2015</div>
+          <div class="case-what">300 Homer Avenue, Palo Alto. The near-demolition.</div>
+          <span class="case-concept">Loss aversion: the room almost gone</span>
+          <p class="case-argument">Before the museum took residency, the Roth Building's fate was genuinely uncertain. The lease negotiation with the city nearly collapsed. Demolition was a live option. The building that the town now has one chance to make into its civic commons almost ceased to exist before the argument for it was made.</p>
+          <div class="case-outcome">The near-loss is the correct loss-aversion moment. Not "we have no collection": an absence nobody grieves. But "the room almost disappeared": a presence the town almost forfeited before understanding what it was.</div>
+          <p class="case-pam"><strong>For the Palo Alto Museum:</strong> The founding story is not "we saved the building." It is "the building almost went, and with it the only room this town has ever had that could be its own."</p>
+          <div class="case-verdict">The correct instance</div>
+        </div>
       </div>
       <div class="vs-col">and</div>
-      <div class="case-card">
-        <div class="case-who">Larimer Square, Denver</div>
-        <div class="case-what">Denver, CO, 2019 preservation fight</div>
-        <span class="case-concept">Liability reframed as the only irreplaceable thing</span>
-        <p class="case-argument">Larimer Square, Denver's oldest block, faced demolition for a mixed-use tower in 2019. The preservation campaign succeeded not by arguing historical value but by reframing what Denver would lose: the only block in the city that still felt like a place rather than a development. The old block, expensive to maintain, became the irreplaceable civic room.</p>
-        <div class="case-outcome">The campaign succeeded. The reframe, from liability to the only thing that cannot be rebuilt, is Rory Sutherland's loss-aversion mechanic applied to a real building and a real community that understood the stakes.</div>
-        <p class="case-pam"><strong>For PAM:</strong> The Roth is Larimer Square. The town almost lost it. That near-loss, correctly told, is the most fundable moment in the institution's history.</p>
-        <div class="case-verdict">The case holds</div>
+      <div>
+        <!-- Larimer Square photo — CHANGE #12 -->
+        <div class="case-photo" style="margin-bottom:1.2rem;">
+          <img src="Larimer_Square.jpg" alt="Larimer Square, Denver" style="aspect-ratio:4/3;" onerror="this.parentElement.style.display='none';">
+          <div class="case-photo-caption">Larimer Square, Denver — the block that proved irreplaceable</div>
+        </div>
+        <div class="case-card">
+          <div class="case-who">Larimer Square, Denver</div>
+          <div class="case-what">Denver, CO, 2019 preservation fight</div>
+          <span class="case-concept">Liability reframed as the only irreplaceable thing</span>
+          <p class="case-argument">Larimer Square, Denver's oldest block, faced demolition for a mixed-use tower in 2019. The preservation campaign succeeded not by arguing historical value but by reframing what Denver would lose: the only block in the city that still felt like a place rather than a development. The old block, expensive to maintain, became the irreplaceable civic room.</p>
+          <div class="case-outcome">The campaign succeeded. The reframe, from liability to the only thing that cannot be rebuilt, is loss aversion applied to a real building and a real community that understood the stakes.</div>
+          <p class="case-pam"><strong>For the Palo Alto Museum:</strong> The Roth is Larimer Square. The town almost lost it. That near-loss, correctly told, is the most fundable moment in the institution's history.</p>
+          <div class="case-verdict">The case holds</div>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- CASE INSET: Exploratorium replaces Levitt -->
+<!-- CASE INSET: Exploratorium -->
 <div class="case-section reveal" data-reveal id="case5b">
   <div style="max-width:1100px;margin:0 auto;">
     <div class="case-header">
@@ -894,79 +1170,160 @@ svg.wv { width: 100%; max-width: 520px; height: 34px; overflow: visible; }
           <div class="case-who">The Exploratorium, San Francisco</div>
           <div class="case-what" style="margin-bottom:1rem;">Palace of Fine Arts (1969–2013) → Pier 15 (2013–present)</div>
           <span class="case-concept">Marketing Myopia: what business are you in?</span>
-          <p class="case-argument">The Exploratorium spent decades at the Palace of Fine Arts defining itself as a science museum: exhibits, education, school groups. When they moved to Pier 15 in 2013, they were forced to answer Levitt's question: not "what do we display?" but "what do we do?" The answer was science as social experience, not science as display. The new building was designed around that answer.</p>
-          <div class="case-outcome">Revenue from rentals, programs, and memberships now covers more than 40 percent of operating budget. The building's design (open, permeable, facing the bay) is the answer to Levitt's question made physical. The collection is the drill. The experience is the hole.</div>
-          <p class="case-pam"><strong>For PAM:</strong> The Roth's recording booth, community room, and courtyard are not amenities. They are the answer to the question "what business are you in?" The business is gathering. The room already knows how to do it.</p>
+          <p class="case-argument">The Exploratorium spent decades at the Palace of Fine Arts defining itself as a science museum: exhibits, education, school groups. When they moved to Pier 15 in 2013, they were forced to answer the question: not "what do we display?" but "what do we do?" The answer was science as social experience, not science as display. The new building was designed around that answer.</p>
+          <div class="case-outcome">Revenue from rentals, programs, and memberships now covers more than 40 percent of operating budget. The building's design — open, permeable, facing the bay — is the answer to that question made physical. The collection is the drill. The experience is the hole.</div>
+          <p class="case-pam"><strong>For the Palo Alto Museum:</strong> The Roth's recording booth, community room, and courtyard are not amenities. They are the answer to "what business are you in?" The business is gathering. The room already knows how to do it.</p>
           <div class="case-verdict">The case holds</div>
         </div>
       </div>
       <div style="display:flex;flex-direction:column;gap:1.2rem;">
         <div style="background:var(--white);border:1px solid #D8D0C4;padding:1.4rem;position:relative;">
           <div style="position:absolute;top:0;left:0;width:4px;height:100%;background:var(--rust);"></div>
-          <p style="font-family:var(--type-head);font-size:0.95rem;color:#5A4A3A;font-style:italic;line-height:1.6;margin-left:0.5rem;">"What business are you in? The railroads are in trouble not because the need was filled by others but because it was not filled by the railroads themselves."</p>
-          <p style="font-family:var(--type-body);font-size:0.62rem;color:var(--fog);margin-top:0.7rem;margin-left:0.5rem;letter-spacing:0.08em;">Theodore Levitt, Marketing Myopia, HBR 1960</p>
+          <p style="font-family:var(--type-head);font-size:1.05rem;color:#5A4A3A;font-style:italic;line-height:1.6;margin-left:0.5rem;">"What business are you in? The railroads are in trouble not because the need was filled by others but because it was not filled by the railroads themselves."</p>
+          <p style="font-family:var(--type-body);font-size:0.78rem;color:var(--fog);margin-top:0.7rem;margin-left:0.5rem;letter-spacing:0.08em;">Theodore Levitt, Marketing Myopia, HBR 1960</p>
         </div>
         <div style="background:var(--white);border:1px solid #D8D0C4;padding:1.4rem;position:relative;">
           <div style="position:absolute;top:0;left:0;width:4px;height:100%;background:rgba(160,144,128,0.5);"></div>
-          <p style="font-family:var(--type-body);font-size:0.85rem;color:var(--charcoal);line-height:1.6;margin-left:0.5rem;">PAM is not in the museum business. It is in the gathering business. The collection is the drill. The town is the hole.</p>
+          <p style="font-family:var(--type-body);font-size:0.98rem;color:var(--charcoal);line-height:1.6;margin-left:0.5rem;">The Palo Alto Museum is not in the museum business. It is in the gathering business. The collection is the drill. The town is the hole.</p>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<!-- ACT VI: THE POSITION                                           -->
-<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- ═══════════════════════════ ACT VI ═════════════════════════════ -->
 <div class="act-divider light reveal" data-reveal>
   <div><div class="act-num" style="color:var(--rust);">Act VI</div><div class="act-title">The Position</div></div>
 </div>
 
-<section class="scroll-section light" id="actVI">
-  <div class="inner">
+<!-- Full-bleed fresco section -->
+<section class="fresco-bleed-section" id="actVI">
+  <div class="fresco-bleed-bg"></div>
+  <div class="fresco-bleed-content">
     <div class="eyebrow rust reveal" data-reveal>The answer</div>
     <div class="rule reveal delay-1" data-reveal></div>
     <p class="display-xl reveal heavy delay-2" data-reveal style="color:var(--charcoal);line-height:1.08;max-width:20ch;margin-bottom:2.8rem;">
-      PAM is the room where Palo Alto convenes around its own story and its own future.
+      The Palo Alto Museum is the room where Palo Alto convenes around its own story and its own future.
     </p>
-    <!-- Fresco + proof columns -->
+    <!-- Three proof columns + positioning map -->
     <div style="display:flex;gap:4vw;align-items:flex-start;flex-wrap:wrap;margin-bottom:3rem;">
-      <div class="photo-card reveal delay-2" data-reveal style="width:clamp(180px,28vw,280px);aspect-ratio:3/4;flex-shrink:0;">
-        <img src="Fresco_Artwork.png" alt="Arnautoff fresco">
-        <div class="photo-card-label">Arnautoff fresco: the building already holds the honest story</div>
-      </div>
-      <div style="flex:1;min-width:220px;">
+      <div style="flex:1;min-width:280px;">
         <div class="col-3" style="gap:2rem;">
           <div class="reveal delay-2" data-reveal style="border-left:3px solid var(--rust);padding-left:1rem;">
-            <div style="font-family:var(--type-body);font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--charcoal);font-weight:700;margin-bottom:0.55rem;">Survives the visit</div>
-            <p style="font-size:0.83rem;color:var(--fog);line-height:1.6;">Value happens in the gathering, not the viewing. The visit is the product. Mission transmits because the visit is the commons.</p>
+            <div style="font-family:var(--type-body);font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--charcoal);font-weight:700;margin-bottom:0.55rem;">Survives the visit</div>
+            <p style="font-size:0.95rem;color:var(--fog);line-height:1.6;">Value happens in the gathering, not the viewing. The visit is the product. Mission transmits because the visit is the commons.</p>
           </div>
           <div class="reveal delay-3" data-reveal style="border-left:3px solid var(--rust);padding-left:1rem;">
-            <div style="font-family:var(--type-body);font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--charcoal);font-weight:700;margin-bottom:0.55rem;">Earns the third</div>
-            <p style="font-size:0.83rem;color:var(--fog);line-height:1.6;">Memberships, forums, rentals, the recording booth. The Roth's own rooms are the earned-revenue engine.</p>
+            <div style="font-family:var(--type-body);font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--charcoal);font-weight:700;margin-bottom:0.55rem;">Earns the third</div>
+            <p style="font-size:0.95rem;color:var(--fog);line-height:1.6;">Memberships, forums, rentals, the recording booth. The Roth's own rooms are the earned-revenue engine.</p>
           </div>
           <div class="reveal delay-4" data-reveal style="border-left:3px solid var(--rust);padding-left:1rem;">
-            <div style="font-family:var(--type-body);font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--charcoal);font-weight:700;margin-bottom:0.55rem;">Holds the empty seat</div>
-            <p style="font-size:0.83rem;color:var(--fog);line-height:1.6;">CHM broadcasts genius. Cantor is art. No competitor owns the room where the town gathers around its own questions.</p>
+            <div style="font-family:var(--type-body);font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--charcoal);font-weight:700;margin-bottom:0.55rem;">Holds the empty seat</div>
+            <p style="font-size:0.95rem;color:var(--fog);line-height:1.6;">The Computer History Museum broadcasts genius. Cantor is art. No competitor owns the room where the town gathers around its own questions.</p>
           </div>
         </div>
-        <!-- Competitor map -->
-        <div style="margin-top:2.2rem;">
-          <div class="comp-grid reveal delay-3" data-reveal id="compGrid">
-            <div class="comp-node" data-delay="0">CHM</div>
-            <div class="comp-node" data-delay="1">Cantor</div>
-            <div class="comp-node" data-delay="2">Anderson</div>
-            <div class="comp-node" data-delay="3">Library</div>
-            <div class="comp-node" data-delay="4">MOAH</div>
-            <div class="comp-node empty-seat" data-delay="5">The Room</div>
-          </div>
+      </div>
+    </div>
+    <!-- Positioning map replaces pill tags -->
+    <div class="reveal delay-3" data-reveal>
+      <p style="font-family:var(--type-body);font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--fog);margin-bottom:1rem;">The competitive field — hover to see each institution</p>
+      <div class="pos-map-wrap" id="posMapWrap">
+        <svg id="posMap" viewBox="0 0 520 400" xmlns="http://www.w3.org/2000/svg" style="overflow:visible;">
+          <!-- Axes -->
+          <line x1="20" y1="200" x2="500" y2="200" stroke="rgba(60,65,57,0.18)" stroke-width="1"/>
+          <line x1="260" y1="20" x2="260" y2="380" stroke="rgba(60,65,57,0.18)" stroke-width="1"/>
+          <!-- Quadrant labels -->
+          <text x="26" y="38" font-family="Calibri,sans-serif" font-size="10" fill="rgba(60,65,57,0.5)" font-style="italic">civic memory of this place</text>
+          <text x="264" y="38" font-family="Calibri,sans-serif" font-size="10" fill="rgba(60,65,57,0.5)" font-style="italic">public forum for ideas</text>
+          <text x="26" y="385" font-family="Calibri,sans-serif" font-size="10" fill="rgba(60,65,57,0.5)" font-style="italic">charming heritage house</text>
+          <text x="264" y="385" font-family="Calibri,sans-serif" font-size="10" fill="rgba(60,65,57,0.5)" font-style="italic">fun tech day out</text>
+          <!-- Y axis labels -->
+          <text x="12" y="90" font-family="Calibri,sans-serif" font-size="9" fill="rgba(60,65,57,0.55)" transform="rotate(-90,12,90)" text-anchor="middle">a place to take part</text>
+          <text x="12" y="310" font-family="Calibri,sans-serif" font-size="9" fill="rgba(60,65,57,0.55)" transform="rotate(-90,12,310)" text-anchor="middle">a collection to view</text>
+          <!-- X axis labels -->
+          <text x="100" y="398" font-family="Calibri,sans-serif" font-size="10" fill="#5BBF58" font-weight="bold" text-anchor="middle">place &amp; heritage</text>
+          <text x="420" y="398" font-family="Calibri,sans-serif" font-size="10" fill="#5BBF58" font-weight="bold" text-anchor="middle">ideas &amp; future</text>
+          <!-- Institution dots (x=left-right axis ideas/heritage, y=top-bottom participate/view) -->
+          <!-- Oakland Museum of California -->
+          <g class="inst-dot" data-name="Oakland Museum of California" data-img="OMCA.jpg" data-x="155" data-y="165">
+            <circle cx="155" cy="165" r="5" fill="none" stroke="rgba(60,65,57,0.4)" stroke-width="1.5"/>
+            <text x="168" y="169" font-family="Calibri,sans-serif" font-size="9" fill="rgba(60,65,57,0.7)" font-style="italic">Oakland Museum of California</text>
+          </g>
+          <!-- Cooper Union -->
+          <g class="inst-dot" data-name="Cooper Union Great Hall" data-img="Foundling_Museum.jpg" data-x="320" data-y="120">
+            <circle cx="320" cy="120" r="5" fill="none" stroke="rgba(60,65,57,0.4)" stroke-width="1.5"/>
+            <text x="333" y="124" font-family="Calibri,sans-serif" font-size="9" fill="rgba(60,65,57,0.7)" font-style="italic">Cooper Union Great Hall</text>
+          </g>
+          <!-- 92NY -->
+          <g class="inst-dot" data-name="92nd Street Y" data-img="Tate_Modern_Turbine.jpg" data-x="390" data-y="145">
+            <circle cx="390" cy="145" r="5" fill="none" stroke="rgba(60,65,57,0.4)" stroke-width="1.5"/>
+            <text x="403" y="149" font-family="Calibri,sans-serif" font-size="9" fill="rgba(60,65,57,0.7)" font-style="italic">92NY</text>
+          </g>
+          <!-- Newberry -->
+          <g class="inst-dot" data-name="Newberry Library" data-img="Mitchell_Park_Library.jpg" data-x="310" data-y="170">
+            <circle cx="310" cy="170" r="5" fill="none" stroke="rgba(60,65,57,0.4)" stroke-width="1.5"/>
+            <text x="323" y="174" font-family="Calibri,sans-serif" font-size="9" fill="rgba(60,65,57,0.7)" font-style="italic">Newberry Library</text>
+          </g>
+          <!-- New Museum Los Gatos -->
+          <g class="inst-dot" data-name="New Museum Los Gatos" data-img="NUMU.jpg" data-x="280" data-y="195">
+            <circle cx="280" cy="195" r="5" fill="none" stroke="rgba(60,65,57,0.4)" stroke-width="1.5"/>
+            <text x="293" y="199" font-family="Calibri,sans-serif" font-size="9" fill="rgba(60,65,57,0.7)" font-style="italic">New Museum Los Gatos</text>
+          </g>
+          <!-- San Mateo County -->
+          <g class="inst-dot" data-name="San Mateo County History Museum" data-img="Palo_Alto_Malcolm_Harris.jpg" data-x="140" data-y="265">
+            <circle cx="140" cy="265" r="5" fill="none" stroke="rgba(60,65,57,0.4)" stroke-width="1.5"/>
+            <text x="28" y="260" font-family="Calibri,sans-serif" font-size="9" fill="rgba(60,65,57,0.7)" font-style="italic" text-anchor="start">San Mateo County History Museum</text>
+          </g>
+          <!-- Computer History Museum -->
+          <g class="inst-dot" data-name="Computer History Museum" data-img="Stanford_University.jpg" data-x="400" data-y="270">
+            <rect x="393" y="263" width="14" height="14" fill="none" stroke="rgba(60,65,57,0.7)" stroke-width="1.5"/>
+            <text x="415" y="274" font-family="Calibri,sans-serif" font-size="10" fill="rgba(60,65,57,0.85)" font-weight="bold">Computer History Museum</text>
+          </g>
+          <!-- Cantor -->
+          <g class="inst-dot" data-name="Cantor Arts Center" data-img="Jordon_Hall_Stanford_University.jpg" data-x="390" data-y="300">
+            <rect x="383" y="293" width="14" height="14" fill="none" stroke="rgba(60,65,57,0.7)" stroke-width="1.5"/>
+            <text x="405" y="304" font-family="Calibri,sans-serif" font-size="10" fill="rgba(60,65,57,0.85)" font-weight="bold">Cantor Arts Center</text>
+          </g>
+          <!-- MOAH -->
+          <g class="inst-dot" data-name="Museum of American Heritage" data-img="MOAH.jpg" data-x="290" data-y="315">
+            <rect x="283" y="308" width="14" height="14" fill="none" stroke="rgba(60,65,57,0.7)" stroke-width="1.5"/>
+            <text x="305" y="319" font-family="Calibri,sans-serif" font-size="10" fill="rgba(60,65,57,0.85)" font-weight="bold">Museum of American Heritage</text>
+          </g>
+          <!-- Mitchell Park Library -->
+          <g class="inst-dot" data-name="Mitchell Park Library" data-img="Mitchell_Park_Library.jpg" data-x="280" data-y="335">
+            <rect x="273" y="328" width="14" height="14" fill="none" stroke="rgba(60,65,57,0.7)" stroke-width="1.5"/>
+            <text x="295" y="339" font-family="Calibri,sans-serif" font-size="10" fill="rgba(60,65,57,0.85)" font-weight="bold">Mitchell Park Library</text>
+          </g>
+          <!-- Palo Alto Museum — target position (dashed circle, stands here today label) -->
+          <g id="pamTarget">
+            <circle cx="468" cy="120" r="18" fill="none" stroke="#5BBF58" stroke-width="2" stroke-dasharray="4,3"/>
+            <!-- Museum icon inside -->
+            <rect x="458" y="112" width="20" height="16" fill="#5BBF58" rx="2" opacity="0.2"/>
+            <text x="468" y="125" text-anchor="middle" font-family="Calibri,sans-serif" font-size="6" fill="#5BBF58" font-weight="bold">Museum</text>
+            <text x="448" y="148" font-family="Calibri,sans-serif" font-size="9" fill="#5BBF58" font-style="italic" text-anchor="middle">stands here</text>
+          </g>
+          <!-- EJI Legacy Museum (top right reference) -->
+          <g class="inst-dot" data-name="EJI Legacy Museum" data-img="Tate_Modern_Turbine.jpg" data-x="400" data-y="90">
+            <circle cx="400" cy="90" r="5" fill="none" stroke="rgba(60,65,57,0.4)" stroke-width="1.5"/>
+            <text x="413" y="94" font-family="Calibri,sans-serif" font-size="9" fill="rgba(60,65,57,0.7)" font-style="italic">EJI Legacy Museum</text>
+          </g>
+          <!-- Los Altos History Museum -->
+          <g class="inst-dot" data-name="Los Altos History Museum" data-img="MOAH.jpg" data-x="195" data-y="300">
+            <circle cx="195" cy="300" r="5" fill="none" stroke="rgba(60,65,57,0.4)" stroke-width="1.5"/>
+            <text x="208" y="304" font-family="Calibri,sans-serif" font-size="9" fill="rgba(60,65,57,0.7)" font-style="italic">Los Altos History Museum</text>
+          </g>
+        </svg>
+        <!-- Hover tooltip -->
+        <div class="map-tooltip" id="mapTooltip">
+          <img id="mapTooltipImg" src="" alt="">
+          <div class="map-tooltip-name" id="mapTooltipName"></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CASE INSET: Dia:Beacon replaces Holt; 92Y replaces Vargo/Lusch -->
+<!-- CASE INSET: Dia:Beacon + 92Y -->
 <div class="case-section reveal" data-reveal id="case6">
   <div style="max-width:1100px;margin:0 auto;">
     <div class="case-header">
@@ -975,32 +1332,44 @@ svg.wv { width: 100%; max-width: 520px; height: 34px; overflow: visible; }
     </div>
     <div class="case-rule"></div>
     <div class="case-pair">
-      <div class="case-card">
-        <div class="case-who">Dia:Beacon</div>
+      <div>
+        <!-- Dia:Beacon photo -->
+        <div class="case-photo" style="margin-bottom:1.2rem;">
+          <img src="Dia_Beacon.jpg" alt="Dia:Beacon museum interior" style="aspect-ratio:4/3;" onerror="this.parentElement.style.display='none';">
+          <div class="case-photo-caption">Dia:Beacon, former Nabisco factory, Beacon NY</div>
+        </div>
+        <div class="case-card">
+          <div class="case-who">Dia:Beacon</div>
         <div class="case-what">Beacon, NY. Former Nabisco factory, opened 2003.</div>
         <span class="case-concept">Performing the cultural contradiction honestly</span>
-        <p class="case-argument">Dia opened in a former Nabisco box-printing factory in a Hudson Valley town where industrial closure had fractured the civic identity. The museum did not resolve the tension between the art world and the former factory workers. It held both. The building's industrial bones were preserved, not disguised. The town's economic history was the frame, not the backdrop.</p>
-        <div class="case-outcome">Membership and visitation exceeded projections within two years. The tension between art-world prestige and working-town identity was not a liability. It was the thing that made Dia:Beacon legible as a specific place rather than a generic museum.</div>
-        <p class="case-pam"><strong>For PAM:</strong> Palo Alto's genius-and-its-costs contradiction is the fault line the museum performs its identity on. The institution that holds that honestly (Stanford's name struck from buildings, the Palo Alto System and its casualties, the fresco at the door) becomes legible as this specific place, not a generic civic room.</p>
+        <p class="case-argument">Dia opened in a former Nabisco box-printing factory in a Hudson Valley town where industrial closure had fractured the civic identity. The museum did not resolve the tension between the art world and the former factory workers. It held both. The building's industrial character was preserved, not disguised. The town's economic history was the frame, not the backdrop.</p>
+        <div class="case-outcome">Membership and visitation exceeded projections within two years. The tension between art-world prestige and working-town identity was not a liability. It was the thing that made Dia:Beacon recognizable as a specific place rather than a generic museum.</div>
+        <p class="case-pam"><strong>For the Palo Alto Museum:</strong> Palo Alto's genius-and-its-costs contradiction is the fault line the museum performs its identity on. The institution that holds that honestly becomes recognizable as this specific place, not a generic civic room.</p>
         <div class="case-verdict">The case holds</div>
-      </div>
+        </div><!-- end case-card -->
+      </div><!-- end Dia wrapper -->
       <div class="vs-col">and</div>
-      <div class="case-card">
-        <div class="case-who">92nd Street Y, New York</div>
+      <div>
+        <!-- 92Y: no photo in asset list; use architectural decorative treatment -->
+        <div style="background:linear-gradient(135deg,#1C1F1A 0%,#2D3329 100%);aspect-ratio:4/3;margin-bottom:1.2rem;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0.5rem;padding:1rem;">
+          <div style="font-family:var(--type-head);font-size:2.8rem;color:rgba(200,184,154,0.25);line-height:1;text-align:center;">92</div>
+          <div style="font-family:var(--type-body);font-size:0.65rem;letter-spacing:0.25em;text-transform:uppercase;color:rgba(200,184,154,0.35);text-align:center;">92nd Street Y<br>New York</div>
+        </div>
+        <div class="case-card">
+          <div class="case-who">92nd Street Y, New York</div>
         <div class="case-what">New York, NY. Civic institution, comparable programming model.</div>
         <span class="case-concept">Value co-created in use, not delivered</span>
         <p class="case-argument">The 92Y's Gives model inverted the conventional museum relationship: instead of programming delivered to an audience, the community funds and shapes the programs it wants. Membership is not a transaction; it is co-authorship. The value does not exist until the community shows up and makes it.</p>
         <div class="case-outcome">The 92Y's model has sustained a major civic institution through economic cycles, leadership changes, and the complete disruption of the traditional arts funding landscape. The community's visible ownership of the institution is both the product and the proof.</div>
-        <p class="case-pam"><strong>For PAM:</strong> The resident membership is not the smallest tier of a gift ladder. It is the co-creation model. The town funds its own room. That visible ownership is what makes the civic-commons claim true rather than claimed.</p>
+        <p class="case-pam"><strong>For the Palo Alto Museum:</strong> The resident membership is not the smallest tier of a gift ladder. It is the co-creation model. The town funds its own room. That visible ownership is what makes the civic-commons claim true rather than claimed.</p>
         <div class="case-verdict">The case holds</div>
-      </div>
+        </div><!-- end case-card -->
+      </div><!-- end 92Y wrapper -->
     </div>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<!-- ACT VII: THE GIFT                                              -->
-<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- ═══════════════════════════ ACT VII ════════════════════════════ -->
 <div class="act-divider dark reveal" data-reveal>
   <div><div class="act-num">Act VII</div><div class="act-title">The Gift</div></div>
 </div>
@@ -1011,28 +1380,37 @@ svg.wv { width: 100%; max-width: 520px; height: 34px; overflow: visible; }
     <div class="rule reveal delay-1" data-reveal></div>
     <div class="col-3" style="margin-top:1.4rem;">
       <div class="gift-card" id="gift1">
+        <div class="gift-card-portrait">
+          <img src="Tom_DuBois.jpg" alt="Tom DuBois" onerror="this.parentElement.style.display='none';">
+        </div>
         <div class="gift-card-label">Metropolitan Family</div>
         <div class="gift-card-ask">Endow the convening function itself. The naming object is a living civic role, not a vault. The family whose name is on it made the room possible.</div>
         <div class="gift-card-signal">Civic pride. Formal legacy.</div>
       </div>
       <div class="gift-card" id="gift2">
+        <div class="gift-card-portrait">
+          <img src="Dean_Clark.png" alt="Dean Clark" onerror="this.parentElement.style.display='none';">
+        </div>
         <div class="gift-card-label">Impact-Driven Tech</div>
         <div class="gift-card-ask">Fund the measurable repair. Endow the director of civic engagement, the named season, the measurable program that demonstrates the repair.</div>
         <div class="gift-card-signal">Outcome + proof. A solvable problem.</div>
       </div>
       <div class="gift-card" id="gift3">
+        <div class="gift-card-portrait">
+          <img src="Dr_Esther_B_Clark.jpg" alt="Dr. Esther B. Clark" onerror="this.parentElement.style.display='none';">
+        </div>
         <div class="gift-card-label">Resident Member</div>
         <div class="gift-card-ask">A membership in a range comparable to peer civic institutions. The room belongs to the town and you are the town. The broad base is not the smallest tier. It is the one whose participation makes the claim true.</div>
         <div class="gift-card-signal">Belonging. Earned revenue. Proof of honesty.</div>
       </div>
     </div>
-    <p class="prose reveal delay-5" data-reveal style="margin-top:2.4rem;color:var(--sand);font-style:italic;font-family:var(--type-head);font-size:1rem;">
+    <p class="prose reveal delay-5" data-reveal style="margin-top:2.4rem;color:var(--sand);font-style:italic;font-family:var(--type-head);font-size:1.2rem;">
       None of them is giving to a museum. They are paying for the place the town can finally assemble as itself.
     </p>
   </div>
 </section>
 
-<!-- CASE INSET: New Museum replaces Williamson; Gardner replaces McCracken -->
+<!-- CASE INSET: New Museum + Gardner -->
 <div class="case-section reveal" data-reveal id="case7">
   <div style="max-width:1100px;margin:0 auto;">
     <div class="case-header">
@@ -1041,32 +1419,44 @@ svg.wv { width: 100%; max-width: 520px; height: 34px; overflow: visible; }
     </div>
     <div class="case-rule"></div>
     <div class="case-pair">
-      <div class="case-card">
-        <div class="case-who">New Museum, New York</div>
-        <div class="case-what">Bowery, Manhattan, opened 2007</div>
-        <span class="case-concept">The artwashing counter: visible community ownership</span>
-        <p class="case-argument">When the Whitney moved to the Meatpacking District, it was accused of artwashing gentrification. The New Museum, opening on the Bowery at the same moment, made the opposite structural choice: local artist representation, community programming, and neighborhood engagement built explicitly into the founding governance. Not as a gesture. As an accountability mechanism.</p>
-        <div class="case-outcome">The New Museum's community credibility has held through two decades of neighborhood change. The Whitney's artwashing critique has not fully lifted. The structural difference between the two institutions is visible in their reputations and their donor bases.</div>
-        <p class="case-pam"><strong>For PAM:</strong> A commons funded entirely by three founding families is a private room with a civic name on the door. The broad-base resident membership is not a fallback revenue strategy. It is the proof the room belongs to the town.</p>
-        <div class="case-verdict corrective">Corrective: the risk if ignored</div>
+      <div>
+        <!-- New Museum / Whitney contrast photo -->
+        <div class="case-photo" style="margin-bottom:1.2rem;">
+          <img src="The_Whitney.jpg" alt="The Whitney Museum — the artwashing comparison" style="aspect-ratio:4/3;" onerror="this.parentElement.style.display='none';">
+          <div class="case-photo-caption">The Whitney: artwashing critique that never fully lifted</div>
+        </div>
+        <div class="case-card">
+          <div class="case-who">New Museum, New York</div>
+          <div class="case-what">Bowery, Manhattan, opened 2007</div>
+          <span class="case-concept">The artwashing counter: visible community ownership</span>
+          <p class="case-argument">When the Whitney moved to the Meatpacking District, it was accused of artwashing gentrification. The New Museum, opening on the Bowery at the same moment, made the opposite structural choice: local artist representation, community programming, and neighborhood engagement built explicitly into the founding governance. Not as a gesture. As an accountability device.</p>
+          <div class="case-outcome">The New Museum's community credibility has held through two decades of neighborhood change. The Whitney's artwashing critique has not fully lifted. The structural difference between the two institutions is visible in their reputations and their donor bases.</div>
+          <p class="case-pam"><strong>For the Palo Alto Museum:</strong> A commons funded entirely by three founding families is a private room with a civic name on the door. The broad-base resident membership is not a fallback revenue strategy. It is the proof the room belongs to the town.</p>
+          <div class="case-verdict corrective">Corrective: the risk if ignored</div>
+        </div>
       </div>
       <div class="vs-col">and</div>
-      <div class="case-card">
-        <div class="case-who">Isabella Stewart Gardner Museum</div>
-        <div class="case-what">Boston, MA. Founded 1903, still operating under Gardner's will</div>
-        <span class="case-concept">The ritual that keeps meaning alive across a century</span>
-        <p class="case-argument">Gardner's will mandated the collection remain exactly as she placed it: every object, every arrangement, unchanged in perpetuity. That ritual of return, the room always exactly as it was, is what drives the Gardner's extraordinary repeat-visit rate. Visitors come back not to see new things but to re-enter the same thing. The ritual is the product.</p>
-        <div class="case-outcome">The Gardner has among the highest repeat-visit rates of any museum its size in America. A single ritual, held at maximum fidelity, built an institution that has outlasted its founder by more than a century. A commons that runs no rituals has no channel for the transfer.</div>
-        <p class="case-pam"><strong>For PAM:</strong> The Tuesday forum, the recording booth's weekly schedule, the standing programs on a recurring calendar: these are the rituals. The opening gala is not. The institutional memory lives in what happens on Tuesdays.</p>
-        <div class="case-verdict">The case holds</div>
+      <div>
+        <!-- Gardner photo -->
+        <div class="case-photo" style="margin-bottom:1.2rem;">
+          <img src="Isabella_Stewart_Gardner_Museum.jpg" alt="Isabella Stewart Gardner Museum" style="aspect-ratio:4/3;" onerror="this.parentElement.style.display='none';">
+          <div class="case-photo-caption">The Gardner: the room always exactly as it was</div>
+        </div>
+        <div class="case-card">
+          <div class="case-who">Isabella Stewart Gardner Museum</div>
+          <div class="case-what">Boston, MA. Founded 1903, still operating under Gardner's will</div>
+          <span class="case-concept">The ritual that keeps meaning alive across a century</span>
+          <p class="case-argument">Gardner's will mandated the collection remain exactly as she placed it: every object, every arrangement, unchanged in perpetuity. That ritual of return — the room always exactly as it was — is what drives the Gardner's extraordinary repeat-visit rate. Visitors come back not to see new things but to re-enter the same thing. The ritual is the product.</p>
+          <div class="case-outcome">The Gardner has among the highest repeat-visit rates of any museum its size in America. A single ritual, held at maximum fidelity, built an institution that has outlasted its founder by more than a century. A commons that runs no rituals has no channel for the transfer.</div>
+          <p class="case-pam"><strong>For the Palo Alto Museum:</strong> The Tuesday forum, the recording booth's weekly schedule, the standing programs on a recurring calendar: these are the rituals. The opening gala is not. The institutional memory lives in what happens on Tuesdays.</p>
+          <div class="case-verdict">The case holds</div>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<!-- ACT VIII: A TUESDAY IN OCTOBER                                 -->
-<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- ═══════════════════════════ ACT VIII ═══════════════════════════ -->
 <div class="act-divider light reveal" data-reveal>
   <div><div class="act-num" style="color:var(--rust);">Act VIII</div><div class="act-title">A Tuesday in October</div></div>
 </div>
@@ -1076,32 +1466,43 @@ svg.wv { width: 100%; max-width: 520px; height: 34px; overflow: visible; }
     <div class="eyebrow rust reveal" data-reveal>What it looks like when it works</div>
     <div class="rule reveal delay-1" data-reveal></div>
     <p class="display-md reveal delay-2" data-reveal style="color:var(--charcoal);margin-bottom:0.5rem;">A Tuesday in October.</p>
-    <p class="display-sm reveal delay-3" data-reveal style="font-family:var(--type-head);color:var(--rust);font-style:italic;margin-bottom:2.8rem;">Not an opening night. Not a Saturday.</p>
+    <p class="display-sm reveal delay-3" data-reveal style="font-family:var(--type-head);color:var(--rust);font-style:italic;margin-bottom:1.8rem;">Not an opening night. Not a Saturday.</p>
+    <!-- Ambient sound player -->
+    <div class="sound-player reveal delay-4" data-reveal>
+      <button class="sound-btn" id="soundBtn" aria-label="Play ambient museum chatter">&#9654;</button>
+      <div class="sound-label">Ambient chatter<br><span style="opacity:0.6;font-size:0.68rem;">A room full of people, talking</span></div>
+      <div class="sound-bars" id="soundBars">
+        <div class="sound-bar" id="sb1"></div>
+        <div class="sound-bar" id="sb2"></div>
+        <div class="sound-bar" id="sb3"></div>
+        <div class="sound-bar" id="sb4"></div>
+        <div class="sound-bar" id="sb5"></div>
+        <div class="sound-bar" id="sb6"></div>
+        <div class="sound-bar" id="sb7"></div>
+      </div>
+    </div>
+    <div style="height:1rem;"></div>
 
     <div style="display:flex;gap:5vw;align-items:flex-start;flex-wrap:wrap;">
-      <!-- Room with gathering -->
-      <div class="reveal delay-2" data-reveal style="flex-shrink:0;max-width:380px;width:100%;">
-        <!-- SVG room now with chairs filled -->
+      <div class="reveal delay-2" data-reveal style="flex-shrink:0;max-width:420px;width:100%;">
         <svg viewBox="0 0 400 320" fill="none" style="width:100%;" id="roomFull">
           <rect x="31" y="21" width="338" height="268" fill="rgba(184,91,58,0.03)"/>
           <rect x="30" y="20" width="340" height="270" stroke="rgba(60,65,57,0.18)" stroke-width="1.5" fill="none"/>
           <line x1="30" y1="290" x2="370" y2="290" stroke="rgba(60,65,57,0.08)" stroke-width="1"/>
           <rect x="165" y="210" width="70" height="80" fill="none" stroke="rgba(60,65,57,0.08)" stroke-width="1"/>
-          <text x="200" y="256" text-anchor="middle" font-family="Calibri,sans-serif" font-size="7" fill="rgba(184,91,58,0.45)" letter-spacing="2">ARNAUTOFF</text>
+          <text x="200" y="256" text-anchor="middle" font-family="Calibri,sans-serif" font-size="8" fill="rgba(184,91,58,0.45)" letter-spacing="2">ARNAUTOFF</text>
           <circle cx="348" cy="42" r="6" fill="rgba(184,91,58,0)" id="boothLight"/>
-          <text x="348" y="57" text-anchor="middle" font-family="Calibri,sans-serif" font-size="6" fill="rgba(184,91,58,0)" id="boothLabel">BOOTH</text>
+          <text x="348" y="57" text-anchor="middle" font-family="Calibri,sans-serif" font-size="7" fill="rgba(184,91,58,0)" id="boothLabel">BOOTH</text>
           <g id="chairs"></g>
         </svg>
-        <!-- Fresco thumb below room -->
-        <div class="photo-card" style="aspect-ratio:16/5;margin-top:0.5rem;">
-          <img src="Fresco_Artwork.png" alt="Arnautoff fresco" style="object-position:center 20%;">
+        <div class="photo-card" style="margin-top:0.5rem;">
+          <img src="Fresco_Artwork.png" alt="Arnautoff fresco" style="aspect-ratio:16/5;object-fit:cover;object-position:center 20%;">
           <div class="photo-card-label">The fresco slows everyone at the door</div>
         </div>
       </div>
 
-      <!-- Three voices -->
       <div style="flex:1;min-width:260px;">
-        <p style="font-family:var(--type-body);font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--fog);margin-bottom:1.3rem;">Three voices in the recording booth</p>
+        <p style="font-family:var(--type-body);font-size:0.78rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--fog);margin-bottom:1.3rem;">Three voices in the recording booth</p>
         <div id="wave1" class="waveform-row">
           <div class="waveform-name">An 82-year-old, Barron Park</div>
           <svg class="wv" viewBox="0 0 520 34"><path class="wave-path" id="wpath1" d="M0,17 C20,4 30,30 50,17 C70,4 80,28 100,17 C120,7 130,26 150,17 C170,8 180,28 200,17 C220,6 230,30 250,17 C270,4 280,28 300,17 C320,7 330,26 350,17 C370,8 380,28 400,17 C420,6 430,30 450,17 C470,4 480,28 500,17 C510,11 515,22 520,17"/></svg>
@@ -1126,25 +1527,27 @@ svg.wv { width: 100%; max-width: 520px; height: 34px; overflow: visible; }
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<!-- CODA                                                           -->
-<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- ═══════════════════════════ CODA ═══════════════════════════════ -->
 <section class="coda" id="coda">
   <div class="coda-bg"></div>
   <div class="coda-vignette"></div>
   <div class="coda-marks" id="codaMarks"></div>
   <div class="coda-content">
-    <span class="coda-line reveal heavy" data-reveal>The pen</span>
-    <span class="coda-line rust reveal heavy delay-2" data-reveal>came home.</span>
-    <p class="coda-sub reveal delay-4" data-reveal>
-      PAM is where Palo Alto tells its own story. The building exists. The position is clear. The seat is empty. The only question is who makes it possible.
-    </p>
+    <div class="coda-text">
+      <span class="coda-line reveal heavy" data-reveal>The pen</span>
+      <span class="coda-line rust reveal heavy delay-2" data-reveal>came home.</span>
+      <p class="coda-sub reveal delay-4" data-reveal>
+        The Palo Alto Museum is where Palo Alto tells its own story. The building exists. The position is clear. The seat is empty. The only question is who makes it possible.
+      </p>
+    </div>
+    <!-- Pencil foreground object -->
+    <div class="coda-pencil" id="codaPencil">
+      <img src="Palo_Alto_Pencil.png" alt="Palo Alto Museum pencil">
+    </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════════════ -->
-<!-- JAVASCRIPT                                                     -->
-<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- ═══════════════════════════ JAVASCRIPT ═════════════════════════ -->
 <script>
 // ─── HERO INIT ────────────────────────────────────────────────────
 window.addEventListener('load', () => {
@@ -1155,14 +1558,11 @@ window.addEventListener('load', () => {
   }, 500);
 });
 
-// ─── REDWOOD SPINE SCROLL PROGRESS ───────────────────────────────
+// ─── SPINE SCROLL PROGRESS ────────────────────────────────────────
 const spineEl = document.getElementById('spineProgress');
 window.addEventListener('scroll', () => {
-  const scrolled = window.scrollY;
-  const total    = document.body.scrollHeight - window.innerHeight;
-  const progress = Math.min(scrolled / total, 1);
-  const dashOffset = 1000 - (progress * 1000);
-  spineEl.style.strokeDashoffset = dashOffset;
+  const progress = Math.min(window.scrollY / (document.body.scrollHeight - window.innerHeight), 1);
+  spineEl.style.strokeDashoffset = 1000 - (progress * 1000);
 }, { passive: true });
 
 // ─── INTERSECTION OBSERVER ────────────────────────────────────────
@@ -1173,11 +1573,11 @@ const obs = new IntersectionObserver(entries => {
 }, { threshold: 0.15, rootMargin: '0px 0px -55px 0px' });
 document.querySelectorAll('[data-reveal]').forEach(el => { el.classList.add('reveal'); obs.observe(el); });
 
-// ─── PORTRAIT CYCLING (Act I) ─────────────────────────────────────
+// ─── PORTRAIT CYCLING ─────────────────────────────────────────────
 const portraits = [
   { id: 'p0', caption: 'Leland Stanford: wrote the origin' },
   { id: 'p1', caption: 'David Starr Jordan: Stanford first president, eugenics architect' },
-  { id: 'p2', caption: 'Eadweard Muybridge: the town most famous outsider story' },
+  { id: 'p2', caption: 'Eadweard Muybridge: the town's most famous outsider story' },
   { id: 'p3', caption: 'Lewis Terman: the Palo Alto System, genius and its cost' },
 ];
 let pIdx = 0;
@@ -1190,51 +1590,50 @@ function nextPortrait() {
 }
 const portObs = new IntersectionObserver(entries => {
   entries.forEach(e => {
-    if (e.isIntersecting) {
-      window._portInterval = setInterval(nextPortrait, 2800);
-    } else {
-      clearInterval(window._portInterval);
-    }
+    if (e.isIntersecting) { window._portInterval = setInterval(nextPortrait, 2800); }
+    else { clearInterval(window._portInterval); }
   });
 }, { threshold: 0.3 });
 const portStage = document.querySelector('.portrait-stage');
 if (portStage) portObs.observe(portStage);
 
-// ─── DOT GRID (3.4%) ─────────────────────────────────────────────
-const dotGrid = document.getElementById('dotGrid');
-if (dotGrid) {
-  for (let i = 0; i < 100; i++) {
-    const d = document.createElement('div');
-    d.className = 'dot' + (i >= 97 ? ' lit' : '');
-    dotGrid.appendChild(d);
-  }
-  const dotObs = new IntersectionObserver(entries => {
+// ─── BAR CHART ANIMATION ──────────────────────────────────────────
+const givingChart = document.getElementById('givingChart');
+if (givingChart) {
+  const barObs = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) {
-        dotGrid.querySelectorAll('.dot').forEach((dot, i) => {
-          setTimeout(() => { dot.style.opacity = '1'; }, Math.log10(i + 1) * 380);
+        givingChart.querySelectorAll('.bar-fill').forEach((bar, i) => {
+          setTimeout(() => bar.classList.add('show'), i * 160);
         });
-        dotObs.unobserve(e.target);
+        barObs.unobserve(e.target);
       }
     });
-  }, { threshold: 0.3 });
-  dotObs.observe(dotGrid);
+  }, { threshold: 0.35 });
+  barObs.observe(givingChart);
 }
 
-// ─── COMPETITOR NODES ─────────────────────────────────────────────
-const compGrid = document.getElementById('compGrid');
-if (compGrid) {
-  const cObs = new IntersectionObserver(entries => {
+// ─── KINETIC VENN (draw circles then fade labels) ─────────────────
+const vennWrap = document.getElementById('vennWrap');
+if (vennWrap) {
+  const vObs = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) {
-        compGrid.querySelectorAll('.comp-node').forEach((n, i) => {
-          setTimeout(() => n.classList.add('show'), Math.log10(i + 1) * 380);
-        });
-        cObs.unobserve(e.target);
+        // Draw circles with stagger
+        setTimeout(() => document.getElementById('vcKeeper').classList.add('draw'), 100);
+        setTimeout(() => document.getElementById('vcCivic').classList.add('draw'),  350);
+        setTimeout(() => document.getElementById('vcTech').classList.add('draw'),   600);
+        // Fade labels in
+        setTimeout(() => {
+          ['lKeeper','lCivic','lTech','lEmpty'].forEach(id => {
+            document.getElementById(id).classList.add('show');
+          });
+        }, 1400);
+        vObs.unobserve(e.target);
       }
     });
   }, { threshold: 0.3 });
-  cObs.observe(compGrid);
+  vObs.observe(vennWrap);
 }
 
 // ─── GIFT CARDS ───────────────────────────────────────────────────
@@ -1252,14 +1651,13 @@ if (compGrid) {
   gObs.observe(card);
 });
 
-// ─── ROOM FILL (Act VIII) ─────────────────────────────────────────
+// ─── ROOM FILL ────────────────────────────────────────────────────
 const chairsGroup = document.getElementById('chairs');
 if (chairsGroup) {
   const positions = [];
   for (let row = 0; row < 5; row++)
     for (let col = 0; col < 8; col++)
       positions.push({ x: 65 + col * 36, y: 100 + row * 27 });
-
   positions.forEach(pos => {
     const r = document.createElementNS('http://www.w3.org/2000/svg','rect');
     r.setAttribute('x', pos.x); r.setAttribute('y', pos.y);
@@ -1269,7 +1667,6 @@ if (chairsGroup) {
     r.style.transition = 'fill 0.5s ease, stroke 0.5s ease';
     chairsGroup.appendChild(r);
   });
-
   const rObs = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) {
@@ -1327,12 +1724,181 @@ if (codaMarks) {
     entries.forEach(e => {
       if (e.isIntersecting) {
         codaMarks.querySelectorAll('.coda-mark').forEach(m => m.style.opacity = '1');
+        // Animate pencil in
+        const pencil = document.getElementById('codaPencil');
+        if (pencil) setTimeout(() => pencil.classList.add('shown'), 300);
         codaObs.unobserve(e.target);
       }
     });
   }, { threshold: 0.2 });
   codaObs.observe(codaMarks);
 }
+
+// ─── PIXEL CITY MAP — color 3.4% in green ─────────────────────────
+(function() {
+  const svg = document.getElementById('pixelCity');
+  if (!svg) return;
+  const cells = Array.from(svg.querySelectorAll('.pcell'));
+  const total = cells.length;
+  // Pick roughly 3.4% — first ~4 cells become green
+  const greenCount = Math.round(total * 0.034);
+  // Shuffle array to distribute green randomly across the map
+  const indices = cells.map((_,i)=>i);
+  for (let i = indices.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i+1));
+    [indices[i], indices[j]] = [indices[j], indices[i]];
+  }
+  cells.forEach((cell, i) => {
+    if (indices.indexOf(i) < greenCount) {
+      cell.setAttribute('fill', '#5BBF58');
+    } else {
+      cell.setAttribute('fill', 'rgba(184,91,58,0.18)');
+    }
+    cell.setAttribute('opacity', '0');
+  });
+  // Animate in on scroll
+  const pxObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        cells.forEach((cell, i) => {
+          setTimeout(() => {
+            cell.setAttribute('opacity', '1');
+            cell.style.transition = 'opacity 0.4s ease';
+          }, Math.min(i * 14, 900));
+        });
+        pxObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  pxObs.observe(svg);
+})();
+
+// ─── POSITIONING MAP TOOLTIP ───────────────────────────────────────
+(function() {
+  const mapWrap = document.getElementById('posMapWrap');
+  const tooltip = document.getElementById('mapTooltip');
+  const tooltipImg = document.getElementById('mapTooltipImg');
+  const tooltipName = document.getElementById('mapTooltipName');
+  if (!mapWrap || !tooltip) return;
+
+  mapWrap.querySelectorAll('.inst-dot').forEach(dot => {
+    dot.addEventListener('mouseenter', e => {
+      const img = dot.dataset.img;
+      const name = dot.dataset.name;
+      const x = parseFloat(dot.dataset.x);
+      const y = parseFloat(dot.dataset.y);
+      if (img) { tooltipImg.src = img; tooltipImg.style.display='block'; }
+      else { tooltipImg.style.display='none'; }
+      tooltipName.textContent = name || '';
+      // Position tooltip relative to mapWrap
+      const svgEl = document.getElementById('posMap');
+      const svgRect = svgEl.getBoundingClientRect();
+      const wrapRect = mapWrap.getBoundingClientRect();
+      const scaleX = svgRect.width / 520;
+      const scaleY = svgRect.height / 400;
+      const px = (x * scaleX) + (svgRect.left - wrapRect.left);
+      const py = (y * scaleY) + (svgRect.top - wrapRect.top);
+      tooltip.style.left = (px + 10) + 'px';
+      tooltip.style.top = (py - 60) + 'px';
+      tooltip.classList.add('visible');
+    });
+    dot.addEventListener('mouseleave', () => {
+      tooltip.classList.remove('visible');
+    });
+  });
+})();
+
+// ─── WEB AUDIO AMBIENT CHATTER ────────────────────────────────────
+(function() {
+  const btn = document.getElementById('soundBtn');
+  const bars = document.getElementById('soundBars');
+  const barEls = bars ? Array.from(bars.querySelectorAll('.sound-bar')) : [];
+  if (!btn) return;
+
+  let ctx = null;
+  let playing = false;
+  let nodes = [];
+  let animFrame = null;
+
+  function buildChatter() {
+    ctx = new (window.AudioContext || window.webkitAudioContext)();
+    nodes = [];
+
+    // Create 18 "voices" — bandpass filtered noise bursts to simulate chatter
+    for (let i = 0; i < 18; i++) {
+      const bufferSize = ctx.sampleRate * 2;
+      const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+      const data = buffer.getChannelData(0);
+      for (let s = 0; s < bufferSize; s++) {
+        data[s] = (Math.random() * 2 - 1);
+      }
+
+      const source = ctx.createBufferSource();
+      source.buffer = buffer;
+      source.loop = true;
+
+      // Bandpass at voice frequencies (200–3000 Hz range)
+      const bp = ctx.createBiquadFilter();
+      bp.type = 'bandpass';
+      bp.frequency.value = 200 + Math.random() * 2800;
+      bp.Q.value = 0.8 + Math.random() * 4;
+
+      // LFO to modulate gain (simulate speech rhythm)
+      const lfo = ctx.createOscillator();
+      lfo.frequency.value = 0.5 + Math.random() * 3.5;
+      const lfoGain = ctx.createGain();
+      lfoGain.gain.value = 0.3 + Math.random() * 0.3;
+
+      const voiceGain = ctx.createGain();
+      voiceGain.gain.value = 0.02 + Math.random() * 0.04;
+
+      lfo.connect(lfoGain);
+      lfoGain.connect(voiceGain.gain);
+      source.connect(bp);
+      bp.connect(voiceGain);
+      voiceGain.connect(ctx.destination);
+
+      // Room reverb via convolver
+      source.start(ctx.currentTime + Math.random() * 0.5);
+      lfo.start();
+      nodes.push({ source, bp, lfo, voiceGain });
+    }
+
+    // Master gain fade in
+    const masterGain = ctx.createGain();
+    masterGain.gain.setValueAtTime(0, ctx.currentTime);
+    masterGain.gain.linearRampToValueAtTime(1, ctx.currentTime + 2);
+  }
+
+  function animateBars() {
+    if (!playing) return;
+    barEls.forEach((bar, i) => {
+      const h = 4 + Math.random() * 16;
+      bar.style.height = h + 'px';
+    });
+    animFrame = setTimeout(animateBars, 120);
+  }
+
+  btn.addEventListener('click', () => {
+    if (!playing) {
+      if (!ctx) buildChatter();
+      else if (ctx.state === 'suspended') ctx.resume();
+      playing = true;
+      btn.innerHTML = '&#9646;&#9646;';
+      btn.classList.add('playing');
+      bars.classList.add('active');
+      animateBars();
+    } else {
+      if (ctx) ctx.suspend();
+      playing = false;
+      btn.innerHTML = '&#9654;';
+      btn.classList.remove('playing');
+      bars.classList.remove('active');
+      clearTimeout(animFrame);
+      barEls.forEach(b => b.style.height = '4px');
+    }
+  });
+})();
 </script>
 </body>
 </html>
