@@ -3,1167 +3,1336 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Whitewash Refused · Palo Alto Museum</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&display=swap" rel="stylesheet">
+<title>The Palo Alto Museum: A Positioning Argument</title>
 <style>
+/* ─── RESET ──────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: auto; font-size: 18px; }
+
+/* ─── TOKENS ─────────────────────────────────────────────────────── */
 :root {
-  --black: #0f0f0d;
-  --paper: #F4F0E8;
-  --green: #55BA5C;
-  --green-deep: #2a6e30;
-  --ink1: #1a1916;
-  --ink2: #3d3a32;
-  --ink3: #7a756a;
-  --line: #d8d2c4;
-  --line2: #c2bbaa;
-  --maxw: 640px;
-  --ease: cubic-bezier(0.19, 1, 0.22, 1);
-  --mh: 1.8s; --ms: 1.2s; --ml: 0.6s;
+  --dark:    #1C1F1A;
+  --mid:     #2D3329;
+  --cream:   #F7F4EE;
+  --white:   #FFFFFF;
+  --rust:    #B85B3A;
+  --sand:    #C8B89A;
+  --fog:     #8B9189;
+  --charcoal:#3C4139;
+  --annotbg: #EDE8E0;
+  --mass-heavy:    1.8s;
+  --mass-standard: 1.2s;
+  --mass-light:    0.6s;
+  --expo: cubic-bezier(0.19, 1, 0.22, 1);
+  --type-head: 'Georgia', 'Times New Roman', serif;
+  --type-body: 'Calibri', 'Gill Sans', sans-serif;
 }
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+
 body {
-  background: var(--paper);
-  color: var(--ink1);
-  font-family: "Source Serif 4", Georgia, serif;
-  font-size: clamp(16px, 1.75vw, 19px);
-  font-weight: 300;
-  line-height: 1.68;
-  -webkit-font-smoothing: antialiased;
-}
-@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
-
-.t-zone { font-size: 9px; font-weight: 600; letter-spacing: .26em; text-transform: uppercase; color: var(--green-deep); font-family: "Source Serif 4", serif; }
-
-.prose { max-width: var(--maxw); margin: 0 auto; padding: clamp(1.8rem, 5vh, 3.5rem) clamp(1.4rem, 5vw, 2.2rem); }
-.prose p { margin-bottom: 1.1rem; }
-.prose p:last-child { margin-bottom: 0; }
-.lead { font-size: clamp(19px, 2.4vw, 24px); line-height: 1.48; font-weight: 300; font-style: italic; }
-.loved { color: var(--green-deep); font-style: italic; }
-.dropline {
-  font-family: "Playfair Display", Georgia, serif;
-  font-size: clamp(1.9rem, 5.2vw, 3.2rem);
-  line-height: 1.02; letter-spacing: -.015em; font-weight: 700;
-  margin: .2rem 0 .6rem;
-}
-/* Citation: more breathing room */
-sup.cite {
-  font-size: .62em;
-  font-weight: 600;
-  color: var(--green-deep);
-  vertical-align: super;
-  line-height: 0;
-  padding-left: 2.5px;
-  padding-right: 1px;
+  background: var(--dark);
+  color: var(--cream);
+  font-family: var(--type-body);
+  font-size: 1rem;
+  line-height: 1.65;
+  overflow-x: hidden;
 }
 
-.orc {
-  opacity: 0; visibility: hidden;
-  transform: translateY(32px); filter: blur(4px);
-  contain: paint layout; will-change: transform, opacity, filter;
-  transition:
-    opacity var(--ms) var(--ease),
-    transform var(--ms) var(--ease),
-    filter var(--ms) var(--ease),
-    visibility 0s linear var(--ms);
+/* ─── REDWOOD SPINE ──────────────────────────────────────────────── */
+/* The tree runs as a fixed left element behind the entire scroll */
+#redwood-spine {
+  position: fixed;
+  left: 3.2vw;
+  top: 0;
+  width: 2px;
+  height: 100vh;
+  z-index: 1;
+  pointer-events: none;
 }
-.orc.is-orchestrated {
-  opacity: 1; visibility: visible; transform: none; filter: none;
-  transition:
-    opacity var(--ms) var(--ease),
-    transform var(--ms) var(--ease),
-    filter var(--ms) var(--ease),
-    visibility 0s linear 0s;
-}
-.orc.heavy { transition-duration: var(--mh); }
-.orc.light  { transition-duration: var(--ml); }
-
-.acthead { max-width: var(--maxw); margin: 0 auto; padding: clamp(2.5rem, 7vh, 5rem) clamp(1.4rem, 5vw, 2.2rem) 0; }
-.acthead .t-zone { display: block; margin-bottom: .7rem; }
-.acthead h2 {
-  font-family: "Playfair Display", Georgia, serif;
-  font-size: clamp(2.2rem, 6.2vw, 3.8rem);
-  line-height: .96; letter-spacing: -.02em; font-weight: 700;
-}
-.acthead .rule { height: 4px; width: 40px; background: var(--green); margin-top: 1rem; }
-
-/* ─── FULL-BLEED IMAGE ─── */
-.fullbleed {
+#redwood-spine svg {
   width: 100%;
-  margin: 1.4rem 0 1.8rem;
+  height: 100%;
+  overflow: visible;
 }
-.fullbleed .frame {
-  position: relative;
-  width: 100%;
-  height: clamp(48vh, 70vh, 78vh);
-  overflow: hidden;
-  background: #c8c2b4;
+.spine-track {
+  stroke: rgba(184,91,58,0.12);
+  stroke-width: 1.5;
+  fill: none;
 }
-.fullbleed .frame img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  display: block;
-  filter: grayscale(.4) contrast(1.04);
+.spine-progress {
+  stroke: rgba(184,91,58,0.45);
+  stroke-width: 2;
+  fill: none;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  transition: stroke-dashoffset 0.1s linear;
+  will-change: stroke-dashoffset;
 }
-.fullbleed figcaption {
-  max-width: var(--maxw);
-  margin: .7rem auto 0;
-  padding: 0 clamp(1.4rem, 5vw, 2.2rem);
-  font-size: 11px;
-  color: var(--ink3);
-  font-style: italic;
-  letter-spacing: .02em;
-}
-
-/* ─── TWO-COLUMN PROSE WITH STICKY PORTRAIT ─── */
-.with-portrait {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: clamp(1.8rem, 5vh, 3.5rem) clamp(1.4rem, 5vw, 2.2rem);
-  display: grid;
-  grid-template-columns: 1fr 240px;
-  gap: clamp(1.6rem, 3.5vw, 2.8rem);
-  align-items: start;
-}
-.with-portrait .text {
-  font-size: clamp(16px, 1.75vw, 19px);
-  line-height: 1.68;
-  font-weight: 300;
-}
-.with-portrait .text p { margin-bottom: 1.1rem; }
-.with-portrait .text p:last-child { margin-bottom: 0; }
-.with-portrait .text .lead {
-  font-size: clamp(19px, 2.4vw, 24px);
-  line-height: 1.48;
-  font-style: italic;
-  font-weight: 300;
-}
-.with-portrait .portrait-side {
-  position: sticky;
-  top: 5rem;
-}
-.with-portrait .portrait-side img {
-  width: 100%;
-  height: auto;
-  display: block;
-  filter: grayscale(.55) contrast(1.03);
-  background: #c8c2b4;
-}
-.with-portrait .portrait-side figcaption {
-  font-size: 10px;
-  color: var(--ink3);
-  font-style: italic;
-  margin-top: .5rem;
-  letter-spacing: .02em;
-  text-align: center;
-  line-height: 1.45;
-}
-@media (max-width: 700px) {
-  .with-portrait {
-    grid-template-columns: 1fr;
-    gap: 1.2rem;
-  }
-  .with-portrait .portrait-side {
-    position: relative;
-    top: 0;
-    max-width: 280px;
-    order: -1;
-  }
+/* Branch marks -- decorative nubs off the spine */
+.spine-branch {
+  stroke: rgba(184,91,58,0.2);
+  stroke-width: 1;
+  fill: none;
 }
 
-.scene { position: relative; }
-.scene .stage {
-  position: sticky; top: 0; height: 100vh;
-  display: flex; align-items: center; justify-content: center;
-  overflow: hidden;
-}
-.scene .steps { position: relative; z-index: 3; }
-.step {
-  min-height: 80vh;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 clamp(1.4rem, 4vw, 3rem);
-  gap: 3rem;
-}
-.step .card {
-  background: rgba(244,240,232,.94);
-  border: 1px solid var(--line);
-  padding: 1.5rem 1.7rem;
-  backdrop-filter: blur(3px);
-  box-shadow: 0 12px 42px rgba(15,15,13,.07);
-}
-.scene.dark .step .card {
-  background: rgba(15,15,13,.86);
-  border-color: #262620;
-  color: #ede8de;
-}
-.scene.dark .step .card .loved { color: var(--green); }
-
-/* ─── HERO ─── */
-#hero { position: relative; height: 280vh; background: var(--black); color: #ede8de; }
-#hero .sticky {
-  position: sticky; top: 0; height: 100vh;
-  display: grid;
-  grid-template-rows: 1fr auto auto;
-  align-items: center;
-  justify-items: center;
-  overflow: hidden;
-  padding: 2rem 1.5rem 1.5rem;
-  gap: 1rem;
-}
-#hero .projector {
-  width: min(72vw, 580px);
-  aspect-ratio: 3/2;
-  position: relative; overflow: hidden;
-  background: #111;
-  align-self: end;
-}
-#hero .projector img {
-  position: absolute; inset: 0;
-  width: 100%; height: 100%; object-fit: cover; display: block;
-  filter: grayscale(1) contrast(1.1);
-}
-#hero .filmstrip {
-  width: min(72vw, 580px);
-  display: grid;
-  grid-template-columns: repeat(16, 1fr);
-  gap: 2px;
-}
-#hero .frame {
-  aspect-ratio: 3/2; overflow: hidden; position: relative;
-  background: #0e0e0c; border: 1px solid #1e1e1a;
-  transition: border-color .2s ease;
-}
-#hero .frame img {
-  position: absolute; inset: 0;
-  width: 100%; height: 100%; object-fit: cover; display: block;
-  filter: grayscale(1) contrast(1.08);
-  opacity: .5; transition: opacity .2s ease;
-}
-#hero .frame.active { border-color: var(--green); }
-#hero .frame.active img { opacity: 1; }
-#hero .frame .fn {
-  position: absolute; top: 1px; left: 3px; z-index: 2;
-  font-size: 6px; font-weight: 700; color: #888; font-family: monospace;
-  transition: color .2s ease;
-}
-#hero .frame.active .fn { color: var(--green); }
-#hero .hero-text {
-  text-align: center; align-self: start;
-  opacity: 0; transform: translateY(12px);
-  transition: opacity .9s var(--ease) .15s, transform .9s var(--ease) .15s;
-}
-#hero .sticky.show .hero-text { opacity: 1; transform: none; }
-#hero h1 {
-  font-family: "Playfair Display", Georgia, serif;
-  font-size: clamp(1.7rem, 4.8vw, 3.4rem);
-  line-height: .96; letter-spacing: -.02em; font-weight: 700;
-  max-width: 20ch; margin: 0 auto;
-}
-#hero .scrollhint {
-  position: absolute; bottom: 18px; left: 50%; transform: translateX(-50%);
-  font-size: 8px; letter-spacing: .28em; text-transform: uppercase; color: #4a4640;
-  animation: hint 2.6s ease-in-out infinite;
-}
-@keyframes hint { 0%,100%{opacity:.25} 50%{opacity:.7} }
-
-/* ─── NEG SCENE ─── */
-#neg { background: var(--paper); }
-#neg .stage { background: var(--paper); align-items: stretch; }
-#neg .void-full {
-  width: 100%; height: 100%;
-  display: grid;
-  grid-template-columns: 1fr 2px 2fr 2px 1fr;
-  grid-template-rows: 1fr;
-  position: relative;
-}
-#neg .vdivide {
-  background: var(--line);
-  align-self: stretch;
-  opacity: 0;
-  transition: opacity .8s ease;
-}
-#neg .void-full.go .vdivide { opacity: 1; }
-#neg .col-left {
-  display: flex; flex-direction: column; justify-content: center;
-  padding: 0 clamp(1.5rem, 3vw, 3rem);
-  gap: 2.5rem;
-}
-#neg .col-right {
-  display: flex; flex-direction: column; justify-content: center;
-  padding: 0 clamp(1.5rem, 3vw, 3rem);
-}
-#neg .col-center {
-  display: flex; flex-direction: column; justify-content: center; align-items: center;
-  padding: 0 clamp(1.5rem, 3vw, 2.5rem);
-  text-align: center;
-}
-.comp-entry {
-  opacity: 0; transform: translateX(-12px);
-  transition: opacity .7s var(--ease), transform .7s var(--ease);
-}
-#neg .col-right .comp-entry { transform: translateX(12px); }
-#neg .void-full.go .comp-entry { opacity: 1; transform: none; }
-.comp-name {
-  font-size: clamp(10px, 1.1vw, 13px);
-  font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
-  color: var(--ink2); display: block; margin-bottom: .3rem;
-}
-.comp-desc {
-  font-size: clamp(11px, 1.1vw, 13px);
-  color: var(--ink3); line-height: 1.45; font-style: italic;
-}
-#neg .void-question {
-  font-family: "Playfair Display", serif; font-style: italic;
-  font-size: clamp(1.2rem, 2.4vw, 2rem);
-  line-height: 1.3; color: var(--ink3);
-  margin-bottom: 1.2rem;
-  opacity: 0; transition: opacity .9s ease .2s;
-}
-#neg .void-full.go .void-question { opacity: 1; }
-#neg .void-answer {
-  font-family: "Playfair Display", serif; font-weight: 700;
-  font-size: clamp(1.3rem, 2.8vw, 2.4rem);
-  line-height: 1.1; color: var(--green-deep);
-  opacity: 0; transform: translateY(10px);
-  transition: opacity .7s ease, transform .7s var(--ease);
-}
-#neg .void-full.claim .void-answer { opacity: 1; transform: none; }
-#neg .void-rule {
-  width: 36px; height: 3px; background: var(--green);
-  margin: .8rem auto 0;
-  opacity: 0; transition: opacity .5s ease .3s;
-}
-#neg .void-full.claim .void-rule { opacity: 1; }
-#neg .step { grid-template-columns: 1fr; max-width: var(--maxw); }
-
-/* ─── ANIMAL: STATIC TRIPTYCH FIGURE ─── */
-.triptych-figure {
-  background: var(--black);
-  margin: 1.8rem 0 1.2rem;
-  padding: 0 0 1.4rem;
-}
-.triptych-figure .triptych-zone {
-  max-width: var(--maxw);
-  margin: 0 auto;
-  padding: 1.5rem clamp(1.4rem, 5vw, 2.2rem) 1rem;
-  color: var(--green);
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: .26em;
-  text-transform: uppercase;
-  font-family: "Source Serif 4", serif;
-}
-.triptych-figure .triptych {
-  width: 100%;
-  height: clamp(50vh, 68vh, 75vh);
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 3px;
-  background: #0a0a0a;
-}
-.triptych-figure .panel {
-  position: relative;
-  overflow: hidden;
-  background: #181815;
-}
-.triptych-figure .panel img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  object-position: center 22%;
-  display: block;
-  filter: grayscale(1) contrast(1.06);
-}
-.triptych-figure .panel-meta {
+/* ─── PHOTO BACKGROUNDS ──────────────────────────────────────────── */
+.photo-bg {
   position: absolute;
-  bottom: 0; left: 0; right: 0;
-  background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,.75) 50%, rgba(0,0,0,.96) 100%);
-  padding: 3.4rem 1.1rem 1.2rem;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+}
+.photo-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right,
+    rgba(28,31,26,0.88) 0%,
+    rgba(28,31,26,0.70) 55%,
+    rgba(28,31,26,0.40) 100%);
+}
+.photo-bg.bottom-fade::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom,
+    transparent 50%,
+    rgba(28,31,26,0.95) 100%);
+  z-index: 1;
+}
+/* For light sections */
+.photo-bg.light-overlay::after {
+  background: linear-gradient(to right,
+    rgba(247,244,238,0.92) 0%,
+    rgba(247,244,238,0.75) 55%,
+    rgba(247,244,238,0.45) 100%);
+}
+
+/* ─── REVEAL SYSTEM ──────────────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  filter: blur(4px);
+  transition:
+    opacity    var(--mass-standard) var(--expo),
+    transform  var(--mass-standard) var(--expo),
+    filter     var(--mass-standard) var(--expo);
+  will-change: transform, opacity, filter;
+}
+.reveal.heavy {
+  transition-duration: var(--mass-heavy);
+  transform: translateY(60px) skewY(2deg);
+  filter: blur(12px) brightness(1.2);
+}
+.reveal.light-anim {
+  transition-duration: var(--mass-light);
+  transform: translateY(20px);
+  filter: blur(2px);
+}
+.reveal.is-visible { opacity: 1; transform: none; filter: none; }
+.delay-1 { transition-delay: 0.12s; }
+.delay-2 { transition-delay: 0.24s; }
+.delay-3 { transition-delay: 0.32s; }
+.delay-4 { transition-delay: 0.38s; }
+.delay-5 { transition-delay: 0.42s; }
+
+/* ─── SECTIONS ───────────────────────────────────────────────────── */
+.scroll-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 10vh 8vw 10vh 8vw;
   z-index: 2;
 }
-.triptych-figure .panel-year {
-  display: block;
-  font-size: 9px;
-  letter-spacing: .22em;
-  text-transform: uppercase;
-  color: #a8a497;
-  margin-bottom: .4rem;
-}
-.triptych-figure .panel-name {
-  display: block;
-  font-family: "Playfair Display", Georgia, serif;
-  font-size: clamp(15px, 1.7vw, 20px);
+.scroll-section.light { background: var(--cream); color: var(--charcoal); }
+.scroll-section.mid   { background: var(--mid); }
+.scroll-section.dark  { background: var(--dark); }
+.scroll-section.photo { background: var(--dark); }
+
+.inner { width: 100%; max-width: 1100px; position: relative; z-index: 2; }
+
+/* ─── TYPOGRAPHY ─────────────────────────────────────────────────── */
+.eyebrow {
+  font-family: var(--type-body);
+  font-size: 0.5rem;
   font-weight: 700;
-  color: #ede8de;
-  line-height: 1.06;
-  margin-bottom: .4rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--sand);
+  margin-bottom: 1.2rem;
 }
-.triptych-figure .panel-role {
-  display: block;
-  font-family: "Source Serif 4", serif;
-  font-style: italic;
-  font-size: clamp(11px, 1.25vw, 13px);
-  color: #c4c0b3;
-  line-height: 1.4;
-}
-.triptych-figure figcaption {
-  max-width: var(--maxw);
-  margin: 1.1rem auto 0;
-  padding: 0 clamp(1.4rem, 5vw, 2.2rem);
-  font-size: 11px;
-  font-style: italic;
-  color: #a8a497;
-  letter-spacing: .02em;
-  line-height: 1.55;
-}
-@media (max-width: 700px) {
-  .triptych-figure .triptych {
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-    height: 110vh;
-  }
+.eyebrow.rust { color: var(--rust); }
+.eyebrow.fog  { color: var(--fog); }
+.eyebrow.charcoal { color: var(--charcoal); }
+
+.rule {
+  height: 2px;
+  width: 3rem;
+  background: var(--rust);
+  margin-bottom: 1.8rem;
 }
 
-/* ─── MUSE ─── */
-#muse { background: var(--paper); }
-#muse .wordstage {
-  position: relative; display: inline-block; padding: .05em .1em;
-  margin-bottom: 1.4rem;
-}
-#muse .w {
-  font-family: "Playfair Display", Georgia, serif;
-  font-size: clamp(2.2rem, 8.5vw, 5.6rem);
-  letter-spacing: -.015em; line-height: 1; font-weight: 700;
-}
-#muse .dead { color: var(--ink3); }
-#muse .alive {
-  color: var(--green-deep);
-  position: absolute; inset: 0;
-  display: flex; align-items: center; justify-content: center;
-  clip-path: inset(0 100% 0 0);
-  transition: clip-path var(--mh) var(--ease);
-}
-#muse .wordstage.swept .alive { clip-path: inset(0 0 0 0); }
-#muse .wordstage.swept .dead { opacity: .14; transition: opacity .9s ease; }
+.display-xl { font-family: var(--type-head); font-weight: 400; font-size: clamp(2.8rem, 7.5vw, 6rem); line-height: 1.08; letter-spacing: -0.025em; }
+.display-lg { font-family: var(--type-head); font-weight: 400; font-size: clamp(2rem, 4.8vw, 3.6rem); line-height: 1.12; letter-spacing: -0.02em; }
+.display-md { font-family: var(--type-head); font-weight: 400; font-size: clamp(1.5rem, 3.2vw, 2.4rem); line-height: 1.2; }
+.display-sm { font-family: var(--type-head); font-weight: 400; font-size: clamp(1.1rem, 2.2vw, 1.6rem); line-height: 1.3; }
 
-/* ─── DOOR ─── */
-#door { background: var(--paper); }
-#door .stage { background: var(--paper); padding: 0; }
-#door .fresco-wrap {
-  position: relative; width: 100%; height: 100%; overflow: hidden;
+.prose {
+  font-family: var(--type-body);
+  font-size: clamp(0.88rem, 1.6vw, 1rem);
+  line-height: 1.72;
+  max-width: 60ch;
 }
-#door .fresco-wrap img.fresco-img {
-  width: 100%; height: 100%; object-fit: cover; object-position: center;
-  display: block;
-}
-#door .fresco-strip {
-  position: absolute; top: 0; left: 0; right: 0; height: 4px;
-  background: var(--green); opacity: 0;
-  transition: opacity .7s ease; z-index: 6;
-}
-#door .fresco-wrap.restored .fresco-strip { opacity: 1; }
-#door .fresco-ww {
-  position: absolute; inset: 0; background: #f4f0e8;
-  clip-path: inset(0 0 100% 0);
-  transition: clip-path var(--mh) var(--ease); z-index: 4;
-}
-#door .fresco-wrap.painted .fresco-ww { clip-path: inset(0 0 0 0); }
-#door .fresco-wrap.restored .fresco-ww { clip-path: inset(0 0 0 100%); }
-#door .step {
-  grid-template-columns: minmax(280px, 460px) 1fr;
-  position: relative; z-index: 4;
-}
+.prose + .prose { margin-top: 1.1em; }
 
-/* ─── WALL ─── */
-#wall { background: var(--black); color: #ede8de; }
-#wall .stage { background: var(--black); }
-#wall .faces-stage {
-  width: 100%; height: 100%;
-  display: flex; align-items: center; justify-content: center;
-}
-#wall .faces {
-  display: grid; grid-template-columns: repeat(8, 1fr);
-  gap: 5px; width: min(72vw, 520px);
-}
-#wall .face {
-  aspect-ratio: 1/1; background: #181816; border: 1px solid #222220;
-  overflow: hidden; opacity: 0; transform: scale(.84);
-  transition: opacity .5s var(--ease), transform .5s var(--ease);
-}
-#wall .faces.go .face { opacity: 1; transform: none; }
-#wall .face img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(1) contrast(1.04); }
-#wall .face.you { border: 1.5px solid var(--green); background: #14201a; }
-#wall .you-inner { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
-#wall .you-mark { width: 55%; height: 55%; border: 1px dashed var(--green); opacity: .65; }
-#wall .youtag {
-  font-style: italic; font-size: 11px; letter-spacing: .1em; color: var(--green);
-  text-align: center; margin-top: .9rem;
-  opacity: 0; transition: opacity .8s ease .7s;
-}
-#wall .faces.go ~ .youtag { opacity: 1; }
-#wall .step { grid-template-columns: 1fr; max-width: var(--maxw); }
-
-/* ─── SPLIT (79%) ─── */
-.split {
-  max-width: 960px; margin: 0 auto;
-  padding: clamp(2.8rem, 9vh, 6rem) clamp(1.4rem, 5vw, 2.4rem);
-  display: grid; grid-template-columns: 1fr 1px 1fr;
-  gap: clamp(1.8rem, 4.5vw, 3.8rem); align-items: center;
-}
-.split .divider { background: var(--line); align-self: stretch; }
-@media (max-width: 700px) { .split { grid-template-columns: 1fr; gap: 1.6rem; } .split .divider { display: none; } }
-.figstage { display: flex; gap: 16px; align-items: stretch; }
-.figstage .frule { width: 3px; background: var(--green); flex: none; align-self: stretch; }
 .bignum {
-  font-family: "Playfair Display", serif;
-  font-size: clamp(4.5rem, 17vw, 9.5rem);
-  line-height: .76; letter-spacing: -.025em; color: var(--ink1); font-weight: 700;
+  font-family: var(--type-head);
+  font-size: clamp(5rem, 17vw, 13rem);
+  font-weight: 400;
+  color: var(--rust);
+  line-height: 0.88;
+  letter-spacing: -0.04em;
 }
-.numlab { font-size: 10px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--ink3); margin-top: 1rem; max-width: 22ch; line-height: 1.6; }
-.split .body { font-size: clamp(15px, 1.7vw, 18px); line-height: 1.68; color: var(--ink2); }
-.split .body p { margin-bottom: 1rem; }
-.split .body .kicker {
-  font-family: "Playfair Display", serif; font-style: italic;
-  font-size: clamp(1.05rem, 2.2vw, 1.45rem);
-  line-height: 1.14; color: var(--green-deep); margin-top: .4rem;
+.bignum.dark-num { color: var(--charcoal); }
+
+/* ─── GRID LAYOUTS ───────────────────────────────────────────────── */
+.col-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 4vw; align-items: start; }
+.col-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3vw; align-items: start; }
+.col-text-vis { display: grid; grid-template-columns: 46% 48%; gap: 6%; align-items: center; }
+
+/* ─── AUTHOR PORTRAIT CYCLING ────────────────────────────────────── */
+.portrait-stage {
+  position: relative;
+  width: 100%;
+  max-width: 340px;
+  aspect-ratio: 3/4;
+  overflow: hidden;
+}
+.portrait-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  opacity: 0;
+  transition: opacity 1.2s var(--expo);
+  filter: grayscale(60%) contrast(1.1);
+}
+.portrait-img.active { opacity: 1; }
+.portrait-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem 1.2rem 0.8rem;
+  background: linear-gradient(to top, rgba(28,31,26,0.92), transparent);
+  font-family: var(--type-body);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--sand);
 }
 
-.refuse { max-width: var(--maxw); margin: 0 auto; padding: 0 clamp(1.4rem, 5vw, 2.2rem); }
-.refuse .item { border-top: 1px solid var(--line); padding: 1rem 0; display: flex; gap: 15px; align-items: baseline; }
-.refuse .item .x { color: var(--ink3); font-size: 11px; font-weight: 600; letter-spacing: .1em; flex: none; }
-.refuse .item .t { color: var(--ink2); }
-.refuse .item .t b { color: var(--ink1); }
+/* ─── PHOTO REVEAL CARD ──────────────────────────────────────────── */
+.photo-card {
+  position: relative;
+  overflow: hidden;
+  background: var(--mid);
+}
+.photo-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(20%);
+  transition: transform 6s ease, filter 1s ease;
+}
+.photo-card:hover img { transform: scale(1.03); filter: grayscale(0%); }
+.photo-card-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0.8rem 1rem;
+  background: linear-gradient(to top, rgba(28,31,26,0.9), transparent);
+  font-family: var(--type-body);
+  font-size: 0.62rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--sand);
+}
 
-.bar { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; max-width: var(--maxw); margin: 0 auto; padding: 1rem clamp(1.4rem, 5vw, 2.2rem); }
-@media (max-width: 560px) { .bar { grid-template-columns: 1fr; } }
-.bar .t { border-top: 3px solid var(--green); padding-top: .8rem; }
-.bar .t .h { font-family: "Playfair Display", serif; font-size: 14px; font-weight: 700; margin-bottom: .35rem; }
-.bar .t .b { font-size: 13px; color: var(--ink2); line-height: 1.52; }
+/* ─── DOT GRID ───────────────────────────────────────────────────── */
+.dot-grid {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: clamp(4px, 0.7vw, 9px);
+  max-width: 300px;
+}
+.dot {
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: rgba(200,184,154,0.15);
+  transition: background 0.4s var(--expo), transform 0.3s var(--expo);
+  will-change: background, transform;
+}
+.dot.lit { background: var(--rust); transform: scale(1.3); box-shadow: 0 0 10px rgba(184,91,58,0.35); }
 
-.finale { background: var(--black); color: #f0ece2; text-align: center; padding: clamp(4.5rem, 16vh, 9rem) clamp(1.4rem, 5vw, 2.2rem); }
-.finale .small { color: #6a665e; font-size: clamp(13px, 1.6vw, 16px); margin-bottom: 1rem; font-style: italic; }
-.finale .big { font-family: "Playfair Display", serif; font-size: clamp(1.8rem, 5.6vw, 3.4rem); line-height: 1.04; letter-spacing: -.01em; font-weight: 700; max-width: 18ch; margin: 0 auto; }
-.finale .big em { color: var(--green); font-style: italic; }
+/* ─── ACT DIVIDERS ───────────────────────────────────────────────── */
+.act-divider {
+  min-height: 28vh;
+  display: flex;
+  align-items: center;
+  padding: 5vh 8vw;
+  border-top: 1px solid rgba(139,145,137,0.1);
+  position: relative;
+  z-index: 2;
+}
+.act-divider.light { background: var(--cream); border-color: rgba(60,65,57,0.08); }
+.act-num { font-family: var(--type-body); font-size: 0.52rem; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--rust); margin-bottom: 0.7rem; }
+.act-title { font-family: var(--type-head); font-size: clamp(1.8rem, 3.8vw, 2.8rem); font-weight: 400; line-height: 1.18; max-width: 18ch; }
+.act-divider.light .act-title { color: var(--charcoal); }
 
-.sources { max-width: var(--maxw); margin: 0 auto; padding: 2.2rem clamp(1.4rem, 5vw, 2.2rem) 1rem; }
-.sources .t-zone { display: block; margin-bottom: .9rem; }
-.sources .note { font-size: 11px; color: var(--ink2); line-height: 1.62; margin-bottom: 1.3rem; max-width: 58ch; }
-.sources ol { list-style: none; display: grid; gap: .5rem; counter-reset: s; }
-.sources li { counter-increment: s; display: flex; gap: .8rem; font-size: 11px; color: var(--ink3); line-height: 1.52; }
-.sources li::before { content: counter(s); font-weight: 700; color: var(--green-deep); flex: none; min-width: 1.5em; font-size: 10px; text-align: right; }
-.sources li b { color: var(--ink2); font-weight: 600; }
+/* ─── COMPETITOR MAP ─────────────────────────────────────────────── */
+.comp-grid { display: flex; flex-wrap: wrap; gap: 0.8rem; max-width: 480px; }
+.comp-node {
+  padding: 0.5rem 1rem;
+  border: 1px solid rgba(139,145,137,0.25);
+  font-family: var(--type-body);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fog);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.5s var(--expo), transform 0.5s var(--expo);
+  will-change: opacity, transform;
+}
+.comp-node.empty-seat { border-color: var(--rust); color: var(--rust); animation: seat-pulse 2.6s ease-in-out infinite; }
+.comp-node.show { opacity: 1; transform: none; }
+@keyframes seat-pulse {
+  0%,100% { box-shadow: 0 0 0 0 rgba(184,91,58,0); }
+  50%      { box-shadow: 0 0 0 5px rgba(184,91,58,0.12); }
+}
 
-footer { background: var(--paper); border-top: 1px solid var(--line); max-width: var(--maxw); margin: 0 auto; padding: 2rem clamp(1.4rem, 5vw, 2.2rem) 4rem; }
-footer p { font-size: 11px; color: var(--ink3); line-height: 1.62; margin-bottom: .8rem; }
+/* ─── GIFT CARDS ─────────────────────────────────────────────────── */
+.gift-card {
+  border: 1px solid rgba(139,145,137,0.18);
+  padding: 1.5rem 1.3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity var(--mass-standard) var(--expo), transform var(--mass-standard) var(--expo);
+  will-change: opacity, transform;
+}
+.gift-card.show { opacity: 1; transform: none; }
+.gift-card-label { font-family: var(--type-body); font-size: 0.56rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--rust); }
+.gift-card-ask { font-family: var(--type-body); font-size: 0.85rem; line-height: 1.55; color: var(--cream); }
+.gift-card-signal { font-family: var(--type-body); font-size: 0.73rem; color: var(--fog); font-style: italic; padding-top: 0.6rem; border-top: 1px solid rgba(139,145,137,0.12); }
 
-@media (max-width: 600px) {
-  #hero .filmstrip { grid-template-columns: repeat(8,1fr); }
-  #wall .faces { grid-template-columns: repeat(6,1fr); }
-  .step { grid-template-columns: 1fr !important; }
-  #neg .void-full { grid-template-columns: 1fr; grid-template-rows: auto auto auto; }
-  #neg .vdivide { display: none; }
+/* ─── WAVEFORM ───────────────────────────────────────────────────── */
+.waveform-row {
+  margin-bottom: 2rem;
+  opacity: 0;
+  transform: translateX(-18px);
+  transition: opacity 1s var(--expo), transform 1s var(--expo);
+  will-change: opacity, transform;
+}
+.waveform-row.show { opacity: 1; transform: none; }
+.waveform-name { font-family: var(--type-body); font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--rust); margin-bottom: 0.4rem; }
+.waveform-desc { font-size: 0.8rem; color: var(--fog); margin-top: 0.35rem; line-height: 1.5; }
+svg.wv { width: 100%; max-width: 520px; height: 34px; overflow: visible; }
+.wave-path { fill: none; stroke: var(--rust); stroke-width: 1.5; stroke-dasharray: 600; stroke-dashoffset: 600; transition: stroke-dashoffset 1.8s var(--expo); will-change: stroke-dashoffset; }
+.wave-path.draw { stroke-dashoffset: 0; }
+
+/* ─── CASE INSET ─────────────────────────────────────────────────── */
+/* Replaces the academic inset with a real-case card */
+.case-section {
+  background: var(--annotbg);
+  color: var(--charcoal);
+  padding: 6vh 8vw;
+  border-top: 1px solid rgba(160,144,128,0.25);
+  border-bottom: 1px solid rgba(160,144,128,0.25);
+  position: relative;
+  z-index: 2;
+}
+.case-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+.case-label { font-family: var(--type-body); font-size: 0.52rem; font-weight: 700; letter-spacing: 0.32em; text-transform: uppercase; color: #A09080; }
+.case-anchor { font-family: var(--type-body); font-size: 0.58rem; color: var(--fog); }
+.case-rule { height: 1px; background: rgba(160,144,128,0.3); margin: 0.8rem 0 1.8rem; }
+.case-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+.case-grid.wide { grid-template-columns: 52% 44%; }
+
+/* Photo side */
+.case-photo {
+  position: relative;
+  overflow: hidden;
+  background: #D8D0C4;
+}
+.case-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(15%);
+  transition: transform 5s ease;
+}
+.case-photo:hover img { transform: scale(1.04); }
+.case-photo-caption {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 0.7rem 0.9rem;
+  background: linear-gradient(to top, rgba(60,65,57,0.85), transparent);
+  font-family: var(--type-body);
+  font-size: 0.58rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(247,244,238,0.8);
+}
+
+/* Text side */
+.case-card {
+  background: var(--white);
+  padding: 1.7rem;
+  border: 1px solid #D8D0C4;
+  position: relative;
+}
+.case-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 4px; height: 100%;
+  background: var(--rust);
+}
+.case-who { font-family: var(--type-head); font-size: 1rem; color: #5A4A3A; margin-bottom: 0.2rem; }
+.case-what { font-family: var(--type-body); font-size: 0.65rem; color: var(--fog); margin-bottom: 0.85rem; }
+.case-concept { display: inline-block; font-family: var(--type-body); font-size: 0.56rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--rust); background: #F0EBE3; padding: 0.2rem 0.55rem; margin-bottom: 0.95rem; }
+.case-argument { font-family: var(--type-body); font-size: 0.88rem; line-height: 1.62; color: var(--charcoal); margin-bottom: 1rem; }
+.case-outcome { font-family: var(--type-body); font-size: 0.8rem; line-height: 1.55; color: #5A4A3A; font-style: italic; padding: 0.7rem 0.9rem; background: #F5F0E8; border-left: 2px solid var(--rust); margin-bottom: 0.9rem; }
+.case-pam { font-family: var(--type-body); font-size: 0.78rem; line-height: 1.55; color: var(--fog); }
+.case-pam strong { color: var(--charcoal); }
+.case-verdict { font-family: var(--type-body); font-size: 0.56rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #2D6A2D; margin-top: 0.8rem; }
+.case-verdict.corrective { color: #4A4A6A; }
+
+/* Disagreement pair */
+.case-pair { display: grid; grid-template-columns: 1fr auto 1fr; gap: 0; align-items: stretch; }
+.vs-col { display: flex; align-items: center; justify-content: center; padding: 0 1.2rem; font-family: var(--type-body); font-size: 0.7rem; color: var(--fog); }
+.case-synthesis { font-family: var(--type-body); font-size: 0.82rem; font-style: italic; color: #5A4A3A; text-align: center; margin-top: 1.8rem; padding-top: 1.2rem; border-top: 1px solid rgba(160,144,128,0.25); }
+
+/* ─── HERO ───────────────────────────────────────────────────────── */
+.hero {
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  padding: 0 8vw 8vh;
+  z-index: 2;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('Palo_Alto.jpg');
+  background-size: cover;
+  background-position: center 30%;
+  filter: grayscale(30%);
+  transform: scale(1.04);
+  animation: hero-drift 18s ease-in-out infinite alternate;
+  will-change: transform;
+}
+@keyframes hero-drift { from { transform: scale(1.04) translateX(0); } to { transform: scale(1.04) translateX(-1.5%); } }
+.hero-vignette {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to right, rgba(28,31,26,0.85) 0%, rgba(28,31,26,0.55) 60%, rgba(28,31,26,0.2) 100%),
+    linear-gradient(to top, rgba(28,31,26,0.9) 0%, transparent 40%);
+}
+.hero-tree-line {
+  position: absolute;
+  left: 8vw;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(184,91,58,0), rgba(184,91,58,0.5) 30%, rgba(184,91,58,0.3) 70%, rgba(184,91,58,0));
+  transform-origin: top;
+  transform: scaleY(0);
+  transition: transform 2.4s var(--expo);
+  will-change: transform;
+  z-index: 3;
+}
+.hero-tree-line.grown { transform: scaleY(1); }
+.hero-content { position: relative; z-index: 4; }
+.hero-kicker { font-family: var(--type-body); font-size: 0.55rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--fog); margin-bottom: 1.6rem; }
+.hero-title { font-family: var(--type-head); font-size: clamp(3.2rem, 8.5vw, 7rem); font-weight: 400; color: var(--white); line-height: 1.04; letter-spacing: -0.03em; margin-bottom: 1.2rem; opacity: 0; transform: translateY(60px) skewY(2deg); filter: blur(12px) brightness(1.2); transition: opacity 1.6s var(--expo), transform 1.6s var(--expo), filter 1.6s var(--expo); transition-delay: 0.7s; will-change: transform, opacity, filter; }
+.hero-title.show { opacity: 1; transform: none; filter: none; }
+.hero-sub { font-family: var(--type-body); font-size: clamp(0.85rem, 1.7vw, 1rem); color: var(--fog); max-width: 40ch; line-height: 1.65; opacity: 0; transform: translateY(18px); transition: opacity 1.2s var(--expo), transform 1.2s var(--expo); transition-delay: 1.3s; will-change: transform, opacity; }
+.hero-sub.show { opacity: 1; transform: none; }
+
+/* ─── CODA ───────────────────────────────────────────────────────── */
+.coda { min-height: 100vh; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; padding: 10vh 8vw; z-index: 2; }
+.coda-bg { position: absolute; inset: 0; background-image: url('Heritage_Park.jpg'); background-size: cover; background-position: center; filter: grayscale(40%); }
+.coda-vignette { position: absolute; inset: 0; background: rgba(28,31,26,0.75); }
+.coda-content { position: relative; z-index: 2; text-align: center; }
+.coda-line { font-family: var(--type-head); font-size: clamp(3.2rem, 8vw, 6rem); font-weight: 400; color: var(--white); line-height: 1.1; display: block; }
+.coda-line.rust { color: var(--rust); }
+.coda-sub { font-family: var(--type-body); font-size: clamp(0.82rem, 1.5vw, 0.95rem); color: var(--fog); max-width: 52ch; margin: 2.2rem auto 0; line-height: 1.72; }
+.coda-marks { position: absolute; inset: 0; pointer-events: none; }
+.coda-mark { position: absolute; width: 3px; height: 3px; border-radius: 50%; background: var(--rust); opacity: 0; transition: opacity 0.5s var(--expo); }
+
+/* ─── RESPONSIVE ─────────────────────────────────────────────────── */
+@media (max-width: 720px) {
+  .col-2, .col-3, .col-text-vis, .case-grid, .case-grid.wide, .case-pair { grid-template-columns: 1fr; }
+  .vs-col { padding: 0.6rem 0; }
+  .bignum { font-size: clamp(4rem, 22vw, 8rem); }
+  #redwood-spine { display: none; }
+  .scroll-section { padding: 8vh 5vw; }
 }
 </style>
 </head>
 <body>
 
-<!-- ═══════════════ HERO ═══════════════ -->
-<section id="hero">
-  <div class="sticky" id="heroSticky">
-    <div class="projector"><img id="projImg" src="" alt="Muybridge motion study, 1878"></div>
-    <div class="filmstrip" id="filmstrip"></div>
-    <div class="hero-text">
-      <h1>The world already owns Palo Alto</h1>
-    </div>
-    <div class="scrollhint">scroll</div>
+<!-- ─── REDWOOD SPINE (fixed left rail) ──────────────────────────── -->
+<div id="redwood-spine" aria-hidden="true">
+  <svg viewBox="0 0 2 1000" preserveAspectRatio="none">
+    <!-- Track: faint full height -->
+    <line class="spine-track" x1="1" y1="0" x2="1" y2="1000"/>
+    <!-- Progress: fills as reader scrolls -->
+    <line class="spine-progress" id="spineProgress" x1="1" y1="0" x2="1" y2="1000"/>
+    <!-- Branch nubs at irregular intervals -->
+    <line class="spine-branch" x1="1" y1="80"  x2="8"  y2="75"/>
+    <line class="spine-branch" x1="1" y1="160" x2="-5" y2="155"/>
+    <line class="spine-branch" x1="1" y1="255" x2="7"  y2="250"/>
+    <line class="spine-branch" x1="1" y1="340" x2="-4" y2="336"/>
+    <line class="spine-branch" x1="1" y1="430" x2="9"  y2="424"/>
+    <line class="spine-branch" x1="1" y1="510" x2="-6" y2="506"/>
+    <line class="spine-branch" x1="1" y1="600" x2="7"  y2="595"/>
+    <line class="spine-branch" x1="1" y1="680" x2="-5" y2="676"/>
+    <line class="spine-branch" x1="1" y1="760" x2="8"  y2="755"/>
+    <line class="spine-branch" x1="1" y1="840" x2="-4" y2="836"/>
+    <line class="spine-branch" x1="1" y1="920" x2="7"  y2="915"/>
+  </svg>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- HERO                                                           -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-vignette"></div>
+  <div class="hero-tree-line" id="heroTreeLine"></div>
+  <div class="hero-content">
+    <div class="hero-kicker">A positioning argument</div>
+    <h1 class="hero-title" id="heroTitle">The Palo Alto<br>Museum</h1>
+    <p class="hero-sub" id="heroSub">Palo Alto did not choose its story.<br>It became one.</p>
   </div>
 </section>
 
-<!-- ═══════════════ ACT ONE ═══════════════ -->
-<div class="acthead orc"><span class="t-zone">Act One</span><h2>The Telling</h2><div class="rule"></div></div>
-
-<div class="prose orc">
-  <p class="lead">The world already owns Palo Alto.</p>
-  <p>Not the town. The idea of it.</p>
-  <p>Two words that mean disruption, money, the garage, the future arriving early, and the loneliness all of that exported to everyone else.</p>
-  <p>Malcolm Harris wrote the definitive version<sup class="cite">1</sup> and the rest of the world reads it as the truth. The most talked-about town in America almost never gets to talk about itself.</p>
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- ACT I: THE SHADOW                                              -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="act-divider dark reveal" data-reveal>
+  <div><div class="act-num">Act I</div><div class="act-title">The Shadow</div></div>
 </div>
 
-<!-- NEW: Palo Alto full-bleed at first mention -->
-<figure class="fullbleed orc">
-  <div class="frame">
-    <img src="https://raw.githubusercontent.com/milochao/PaloAltoMuseumView/main/Palo_Alto.jpg" alt="Palo Alto, California" onerror="this.closest('.frame').style.background='#c8c2b4'">
-  </div>
-  <figcaption>Palo Alto, California. Two words the world thinks it knows.</figcaption>
-</figure>
-
-<!-- NEG SCENE -->
-<section class="scene" id="neg">
-  <div class="stage">
-    <div class="void-full" id="voidFull">
-      <div class="col-left">
-        <div class="comp-entry" style="transition-delay:.05s">
-          <span class="comp-name">MOAH</span>
-          <span class="comp-desc">the charming free stop, down the street</span>
-        </div>
-        <div class="comp-entry" style="transition-delay:.18s">
-          <span class="comp-name">New Museum Los Gatos</span>
-          <span class="comp-desc">a decade on, still earns cute, hidden gem, small</span>
-        </div>
-      </div>
-      <div class="vdivide"></div>
-      <div class="col-center">
-        <div class="void-question">who gets to say what Palo Alto is</div>
-        <div class="void-answer">Palo Alto Museum</div>
-        <div class="void-rule"></div>
-      </div>
-      <div class="vdivide" style="transition-delay:.1s"></div>
-      <div class="col-right">
-        <div class="comp-entry" style="transition-delay:.1s">
-          <span class="comp-name">Computer History Museum</span>
-          <span class="comp-desc">tells the world the valley changed it</span>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="steps">
-    <div class="step"><div class="card orc">
-      <p>Every other museum in reach is fighting a smaller war.</p>
-      <p>MOAH down the street is the charming free stop. The Computer History Museum tells the world the valley changed it. New Museum Los Gatos rebranded and a decade later still earns "cute, hidden gem, small."</p>
-    </div></div>
-    <div class="step"><div class="card orc">
-      <p>None of them is fighting for the one thing at stake here: <span class="loved">who gets to say what Palo Alto is.</span></p>
-    </div></div>
-    <div class="step"><div class="card orc">
-      <p>That is the fight.</p>
-      <p>The Palo Alto Museum is where the town takes its own telling…back.</p>
-    </div></div>
-  </div>
-</section>
-
-<div class="prose orc">
-  <p>Ask what New York gives you and the answer is swagger. Chicago, grit. Paris, the art of living.</p>
-  <p>Ask what Palo Alto gives and the answer is stranger and bigger.</p>
-  <p>Palo Altans are not proud of a skyline. They are proud of what they sent into the world.</p>
-  <p>Muybridge froze a galloping horse here and invented the moving image<sup class="cite">2</sup>. The garage. Stanford. The conviction, deeper than any street, that the future is something you build and not something you wait for.</p>
-</div>
-
-<!-- Heritage Park image removed from this position -->
-
-<!-- ═══════════════ ACT TWO ═══════════════ -->
-<div class="acthead orc"><span class="t-zone">Act Two</span><h2>One Animal</h2><div class="rule"></div></div>
-
-<!-- CHANGED: Russell Lee prose now in with-portrait layout -->
-<div class="with-portrait orc">
-  <div class="text">
-    <p>The building itself is the proof, not a metaphor.</p>
-    <p>Russell Lee invented the multi-specialty group practice inside these walls, contracted prepaid care with Stanford in 1946, ran one of the country's first outpatient cancer radiation units by 1950, and prefigured the HMO by decades<sup class="cite">3</sup>,</p>
-    <p>all of it against a county medical society that tried to throw the founders out for what it called socialized medicine<sup class="cite">3</sup>.</p>
-    <p>The garage gets the legend. The clinic did it first, and did it here, against resistance, which is the whole point.</p>
-  </div>
-  <figure class="portrait-side">
-    <img src="https://raw.githubusercontent.com/milochao/PaloAltoMuseumView/main/Dr_Russell_Lee_and_Birge_Clark.jpg" alt="Dr. Russell Lee and Birge Clark" onerror="this.style.background='#c8c2b4'">
-    <figcaption>Dr. Russell Lee (left) and architect Birge Clark.</figcaption>
-  </figure>
-</div>
-
-<!-- CHANGED: Leland Stanford prose now in with-portrait layout -->
-<div class="with-portrait orc">
-  <div class="text">
-    <p class="lead">That faith is the swagger.</p>
-    <p>It is also where the trouble lives.</p>
-    <p>Leland Stanford built this town on the belief that you could optimize a bloodline, and the belief did not stop at horses.</p>
-  </div>
-  <figure class="portrait-side">
-    <img src="https://raw.githubusercontent.com/milochao/PaloAltoMuseumView/main/Leland_Stanford.jpg" alt="Leland Stanford" onerror="this.style.background='#c8c2b4'">
-    <figcaption>Leland Stanford.</figcaption>
-  </figure>
-</div>
-
-<!-- ANIMAL: STATIC TRIPTYCH FIGURE + PROSE -->
-<figure class="triptych-figure orc">
-  <div class="triptych-zone">Stanford&rsquo;s Palo Alto System &mdash; three figures, one logic</div>
-  <div class="triptych">
-    <div class="panel">
-      <img src="https://raw.githubusercontent.com/milochao/PaloAltoMuseumView/main/Eadweard_Muybridge.jpg" alt="Eadweard Muybridge" onerror="this.closest('.panel').style.background='#222'">
-      <div class="panel-meta">
-        <span class="panel-year">photographer &middot; 1878</span>
-        <span class="panel-name">Eadweard Muybridge</span>
-        <span class="panel-role">commissioned by Stanford to freeze the galloping horse.</span>
-      </div>
-    </div>
-    <div class="panel">
-      <img src="https://raw.githubusercontent.com/milochao/PaloAltoMuseumView/main/David_Starr_Jordon.jpg" alt="David Starr Jordan" onerror="this.closest('.panel').style.background='#222'">
-      <div class="panel-meta">
-        <span class="panel-year">Stanford&rsquo;s first president &middot; 1891&ndash;1913</span>
-        <span class="panel-name">David Starr Jordan</span>
-        <span class="panel-role">advocated forced sterilization as state policy.</span>
-      </div>
-    </div>
-    <div class="panel">
-      <img src="https://raw.githubusercontent.com/milochao/PaloAltoMuseumView/main/Lewis_Madison_Terman.jpg" alt="Lewis Terman" onerror="this.closest('.panel').style.background='#222'">
-      <div class="panel-meta">
-        <span class="panel-year">Stanford psychologist &middot; 1916</span>
-        <span class="panel-name">Lewis Terman</span>
-        <span class="panel-role">built the Stanford&ndash;Binet IQ test to rank human beings.</span>
-      </div>
-    </div>
-  </div>
-  <figcaption>One Stanford commission, three applications. The method that froze the horse is the method that ranked the people.</figcaption>
-</figure>
-
-<div class="prose orc">
-  <p>The same Stanford who hired Muybridge to freeze his galloping horse ran what Harris calls the Palo Alto System<sup class="cite">4</sup>, breed the best and cull the rest,</p>
-  <p>The university's founding president David Starr Jordan and the psychologist Lewis Terman carried that logic into people. They became advocates for sterilization and built the IQ test to rank human beings the way Stanford ranked horses<sup class="cite">5</sup>.</p>
-</div>
-
-<div class="prose orc">
-  <p class="dropline">The genius and the hubris are one animal.</p>
-  <p>The horse that gave the world the moving image is the same stock that gave the world a method for ranking human beings.</p>
-</div>
-
-<div class="prose orc">
-  <p>Stanford has already begun that reckoning. It struck Jordan's name from a building in 2020<sup class="cite">6</sup> over this exact record.</p>
-  <p>The town's own university faced its founder. <span class="loved">The museum is where the town does the same.</span></p>
-</div>
-
-<div class="prose orc">
-  <p>From Hooves to Hollywood, an exhibit opening on the wall, is that entire story when it is told whole.</p>
-  <p>A museum that only flatters the genius is advertising.</p>
-  <p>A museum honest enough to keep the horse and its shadow in one room is the only one worth crossing town for.</p>
-</div>
-
-<!-- MAUSOLEUM → MOUSEION -->
-<section id="muse">
-  <div class="prose">
-    <div class="orc" style="margin-bottom:1.5rem;text-align:center">
-      <div class="wordstage" id="wordstage">
-        <span class="w dead">Mausoleum</span>
-        <span class="w alive">Mouseion</span>
-      </div>
-    </div>
-    <div class="orc">
-      <p>The word museum has rotted in everyone's mouth into mausoleum. A tomb for dead things behind glass.</p>
-      <p>The root is the opposite. <span class="loved">Mouseion, the home of the muse, the place where ideas are born and live.</span></p>
-      <p>That root is true almost nowhere on earth. It is true here.</p>
-      <p>This is not a museum of Palo Alto's past. It is the seat of the muse that keeps returning to this one town and refuses to leave it alone.</p>
-      <p>The legal name can stay exactly as the IRS has it. The idea does not have to obey the name.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════ ACT THREE ═══════════════ -->
-<div class="acthead orc"><span class="t-zone">Act Three</span><h2>The Door</h2><div class="rule"></div></div>
-
-<div class="prose orc">
-  <p>The Roth was never a vault.</p>
-  <p>Birge Clark dressed the frightening machinery of modern medicine in residential warmth, the style of a home, not a clinic, wrapped the building around a living valley oak, set it back from the street for human scale,</p>
-  <p>and chose redwood beams and hand-painted tile where the era demanded sterile white<sup class="cite">10</sup>.</p>
-  <p>Beauty and calm as active parts of healing, not luxuries.</p>
-  <p>For ninety years the town <span class="loved">walked through that door to be cared for and to bring new life in safely.</span></p>
-  <p>Beginnings.</p>
-  <p>That is the soul under the swagger, and the reason the awe does not turn cold.</p>
-</div>
-
-<!-- CHANGED: Was Russell Lee + Birge Clark image; now The Roth Building -->
-<figure class="fullbleed orc">
-  <div class="frame">
-    <img src="https://raw.githubusercontent.com/milochao/PaloAltoMuseumView/main/The_Roth.jpg" alt="The Roth Building" onerror="this.closest('.frame').style.background='#c8c2b4'">
-  </div>
-  <figcaption>The Roth Building, Palo Alto. Birge Clark, 1932. Spanish Colonial Revival, on the National Register of Historic Places.</figcaption>
-</figure>
-
-<div class="with-portrait orc">
-  <div class="text">
-    <p>And the building's own family is still in the room.</p>
-    <p>Honorary Board member Dean Clark, MD, connects the museum to the Palo Alto medical and architectural lineage that shaped the Roth Building.<sup class="cite">15</sup></p>
-    <p>The people who made the place are vouching for what it becomes.</p>
-  </div>
-  <figure class="portrait-side">
-    <img src="https://raw.githubusercontent.com/milochao/PaloAltoMuseumView/main/Dean_Clark.png" alt="Dean Clark, MD" onerror="this.style.background='#c8c2b4'">
-    <figcaption>Dean Clark, MD. Honorary Board member.</figcaption>
-  </figure>
-</div>
-
-<div class="prose orc">
-  <p class="lead">The fight is painted on the front door.</p>
-  <p>Before any of this is positioning, it is a fresco.</p>
-  <p>In 1932 Victor Arnautoff, fresh from assisting Diego Rivera<sup class="cite">7</sup>, painted Modern and Ancient Medicine into the clinic's entrance in true fresco, the paint bonded into wet plaster so the art is the wall and cannot be removed without destroying it<sup class="cite">8</sup>.</p>
-</div>
-
-<!-- DOOR SCENE -->
-<section class="scene" id="door">
-  <div class="stage">
-    <div class="fresco-wrap" id="frescoWrap">
-      <div class="fresco-strip"></div>
-      <img class="fresco-img"
-        src="https://raw.githubusercontent.com/milochao/PaloAltoMuseumView/main/Fresco_Artwork.png"
-        alt="Victor Arnautoff, Modern and Ancient Medicine, 1932"
-        onerror="this.closest('.fresco-wrap').style.background='#c8c2b4'">
-      <div class="fresco-ww"></div>
-    </div>
-  </div>
-  <div class="steps">
-    <div class="step">
-      <div class="card orc">
-        <p>Four color panels.</p>
-        <p>A doctor lifting a naked infant toward its mother. An old physician bent with a stethoscope over a bare-chested woman. A masked surgical team mid-operation. A young man stripped to the waist under an early X-ray, the patient a self-portrait of the artist.</p>
-        <p>Faces, bodies, attention. The clinic's values, painted at its door.</p>
-      </div>
-    </div>
-    <div class="step">
-      <div class="card orc">
-        <p>Below the color panels run the monochrome ones, the practices the clinic called primitive, among them a Flathead infant's head pressed into shape because a sloping forehead was thought to mark intelligence.</p>
-        <p>The ladder of who counts as advanced is in the same wall.</p>
-        <p>The genius and its shadow, at the door, in plaster.</p>
-      </div>
-    </div>
-    <div class="step">
-      <div class="card orc">
-        <p>The town could not handle the color panels. Bare breasts on a public building.</p>
-        <p>The San Francisco Chronicle ran "Murals and Morals,"<sup class="cite">9</sup> cars jammed Homer Avenue to gawk, and Dr. Fritz Roth, the surgeon, threatened to whitewash the walls before he would move his practice in<sup class="cite">9</sup>.</p>
-      </div>
-    </div>
-    <div class="step">
-      <div class="card orc">
-        <p>The murals stayed.</p>
-        <p class="dropline" style="color:var(--green-deep)">The town learned not to whitewash.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="prose orc">
-  <p>Read that with the museum in mind.</p>
-  <p>The building greets you with honest images of bodies, of progress, and of the hierarchy progress carried, all of which the town once wanted gone and chose to keep.</p>
-  <p>The museum carries the name of the man who wanted them whitewashed, and exists to do the opposite.</p>
-  <p>The seat of the muse is not a figure of speech here. It is fine art bonded to the entrance, and the first thing the town ever did with it was argue about whether to face it.</p>
-  <p>The reckoning is not a risk the museum runs. It is the building's oldest habit.</p>
-</div>
-
-<!-- ═══════════════ ACT FOUR ═══════════════ -->
-<div class="acthead orc"><span class="t-zone">Act Four</span><h2>The Wall</h2><div class="rule"></div></div>
-
-<div class="prose orc">
-  <p>This is the part that makes the position real instead of clever, and it is already in the opening.</p>
-  <p>The inaugural wall is called I Am Palo Alto.</p>
-  <p>Icons and unsung heroes on one side, and a living, growing collection of ordinary Palo Altans on the other, photos and video and stories, built through the AI the town invented.</p>
-  <p>Marguerite has described it as the town's history told through its people, made to grow over time.</p>
-</div>
-
-<section class="scene dark" id="wall">
-  <div class="stage">
-    <div class="faces-stage">
+<section class="scroll-section dark" id="actI">
+  <div class="inner">
+    <div class="col-text-vis">
       <div>
-        <div class="faces" id="faces"></div>
-        <div class="youtag">you look up, and you are on the wall</div>
+        <div class="eyebrow reveal" data-reveal>The situation</div>
+        <div class="rule reveal delay-1" data-reveal></div>
+        <p class="prose reveal delay-2" data-reveal>
+          Palo Alto did not choose its story. It became one.
+        </p>
+        <p class="prose reveal delay-3" data-reveal style="margin-top:1.1em;color:var(--fog);">
+          Stanford wrote the origin chapter. The press wrote the middle. The critics wrote the counter-chapters. For most of two centuries the town has been the object of its own story, never the author.
+        </p>
+        <p class="prose reveal delay-4" data-reveal style="margin-top:1.1em;color:var(--sand);font-family:var(--type-head);font-size:1.05rem;">
+          It has the most talked-about streets in America, and nowhere to talk back.
+        </p>
+      </div>
+      <!-- Portrait cycling: Stanford, Jordan, Muybridge, Harris -->
+      <div class="portrait-stage reveal delay-2" data-reveal style="max-width:320px;">
+        <img class="portrait-img active" src="Leland_Stanford.jpg"      alt="Leland Stanford"      id="p0">
+        <img class="portrait-img"        src="David_Starr_Jordon.jpg"   alt="David Starr Jordan"   id="p1">
+        <img class="portrait-img"        src="Eadweard_Muybridge.jpg"   alt="Eadweard Muybridge"   id="p2">
+        <img class="portrait-img"        src="Lewis_Madison_Terman.jpg" alt="Lewis Madison Terman" id="p3">
+        <div class="portrait-caption" id="portraitCaption">Leland Stanford: wrote the origin</div>
       </div>
     </div>
   </div>
-  <div class="steps">
-    <div class="step"><div class="card orc" style="background:rgba(15,15,13,.86);border-color:#262620;color:#ede8de">
-      <p>Arnautoff put faces at the door in 1932. This wall puts the living town's faces there now.</p>
-      <p>The same gesture, ninety years apart.</p>
-    </div></div>
-    <div class="step"><div class="card orc" style="background:rgba(15,15,13,.86);border-color:#262620;color:#ede8de">
-      <p>You do not get told you belong to Palo Alto. You look up, and you are on the wall, between an icon and the family three doors down.</p>
-      <p>Belonging is never argued. It is conferred by the act of being in the room.</p>
-    </div></div>
-    <div class="step"><div class="card orc" style="background:rgba(15,15,13,.86);border-color:#262620;color:#ede8de">
-      <p>The one question that decides everything is whether that wall is allowed to hold a hard story or only a proud one.</p>
-      <p>If it can hold both, her instinct and this position are the same museum.</p>
-    </div></div>
-  </div>
 </section>
 
-<div class="acthead orc" style="padding-bottom:0"><span class="t-zone">What it refuses</span></div>
-<div class="prose orc" style="padding-bottom:.8rem">
-  <p>A position is the things it will not be. This one refuses three.</p>
-</div>
-<div class="refuse orc">
-  <div class="item"><span class="x">01</span><span class="t">It is <b>not the keepsake</b> for the families already inside. That is heritage and charm, and MOAH owns it two blocks away, free.</span></div>
-  <div class="item"><span class="x">02</span><span class="t">It is <b>not the broadcast</b> that tells the world Palo Alto matters. That is the Computer History Museum's war, the world already believes it, and the audit is brutal: the claim never survives a visit.</span></div>
-  <div class="item"><span class="x">03</span><span class="t">And it is <b>not the safe blend</b> of all three that every board can nod at and no resident can feel. The blend is how a museum ends up sounding like every other museum.</span></div>
-</div>
-<div class="prose orc" style="padding-top:1.3rem">
-  <p class="dropline" style="color:var(--green-deep)">This one chooses.</p>
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- ACT II: THE FALSE DAWN                                         -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="act-divider light reveal" data-reveal>
+  <div><div class="act-num" style="color:var(--rust);">Act II</div><div class="act-title">The False Dawn</div></div>
 </div>
 
-<!-- WHO HOLDS THE PEN -->
-<div class="acthead orc"><span class="t-zone">Who holds the pen</span><h2>One pen, two hands</h2><div class="rule"></div></div>
-
-<div class="prose orc">
-  <p class="lead">Before any of this is funded, it is a question of who holds the pen.</p>
-  <p>The world says it. The town almost never does. The museum is where that flips. But a town does not take its story back with one hand, and Palo Alto has two.</p>
-  <p>One kind is <em>of</em> this place. The story is already theirs, and they have watched it told about them without once telling it back.</p>
-  <p>The other got rich here and is not yet from here. The story is not theirs yet.</p>
-</div>
-
-<div class="prose orc">
-  <p>The record is not ambiguous about which hand has carried this.</p>
-  <p>For two decades the rooted built it alone. More than 600 families gave, on memory alone<sup class="cite">11</sup>.</p>
-  <p>The new wealth did not show. By 2017 the board had raised just <span class="loved">$1.4 million from donors</span>, and the project stalled until the city threatened to pull the lease unless it found $1.75 million by year-end<sup class="cite">12</sup>. Heritage did not move them. Neither did belonging.</p>
-</div>
-
-<section class="split orc">
-  <div>
-    <div style="font-size:9px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--green-deep);margin-bottom:1.2rem">Silicon Valley giving &middot; 2024</div>
-    <div class="figstage">
-      <div class="frule"></div>
+<section class="scroll-section photo" id="actII">
+  <div class="photo-bg light-overlay" style="background-image:url('The_Roth.jpg');"></div>
+  <div class="inner" style="position:relative;z-index:2;">
+    <div class="col-text-vis">
       <div>
-        <div class="bignum">79%</div>
-        <div class="numlab">of $1.52 billion in donor giving left the region</div>
+        <div class="eyebrow rust reveal" data-reveal>1932 to 2015</div>
+        <div class="rule reveal delay-1" data-reveal></div>
+        <p class="prose reveal delay-2" data-reveal style="color:var(--charcoal);">
+          The Palo Alto Museum took up residency in the 1932 Birge Clark clinic at 300 Homer Avenue, and began the work of becoming a museum.
+        </p>
+        <p class="prose reveal delay-3" data-reveal style="margin-top:1.1em;color:var(--charcoal);">
+          The building was beautiful. The bones were solid. The board was reconstituted. A CEO was hired. A program was assembled. The founding chapter was being written at last.
+        </p>
+        <p class="prose reveal delay-4" data-reveal style="margin-top:1.1em;font-style:italic;color:var(--fog);">
+          The shadow did not announce itself. It arrived quietly inside the silence of the next question: and then what?
+        </p>
+        <p class="reveal delay-5" data-reveal style="margin-top:1.4rem;font-family:var(--type-head);font-size:1.25rem;color:var(--charcoal);line-height:1.25;max-width:28ch;">
+          The hardest work had not yet been named.
+        </p>
+      </div>
+      <!-- Russell Lee / Birge Clark photo -->
+      <div class="photo-card reveal delay-3" data-reveal style="aspect-ratio:3/4;max-width:300px;">
+        <img src="Dr_Russell_Lee_and_Birge_Clark.jpg" alt="Russell Lee and Birge Clark">
+        <div class="photo-card-label">Birge Clark, architect of the room</div>
       </div>
     </div>
   </div>
-  <div class="divider"></div>
-  <div class="body">
-    <p>It is not that they do not give. They give more than almost anyone alive<sup class="cite">13</sup>. Their causes are already chosen, their homes elsewhere. Nothing here has ever competed for it.</p>
-    <p class="kicker">The capital is not absent. It is spoken for.</p>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- ACT III: THE GRAVE                                             -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="act-divider dark reveal" data-reveal>
+  <div><div class="act-num">Act III</div><div class="act-title">The Grave</div></div>
+</div>
+
+<!-- Bellevue -->
+<section class="scroll-section mid" id="bellevue">
+  <div class="inner">
+    <div class="col-2">
+      <div>
+        <div class="eyebrow reveal" data-reveal>The Risk</div>
+        <div class="rule reveal delay-1" data-reveal></div>
+        <p class="display-lg reveal delay-2" data-reveal style="color:var(--white);line-height:1.15;max-width:20ch;">
+          Bellevue Arts Museum opened in a $23M Steven Holl building. It closed. Reopened. Closed again in 2024. Sold for $5M in 2025.
+        </p>
+      </div>
+      <div style="padding-top:0.5rem;">
+        <div class="photo-card reveal delay-2" data-reveal style="aspect-ratio:4/3;margin-bottom:1.2rem;">
+          <img src="bellevue_arts_museum.jpg" alt="Bellevue Arts Museum">
+          <div class="photo-card-label">Bellevue Arts Museum, 2001</div>
+        </div>
+        <div class="reveal delay-3" data-reveal style="border-left:3px solid rgba(139,145,137,0.2);padding-left:1.2rem;margin-bottom:1rem;">
+          <p style="color:var(--fog);font-size:0.85rem;line-height:1.6;">Lead gifts. Grants. Architectural acclaim.</p>
+        </div>
+        <div class="reveal delay-4" data-reveal style="border-left:3px solid var(--rust);padding-left:1.2rem;">
+          <p style="color:var(--cream);font-size:0.88rem;font-weight:600;line-height:1.6;">No earned-revenue floor.<br>No reason to return.</p>
+        </div>
+        <p class="prose reveal delay-5" data-reveal style="color:var(--fog);font-size:0.8rem;margin-top:1.2rem;">
+          The American Alliance of Museums benchmarks sustainable museums at 32 percent of operating budget from earned income. That ratio is not a preference. It is a survival condition.
+        </p>
+      </div>
+    </div>
   </div>
 </section>
 
-<div class="prose orc">
-  <p>And when one of them finally moved, he did not join. He built. Len Shustek founded the $125 million Computer History Museum in the next town, because making the thing that was not there is the only thing that moves that kind of wealth<sup class="cite">16</sup>.</p>
-  <p>The town said the split out loud. A council member, debating the lease: <span class="loved">"Do we want to be investing in the past, the history, or in the future?"</span><sup class="cite">17</sup></p>
-</div>
-
-<div class="prose orc">
-  <p>That sounds like two museums.</p>
-  <p class="dropline" style="color:var(--green-deep)">One pen. Two hands.</p>
-  <p>The rooted bring the memory. The arrived build the room it lives in. The page is empty without the words; the words have nowhere to live without the page. <span class="loved">Neither is a museum alone.</span></p>
-  <p class="lead">The fight does not change. Only the hand does.</p>
-</div>
-
-<div class="acthead orc"><span class="t-zone">The hand that lived it</span><div class="rule"></div></div>
-<div class="prose orc">
-  <p class="lead">If the story is already yours, the museum is where you write it down before someone else does.</p>
-  <p>You lived the version the world never asks about. Harris will not tell it. The world will not. You will, or no one will.</p>
-  <p>This is not a figure of speech. I Am Palo Alto is a growing wall of Palo Altans, and you add your own<sup class="cite">18</sup>. Juana Briones held her ground in court as the town changed hands and refused to disappear; that nerve is on the wall<sup class="cite">19</sup>. The museum that returns the most feeling is never the one with the best objects. It is the one that lets people see themselves in it<sup class="cite">20</sup>.</p>
-  <p>Membership is not a ticket. It is your name on the town's own record, kept by the people who lived it, not written about them from outside.</p>
-  <p class="lead" style="color:var(--green-deep)">Take the pen. Write yourself in.</p>
-</div>
-
-<div class="acthead orc"><span class="t-zone">The hand that can build the room</span><div class="rule"></div></div>
-<div class="prose orc">
-  <p class="lead">If the story is not yours yet, you do not inherit your way in. You build it.</p>
-  <p>You did not grow up here. The memory is not yours, and pretending otherwise is the cheap move. But the town the world will not stop talking about has never had an institution worthy of telling its own story. That is the thing that is not there yet. That is the thing to make.</p>
-  <p>This is already how your wealth moves. In 2024, 79 percent of $1.52 billion in donor giving left the region<sup class="cite">13</sup>. You fund what is global, what is new, what you can build. When Len Shustek wanted to matter here, he did not give to a museum that existed. He founded the $125 million Computer History Museum<sup class="cite">16</sup>. So found this one.</p>
-  <p>You will not be first and you will not be alone. <span class="loved">Your peers are already on the board.</span> Build the wing. Name it. It outlasts you, in the one room that decides what this town meant.</p>
-  <p class="lead" style="color:var(--green-deep)">Take the pen. Build the room it writes in.</p>
-</div>
-
-<!-- THE FIRST CHAPTER -->
-<div class="acthead orc"><span class="t-zone">The first chapter</span></div>
-<div class="prose orc">
-  <p>Opening day, the program is not yet the argument. It is the raw material of two different museums, and you can see both fighting for the building.</p>
-  <p>Three exhibits anchor the real museum: I Am Palo Alto, the people wall and the belonging engine. From Hooves to Hollywood, the horse that gave the world the moving image and the optimization method that became <span class="loved">eugenics.</span> Juana Briones, who held her own ground in court as Palo Alto shifted from Mexican to American territory and refused to disappear from history.</p>
-  <p>Then there is <span class="loved">Imagine a World Without Palo Alto,</span> which runs the Computer History Museum move, the town that changed the world, the line the audit says never survives a visit. And <span class="loved">The Life of Trees,</span> pleasant and weightless. Those two are the broadcast instinct, already on the wall.</p>
-  <p>Naming this choice is the whole point of the position. The opening does not decide what the museum is. The position does.</p>
-  <p>It tells the town which of these two museums the building becomes, and it turns Imagine a World Without Palo Alto from a slogan into a question the town can argue.</p>
-</div>
-
-<div class="prose orc">
-  <p>After the exhibits, the room does what the clinic did. It convenes.</p>
-  <p>Convening is not only an ambition here, it is partly the rent. The dollar-a-year arrangement requires the museum to stay open to the public at least twenty hours a week and to keep the Heritage Park restrooms running<sup class="cite">14</sup>. The town wrote public access into the terms.</p>
-  <p>The rail fight, the housing fight, the question of what this place owes the people it priced out, hosted by a board that includes civic leaders with decades of service in Palo Alto governance,<sup class="cite">15</sup> in the building that cared for it for ninety years.</p>
-  <p>Not a memorial. A working room.</p>
-</div>
-
-<!-- Heritage Park image now lives near the lease mention -->
-<figure class="fullbleed orc">
-  <div class="frame">
-    <img src="https://raw.githubusercontent.com/milochao/PaloAltoMuseumView/main/Heritage_Park.jpg" alt="Heritage Park, Palo Alto" onerror="this.closest('.frame').style.background='#c8c2b4'">
+<!-- 3.4% -->
+<section class="scroll-section dark" id="onepercent">
+  <div class="inner">
+    <div class="col-text-vis" style="align-items:center;">
+      <div>
+        <div class="eyebrow reveal" data-reveal>The reach gap</div>
+        <div class="rule reveal delay-1" data-reveal></div>
+        <div class="bignum reveal heavy delay-2" data-reveal>3.4%</div>
+        <p class="prose reveal delay-3" data-reveal style="margin-top:1.2rem;color:var(--fog);">
+          of Palo Alto households had given to the museum by the July 2023 groundbreaking: 900 donors in a city of roughly 26,000 households.
+        </p>
+        <p class="prose reveal delay-4" data-reveal style="margin-top:0.9rem;font-style:italic;color:var(--sand);">
+          Even after a major capital campaign. This is not a passion problem. It is a reach problem.
+        </p>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:1rem;">
+        <div class="dot-grid" id="dotGrid"></div>
+        <p style="font-family:var(--type-body);font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--fog);text-align:center;max-width:22ch;">
+          3.4 of every 100 households had given by 2023
+        </p>
+      </div>
+    </div>
   </div>
-  <figcaption>Heritage Park, Palo Alto. The Roth Building sits at its center, leased from the City for a dollar a year.</figcaption>
-</figure>
-
-<div class="acthead orc"><span class="t-zone">The bar</span></div>
-<div class="bar orc">
-  <div class="t"><div class="h">Distinct</div><div class="b">No one else is fighting for the telling of Palo Alto, and no one else has the town's own clinic, the frescoes that already won the whitewash fight, and the architect's family and former mayors on its board, to fight from.</div></div>
-  <div class="t"><div class="h">True</div><div class="b">Every piece of this is in the building, the frescoes, the opening program, the honorary roster, and the wall the museum is building right now.</div></div>
-  <div class="t"><div class="h">Resonant</div><div class="b">Every resident feels the gap between the Palo Alto the world discusses and the one they live in. This is the place that closes it.</div></div>
-</div>
-
-<div class="finale">
-  <p class="small">What this town built, the world inherited.</p>
-  <p class="big">The Palo Alto Museum is where the town finally <em>inherits itself.</em></p>
-</div>
-
-<section class="sources">
-  <span class="t-zone">Sources &amp; method</span>
-  <p class="note">Prose is the Palo Alto Museum positioning, version 3, audited May 2026.</p>
-  <ol>
-    <li><b>Malcolm Harris, Palo Alto (2023).</b> The dominant published narrative of the region and its eugenic record.</li>
-    <li><b>Muybridge, 1878, Stanford Stock Farm.</b> The motion study commissioned by Leland Stanford; foundational to cinema.</li>
-    <li><b>Roth Building: A Deep Historical Study.</b> Russell Lee's group practice, the 1946 prepaid care contract, the 1950 outpatient radiation unit, and the county medical society's opposition.</li>
-    <li><b>Harness Racing Museum; Stanford materials.</b> The Palo Alto System as a historically attested term for the farm's breeding and training regime.</li>
-    <li><b>Harris; Stanford records; Terman, The Measurement of Intelligence (1916).</b> Jordan's eugenics advocacy and Terman's use of the Stanford-Binet.</li>
-    <li><b>Stanford Daily, Oct 7 2020; Stanford Report.</b> The Board of Trustees striking Jordan's name from the building.</li>
-    <li><b>Roth Building Deep Historical Study.</b> Arnautoff as Diego Rivera's assistant in late-1920s Mexico.</li>
-    <li><b>Roth Building Deep Historical Study.</b> Arnautoff's Modern and Ancient Medicine, 1932, buon fresco bonded into wet plaster.</li>
-    <li><b>Roth Building Deep Historical Study.</b> The San Francisco Chronicle's Murals and Morals, and Roth's threat to whitewash before moving in.</li>
-    <li><b>Palo Alto Online; project files.</b> Birge Clark's 1932 design of the Roth Building, Spanish Colonial Revival, National Register of Historic Places.</li>
-    <li><b>Palo Alto Online, 2017.</b> More than 600 families had contributed to the museum campaign.</li>
-    <li><b>Palo Alto Online, December 2017.</b> Mayor Greg Scharff stated the board had raised $1.4 million from donors; the City Council set a challenge to raise $1.75 million by year-end or lose the lease.</li>
-    <li><b>Silicon Valley Community Foundation 2024-25 Year in Review, via San Jose Spotlight.</b> Of $1.52 billion in donor giving, 8.6 percent went to local needs; 79 percent left the region.</li>
-    <li><b>Roth Building Deep Historical Study.</b> The dollar-a-year municipal lease terms.</li>
-    <li><b>Palo Alto Museum board roster, 2025.</b> Karen Holman, former mayor and Vice Chair; Dean Clark, MD, Honorary Board.</li>
-    <li><b>Computer History Museum (institutional history); Wikipedia.</b> Len Shustek founded the museum; capital campaign reached roughly $125 million.</li>
-    <li><b>Palo Alto Online, 2021.</b> Council member Greg Tanaka framed the choice as investing in the past, the history, or the future.</li>
-    <li><b>Marguerite Gong Hancock, via Palo Alto Online, 2025.</b> I Am Palo Alto is designed to grow as visitors contribute their own stories.</li>
-    <li><b>Palo Alto Online; project verification.</b> Juana Briones defended her landholding through litigation that reached the US Supreme Court.</li>
-    <li><b>Competitive positioning audit, this project.</b> Across institutions, participatory programs outperform collections in generating emotional visitor response.</li>
-  </ol>
 </section>
 
-<footer>
-  <p>Archival images render with a desaturated treatment. Color is reserved for the fresco and the green signal.</p>
-</footer>
+<!-- CASE INSET: OMCA replaces Sharp/Ehrenberg + Romaniuk -->
+<div class="case-section reveal" data-reveal id="case3">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="case-header">
+      <span class="case-label">What happened when a museum solved this</span>
+      <span class="case-anchor">on the reach gap</span>
+    </div>
+    <div class="case-rule"></div>
+    <div class="case-grid wide">
+      <div class="case-photo" style="aspect-ratio:4/3;">
+        <img src="OMCA.jpg" alt="Oakland Museum of California" onerror="this.parentElement.style.background='#2D3329';">
+        <div class="case-photo-caption">Oakland Museum of California, First Fridays</div>
+      </div>
+      <div class="case-card">
+        <div class="case-who">Oakland Museum of California</div>
+        <div class="case-what">Oakland, CA. Comparable civic institution, comparable donor-penetration challenge.</div>
+        <span class="case-concept">Penetration through entry points, not loyalty depth</span>
+        <p class="case-argument">OMCA faced the same geometry: a small base of committed donors, a large base of aware non-givers. Their intervention was not a deeper loyalty program for the existing donors. It was First Fridays: a recurring evening event that gave the 96 percent who had no existing relationship with the museum a named reason to walk in.</p>
+        <div class="case-outcome">First Fridays grew from 200 attendees to 4,000-plus per event. Membership penetration increased. The entry point, not the collection, not the brand, was the mechanism.</div>
+        <p class="case-pam"><strong>For PAM:</strong> The recording booth, the Tuesday forum, the community room rental are not program amenities. They are the entry points. Named occasions for the 96 percent who have not yet walked in.</p>
+        <div class="case-verdict">The case holds</div>
+      </div>
+    </div>
+  </div>
+</div>
 
+<!-- The giving gap -->
+<section class="scroll-section light" id="givinggap">
+  <div class="inner">
+    <div class="col-text-vis" style="align-items:center;">
+      <div>
+        <div class="eyebrow rust reveal" data-reveal>The giving gap</div>
+        <div class="rule reveal delay-1" data-reveal></div>
+        <div class="display-lg dark-num reveal heavy delay-2" data-reveal style="font-family:var(--type-head);color:var(--charcoal);line-height:1.05;max-width:14ch;">Most of the region's charitable capital leaves.</div>
+        <p class="prose reveal delay-3" data-reveal style="margin-top:1.3rem;">
+          Stanford. The Met. National causes. Global foundations. The personal passions of people whose fortunes were made in forty miles of geography. The region produces extraordinary wealth and exports most of its charitable expression of that wealth.
+        </p>
+        <p class="prose reveal delay-4" data-reveal style="margin-top:0.9rem;font-style:italic;color:var(--fog);">
+          Nothing here has made a sufficiently fundable argument that the place itself is worth funding.
+        </p>
+      </div>
+      <div style="max-width:300px;width:100%;" class="reveal delay-3" data-reveal>
+        <p style="font-family:var(--type-body);font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--fog);margin-bottom:1rem;">Where giving from this region concentrates</p>
+        <div style="display:flex;flex-direction:column;gap:0.55rem;">
+          <div style="font-size:0.85rem;color:var(--charcoal);padding:0.55rem 0.8rem;border-left:3px solid rgba(60,65,57,0.22);">Stanford University</div>
+          <div style="font-size:0.85rem;color:var(--charcoal);padding:0.55rem 0.8rem;border-left:3px solid rgba(60,65,57,0.18);">National arts institutions</div>
+          <div style="font-size:0.85rem;color:var(--charcoal);padding:0.55rem 0.8rem;border-left:3px solid rgba(60,65,57,0.13);">Global health &amp; research</div>
+          <div style="font-size:0.85rem;color:var(--charcoal);padding:0.55rem 0.8rem;border-left:3px solid rgba(60,65,57,0.09);">Founders' personal causes</div>
+          <div style="margin-top:0.3rem;font-size:0.85rem;color:var(--rust);padding:0.55rem 0.8rem;border-left:3px solid var(--rust);font-weight:600;">PAM: unfunded argument</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- ACT IV: THE BLEND TRAP                                         -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="act-divider dark reveal" data-reveal>
+  <div><div class="act-num">Act IV</div><div class="act-title">The Blend Trap</div></div>
+</div>
+
+<section class="scroll-section dark" id="actIV">
+  <div class="inner">
+    <div class="eyebrow reveal" data-reveal>The board's instinct</div>
+    <div class="rule reveal delay-1" data-reveal></div>
+    <div class="col-3" style="margin-bottom:2.8rem;">
+      <div class="reveal delay-1" data-reveal style="border-top:2px solid rgba(139,145,137,0.2);padding-top:1.1rem;">
+        <div style="font-family:var(--type-body);font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--rust);margin-bottom:0.7rem;">The Keeper</div>
+        <p style="font-size:0.86rem;color:var(--fog);line-height:1.6;">Memory. The Ohlone, Juana Briones, the labor of the people who built the town before the capital arrived. The honest record.</p>
+      </div>
+      <div class="reveal delay-2" data-reveal style="border-top:2px solid rgba(139,145,137,0.2);padding-top:1.1rem;">
+        <div style="font-family:var(--type-body);font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--rust);margin-bottom:0.7rem;">The Civic Bloc</div>
+        <p style="font-size:0.86rem;color:var(--fog);line-height:1.6;">Forum. The room where the rail line gets discussed, the zoning fight gets aired, the town thinks together in public.</p>
+      </div>
+      <div class="reveal delay-3" data-reveal style="border-top:2px solid rgba(139,145,137,0.2);padding-top:1.1rem;">
+        <div style="font-family:var(--type-body);font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--rust);margin-bottom:0.7rem;">The Tech Camp</div>
+        <p style="font-size:0.86rem;color:var(--fog);line-height:1.6;">Participatory, interactive, built with the town's own capacity for making things. Living, not a tomb.</p>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:4vw;flex-wrap:wrap;">
+      <!-- Inverted Venn -->
+      <div class="reveal delay-2" data-reveal style="flex-shrink:0;">
+        <svg viewBox="0 0 360 240" fill="none" style="width:clamp(240px,38vw,400px);">
+          <circle cx="130" cy="120" r="80" fill="rgba(184,91,58,0.07)" stroke="rgba(184,91,58,0.28)" stroke-width="1.5"/>
+          <circle cx="230" cy="120" r="80" fill="rgba(139,145,137,0.05)" stroke="rgba(139,145,137,0.2)" stroke-width="1.5"/>
+          <circle cx="180" cy="46" r="80" fill="rgba(200,184,154,0.04)" stroke="rgba(200,184,154,0.14)" stroke-width="1.5"/>
+          <text x="180" y="126" text-anchor="middle" font-family="Calibri,sans-serif" font-size="9" fill="rgba(139,145,137,0.55)" letter-spacing="2">EMPTY</text>
+          <text x="88" y="168" text-anchor="middle" font-family="Calibri,sans-serif" font-size="8" fill="rgba(184,91,58,0.65)" letter-spacing="1">KEEPER</text>
+          <text x="272" y="168" text-anchor="middle" font-family="Calibri,sans-serif" font-size="8" fill="rgba(139,145,137,0.65)" letter-spacing="1">CIVIC</text>
+          <text x="180" y="19"  text-anchor="middle" font-family="Calibri,sans-serif" font-size="8" fill="rgba(200,184,154,0.65)" letter-spacing="1">TECH</text>
+        </svg>
+      </div>
+      <div style="max-width:38ch;" class="reveal delay-3" data-reveal>
+        <p class="display-sm" style="font-family:var(--type-head);color:var(--cream);margin-bottom:0.9rem;line-height:1.28;">The space where all three overlap is where you find no one.</p>
+        <p class="prose" style="color:var(--fog);">The blend that keeps the board from fighting leaves the institution without a position. A museum without a position in a transient town with a 16 percent annual mover rate has to reintroduce itself every year to a town that has already moved on.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASE INSET: CHM replaces Morgan -->
+<div class="case-section reveal" data-reveal id="case4">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="case-header">
+      <span class="case-label">What happens when the blend kills</span>
+      <span class="case-anchor">on the blend trap</span>
+    </div>
+    <div class="case-rule"></div>
+    <div class="case-grid wide">
+      <div class="case-photo" style="aspect-ratio:4/3;">
+        <img src="CHM.jpg" alt="Computer History Museum" onerror="this.parentElement.style.background='#2D3329';">
+        <div class="case-photo-caption">Computer History Museum, Mountain View</div>
+      </div>
+      <div class="case-card">
+        <div class="case-who">Computer History Museum</div>
+        <div class="case-what">Mountain View, CA. PAM's most direct competitor for civic identity.</div>
+        <span class="case-concept">Sacrifice earns the Lighthouse Identity</span>
+        <p class="case-argument">CHM spent years trying to be everything Silicon Valley: interactive, historical, educational, inspirational, community-facing. The position was diffuse. The moment they committed to a single identity (the museum of the computer, the machine itself) and donations stabilized and the school program grew. They sacrificed the broad claim for the precise one.</p>
+        <div class="case-outcome">"What are you prepared to sacrifice?" is the question Adam Morgan asks every challenger brand. CHM answered it. The answer is on every label in the building.</div>
+        <p class="case-pam"><strong>For PAM:</strong> CHM now owns "the computer." That seat is taken. The seat CHM cannot take, because it was never their mission, is the room where the town itself gathers. That seat is empty and adjacent to theirs.</p>
+        <div class="case-verdict">The case holds</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- ACT V: THE TURN                                                -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="act-divider dark reveal" data-reveal>
+  <div><div class="act-num">Act V</div><div class="act-title">The Turn</div></div>
+</div>
+
+<section class="scroll-section dark" id="actV">
+  <div class="inner">
+    <!-- The wound -->
+    <div style="display:flex;align-items:center;gap:5vw;flex-wrap:wrap;margin-bottom:4.5rem;">
+      <div style="max-width:44ch;" class="reveal" data-reveal>
+        <div class="eyebrow reveal delay-1" data-reveal>The wound</div>
+        <div class="rule reveal delay-2" data-reveal></div>
+        <p class="prose reveal delay-2" data-reveal style="color:var(--fog);">
+          The museum does not have a collection. It has been treated as a wound. The aesthetic benefactors who fund the Met and the Broad give money to art and to the authority that art confers. Without a collection there is no canvas for that gift.
+        </p>
+      </div>
+      <!-- Empty plinth -->
+      <div class="reveal delay-3" data-reveal style="flex-shrink:0;">
+        <svg viewBox="0 0 220 200" fill="none" style="width:clamp(140px,22vw,220px);">
+          <rect x="60" y="140" width="100" height="12" fill="rgba(200,184,154,0.1)" stroke="rgba(200,184,154,0.18)" stroke-width="1"/>
+          <rect x="70" y="80" width="80" height="60" fill="rgba(200,184,154,0.04)" stroke="rgba(200,184,154,0.12)" stroke-width="1"/>
+          <rect x="55" y="76" width="110" height="8" fill="rgba(200,184,154,0.07)" stroke="rgba(200,184,154,0.18)" stroke-width="1"/>
+          <text x="110" y="57" text-anchor="middle" font-family="Calibri,sans-serif" font-size="8" fill="rgba(184,91,58,0.55)" letter-spacing="3">NO COLLECTION</text>
+          <line x1="90" y1="62" x2="130" y2="62" stroke="rgba(184,91,58,0.22)" stroke-width="1"/>
+          <line x1="110" y1="62" x2="110" y2="76" stroke="rgba(184,91,58,0.18)" stroke-width="1"/>
+        </svg>
+      </div>
+    </div>
+    <!-- The liberation -->
+    <div class="reveal" data-reveal style="margin-bottom:2.5rem;">
+      <p class="display-lg" style="color:var(--white);line-height:1.12;max-width:22ch;">
+        The missing collection is not the wound.<br>
+        <span style="color:var(--rust);">It is the liberation.</span>
+      </p>
+    </div>
+    <div class="col-2" style="margin-top:1.8rem;">
+      <div class="reveal delay-2" data-reveal style="border-top:1px solid rgba(139,145,137,0.18);padding-top:1.1rem;">
+        <p style="font-family:var(--type-body);font-size:0.58rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--fog);margin-bottom:0.7rem;">With a collection</p>
+        <p style="font-size:0.86rem;color:var(--fog);line-height:1.6;">Compete for objects against Stanford, the Computer History Museum, Cantor. Chase aesthetic benefactors who have nothing to buy here. Lose.</p>
+      </div>
+      <div class="reveal delay-3" data-reveal style="border-top:1px solid var(--rust);padding-top:1.1rem;">
+        <p style="font-family:var(--type-body);font-size:0.58rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--rust);margin-bottom:0.7rem;">Without a collection</p>
+        <p style="font-size:0.86rem;color:var(--cream);line-height:1.6;">Every dead position is impossible. Only one position remains. And that position is unoccupied.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASE INSET: Larimer Square + Roth near-loss replaces Sutherland -->
+<div class="case-section reveal" data-reveal id="case5">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="case-header">
+      <span class="case-label">What was nearly lost, and what that proved</span>
+      <span class="case-anchor">on the turn</span>
+    </div>
+    <div class="case-rule"></div>
+    <div class="case-pair">
+      <div class="case-card">
+        <div class="case-who">The Roth Building, 2012–2015</div>
+        <div class="case-what">300 Homer Avenue, Palo Alto. The near-demolition.</div>
+        <span class="case-concept">Loss aversion: the room almost gone</span>
+        <p class="case-argument">Before the museum took residency, the Roth Building's fate was genuinely uncertain. The lease negotiation with the city nearly collapsed. Demolition was a live option. The building that the town now has one chance to make into its civic commons almost ceased to exist before the argument for it was made.</p>
+        <div class="case-outcome">The near-loss is the correct loss-aversion moment. Not "we have no collection": an absence nobody grieves. But "the room almost disappeared": a presence the town almost forfeited before understanding what it was.</div>
+        <p class="case-pam"><strong>For PAM:</strong> The founding story is not "we saved the building." It is "the building almost went, and with it the only room this town has ever had that could be its own."</p>
+        <div class="case-verdict">The correct instance</div>
+      </div>
+      <div class="vs-col">and</div>
+      <div class="case-card">
+        <div class="case-who">Larimer Square, Denver</div>
+        <div class="case-what">Denver, CO, 2019 preservation fight</div>
+        <span class="case-concept">Liability reframed as the only irreplaceable thing</span>
+        <p class="case-argument">Larimer Square, Denver's oldest block, faced demolition for a mixed-use tower in 2019. The preservation campaign succeeded not by arguing historical value but by reframing what Denver would lose: the only block in the city that still felt like a place rather than a development. The old block, expensive to maintain, became the irreplaceable civic room.</p>
+        <div class="case-outcome">The campaign succeeded. The reframe, from liability to the only thing that cannot be rebuilt, is Rory Sutherland's loss-aversion mechanic applied to a real building and a real community that understood the stakes.</div>
+        <p class="case-pam"><strong>For PAM:</strong> The Roth is Larimer Square. The town almost lost it. That near-loss, correctly told, is the most fundable moment in the institution's history.</p>
+        <div class="case-verdict">The case holds</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CASE INSET: Exploratorium replaces Levitt -->
+<div class="case-section reveal" data-reveal id="case5b">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="case-header">
+      <span class="case-label">What business are you actually in?</span>
+      <span class="case-anchor">on the turn, continued</span>
+    </div>
+    <div class="case-rule"></div>
+    <div class="case-grid wide">
+      <div style="padding:1rem 0;">
+        <div class="case-card" style="border:none;padding:0;background:transparent;">
+          <div class="case-who">The Exploratorium, San Francisco</div>
+          <div class="case-what" style="margin-bottom:1rem;">Palace of Fine Arts (1969–2013) → Pier 15 (2013–present)</div>
+          <span class="case-concept">Marketing Myopia: what business are you in?</span>
+          <p class="case-argument">The Exploratorium spent decades at the Palace of Fine Arts defining itself as a science museum: exhibits, education, school groups. When they moved to Pier 15 in 2013, they were forced to answer Levitt's question: not "what do we display?" but "what do we do?" The answer was science as social experience, not science as display. The new building was designed around that answer.</p>
+          <div class="case-outcome">Revenue from rentals, programs, and memberships now covers more than 40 percent of operating budget. The building's design (open, permeable, facing the bay) is the answer to Levitt's question made physical. The collection is the drill. The experience is the hole.</div>
+          <p class="case-pam"><strong>For PAM:</strong> The Roth's recording booth, community room, and courtyard are not amenities. They are the answer to the question "what business are you in?" The business is gathering. The room already knows how to do it.</p>
+          <div class="case-verdict">The case holds</div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:1.2rem;">
+        <div style="background:var(--white);border:1px solid #D8D0C4;padding:1.4rem;position:relative;">
+          <div style="position:absolute;top:0;left:0;width:4px;height:100%;background:var(--rust);"></div>
+          <p style="font-family:var(--type-head);font-size:0.95rem;color:#5A4A3A;font-style:italic;line-height:1.6;margin-left:0.5rem;">"What business are you in? The railroads are in trouble not because the need was filled by others but because it was not filled by the railroads themselves."</p>
+          <p style="font-family:var(--type-body);font-size:0.62rem;color:var(--fog);margin-top:0.7rem;margin-left:0.5rem;letter-spacing:0.08em;">Theodore Levitt, Marketing Myopia, HBR 1960</p>
+        </div>
+        <div style="background:var(--white);border:1px solid #D8D0C4;padding:1.4rem;position:relative;">
+          <div style="position:absolute;top:0;left:0;width:4px;height:100%;background:rgba(160,144,128,0.5);"></div>
+          <p style="font-family:var(--type-body);font-size:0.85rem;color:var(--charcoal);line-height:1.6;margin-left:0.5rem;">PAM is not in the museum business. It is in the gathering business. The collection is the drill. The town is the hole.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- ACT VI: THE POSITION                                           -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="act-divider light reveal" data-reveal>
+  <div><div class="act-num" style="color:var(--rust);">Act VI</div><div class="act-title">The Position</div></div>
+</div>
+
+<section class="scroll-section light" id="actVI">
+  <div class="inner">
+    <div class="eyebrow rust reveal" data-reveal>The answer</div>
+    <div class="rule reveal delay-1" data-reveal></div>
+    <p class="display-xl reveal heavy delay-2" data-reveal style="color:var(--charcoal);line-height:1.08;max-width:20ch;margin-bottom:2.8rem;">
+      PAM is the room where Palo Alto convenes around its own story and its own future.
+    </p>
+    <!-- Fresco + proof columns -->
+    <div style="display:flex;gap:4vw;align-items:flex-start;flex-wrap:wrap;margin-bottom:3rem;">
+      <div class="photo-card reveal delay-2" data-reveal style="width:clamp(180px,28vw,280px);aspect-ratio:3/4;flex-shrink:0;">
+        <img src="Fresco_Artwork.png" alt="Arnautoff fresco">
+        <div class="photo-card-label">Arnautoff fresco: the building already holds the honest story</div>
+      </div>
+      <div style="flex:1;min-width:220px;">
+        <div class="col-3" style="gap:2rem;">
+          <div class="reveal delay-2" data-reveal style="border-left:3px solid var(--rust);padding-left:1rem;">
+            <div style="font-family:var(--type-body);font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--charcoal);font-weight:700;margin-bottom:0.55rem;">Survives the visit</div>
+            <p style="font-size:0.83rem;color:var(--fog);line-height:1.6;">Value happens in the gathering, not the viewing. The visit is the product. Mission transmits because the visit is the commons.</p>
+          </div>
+          <div class="reveal delay-3" data-reveal style="border-left:3px solid var(--rust);padding-left:1rem;">
+            <div style="font-family:var(--type-body);font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--charcoal);font-weight:700;margin-bottom:0.55rem;">Earns the third</div>
+            <p style="font-size:0.83rem;color:var(--fog);line-height:1.6;">Memberships, forums, rentals, the recording booth. The Roth's own rooms are the earned-revenue engine.</p>
+          </div>
+          <div class="reveal delay-4" data-reveal style="border-left:3px solid var(--rust);padding-left:1rem;">
+            <div style="font-family:var(--type-body);font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--charcoal);font-weight:700;margin-bottom:0.55rem;">Holds the empty seat</div>
+            <p style="font-size:0.83rem;color:var(--fog);line-height:1.6;">CHM broadcasts genius. Cantor is art. No competitor owns the room where the town gathers around its own questions.</p>
+          </div>
+        </div>
+        <!-- Competitor map -->
+        <div style="margin-top:2.2rem;">
+          <div class="comp-grid reveal delay-3" data-reveal id="compGrid">
+            <div class="comp-node" data-delay="0">CHM</div>
+            <div class="comp-node" data-delay="1">Cantor</div>
+            <div class="comp-node" data-delay="2">Anderson</div>
+            <div class="comp-node" data-delay="3">Library</div>
+            <div class="comp-node" data-delay="4">MOAH</div>
+            <div class="comp-node empty-seat" data-delay="5">The Room</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASE INSET: Dia:Beacon replaces Holt; 92Y replaces Vargo/Lusch -->
+<div class="case-section reveal" data-reveal id="case6">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="case-header">
+      <span class="case-label">Two institutions that held the contradiction honestly</span>
+      <span class="case-anchor">on the position</span>
+    </div>
+    <div class="case-rule"></div>
+    <div class="case-pair">
+      <div class="case-card">
+        <div class="case-who">Dia:Beacon</div>
+        <div class="case-what">Beacon, NY. Former Nabisco factory, opened 2003.</div>
+        <span class="case-concept">Performing the cultural contradiction honestly</span>
+        <p class="case-argument">Dia opened in a former Nabisco box-printing factory in a Hudson Valley town where industrial closure had fractured the civic identity. The museum did not resolve the tension between the art world and the former factory workers. It held both. The building's industrial bones were preserved, not disguised. The town's economic history was the frame, not the backdrop.</p>
+        <div class="case-outcome">Membership and visitation exceeded projections within two years. The tension between art-world prestige and working-town identity was not a liability. It was the thing that made Dia:Beacon legible as a specific place rather than a generic museum.</div>
+        <p class="case-pam"><strong>For PAM:</strong> Palo Alto's genius-and-its-costs contradiction is the fault line the museum performs its identity on. The institution that holds that honestly (Stanford's name struck from buildings, the Palo Alto System and its casualties, the fresco at the door) becomes legible as this specific place, not a generic civic room.</p>
+        <div class="case-verdict">The case holds</div>
+      </div>
+      <div class="vs-col">and</div>
+      <div class="case-card">
+        <div class="case-who">92nd Street Y, New York</div>
+        <div class="case-what">New York, NY. Civic institution, comparable programming model.</div>
+        <span class="case-concept">Value co-created in use, not delivered</span>
+        <p class="case-argument">The 92Y's Gives model inverted the conventional museum relationship: instead of programming delivered to an audience, the community funds and shapes the programs it wants. Membership is not a transaction; it is co-authorship. The value does not exist until the community shows up and makes it.</p>
+        <div class="case-outcome">The 92Y's model has sustained a major civic institution through economic cycles, leadership changes, and the complete disruption of the traditional arts funding landscape. The community's visible ownership of the institution is both the product and the proof.</div>
+        <p class="case-pam"><strong>For PAM:</strong> The resident membership is not the smallest tier of a gift ladder. It is the co-creation model. The town funds its own room. That visible ownership is what makes the civic-commons claim true rather than claimed.</p>
+        <div class="case-verdict">The case holds</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- ACT VII: THE GIFT                                              -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="act-divider dark reveal" data-reveal>
+  <div><div class="act-num">Act VII</div><div class="act-title">The Gift</div></div>
+</div>
+
+<section class="scroll-section dark" id="actVII">
+  <div class="inner">
+    <div class="eyebrow reveal" data-reveal>One position. Three rooms. One argument.</div>
+    <div class="rule reveal delay-1" data-reveal></div>
+    <div class="col-3" style="margin-top:1.4rem;">
+      <div class="gift-card" id="gift1">
+        <div class="gift-card-label">Metropolitan Family</div>
+        <div class="gift-card-ask">Endow the convening function itself. The naming object is a living civic role, not a vault. The family whose name is on it made the room possible.</div>
+        <div class="gift-card-signal">Civic pride. Formal legacy.</div>
+      </div>
+      <div class="gift-card" id="gift2">
+        <div class="gift-card-label">Impact-Driven Tech</div>
+        <div class="gift-card-ask">Fund the measurable repair. Endow the director of civic engagement, the named season, the measurable program that demonstrates the repair.</div>
+        <div class="gift-card-signal">Outcome + proof. A solvable problem.</div>
+      </div>
+      <div class="gift-card" id="gift3">
+        <div class="gift-card-label">Resident Member</div>
+        <div class="gift-card-ask">A membership in a range comparable to peer civic institutions. The room belongs to the town and you are the town. The broad base is not the smallest tier. It is the one whose participation makes the claim true.</div>
+        <div class="gift-card-signal">Belonging. Earned revenue. Proof of honesty.</div>
+      </div>
+    </div>
+    <p class="prose reveal delay-5" data-reveal style="margin-top:2.4rem;color:var(--sand);font-style:italic;font-family:var(--type-head);font-size:1rem;">
+      None of them is giving to a museum. They are paying for the place the town can finally assemble as itself.
+    </p>
+  </div>
+</section>
+
+<!-- CASE INSET: New Museum replaces Williamson; Gardner replaces McCracken -->
+<div class="case-section reveal" data-reveal id="case7">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="case-header">
+      <span class="case-label">The gift ladder must be honest, and it must be repeated</span>
+      <span class="case-anchor">on the gift</span>
+    </div>
+    <div class="case-rule"></div>
+    <div class="case-pair">
+      <div class="case-card">
+        <div class="case-who">New Museum, New York</div>
+        <div class="case-what">Bowery, Manhattan, opened 2007</div>
+        <span class="case-concept">The artwashing counter: visible community ownership</span>
+        <p class="case-argument">When the Whitney moved to the Meatpacking District, it was accused of artwashing gentrification. The New Museum, opening on the Bowery at the same moment, made the opposite structural choice: local artist representation, community programming, and neighborhood engagement built explicitly into the founding governance. Not as a gesture. As an accountability mechanism.</p>
+        <div class="case-outcome">The New Museum's community credibility has held through two decades of neighborhood change. The Whitney's artwashing critique has not fully lifted. The structural difference between the two institutions is visible in their reputations and their donor bases.</div>
+        <p class="case-pam"><strong>For PAM:</strong> A commons funded entirely by three founding families is a private room with a civic name on the door. The broad-base resident membership is not a fallback revenue strategy. It is the proof the room belongs to the town.</p>
+        <div class="case-verdict corrective">Corrective: the risk if ignored</div>
+      </div>
+      <div class="vs-col">and</div>
+      <div class="case-card">
+        <div class="case-who">Isabella Stewart Gardner Museum</div>
+        <div class="case-what">Boston, MA. Founded 1903, still operating under Gardner's will</div>
+        <span class="case-concept">The ritual that keeps meaning alive across a century</span>
+        <p class="case-argument">Gardner's will mandated the collection remain exactly as she placed it: every object, every arrangement, unchanged in perpetuity. That ritual of return, the room always exactly as it was, is what drives the Gardner's extraordinary repeat-visit rate. Visitors come back not to see new things but to re-enter the same thing. The ritual is the product.</p>
+        <div class="case-outcome">The Gardner has among the highest repeat-visit rates of any museum its size in America. A single ritual, held at maximum fidelity, built an institution that has outlasted its founder by more than a century. A commons that runs no rituals has no channel for the transfer.</div>
+        <p class="case-pam"><strong>For PAM:</strong> The Tuesday forum, the recording booth's weekly schedule, the standing programs on a recurring calendar: these are the rituals. The opening gala is not. The institutional memory lives in what happens on Tuesdays.</p>
+        <div class="case-verdict">The case holds</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- ACT VIII: A TUESDAY IN OCTOBER                                 -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="act-divider light reveal" data-reveal>
+  <div><div class="act-num" style="color:var(--rust);">Act VIII</div><div class="act-title">A Tuesday in October</div></div>
+</div>
+
+<section class="scroll-section light" id="actVIII">
+  <div class="inner">
+    <div class="eyebrow rust reveal" data-reveal>What it looks like when it works</div>
+    <div class="rule reveal delay-1" data-reveal></div>
+    <p class="display-md reveal delay-2" data-reveal style="color:var(--charcoal);margin-bottom:0.5rem;">A Tuesday in October.</p>
+    <p class="display-sm reveal delay-3" data-reveal style="font-family:var(--type-head);color:var(--rust);font-style:italic;margin-bottom:2.8rem;">Not an opening night. Not a Saturday.</p>
+
+    <div style="display:flex;gap:5vw;align-items:flex-start;flex-wrap:wrap;">
+      <!-- Room with gathering -->
+      <div class="reveal delay-2" data-reveal style="flex-shrink:0;max-width:380px;width:100%;">
+        <!-- SVG room now with chairs filled -->
+        <svg viewBox="0 0 400 320" fill="none" style="width:100%;" id="roomFull">
+          <rect x="31" y="21" width="338" height="268" fill="rgba(184,91,58,0.03)"/>
+          <rect x="30" y="20" width="340" height="270" stroke="rgba(60,65,57,0.18)" stroke-width="1.5" fill="none"/>
+          <line x1="30" y1="290" x2="370" y2="290" stroke="rgba(60,65,57,0.08)" stroke-width="1"/>
+          <rect x="165" y="210" width="70" height="80" fill="none" stroke="rgba(60,65,57,0.08)" stroke-width="1"/>
+          <text x="200" y="256" text-anchor="middle" font-family="Calibri,sans-serif" font-size="7" fill="rgba(184,91,58,0.45)" letter-spacing="2">ARNAUTOFF</text>
+          <circle cx="348" cy="42" r="6" fill="rgba(184,91,58,0)" id="boothLight"/>
+          <text x="348" y="57" text-anchor="middle" font-family="Calibri,sans-serif" font-size="6" fill="rgba(184,91,58,0)" id="boothLabel">BOOTH</text>
+          <g id="chairs"></g>
+        </svg>
+        <!-- Fresco thumb below room -->
+        <div class="photo-card" style="aspect-ratio:16/5;margin-top:0.5rem;">
+          <img src="Fresco_Artwork.png" alt="Arnautoff fresco" style="object-position:center 20%;">
+          <div class="photo-card-label">The fresco slows everyone at the door</div>
+        </div>
+      </div>
+
+      <!-- Three voices -->
+      <div style="flex:1;min-width:260px;">
+        <p style="font-family:var(--type-body);font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--fog);margin-bottom:1.3rem;">Three voices in the recording booth</p>
+        <div id="wave1" class="waveform-row">
+          <div class="waveform-name">An 82-year-old, Barron Park</div>
+          <svg class="wv" viewBox="0 0 520 34"><path class="wave-path" id="wpath1" d="M0,17 C20,4 30,30 50,17 C70,4 80,28 100,17 C120,7 130,26 150,17 C170,8 180,28 200,17 C220,6 230,30 250,17 C270,4 280,28 300,17 C320,7 330,26 350,17 C370,8 380,28 400,17 C420,6 430,30 450,17 C470,4 480,28 500,17 C510,11 515,22 520,17"/></svg>
+          <p class="waveform-desc">Recording her neighborhood's history before she cannot anymore.</p>
+        </div>
+        <div id="wave2" class="waveform-row">
+          <div class="waveform-name">An engineer, two years here</div>
+          <svg class="wv" viewBox="0 0 520 34"><path class="wave-path" id="wpath2" d="M0,17 C15,11 25,23 40,17 C55,11 65,22 80,17 C95,13 105,21 120,17 C135,13 145,21 160,17 C175,11 185,23 200,17 C215,9 225,25 240,17 C255,11 265,23 280,17 C295,13 305,21 320,17 C335,11 345,23 360,17 C375,13 385,21 400,17 C415,9 425,25 440,17 C455,11 465,23 480,17 C495,13 505,21 520,17"/></svg>
+          <p class="waveform-desc">Recording it because someone she respects told her this was the place.</p>
+        </div>
+        <div id="wave3" class="waveform-row">
+          <div class="waveform-name">A family from Lagos, 1994</div>
+          <svg class="wv" viewBox="0 0 520 34"><path class="wave-path" id="wpath3" d="M0,17 C25,2 35,32 60,17 C85,2 95,32 120,17 C145,2 155,32 180,17 C205,5 215,29 240,17 C265,5 275,29 300,17 C325,2 335,32 360,17 C385,5 395,29 420,17 C445,5 455,29 480,17 C495,9 505,25 520,17"/></svg>
+          <p class="waveform-desc">Son now at Stanford. Recording the years in between because no one else would.</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="prose reveal delay-5" data-reveal style="margin-top:2.8rem;max-width:65ch;color:var(--charcoal);">
+      The institution earns a third of its operating budget from these Tuesdays. The board's three camps are not fighting because they are each inside the same room. The Keeper sees the record being kept. The civic bloc sees the forum running. The tech camp sees a living, participatory commons built with the town's own tools, and they see that it is working.
+    </p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- CODA                                                           -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<section class="coda" id="coda">
+  <div class="coda-bg"></div>
+  <div class="coda-vignette"></div>
+  <div class="coda-marks" id="codaMarks"></div>
+  <div class="coda-content">
+    <span class="coda-line reveal heavy" data-reveal>The pen</span>
+    <span class="coda-line rust reveal heavy delay-2" data-reveal>came home.</span>
+    <p class="coda-sub reveal delay-4" data-reveal>
+      PAM is where Palo Alto tells its own story. The building exists. The position is clear. The seat is empty. The only question is who makes it possible.
+    </p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- JAVASCRIPT                                                     -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
 <script>
-(function () {
-  "use strict";
+// ─── HERO INIT ────────────────────────────────────────────────────
+window.addEventListener('load', () => {
+  setTimeout(() => document.getElementById('heroTreeLine').classList.add('grown'), 150);
+  setTimeout(() => {
+    document.getElementById('heroTitle').classList.add('show');
+    document.getElementById('heroSub').classList.add('show');
+  }, 500);
+});
 
-  var BASE = "https://raw.githubusercontent.com/milochao/PaloAltoMuseumView/main/";
-  var FRAMES = 16;
-  var src = [];
-  for (var i = 1; i <= FRAMES; i++) src.push(BASE + i + "_H.jpg");
+// ─── REDWOOD SPINE SCROLL PROGRESS ───────────────────────────────
+const spineEl = document.getElementById('spineProgress');
+window.addEventListener('scroll', () => {
+  const scrolled = window.scrollY;
+  const total    = document.body.scrollHeight - window.innerHeight;
+  const progress = Math.min(scrolled / total, 1);
+  const dashOffset = 1000 - (progress * 1000);
+  spineEl.style.strokeDashoffset = dashOffset;
+}, { passive: true });
 
-  var strip = document.getElementById("filmstrip");
-  var proj  = document.getElementById("projImg");
-  var cells = [];
-
-  for (var f = 0; f < FRAMES; f++) {
-    var c = document.createElement("div"); c.className = "frame";
-    var fn = document.createElement("span"); fn.className = "fn"; fn.textContent = f + 1;
-    var im = document.createElement("img"); im.src = src[f]; im.alt = ""; im.loading = "lazy";
-    c.appendChild(fn); c.appendChild(im);
-    strip.appendChild(c); cells.push(c);
-  }
-  proj.src = src[0];
-
-  function setFrame(idx) {
-    idx = Math.max(0, Math.min(FRAMES - 1, idx));
-    cells.forEach(function (c, i) { c.classList.toggle("active", i === idx); });
-    proj.src = src[idx];
-  }
-
-  var heroEl = document.getElementById("hero");
-  var sticky = document.getElementById("heroSticky");
-  var ticking = false;
-
-  function heroScroll() {
-    if (ticking) return; ticking = true;
-    requestAnimationFrame(function () {
-      var r = heroEl.getBoundingClientRect();
-      var total = heroEl.offsetHeight - window.innerHeight;
-      var prog = Math.min(1, Math.max(0, -r.top / total));
-      setFrame(Math.floor(prog * FRAMES));
-      sticky.classList.toggle("show", prog > 0.12);
-      ticking = false;
-    });
-  }
-
-  setFrame(0);
-  window.addEventListener("scroll", heroScroll, { passive: true });
-  window.addEventListener("resize", heroScroll, { passive: true });
-
-  var amb = 0, idle = true;
-  window.addEventListener("scroll", function () { idle = false; }, { passive: true, once: true });
-  setInterval(function () { if (idle) { amb = (amb + 1) % FRAMES; setFrame(amb); } }, 150);
-
-  function logStagger(nodes, base) {
-    base = base || 0;
-    nodes.forEach(function (n, i) {
-      n.style.transitionDelay = (base + Math.log10(i + 1) * 0.38).toFixed(2) + "s";
-    });
-  }
-
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (e) {
-      if (e.isIntersecting) { e.target.classList.add("is-orchestrated"); io.unobserve(e.target); }
-    });
-  }, { threshold: 0.14 });
-  document.querySelectorAll(".orc").forEach(function (n) { io.observe(n); });
-
-  function onStep(sel, cb) {
-    var steps = Array.from(document.querySelectorAll(sel));
-    var so = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) { if (e.isIntersecting) cb(steps.indexOf(e.target)); });
-    }, { threshold: 0.5 });
-    steps.forEach(function (s) { so.observe(s); });
-  }
-
-  var voidFull = document.getElementById("voidFull");
-  onStep("#neg .step", function (i) {
-    if (i >= 0) voidFull.classList.add("go");
-    if (i >= 1) voidFull.classList.add("claim");
-    else        voidFull.classList.remove("claim");
+// ─── INTERSECTION OBSERVER ────────────────────────────────────────
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('is-visible'); obs.unobserve(e.target); }
   });
+}, { threshold: 0.15, rootMargin: '0px 0px -55px 0px' });
+document.querySelectorAll('[data-reveal]').forEach(el => { el.classList.add('reveal'); obs.observe(el); });
 
-  // Animal scene is now a static figure; no step handler needed.
-
-  var frescoWrap = document.getElementById("frescoWrap");
-  onStep("#door .step", function (i) {
-    if (i <= 1) { frescoWrap.classList.remove("painted", "restored"); }
-    if (i === 2) { frescoWrap.classList.add("painted"); frescoWrap.classList.remove("restored"); }
-    if (i >= 3)  { frescoWrap.classList.add("painted", "restored"); }
-  });
-
-  var ws = document.getElementById("wordstage");
-  new IntersectionObserver(function (e) {
-    e.forEach(function (ev) {
-      if (ev.isIntersecting) setTimeout(function () { ws.classList.add("swept"); }, 360);
-    });
-  }, { threshold: 0.65 }).observe(ws);
-
-  var facesEl = document.getElementById("faces");
-  var faceNodes = [];
-  var COUNT = 32, YOU = 19;
-  var REAL = [
-    BASE + "Eadweard_Muybridge.jpg",
-    BASE + "Diego_Rivera.jpg",
-    BASE + "David_Starr_Jordon.jpg",
-    BASE + "Dr_Esther_B_Clark.jpg",
-    BASE + "Dr_Russell_Lee_and_Birge_Clark.jpg",
-    BASE + "Leland_Stanford.jpg",
-    BASE + "Lewis_Madison_Terman.jpg",
-    BASE + "Victor_Arnautoff.png",
-    BASE + "Juana_Briones.png"
-  ];
-
-  for (var w = 0; w < COUNT; w++) {
-    var d = document.createElement("div"); d.className = "face";
-    if (w === YOU) {
-      d.classList.add("you");
-      d.innerHTML = '<div class="you-inner"><div class="you-mark"></div></div>';
-    } else if (w < REAL.length) {
-      var fi = document.createElement("img");
-      fi.src = REAL[w]; fi.alt = ""; fi.loading = "lazy";
-      d.appendChild(fi);
+// ─── PORTRAIT CYCLING (Act I) ─────────────────────────────────────
+const portraits = [
+  { id: 'p0', caption: 'Leland Stanford: wrote the origin' },
+  { id: 'p1', caption: 'David Starr Jordan: Stanford first president, eugenics architect' },
+  { id: 'p2', caption: 'Eadweard Muybridge: the town most famous outsider story' },
+  { id: 'p3', caption: 'Lewis Terman: the Palo Alto System, genius and its cost' },
+];
+let pIdx = 0;
+const capEl = document.getElementById('portraitCaption');
+function nextPortrait() {
+  document.getElementById(portraits[pIdx].id).classList.remove('active');
+  pIdx = (pIdx + 1) % portraits.length;
+  document.getElementById(portraits[pIdx].id).classList.add('active');
+  capEl.textContent = portraits[pIdx].caption;
+}
+const portObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      window._portInterval = setInterval(nextPortrait, 2800);
     } else {
-      var h = 20 + ((w * 53) % 60);
-      var sk = "hsl(" + h + ",16%," + (54 + (w * 7) % 18) + "%)";
-      d.innerHTML = '<svg viewBox="0 0 40 40"><rect width="40" height="40" fill="#181816"/>'
-        + '<circle cx="20" cy="15" r="6.5" fill="' + sk + '"/>'
-        + '<path d="M7 40 C7 27 33 27 33 40 Z" fill="' + sk + '"/></svg>';
+      clearInterval(window._portInterval);
     }
-    facesEl.appendChild(d); faceNodes.push(d);
+  });
+}, { threshold: 0.3 });
+const portStage = document.querySelector('.portrait-stage');
+if (portStage) portObs.observe(portStage);
+
+// ─── DOT GRID (3.4%) ─────────────────────────────────────────────
+const dotGrid = document.getElementById('dotGrid');
+if (dotGrid) {
+  for (let i = 0; i < 100; i++) {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i >= 97 ? ' lit' : '');
+    dotGrid.appendChild(d);
   }
-
-  new IntersectionObserver(function (entries) {
-    entries.forEach(function (e) {
-      if (e.isIntersecting) { logStagger(faceNodes); facesEl.classList.add("go"); }
+  const dotObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        dotGrid.querySelectorAll('.dot').forEach((dot, i) => {
+          setTimeout(() => { dot.style.opacity = '1'; }, Math.log10(i + 1) * 380);
+        });
+        dotObs.unobserve(e.target);
+      }
     });
-  }, { threshold: 0.2 }).observe(facesEl);
+  }, { threshold: 0.3 });
+  dotObs.observe(dotGrid);
+}
 
-})();
+// ─── COMPETITOR NODES ─────────────────────────────────────────────
+const compGrid = document.getElementById('compGrid');
+if (compGrid) {
+  const cObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        compGrid.querySelectorAll('.comp-node').forEach((n, i) => {
+          setTimeout(() => n.classList.add('show'), Math.log10(i + 1) * 380);
+        });
+        cObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  cObs.observe(compGrid);
+}
+
+// ─── GIFT CARDS ───────────────────────────────────────────────────
+['gift1','gift2','gift3'].forEach((id, i) => {
+  const card = document.getElementById(id);
+  if (!card) return;
+  const gObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        setTimeout(() => card.classList.add('show'), Math.log10(i + 1) * 350);
+        gObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  gObs.observe(card);
+});
+
+// ─── ROOM FILL (Act VIII) ─────────────────────────────────────────
+const chairsGroup = document.getElementById('chairs');
+if (chairsGroup) {
+  const positions = [];
+  for (let row = 0; row < 5; row++)
+    for (let col = 0; col < 8; col++)
+      positions.push({ x: 65 + col * 36, y: 100 + row * 27 });
+
+  positions.forEach(pos => {
+    const r = document.createElementNS('http://www.w3.org/2000/svg','rect');
+    r.setAttribute('x', pos.x); r.setAttribute('y', pos.y);
+    r.setAttribute('width','10'); r.setAttribute('height','8'); r.setAttribute('rx','1');
+    r.setAttribute('fill','rgba(60,65,57,0)'); r.setAttribute('stroke','rgba(60,65,57,0)');
+    r.setAttribute('stroke-width','0.5');
+    r.style.transition = 'fill 0.5s ease, stroke 0.5s ease';
+    chairsGroup.appendChild(r);
+  });
+
+  const rObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        chairsGroup.querySelectorAll('rect').forEach((r, i) => {
+          setTimeout(() => {
+            r.setAttribute('fill','rgba(60,65,57,0.22)');
+            r.setAttribute('stroke','rgba(60,65,57,0.35)');
+          }, Math.log10(i + 1) * 360);
+        });
+        setTimeout(() => {
+          const bl = document.getElementById('boothLight');
+          const blL = document.getElementById('boothLabel');
+          if (bl) { bl.setAttribute('fill','rgba(184,91,58,0.65)'); bl.style.filter='drop-shadow(0 0 5px rgba(184,91,58,0.4))'; }
+          if (blL) blL.setAttribute('fill','rgba(184,91,58,0.4)');
+        }, 1600);
+        rObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.25 });
+  const roomEl = document.getElementById('roomFull');
+  if (roomEl) rObs.observe(roomEl);
+}
+
+// ─── WAVEFORMS ────────────────────────────────────────────────────
+['wave1','wave2','wave3'].forEach((id, i) => {
+  const row = document.getElementById(id);
+  if (!row) return;
+  const wObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        row.classList.add('show');
+        setTimeout(() => {
+          const p = row.querySelector('.wave-path');
+          if (p) p.classList.add('draw');
+        }, Math.log10(i + 1) * 550);
+        wObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.35 });
+  wObs.observe(row);
+});
+
+// ─── CODA MARKS ───────────────────────────────────────────────────
+const codaMarks = document.getElementById('codaMarks');
+if (codaMarks) {
+  for (let i = 0; i < 55; i++) {
+    const m = document.createElement('div');
+    m.className = 'coda-mark';
+    m.style.left  = (10 + Math.random() * 80) + '%';
+    m.style.top   = (10 + Math.random() * 80) + '%';
+    m.style.transitionDelay = (Math.log10(i + 1) * 0.38) + 's';
+    codaMarks.appendChild(m);
+  }
+  const codaObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        codaMarks.querySelectorAll('.coda-mark').forEach(m => m.style.opacity = '1');
+        codaObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  codaObs.observe(codaMarks);
+}
 </script>
 </body>
 </html>
