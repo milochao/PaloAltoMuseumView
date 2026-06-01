@@ -529,12 +529,28 @@ sup.fn{
 }
 
 /* VIZ - Entry points */
+.entry-wrap{position:relative;width:100%;max-width:560px;}
+.entry-portrait{
+  position:absolute;
+  width:140%;
+  left:-20%;
+  top:50%;
+  transform:translateY(-50%);
+  height:auto;
+  display:block;
+  z-index:1;
+  opacity:0.78;
+  mask-image:radial-gradient(ellipse 80% 85% at 50% 38%, black 12%, rgba(0,0,0,0.52) 48%, transparent 80%);
+  -webkit-mask-image:radial-gradient(ellipse 80% 85% at 50% 38%, black 12%, rgba(0,0,0,0.52) 48%, transparent 80%);
+}
 .entry-grid{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:0.6rem;
   width:100%;
   max-width:560px;
+  position:relative;
+  z-index:2;
 }
 .entry{
   background:var(--white);
@@ -545,6 +561,7 @@ sup.fn{
   color:var(--ink);
   line-height:1.32;
   border-bottom:3px solid var(--green);
+  box-shadow:0 4px 20px rgba(0,0,0,0.55);
 }
 
 /* VIZ - Closing argument card */
@@ -1105,13 +1122,16 @@ sup.fn{
     </div>
     <!-- Scene 2: Entry points -->
     <div class="viz" data-viz="a4-2">
-      <div class="entry-grid">
-        <div class="entry">I want to understand my town.</div>
-        <div class="entry">I have visitors to host.</div>
-        <div class="entry">I want my child to learn where they live.</div>
-        <div class="entry">I am new here.</div>
-        <div class="entry">I have lived here forty years.</div>
-        <div class="entry">I want to convene a conversation.</div>
+      <div class="entry-wrap">
+        <img class="entry-portrait" src="Brian_Wong.jpg" alt="">
+        <div class="entry-grid">
+          <div class="entry">I want to understand my town.</div>
+          <div class="entry">I have visitors to host.</div>
+          <div class="entry">I want my child to learn where they live.</div>
+          <div class="entry">I am new here.</div>
+          <div class="entry">I have lived here forty years.</div>
+          <div class="entry">I want to convene a conversation.</div>
+        </div>
       </div>
     </div>
     <!-- Scene 3: Named functions -->
