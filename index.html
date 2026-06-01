@@ -798,12 +798,12 @@ sup.fn{
   .peer-card__name{font-size:1rem;}
   .peer-card__line{font-size:0.84rem;}
 
-  /* ── quote cards: horizontal swipe ── */
-  .quote-stack{flex-direction:row;overflow-x:auto;-webkit-overflow-scrolling:touch;gap:0.7rem;flex-wrap:nowrap;width:100%;}
-  .qcard{flex:0 0 78vw;}
-  .qcard__media{height:140px;}
-  .qcard__text{font-size:1rem;padding:0.85rem 1rem 0.3rem;}
-  .qcard__attr{padding:0.3rem 1rem 0.85rem;}
+  /* ── [5] quote cards: both visible side-by-side ── */
+  .quote-stack{flex-direction:row;flex-wrap:nowrap;gap:0.4rem;width:100%;}
+  .qcard{flex:1 1 47%;min-width:0;}
+  .qcard__media{height:90px;}
+  .qcard__text{font-size:0.82rem;padding:0.5rem 0.7rem 0.2rem;line-height:1.3;}
+  .qcard__attr{padding:0.2rem 0.7rem 0.5rem;font-size:0.58rem;letter-spacing:0.03em;}
 
   /* ── [5] entry cards: smaller ── */
   .entry{font-size:0.88rem;padding:0.65rem 0.8rem;line-height:1.28;}
@@ -814,12 +814,14 @@ sup.fn{
   .func-row__name{font-size:0.88rem;line-height:1.1;}
   .func-row__like{display:none;}
 
-  /* ── [9] liftchart: val on own line ── */
+  /* ── [6] liftchart: tighter spacing to prevent vertical overflow ── */
   .lc__track{display:block;}
   .lc__bar{display:block;width:var(--w);max-width:100%;}
-  .lc__val{display:block;margin-top:0.45rem;font-size:1rem;line-height:1;}
-  .lc__row{margin-bottom:1rem;}
-  .lc__sub{margin-bottom:1.1rem;}
+  .lc__val{display:block;margin-top:0.3rem;font-size:0.9rem;line-height:1;}
+  .lc__row{margin-bottom:0.65rem;}
+  .lc__sub{font-size:0.82rem;margin-bottom:0.7rem;}
+  .lc__label{font-size:0.88rem;}
+  .lc__src{display:none;}
 
   /* ── [2] loneliness chart: fit screen, scale text up ── */
   .lone{overflow-x:visible;}
@@ -837,6 +839,9 @@ sup.fn{
 
   /* ── scene headings ── */
   h2.scene-h{font-size:clamp(1.5rem,5.2vw,2.8rem);}
+
+  /* ── Act V: no sticky stage on mobile, full-width prose ── */
+  #a5 .stage{display:none;}
 }
 </style>
 </head>
@@ -1154,6 +1159,7 @@ sup.fn{
     </div>
 
     <div class="scene" data-scene="a3-3">
+      <div class="eyebrow reveal">Loneliness by age, United States</div>
       <p class="reveal">The US Surgeon General's 2023 advisory on loneliness found that approximately half of American adults experience measurable loneliness, with the heaviest burden on the young and the old. The advisory called explicitly for investment in <span class="cite" tabindex="0">"community institutions"<span class="cite__panel"><b>The Surgeon General's 2023 advisory</b>"Our Epidemic of Loneliness and Isolation" called for investment in "community institutions including recreation leagues, parks, libraries, and playgrounds, to foster a sense of belonging." Federal policy frame for civic-platform investment.<span class="src">US Surgeon General, May 2023.</span></span></span><sup class="fn" id="fn-10" data-fn="10">10</sup>: libraries, parks, places of gathering.</p>
       <p class="reveal d1">In <em class="it">Bowling Alone</em>, the canonical 2000 study of declining American civic association membership<sup class="fn" id="fn-11" data-fn="11">11</sup>, the same retreat from organized public life is described across a quarter-century of data. Pew Research Center reporting through 2025 confirms and extends the finding. The Palo Alto Museum opens into the consequences of that retreat, in a town whose residents have largely watched it happen.</p>
       <p class="refrain reveal d2">If older museums are dying because they were built to display, the question is whether this one finds its purchase by being built to convene.</p>
@@ -1296,13 +1302,6 @@ sup.fn{
       <p class="reveal d2">The third is that a 2020 outside review flagged two-thirds of pledges as high risk. That fact does not go away by being out-narrated. It would be addressed by delivery. The first eighteen months produce a measurable record: a defined number of conversations held in the room and broadcast, the first oral histories recorded for the archive, the first foundation grant secured for a named function, the first major-gift commitment converted. Each documented and reported to the board quarterly. Pledges convert to gifts because delivery is visible.</p>
       <p class="reveal d3">The fourth is how the donors hear it when they hear it from the board's chosen voice, not from a strategist's draft. The position has to be one the institution itself can say in its own register, and that is something the interviews and the board's own deliberation arrive at, not something a document arrives at.</p>
       <p class="reveal d3">The decisions that follow are the board's.</p>
-      <div class="signoff reveal d3">
-        <em>For the conversation ahead.</em><br><br>
-        Prepared in advance of the interview<br>
-        with the President &amp; CEO<br>
-        The Palo Alto Museum<br>
-        1 June 2026
-      </div>
     </div>
   </div>
 </section>
@@ -1458,7 +1457,7 @@ svg{width:100%;height:100%}
 </defs>
 
 <!-- Title -->
-<text x="450" y="20" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="10" fill="#555" letter-spacing="3">THE CIVIC PLATFORM MODEL</text>
+<text x="450" y="20" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="13" fill="#aaa" letter-spacing="3">THE CIVIC PLATFORM MODEL</text>
 
 <!-- Corner brackets -->
 <path d="M25,28 L25,10 L10,10" fill="none" stroke="#2a2a2a" stroke-width="1"/>
