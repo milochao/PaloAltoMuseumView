@@ -736,7 +736,7 @@ sup.fn{
 .quote-stack{display:flex;flex-direction:column;gap:1.1rem;width:100%;max-width:560px;}
 .qcard{background:var(--white);border:1px solid var(--rule);border-left:3px solid var(--green);overflow:hidden;margin:0;}
 .qcard__media{width:100%;height:200px;background:var(--box);position:relative;overflow:hidden;}
-.qcard__media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center;display:block;}
+.qcard__media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block;}
 .qcard__text{margin:0;padding:1.05rem 1.2rem 0.45rem;font-family:var(--serif);font-style:italic;font-size:1.18rem;line-height:1.36;color:var(--ink);}
 .qcard__attr{padding:0.45rem 1.2rem 1.05rem;font-family:var(--mono);font-size:0.7rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--gray);display:block;}
 
@@ -760,36 +760,83 @@ sup.fn{
 .viz-diagram img{width:100%;height:auto;display:block;}
 
 @media (max-width:880px){
+
   /* ── existing ── */
   .callout p{font-size:1.06rem;}
   .iso__grid{gap:5px;}.fig{width:19px;height:24px;}
   .iso__num{font-size:2.7rem;}
-  .qcard__media{height:108px;}.qcard__text{font-size:1.02rem;}
-  .lc__val{font-size:1.2rem;}
 
   /* ── more room inside the 48vh stage ── */
   .viz{padding:2.5vh 4%;}
 
-  /* ── loneliness chart: hold native width, scroll horizontally ── */
-  .lone{overflow-x:auto;-webkit-overflow-scrolling:touch;}
-  .lone__svg{width:520px;min-width:520px;height:auto;}
-
-  /* ── mission diagram: hold readable size, scroll if needed ── */
-  .viz-diagram{overflow-x:auto;-webkit-overflow-scrolling:touch;padding:1.5vh 0;justify-content:flex-start;}
-  #missionFrame{width:680px;height:385px;aspect-ratio:auto;flex-shrink:0;}
-
-  /* ── label minimum size ── */
-  .callout__top,.peer-card__est,.func-row__like{font-size:0.75rem;}
-
-  /* ── scene prose size on narrow screens ── */
-  h2.scene-h{font-size:clamp(1.5rem,5.2vw,2.8rem);}
-
-  /* ── hero background: tighter crop on portrait ── */
+  /* ── 1. hero meta: column layout prevents "2026" widowing ── */
+  .hero-meta{
+    flex-direction:column;
+    gap:0.3rem;
+    align-items:flex-start;
+    font-size:0.6rem;
+    letter-spacing:0.1em;
+  }
   .hero{background-position:center 28%;}
 
-  /* ── liftchart rows tighter on small stage ── */
-  .lc__row{margin-bottom:0.9rem;}
+  /* ── [7] imgph: title only on mobile, gradient tighter ── */
+  .imgph__cap{font-size:0;padding:0.5rem 0.8rem;}
+  .imgph__cap b{font-size:0.82rem;display:block;}
+  .imgph::after{background:linear-gradient(180deg,transparent 0%,transparent 68%,rgba(0,0,0,0.9) 100%);}
+
+  /* ── portrait: shorter ratio for 48vh ── */
+  .imgph--portrait{aspect-ratio:4/3;max-width:100%;}
+
+  /* ── closed grid: horizontal swipe ── */
+  .closed-grid{display:flex;overflow-x:auto;-webkit-overflow-scrolling:touch;gap:0.5rem;flex-wrap:nowrap;}
+  .closed-card{flex:0 0 68vw;aspect-ratio:4/3;}
+
+  /* ── [3/4] peer cards: horizontal swipe ── */
+  .peers{display:flex;overflow-x:auto;-webkit-overflow-scrolling:touch;gap:0.5rem;flex-wrap:nowrap;width:100%;}
+  .peer-card{flex:0 0 62vw;}
+  .peer-card__img{aspect-ratio:16/10;}
+  .peer-card__name{font-size:1rem;}
+  .peer-card__line{font-size:0.84rem;}
+
+  /* ── quote cards: horizontal swipe ── */
+  .quote-stack{flex-direction:row;overflow-x:auto;-webkit-overflow-scrolling:touch;gap:0.7rem;flex-wrap:nowrap;width:100%;}
+  .qcard{flex:0 0 78vw;}
+  .qcard__media{height:140px;}
+  .qcard__text{font-size:1rem;padding:0.85rem 1rem 0.3rem;}
+  .qcard__attr{padding:0.3rem 1rem 0.85rem;}
+
+  /* ── [5] entry cards: smaller ── */
+  .entry{font-size:0.88rem;padding:0.65rem 0.8rem;line-height:1.28;}
+
+  /* ── [6] functions: hide like-text, tighten rows to fit all 8 ── */
+  .func-row{padding:0.28rem 0;gap:0.5rem;}
+  .func-row__n{font-size:0.82rem;}
+  .func-row__name{font-size:0.88rem;line-height:1.1;}
+  .func-row__like{display:none;}
+
+  /* ── [9] liftchart: val on own line ── */
+  .lc__track{display:block;}
+  .lc__bar{display:block;width:var(--w);max-width:100%;}
+  .lc__val{display:block;margin-top:0.45rem;font-size:1rem;line-height:1;}
+  .lc__row{margin-bottom:1rem;}
   .lc__sub{margin-bottom:1.1rem;}
+
+  /* ── [2] loneliness chart: fit screen, scale text up ── */
+  .lone{overflow-x:visible;}
+  .lone__svg{width:100%;min-width:0;height:auto;}
+  .lone__xlab{font-size:18px;}
+  .lone__reflab{font-size:15px;}
+  .lone__end{font-size:18px;}
+
+  /* ── [1] mission diagram: 900px native for readable text ── */
+  .viz-diagram{overflow-x:auto;-webkit-overflow-scrolling:touch;padding:1.5vh 0;justify-content:flex-start;}
+  #missionFrame{width:900px;height:510px;aspect-ratio:auto;flex-shrink:0;}
+
+  /* ── label floor ── */
+  .callout__top,.peer-card__est{font-size:0.75rem;}
+
+  /* ── scene headings ── */
+  h2.scene-h{font-size:clamp(1.5rem,5.2vw,2.8rem);}
 }
 </style>
 </head>
@@ -1101,6 +1148,7 @@ sup.fn{
     </div>
 
     <div class="scene" data-scene="a3-2b">
+      <div class="eyebrow reveal">The model, visualized</div>
       <p class="reveal">If this reading holds, then for the residents in the room, the product is the conversation itself, and the participation is the reason to become a member. For everyone outside the room, the product is what gets broadcast from it, published, podcast, archived, transmitted.</p>
       <p class="reveal d1">Two other readings hold some of the same ground. One is the museum as the town's living archive of itself, where the collection stays the artifact and the broadcast is documentary. Another is the museum as a regional draw, built to bring visitors to Palo Alto rather than to host the town's argument with itself. Each would lead to a different building. The interviews are what choose between them.</p>
     </div>
