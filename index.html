@@ -266,11 +266,29 @@ sup.fn{
   display:flex;
   flex-direction:column;
   justify-content:flex-end;
-  max-width:var(--maxw);
-  margin:0 auto;
+  width:100%;
   position:relative;
   z-index:2;
+  background-image:url('Fresco_Artwork.png');
+  background-size:cover;
+  background-position:center 30%;
 }
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg,rgba(0,0,0,0.32) 0%,rgba(0,0,0,0.22) 35%,rgba(0,0,0,0.72) 68%,rgba(0,0,0,0.90) 100%);
+  z-index:0;
+}
+.hero>*{position:relative;z-index:1;}
+.hero .hero-meta{color:rgba(255,255,255,0.62);border-bottom-color:rgba(255,255,255,0.18);}
+.hero .hero-meta b{color:rgba(255,255,255,0.95);}
+.hero h1.hero-title{color:#fff;}
+.hero h1.hero-title em{color:var(--green);}
+.hero .hero__sub{color:rgba(255,255,255,0.86);}
+.hero .hero-hint{color:rgba(255,255,255,0.58);}
+.hero .hero-hint b{color:var(--green);border-bottom-color:rgba(85,186,92,0.65);}
+.hero .scroll-cue{color:rgba(255,255,255,0.5);}
 .hero-meta{
   display:flex;
   justify-content:space-between;
@@ -659,7 +677,9 @@ sup.fn{
 /* isotype - 2 of 3 didn't enter a museum */
 .iso{width:100%;max-width:560px;text-align:left;}
 .iso__top{font-family:var(--mono);font-size:0.74rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--gray);margin-bottom:1rem;}
-.iso__grid{display:flex;flex-wrap:wrap;gap:6px;max-width:520px;margin-bottom:1.4rem;}
+.iso__grid{display:flex;gap:8px;max-width:520px;margin-bottom:1.4rem;}
+.iso__group{display:flex;flex-wrap:wrap;gap:5px;flex:1;align-content:flex-start;}
+.iso__group--lit .fig{color:var(--green);}
 .fig{width:22px;height:28px;color:#cdc7bd;flex:0 0 auto;display:block;}
 .fig.is-in{color:var(--green);}
 .iso__read{display:flex;align-items:baseline;gap:0.85rem;flex-wrap:wrap;}
@@ -710,6 +730,10 @@ sup.fn{
 @keyframes ecg{from{stroke-dashoffset:1;}to{stroke-dashoffset:0;}}
 @media (prefers-reduced-motion: reduce){.heart.is-active .heart__pulse{animation:none;stroke-dasharray:none;stroke-dashoffset:0;}}
 
+/* mission diagram stage */
+.viz-diagram{width:100%;max-width:660px;background:#0a0a0a;padding:1.5rem;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.06);}
+.viz-diagram img{width:100%;height:auto;display:block;}
+
 @media (max-width:880px){
   .callout p{font-size:1.06rem;}
   .iso__grid{gap:5px;}.fig{width:19px;height:24px;}
@@ -755,7 +779,15 @@ sup.fn{
       <div class="iso">
         <div class="iso__top">American adults, 2024</div>
         <div class="iso__grid">
-          <svg class="fig"><use href="#person"/></svg><svg class="fig"><use href="#person"/></svg><svg class="fig"><use href="#person"/></svg><svg class="fig"><use href="#person"/></svg><svg class="fig"><use href="#person"/></svg><svg class="fig"><use href="#person"/></svg><svg class="fig"><use href="#person"/></svg><svg class="fig"><use href="#person"/></svg><svg class="fig"><use href="#person"/></svg><svg class="fig"><use href="#person"/></svg><svg class="fig"><use href="#person"/></svg><svg class="fig"><use href="#person"/></svg><svg class="fig"><use href="#person"/></svg><svg class="fig"><use href="#person"/></svg><svg class="fig"><use href="#person"/></svg><svg class="fig"><use href="#person"/></svg><svg class="fig"><use href="#person"/></svg><svg class="fig"><use href="#person"/></svg><svg class="fig"><use href="#person"/></svg><svg class="fig"><use href="#person"/></svg><svg class="fig is-in"><use href="#person"/></svg><svg class="fig is-in"><use href="#person"/></svg><svg class="fig is-in"><use href="#person"/></svg><svg class="fig is-in"><use href="#person"/></svg><svg class="fig is-in"><use href="#person"/></svg><svg class="fig is-in"><use href="#person"/></svg><svg class="fig is-in"><use href="#person"/></svg><svg class="fig is-in"><use href="#person"/></svg><svg class="fig is-in"><use href="#person"/></svg><svg class="fig is-in"><use href="#person"/></svg>
+          <div class="iso__group">
+            <svg class="fig"><use href="#person"/></svg><svg class="fig"><use href="#person"/></svg><svg class="fig"><use href="#person"/></svg><svg class="fig"><use href="#person"/></svg><svg class="fig"><use href="#person"/></svg><svg class="fig"><use href="#person"/></svg><svg class="fig"><use href="#person"/></svg><svg class="fig"><use href="#person"/></svg><svg class="fig"><use href="#person"/></svg><svg class="fig"><use href="#person"/></svg>
+          </div>
+          <div class="iso__group">
+            <svg class="fig"><use href="#person"/></svg><svg class="fig"><use href="#person"/></svg><svg class="fig"><use href="#person"/></svg><svg class="fig"><use href="#person"/></svg><svg class="fig"><use href="#person"/></svg><svg class="fig"><use href="#person"/></svg><svg class="fig"><use href="#person"/></svg><svg class="fig"><use href="#person"/></svg><svg class="fig"><use href="#person"/></svg><svg class="fig"><use href="#person"/></svg>
+          </div>
+          <div class="iso__group iso__group--lit">
+            <svg class="fig"><use href="#person"/></svg><svg class="fig"><use href="#person"/></svg><svg class="fig"><use href="#person"/></svg><svg class="fig"><use href="#person"/></svg><svg class="fig"><use href="#person"/></svg><svg class="fig"><use href="#person"/></svg><svg class="fig"><use href="#person"/></svg><svg class="fig"><use href="#person"/></svg><svg class="fig"><use href="#person"/></svg><svg class="fig"><use href="#person"/></svg>
+          </div>
         </div>
         <div class="iso__read">
           <span class="iso__num">2 of 3</span>
@@ -933,7 +965,7 @@ sup.fn{
     <div class="viz is-active" data-viz="a3-1">
       <div class="quote-stack">
         <figure class="qcard">
-          <div class="qcard__media"><img src="Robert_Wolterstorff.jpg" alt="Robert Wolterstorff, Bruce Museum" onerror="this.parentNode.style.display='none'"></div>
+          <div class="qcard__media"><img src="The_Bruce.jpg" alt="The Bruce Museum, Greenwich CT" onerror="this.parentNode.style.display='none'"></div>
           <blockquote class="qcard__text">"In this present fractured and fractious world, it's more important than ever to gather together."</blockquote>
           <figcaption class="qcard__attr">Robert Wolterstorff · Bruce Museum · 2023</figcaption>
         </figure>
@@ -962,6 +994,12 @@ sup.fn{
           <div class="lc__track"><span class="lc__bar" style="--w:100%"></span><span class="lc__val">+42%</span></div>
         </div>
         <div class="lc__src">IMPACTS Experience · members of 118 cultural organizations that charge admission</div>
+      </div>
+    </div>
+    <!-- Scene 2b: Mission Diagram -->
+    <div class="viz" data-viz="a3-2b">
+      <div class="viz-diagram">
+        <img src="Mission_Diagram.png" alt="PAM model: the town convenes in the room, the conversation is the collection, residents participate, the world receives the broadcast">
       </div>
     </div>
     <!-- Scene 3: Loneliness by age -->
@@ -1010,8 +1048,11 @@ sup.fn{
       <p class="reveal d2">The Palo Alto Museum already has the city's archive as a reference resource. What most older museums have stopped supplying is a place where the town comes to add to that record: voices, oral histories, debates, recordings, public events. A reading worth testing is that the institution's collection is the conversation it produces, and the archive sits behind it as the resource.</p>
       <p class="lede reveal d3">The artifact is the conversation. The room is the vessel. The town fills it.</p>
       <p class="reveal d3">The evidence from comparable civic institutions points in that direction. Across <span class="cite" tabindex="0">118 cultural organizations<span class="cite__panel"><b>Mission-motivated vs. transactional members</b>IMPACTS Experience surveyed members of 118 cultural organizations that charge admission. Members whose primary motivation is mission and belonging are approximately 14% more likely to annually renew than members whose primary motivation is transactional (free admission, exclusive access, discounts). Mission-motivated members also report their memberships as approximately 14.5% more valuable, and pay roughly 42% more in annual dues on average.<span class="src">Colleen Dilenschneider for IMPACTS Experience, 2016 (n=118) and 2018.</span></span></span><sup class="fn" id="fn-9" data-fn="9">9</sup>, members whose primary motivation is mission and belonging are roughly fourteen percent more likely to renew, perceive their memberships as more valuable, and pay approximately forty-two percent more in annual dues.</p>
-      <p class="reveal d3">If this reading holds, then for the residents in the room, the product is the conversation itself, and the participation is the reason to become a member. For everyone outside the room, the product is what gets broadcast from it, published, podcast, archived, transmitted.</p>
-      <p class="reveal d3">Two other readings hold some of the same ground. One is the museum as the town's living archive of itself, where the collection stays the artifact and the broadcast is documentary. Another is the museum as a regional draw, built to bring visitors to Palo Alto rather than to host the town's argument with itself. Each would lead to a different building. The interviews are what choose between them.</p>
+    </div>
+
+    <div class="scene" data-scene="a3-2b">
+      <p class="reveal">If this reading holds, then for the residents in the room, the product is the conversation itself, and the participation is the reason to become a member. For everyone outside the room, the product is what gets broadcast from it, published, podcast, archived, transmitted.</p>
+      <p class="reveal d1">Two other readings hold some of the same ground. One is the museum as the town's living archive of itself, where the collection stays the artifact and the broadcast is documentary. Another is the museum as a regional draw, built to bring visitors to Palo Alto rather than to host the town's argument with itself. Each would lead to a different building. The interviews are what choose between them.</p>
     </div>
 
     <div class="scene" data-scene="a3-3">
