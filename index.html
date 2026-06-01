@@ -760,11 +760,36 @@ sup.fn{
 .viz-diagram img{width:100%;height:auto;display:block;}
 
 @media (max-width:880px){
+  /* ── existing ── */
   .callout p{font-size:1.06rem;}
   .iso__grid{gap:5px;}.fig{width:19px;height:24px;}
   .iso__num{font-size:2.7rem;}
   .qcard__media{height:108px;}.qcard__text{font-size:1.02rem;}
   .lc__val{font-size:1.2rem;}
+
+  /* ── more room inside the 48vh stage ── */
+  .viz{padding:2.5vh 4%;}
+
+  /* ── loneliness chart: hold native width, scroll horizontally ── */
+  .lone{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  .lone__svg{width:520px;min-width:520px;height:auto;}
+
+  /* ── mission diagram: hold readable size, scroll if needed ── */
+  .viz-diagram{overflow-x:auto;-webkit-overflow-scrolling:touch;padding:1.5vh 0;justify-content:flex-start;}
+  #missionFrame{width:680px;height:385px;aspect-ratio:auto;flex-shrink:0;}
+
+  /* ── label minimum size ── */
+  .callout__top,.peer-card__est,.func-row__like{font-size:0.75rem;}
+
+  /* ── scene prose size on narrow screens ── */
+  h2.scene-h{font-size:clamp(1.5rem,5.2vw,2.8rem);}
+
+  /* ── hero background: tighter crop on portrait ── */
+  .hero{background-position:center 28%;}
+
+  /* ── liftchart rows tighter on small stage ── */
+  .lc__row{margin-bottom:0.9rem;}
+  .lc__sub{margin-bottom:1.1rem;}
 }
 </style>
 </head>
