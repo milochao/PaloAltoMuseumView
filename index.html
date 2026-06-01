@@ -532,16 +532,16 @@ sup.fn{
 .entry-wrap{position:relative;width:100%;max-width:560px;}
 .entry-portrait{
   position:absolute;
-  width:140%;
-  left:-20%;
+  width:170%;
+  left:-35%;
   top:50%;
   transform:translateY(-50%);
   height:auto;
   display:block;
   z-index:1;
-  opacity:0.78;
-  mask-image:radial-gradient(ellipse 80% 85% at 50% 38%, black 12%, rgba(0,0,0,0.52) 48%, transparent 80%);
-  -webkit-mask-image:radial-gradient(ellipse 80% 85% at 50% 38%, black 12%, rgba(0,0,0,0.52) 48%, transparent 80%);
+  opacity:0.88;
+  mask-image:radial-gradient(ellipse 88% 92% at 50% 40%, black 18%, rgba(0,0,0,0.6) 55%, transparent 88%);
+  -webkit-mask-image:radial-gradient(ellipse 88% 92% at 50% 40%, black 18%, rgba(0,0,0,0.6) 55%, transparent 88%);
 }
 .entry-grid{
   display:grid;
@@ -553,7 +553,7 @@ sup.fn{
   z-index:2;
 }
 .entry{
-  background:var(--white);
+  background:rgba(255,255,255,0.90);
   padding:1rem 1.1rem;
   font-family:var(--serif);
   font-style:italic;
@@ -748,7 +748,15 @@ sup.fn{
 @media (prefers-reduced-motion: reduce){.heart.is-active .heart__pulse{animation:none;stroke-dasharray:none;stroke-dashoffset:0;}}
 
 /* mission diagram stage */
-.viz-diagram{width:100%;max-width:660px;background:#0a0a0a;padding:1.5rem;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.06);}
+.viz-diagram{
+  position:absolute;
+  inset:0;
+  background:#060606;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:4vh 6%;
+}
 .viz-diagram img{width:100%;height:auto;display:block;}
 
 @media (max-width:880px){
@@ -1246,9 +1254,7 @@ sup.fn{
     <p id="src-14"><a href="#fn-14" class="src-back" title="Back to text">&#8617;</a><sup>14</sup> <strong>Dual mandate when operationalized.</strong> JANM's national reach is built on its traveling exhibits program and its Japan donation channel. The contribution split is now confirmed. JANM's campaign-completion announcement (totals as of December 31, 2025) reports $16 million raised from Southern California donors and $92 million from donors across the nation, against the $108 million campaign total. Sources: Rafu Shimpo, April 2026; JANM press release, janm.org/press. An earlier draft pointed this to the JANM FY2023 annual report in error; that report predates the campaign close and cannot contain the final split.</p>
     <p id="src-15"><a href="#fn-15" class="src-back" title="Back to text">&#8617;</a><sup>15</sup> <strong>The market-sizing question.</strong> Sector signals (AAM 2025, Surgeon General 2023, peer institution audited finances) motivate the platform thesis at the category level. The local Palo Alto willingness-to-pay curve at each membership and major-gift tier remains to be measured. Resident interviews are the proposed next step before programming lock. OMCA and the Tenement Museum followed comparable resident-interview procedures before launch.</p>
 
-    <div class="signoff" style="margin-top:3rem;border-top:1px solid var(--rule);padding-top:1.4rem;">
-      <em>Image placeholders are marked throughout for designer drop-in. See accompanying image brief for the fourteen-photograph specification.</em>
-    </div>
+
   </div>
 </section>
 
