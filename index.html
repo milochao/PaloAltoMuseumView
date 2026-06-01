@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Civic Platform Silicon Valley Does Not Have — An Early Read for the Palo Alto Museum</title>
+<title>The Civic Platform Silicon Valley Does Not Have: An Early Read for the Palo Alto Museum</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -54,7 +54,7 @@ body::before{
 .progress{position:fixed;top:0;left:0;right:0;height:4px;z-index:9999;background:rgba(17,17,17,0.08);}
 .progress__fill{height:100%;width:100%;transform-origin:left center;transform:scaleX(0);background:var(--green);will-change:transform;}
 
-/* ─── LAYOUT — sticky-stage pattern ───────────────────────────────── */
+/* ─── LAYOUT - sticky-stage pattern ───────────────────────────────── */
 .act{position:relative;display:flex;}
 .act.dark{background:var(--ink);}
 .stage{
@@ -174,7 +174,7 @@ strong{font-weight:600;color:var(--ink);}
 .dark strong{color:var(--white);}
 em.it{font-style:italic;}
 
-/* refrain — italic, accent color */
+/* refrain - italic, accent color */
 .refrain{
   font-family:var(--serif);
   font-style:italic;
@@ -292,7 +292,7 @@ sup.fn{
   font-size:clamp(1.3rem,2.1vw,1.55rem);
   color:var(--ink);
   margin-top:1.2rem;
-  max-width:42ch;
+  max-width:46ch;
   line-height:1.38;
 }
 .hero-hint{
@@ -304,7 +304,7 @@ sup.fn{
   display:flex;
   align-items:center;
   gap:0.55rem;
-  max-width:46ch;
+  max-width:52ch;
 }
 .hero-hint b{color:var(--green-text);font-weight:500;border-bottom:1px dotted rgba(46,125,50,0.55);}
 .scroll-cue{
@@ -327,7 +327,7 @@ sup.fn{
 
 /* ─── STAGE VISUALS ───────────────────────────────────────────────── */
 
-/* Photo frame — bigger, pulled toward the divider, subtle shadow */
+/* Photo frame - bigger, pulled toward the divider, subtle shadow */
 .imgph{
   width:100%;
   max-width:680px;
@@ -396,7 +396,7 @@ sup.fn{
 .viz.is-active{opacity:1;transform:translateY(0);pointer-events:auto;}
 @media (prefers-reduced-motion: reduce){.viz{transition:opacity 0.2s linear;transform:none;}}
 
-/* VIZ — Closed Museums Grid */
+/* VIZ - Closed Museums Grid */
 .closed-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
@@ -446,99 +446,12 @@ sup.fn{
   z-index:2;
 }
 
-/* VIZ — Big Number */
-.bignum{text-align:center;}
-.bignum__top{font-family:var(--mono);font-size:0.74rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--gray);margin-bottom:0.8rem;}
-.bignum__val{
-  font-family:var(--serif);
-  font-size:clamp(7rem,17vw,13rem);
-  font-style:italic;
-  color:var(--green);
-  line-height:0.9;
-  letter-spacing:-0.03em;
-}
-.bignum__cap{
-  font-family:var(--serif);
-  font-size:1.3rem;
-  line-height:1.36;
-  color:var(--ink);
-  margin-top:1.2rem;
-  max-width:30ch;
-  margin-left:auto;margin-right:auto;
-}
-.dark .bignum__cap{color:var(--white);}
-.bignum__src{font-family:var(--sans);font-size:0.86rem;letter-spacing:0.01em;color:var(--gray);margin-top:1rem;line-height:1.5;}
-
-/* VIZ — Heartbeat */
+/* VIZ - Heartbeat */
 .heart{width:100%;max-width:560px;}
 .heart__title{font-family:var(--mono);font-size:0.74rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--green);margin-bottom:0.8rem;}
 .heart__svg{width:100%;height:auto;display:block;}
-.heart__path{
-  fill:none;
-  stroke:var(--green);
-  stroke-width:2.5;
-  stroke-linecap:round;
-  stroke-linejoin:round;
-  stroke-dasharray:1;
-  stroke-dashoffset:1;
-  transition:stroke-dashoffset 2.4s cubic-bezier(.45,.05,.55,.95);
-}
-.heart.is-active .heart__path{stroke-dashoffset:0;}
-@media (prefers-reduced-motion: reduce){.heart__path{transition:none;stroke-dashoffset:0;}}
 
-/* VIZ — Three quote portraits */
-.quote-stack{display:flex;flex-direction:column;gap:0.9rem;width:100%;max-width:540px;}
-.quote-card{
-  padding:1rem 1.1rem;
-  background:var(--white);
-  border:1px solid rgba(17,17,17,0.08);
-  border-left:3px solid var(--green);
-  font-family:var(--serif);
-  font-size:1.1rem;
-  font-style:italic;
-  line-height:1.36;
-  color:var(--ink);
-  position:relative;
-}
-.quote-card--with-img{
-  display:grid;
-  grid-template-columns:88px 1fr;
-  gap:0.95rem;
-  align-items:stretch;
-  padding:0.85rem 1rem 0.85rem 0.85rem;
-}
-.quote-card__portrait{
-  width:88px;
-  aspect-ratio:1/1;
-  overflow:hidden;
-  background:var(--box);
-  position:relative;
-}
-.quote-card__portrait img{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  display:block;
-}
-.quote-card__body{
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-}
-.quote-card__attr{
-  display:block;
-  margin-top:0.5rem;
-  font-family:var(--mono);
-  font-style:normal;
-  font-size:0.7rem;
-  letter-spacing:0.06em;
-  text-transform:uppercase;
-  color:var(--gray);
-}
-
-/* VIZ — Peer institutions */
+/* VIZ - Peer institutions */
 .peers{
   display:grid;
   grid-template-columns:repeat(2,1fr);
@@ -575,7 +488,7 @@ sup.fn{
 .peer-card__est{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.05em;color:var(--green);margin-top:0.2rem;}
 .peer-card__line{font-family:var(--sans);font-size:0.88rem;color:rgba(255,255,255,0.9);margin-top:0.55rem;line-height:1.5;}
 
-/* VIZ — Named functions */
+/* VIZ - Named functions */
 .funcs{width:100%;max-width:560px;}
 .func-row{
   display:grid;
@@ -597,7 +510,7 @@ sup.fn{
   margin-top:0.2rem;
 }
 
-/* VIZ — Entry points */
+/* VIZ - Entry points */
 .entry-grid{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -616,7 +529,7 @@ sup.fn{
   border-bottom:3px solid var(--green);
 }
 
-/* VIZ — Closing argument card */
+/* VIZ - Closing argument card */
 .closing-card{
   width:100%;
   max-width:560px;
@@ -724,25 +637,107 @@ sup.fn{
 .signoff em{font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--ink);letter-spacing:0;}
 .dark .signoff{border-top-color:var(--rule-dark);color:rgba(255,255,255,0.7);}
 .dark .signoff em{color:var(--white);}
+
+/* ─── v3 FIXES & NEW VISUALIZATIONS ──────────────────────────────── */
+
+/* dark-section heading visibility fix (was black-on-black) */
+.dark h2.scene-h{color:var(--white);}
+.dark h3.proposal{color:rgba(255,255,255,0.62);}
+
+/* visible black callout - pulled out of a hover so it can't be missed */
+.callout{
+  background:var(--box);
+  color:var(--white);
+  padding:1.4rem 1.55rem;
+  margin:1.6rem 0;
+  border-left:4px solid var(--green);
+  max-width:35rem;
+}
+.callout__top{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--green);margin-bottom:0.7rem;}
+.callout p{font-family:var(--serif);font-size:1.18rem;line-height:1.42;color:var(--white);margin:0;max-width:none;}
+
+/* isotype - 2 of 3 didn't enter a museum */
+.iso{width:100%;max-width:560px;text-align:left;}
+.iso__top{font-family:var(--mono);font-size:0.74rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--gray);margin-bottom:1rem;}
+.iso__grid{display:flex;flex-wrap:wrap;gap:6px;max-width:520px;margin-bottom:1.4rem;}
+.fig{width:22px;height:28px;color:#cdc7bd;flex:0 0 auto;display:block;}
+.fig.is-in{color:var(--green);}
+.iso__read{display:flex;align-items:baseline;gap:0.85rem;flex-wrap:wrap;}
+.iso__num{font-family:var(--serif);font-style:italic;font-size:clamp(3rem,6.6vw,4.4rem);color:var(--green);line-height:0.85;letter-spacing:-0.02em;}
+.iso__cap{font-family:var(--serif);font-size:1.18rem;line-height:1.3;color:var(--ink);max-width:22ch;}
+.iso__src{font-family:var(--sans);font-size:0.84rem;color:var(--gray);margin-top:1rem;}
+
+/* lift chart - why members stay */
+.liftchart{width:100%;max-width:560px;}
+.lc__top{font-family:var(--mono);font-size:0.74rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--green);margin-bottom:0.5rem;}
+.lc__sub{font-family:var(--sans);font-size:0.92rem;color:var(--gray);margin-bottom:1.6rem;line-height:1.5;max-width:38ch;}
+.lc__row{margin-bottom:1.25rem;}
+.lc__label{font-family:var(--sans);font-size:0.96rem;color:var(--ink);margin-bottom:0.5rem;}
+.lc__track{display:flex;align-items:center;gap:0.75rem;}
+.lc__bar{height:14px;width:var(--w);background:var(--green);border-radius:3px;transform:scaleX(0);transform-origin:left center;transition:transform 1s var(--expo) .2s;}
+.viz.is-active .lc__bar{transform:scaleX(1);}
+.lc__val{font-family:var(--serif);font-style:italic;font-size:1.45rem;color:var(--green-text);white-space:nowrap;}
+.lc__src{font-family:var(--sans);font-size:0.82rem;color:var(--gray);margin-top:0.7rem;line-height:1.5;border-top:1px solid var(--rule);padding-top:0.8rem;}
+
+/* loneliness chart - shape by age */
+.lone{width:100%;max-width:560px;}
+.lone__top{font-family:var(--mono);font-size:0.74rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--green);margin-bottom:0.7rem;}
+.lone__svg{width:100%;height:auto;display:block;}
+.lone__ref{stroke:#9a948a;stroke-width:1;stroke-dasharray:5 5;}
+.lone__reflab{font-family:"IBM Plex Mono",monospace;font-size:12px;fill:#888;}
+.lone__bar{fill:rgba(85,186,92,0.42);transform-box:fill-box;transform-origin:bottom;transform:scaleY(0);transition:transform .9s var(--expo);}
+.lone__bar.hi{fill:var(--green);}
+.viz.is-active .lone__bar{transform:scaleY(1);}
+.lone__bar.b0{transition-delay:.05s;}.lone__bar.b1{transition-delay:.12s;}.lone__bar.b2{transition-delay:.18s;}.lone__bar.b3{transition-delay:.23s;}.lone__bar.b4{transition-delay:.27s;}.lone__bar.b5{transition-delay:.30s;}
+.lone__xlab{font-family:"IBM Plex Mono",monospace;font-size:12px;fill:#666;text-anchor:middle;}
+.lone__end{font-family:"Instrument Serif",serif;font-style:italic;font-size:15px;fill:var(--green-text);text-anchor:middle;}
+.lone__note{font-family:var(--sans);font-size:0.82rem;color:var(--gray);line-height:1.5;margin-top:1rem;border-top:1px solid var(--rule);padding-top:0.8rem;max-width:48ch;}
+.lone__src{font-family:var(--sans);font-size:0.8rem;color:var(--gray);margin-top:0.5rem;}
+@media (prefers-reduced-motion: reduce){.lone__bar,.lc__bar{transition:none;transform:none;}}
+
+/* big quote cards - Bruce / Princeton */
+.quote-stack{display:flex;flex-direction:column;gap:1.1rem;width:100%;max-width:560px;}
+.qcard{background:var(--white);border:1px solid var(--rule);border-left:3px solid var(--green);overflow:hidden;margin:0;}
+.qcard__media{width:100%;height:200px;background:var(--box);position:relative;overflow:hidden;}
+.qcard__media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}
+.qcard__text{margin:0;padding:1.05rem 1.2rem 0.45rem;font-family:var(--serif);font-style:italic;font-size:1.18rem;line-height:1.36;color:var(--ink);}
+.qcard__attr{padding:0.45rem 1.2rem 1.05rem;font-family:var(--mono);font-size:0.7rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--gray);display:block;}
+
+/* continuous heartbeat - faint baseline trace + a pulse that never stops */
+.heart__base{fill:none;stroke:rgba(85,186,92,0.28);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.heart__pulse{fill:none;stroke:var(--green);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:0.16 0.84;stroke-dashoffset:1;}
+.heart.is-active .heart__pulse{animation:ecg 3.6s linear infinite;}
+@keyframes ecg{from{stroke-dashoffset:1;}to{stroke-dashoffset:0;}}
+@media (prefers-reduced-motion: reduce){.heart.is-active .heart__pulse{animation:none;stroke-dasharray:none;stroke-dashoffset:0;}}
+
+@media (max-width:880px){
+  .callout p{font-size:1.06rem;}
+  .iso__grid{gap:5px;}.fig{width:19px;height:24px;}
+  .iso__num{font-size:2.7rem;}
+  .qcard__media{height:108px;}.qcard__text{font-size:1.02rem;}
+  .lc__val{font-size:1.2rem;}
+}
 </style>
 </head>
 <body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="person" viewBox="0 0 24 30"><circle cx="12" cy="7" r="6" fill="currentColor"/><path d="M3 30 C3 19 7 15 12 15 C17 15 21 19 21 30 Z" fill="currentColor"/></symbol></svg>
 
 <div class="progress" aria-hidden="true"><div class="progress__fill" id="progressFill"></div></div>
 
 <!-- HERO -->
 <header class="hero" id="hero">
   <div class="hero-meta reveal">
-    <span>An <b>early read</b> in advance of Thursday's conversation</span>
+    <span><b>An early read</b></span>
     <span>The Palo Alto Museum &nbsp;·&nbsp; June 2026</span>
   </div>
-  <h1 class="hero-title reveal d1">An institution opens<br>where the field is <em>thinning</em>.</h1>
-  <p class="hero__sub reveal d2">The timing is what matters. This early read argues the Palo Alto Museum should open as the civic platform Silicon Valley needs.</p>
-  <p class="hero-hint reveal d3"><b>Underlined terms</b> open their source. Hover on desktop, tap on mobile.</p>
+  <h1 class="hero-title reveal d1">A museum opens<br>where the field is <em>thinning</em>.</h1>
+  <p class="hero__sub reveal d2">This early read argues the Palo Alto Museum should open as the room where the town gathers to debate and document its own story, then broadcasts that conversation to everyone outside the room.</p>
+  <p class="hero-hint reveal d3"><b>Underlined terms</b> open their source when you hover on a desktop or tap on a phone.</p>
   <div class="scroll-cue reveal d3">Scroll</div>
 </header>
 
-<!-- ═══════════════ ACT I — THE FIELD ═══════════════ -->
+<!-- ═══════════════ ACT I - THE FIELD ═══════════════ -->
 <section class="act" id="a1">
   <div class="stage">
     <!-- Scene 1: Bellevue image -->
@@ -751,17 +746,22 @@ sup.fn{
         <img src="bellevue_arts_museum.jpg" alt="Bellevue Arts Museum" onerror="this.style.display='none'">
         <div class="imgph__cap">
           <b>The Bellevue Arts Museum</b>
-          Steven Holl building, 2001. Closed twice. Sale agreed 2025 for roughly one-fifth of construction cost.
+          Steven Holl building, 2001. Closed for good in 2024, when it could no longer fund operations. Sold in 2025 for about a fifth of what it cost to build.
         </div>
       </div>
     </div>
-    <!-- Scene 2: Big Number -->
+    <!-- Scene 2: Isotype, 2 of 3 -->
     <div class="viz" data-viz="a1-2">
-      <div class="bignum">
-        <div class="bignum__top">American adults, 2024</div>
-        <div class="bignum__val">2 of 3</div>
-        <div class="bignum__cap">did not enter a museum in the previous year.</div>
-        <div class="bignum__src">AAM 2025 Annual Survey of Museum-Goers · n=98,904</div>
+      <div class="iso">
+        <div class="iso__top">American adults, 2024</div>
+        <div class="iso__grid">
+          <svg class="fig"><use href="#person"/></svg><svg class="fig"><use href="#person"/></svg><svg class="fig"><use href="#person"/></svg><svg class="fig"><use href="#person"/></svg><svg class="fig"><use href="#person"/></svg><svg class="fig"><use href="#person"/></svg><svg class="fig"><use href="#person"/></svg><svg class="fig"><use href="#person"/></svg><svg class="fig"><use href="#person"/></svg><svg class="fig"><use href="#person"/></svg><svg class="fig"><use href="#person"/></svg><svg class="fig"><use href="#person"/></svg><svg class="fig"><use href="#person"/></svg><svg class="fig"><use href="#person"/></svg><svg class="fig"><use href="#person"/></svg><svg class="fig"><use href="#person"/></svg><svg class="fig"><use href="#person"/></svg><svg class="fig"><use href="#person"/></svg><svg class="fig"><use href="#person"/></svg><svg class="fig"><use href="#person"/></svg><svg class="fig is-in"><use href="#person"/></svg><svg class="fig is-in"><use href="#person"/></svg><svg class="fig is-in"><use href="#person"/></svg><svg class="fig is-in"><use href="#person"/></svg><svg class="fig is-in"><use href="#person"/></svg><svg class="fig is-in"><use href="#person"/></svg><svg class="fig is-in"><use href="#person"/></svg><svg class="fig is-in"><use href="#person"/></svg><svg class="fig is-in"><use href="#person"/></svg><svg class="fig is-in"><use href="#person"/></svg>
+        </div>
+        <div class="iso__read">
+          <span class="iso__num">2 of 3</span>
+          <span class="iso__cap">did not enter a museum in the previous year. The green third is everyone who did.</span>
+        </div>
+        <div class="iso__src">AAM 2025 Annual Survey of Museum-Goers · n=98,904</div>
       </div>
     </div>
     <!-- Scene 3: Closed grid -->
@@ -798,8 +798,8 @@ sup.fn{
   <div class="narrative">
     <div class="scene" data-scene="a1-1">
       <div class="eyebrow reveal">Act I · The field</div>
-      <h2 class="scene-h reveal d1">A field is <em>thinning</em>, and the timing matters.</h2>
-      <p class="lede reveal d2">In 2001, the Bellevue Arts Museum opened in a <span class="cite" tabindex="0">$23 million Steven Holl building<span class="cite__panel"><b>Bellevue Arts Museum</b>$23M Steven Holl building opened 2001. Closed in 2003. Reopened 2005 as a craft and design museum. Closed again September 2024 following financial collapse. Sale to KidsQuest Children's Museum for approximately $5M announced October 2025, closing expected early 2026 — about one-fifth of construction cost.<span class="src">Seattle Times, October 2025. The Art Newspaper, October 2025.</span></span></span><sup class="fn" id="fn-1" data-fn="1">1</sup>. By 2025, after the September 2024 closure, the building had agreed to sell for roughly one-fifth of construction cost.</p>
+      <h2 class="scene-h reveal d1">A field is <em>thinning</em>, and a famous building did not stop it.</h2>
+      <p class="lede reveal d2">In 2001, the Bellevue Arts Museum opened in a <span class="cite" tabindex="0">$23 million Steven Holl building<span class="cite__panel"><b>Bellevue Arts Museum</b>$23M Steven Holl building opened 2001. Closed in 2003. Reopened 2005 as a craft and design museum. Closed again September 2024 after its finances failed. Sale to KidsQuest Children's Museum for approximately $5M announced October 2025, closing expected early 2026, about one-fifth of construction cost.<span class="src">Seattle Times, October 2025. The Art Newspaper, October 2025.</span></span></span><sup class="fn" id="fn-1" data-fn="1">1</sup>. It closed for good in September 2024, after years of thin attendance and money trouble left it unable to keep the doors open. By 2025 it had agreed to sell for roughly one-fifth of what the building cost to put up.</p>
       <p class="reveal d3">It was not a one-off. The American Alliance of Museums' 2025 field survey found that more than half of US museums now draw fewer visitors than they did in 2019, and that one in three lost a government grant or contract in the past year<sup class="fn" id="fn-2" data-fn="2">2</sup>.</p>
       <div class="statpair reveal d3" data-stat>
         <div class="stat">
@@ -822,13 +822,17 @@ sup.fn{
     </div>
 
     <div class="scene" data-scene="a1-3">
-      <p class="reveal">Three more museums closed in 2018 and 2019. Each had real advantages: a notable building, founding donors, a story to tell. The pattern is the same one: <span class="cite" tabindex="0">the form of museum that displays what it owns<span class="cite__panel"><b>What is being asked of museums now</b>The pattern in the closures is not lack of artifacts or lack of architecture. It is that the model of one-way display — collection behind glass, hours posted, ticket scanned — is no longer the form a divided town comes to. The institutions making it through 2026 are converting from display to convening.<span class="src">AAM TrendsWatch 2024 and 2026. Bruce Museum reopening, 2023.</span></span></span><sup class="fn" id="fn-3" data-fn="3">3</sup> is not the form a town comes back to in 2026.</p>
-      <p class="refrain reveal d1">In the middle of this, a new museum in Palo Alto is preparing to open its doors. The question is what it should open as.</p>
+      <p class="reveal">Three more museums closed in 2018 and 2019<sup class="fn" id="fn-3" data-fn="3">3</sup>. Each had real advantages: a notable building, founding donors, a story to tell.</p>
+      <div class="callout reveal d1">
+        <div class="callout__top">The pattern in the closures</div>
+        <p>The problem was not a shortage of art or architecture. It was that one-way display, the collection behind glass and the ticket at the door, is no longer the form a divided town comes back to. The museums getting through 2026 are the ones converting from display to convening.</p>
+      </div>
+      <p class="refrain reveal d2">In the middle of this, a new museum in Palo Alto is preparing to open its doors. The question is what it should open as.</p>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════ ACT II — THE FIGHT ═══════════════ -->
+<!-- ═══════════════ ACT II - THE FIGHT ═══════════════ -->
 <section class="act dark" id="a2">
   <div class="stage">
     <!-- Scene 1: The Roth -->
@@ -856,8 +860,21 @@ sup.fn{
       <div class="heart">
         <div class="heart__title">Twenty-five years of near-death</div>
         <svg class="heart__svg" viewBox="0 0 560 200" preserveAspectRatio="xMidYMid meet">
-          <line x1="0" y1="100" x2="560" y2="100" stroke="rgba(85,186,92,0.22)" stroke-width="1" stroke-dasharray="4 4"/>
-          <path class="heart__path" pathLength="1" d="
+          <line x1="0" y1="100" x2="560" y2="100" stroke="rgba(85,186,92,0.16)" stroke-width="1" stroke-dasharray="4 4"/>
+          <path class="heart__base" pathLength="1" d="
+            M 0 100
+            L 60 100
+            L 80 100 L 90 60 L 100 140 L 110 100
+            L 180 100
+            L 200 100 L 210 50 L 220 150 L 230 100
+            L 290 100
+            L 310 100 L 320 55 L 330 145 L 340 100
+            L 400 100
+            L 420 100 L 430 75 L 440 125 L 450 100
+            L 510 100
+            L 530 100 L 540 80 L 550 100
+            L 560 100"/>
+          <path class="heart__pulse" pathLength="1" d="
             M 0 100
             L 60 100
             L 80 100 L 90 60 L 100 140 L 110 100
@@ -903,50 +920,78 @@ sup.fn{
 
     <div class="scene" data-scene="a2-3">
       <p class="reveal">In December 2017, after a decade of fundraising, the city council gave the project <span class="cite" tabindex="0">one final deadline<span class="cite__panel"><b>The 2017 council deadline</b>By 2017, the Palo Alto History Museum had been fundraising for over a decade and faced council impatience. The council voted to require the museum to raise approximately $1.75M by November 2018 or lose the lease. Roughly 900 donors gave. The lease was signed in 2023. Renovation completed 2024.<span class="src">Palo Alto Online, 2017–2024.</span></span></span><sup class="fn" id="fn-5" data-fn="5">5</sup>. Raise $1.75 million by November 2018, or the lease would not be extended.</p>
-      <p class="reveal d1">Approximately nine hundred donors made the deadline possible. A 2020 outside review of pledges flagged two-thirds of them as "high risk." Critics on the council called the project a vanity. Both are on the record. The renovation finished in 2024 anyway.</p>
+      <p class="reveal d1">Approximately nine hundred donors made the deadline possible. A 2020 outside review of pledges flagged two-thirds of them as "high risk." Critics on the council called the project a vanity. The renovation finished in 2024 anyway.</p>
       <p class="refrain reveal d2">The question is no longer whether it should exist. It does. What remains is what it should be when the doors open.</p>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════ ACT III — THE OPENING ═══════════════ -->
+<!-- ═══════════════ ACT III - THE OPENING ═══════════════ -->
 <section class="act" id="a3">
   <div class="stage">
-    <!-- Scene 1: Bruce Museum / quotes -->
+    <!-- Scene 1: Bruce / Princeton quotes, big images -->
     <div class="viz is-active" data-viz="a3-1">
       <div class="quote-stack">
-        <div class="quote-card quote-card--with-img">
-          <div class="quote-card__portrait"><img src="Robert_Wolterstorff.jpg" alt="Robert Wolterstorff" onerror="this.style.display='none'"></div>
-          <div class="quote-card__body">
-            "In this present fractured and fractious world, it's more important than ever to gather together."
-            <span class="quote-card__attr">Robert Wolterstorff · Bruce Museum · 2023</span>
-          </div>
-        </div>
-        <div class="quote-card quote-card--with-img">
-          <div class="quote-card__portrait"><img src="PUAM.jpg" alt="Princeton University Art Museum" onerror="this.style.display='none'"></div>
-          <div class="quote-card__body">
-            "A kind of town square for the arts and humanities, a place of coming together."
-            <span class="quote-card__attr">James Steward · Princeton University Art Museum · 2025</span>
-          </div>
-        </div>
+        <figure class="qcard">
+          <div class="qcard__media"><img src="Robert_Wolterstorff.jpg" alt="Robert Wolterstorff, Bruce Museum" onerror="this.parentNode.style.display='none'"></div>
+          <blockquote class="qcard__text">"In this present fractured and fractious world, it's more important than ever to gather together."</blockquote>
+          <figcaption class="qcard__attr">Robert Wolterstorff · Bruce Museum · 2023</figcaption>
+        </figure>
+        <figure class="qcard">
+          <div class="qcard__media"><img src="PUAM.jpg" alt="Princeton University Art Museum" onerror="this.parentNode.style.display='none'"></div>
+          <blockquote class="qcard__text">"A kind of town square for the arts and humanities, a place of coming together."</blockquote>
+          <figcaption class="qcard__attr">James Steward · Princeton University Art Museum · 2025</figcaption>
+        </figure>
       </div>
     </div>
-    <!-- Scene 2: The empty room metaphor -->
+    <!-- Scene 2: Membership lift chart -->
     <div class="viz" data-viz="a3-2">
-      <div class="bignum">
-        <div class="bignum__top">One reading worth opening</div>
-        <div class="bignum__val" style="font-size:clamp(2.3rem,4.5vw,3.4rem);line-height:1.14;letter-spacing:-0.012em;max-width:18ch;margin:0 auto;color:var(--ink);">The artifact<br>is the conversation.<br>The room is the vessel.<br>The town fills it.</div>
-        <div class="bignum__src" style="margin-top:1.8rem;">If this reading holds, the Palo Alto Museum's archive is the reference resource, and the conversations the room produces are what it broadcasts.</div>
+      <div class="liftchart">
+        <div class="lc__top">Why members join, and whether they stay</div>
+        <div class="lc__sub">Members who join for the mission, compared with members who join for the perks.</div>
+        <div class="lc__row">
+          <div class="lc__label">More likely to renew each year</div>
+          <div class="lc__track"><span class="lc__bar" style="--w:33%"></span><span class="lc__val">+14%</span></div>
+        </div>
+        <div class="lc__row">
+          <div class="lc__label">Rate the membership as more valuable</div>
+          <div class="lc__track"><span class="lc__bar" style="--w:34.5%"></span><span class="lc__val">+14.5%</span></div>
+        </div>
+        <div class="lc__row">
+          <div class="lc__label">Pay more in annual dues</div>
+          <div class="lc__track"><span class="lc__bar" style="--w:100%"></span><span class="lc__val">+42%</span></div>
+        </div>
+        <div class="lc__src">IMPACTS Experience · members of 118 cultural organizations that charge admission</div>
       </div>
     </div>
-    <!-- Scene 3: Surgeon General quote -->
+    <!-- Scene 3: Loneliness by age -->
     <div class="viz" data-viz="a3-3">
-      <div class="imgph imgph--portrait">
-        <img src="Vivek_Murthy.jpg" alt="Vivek Murthy, M.D., US Surgeon General" onerror="this.style.display='none'">
-        <div class="imgph__cap">
-          <b>Vivek Murthy, M.D.</b>
-          US Surgeon General, 2023 advisory on loneliness, which called for investment in community institutions including libraries and "places of gathering."
-        </div>
+      <div class="lone">
+        <div class="lone__top">Loneliness by age, United States</div>
+        <svg class="lone__svg" viewBox="0 0 560 300" preserveAspectRatio="xMidYMid meet">
+          <rect class="lone__bar b0 hi" x="61"  y="60"  width="56" height="190"/>
+          <rect class="lone__bar b1"    x="139" y="110" width="56" height="140"/>
+          <rect class="lone__bar b2"    x="217" y="150" width="56" height="100"/>
+          <rect class="lone__bar b3"    x="295" y="148" width="56" height="102"/>
+          <rect class="lone__bar b4"    x="373" y="112" width="56" height="138"/>
+          <rect class="lone__bar b5 hi" x="451" y="72"  width="56" height="178"/>
+
+          <line x1="40" y1="250" x2="516" y2="250" stroke="#ddd" stroke-width="1"/>
+          <line class="lone__ref" x1="40" y1="120" x2="516" y2="120"/>
+          <text class="lone__reflab" x="44" y="113">≈ half of all adults</text>
+
+          <text class="lone__xlab" x="89"  y="270">18-24</text>
+          <text class="lone__xlab" x="167" y="270">25-34</text>
+          <text class="lone__xlab" x="245" y="270">35-44</text>
+          <text class="lone__xlab" x="323" y="270">45-54</text>
+          <text class="lone__xlab" x="401" y="270">55-64</text>
+          <text class="lone__xlab" x="479" y="270">65+</text>
+
+          <text class="lone__end" x="89"  y="48">youngest</text>
+          <text class="lone__end" x="479" y="60">oldest</text>
+        </svg>
+        <div class="lone__note">The shape illustrates the advisory's finding that loneliness runs highest among the youngest and the oldest adults. The ≈ half figure is the advisory's own; the per-band heights are illustrative, not measured.</div>
+        <div class="lone__src">US Surgeon General advisory on loneliness, May 2023</div>
       </div>
     </div>
   </div>
@@ -962,22 +1007,22 @@ sup.fn{
     <div class="scene" data-scene="a3-2">
       <h3 class="proposal reveal">One reading worth opening</h3>
       <h2 class="scene-h reveal d1">What if the <em>collection</em> is the conversation it produces?</h2>
-      <p class="reveal d2">The Palo Alto Museum already has the city's archive as a reference resource. What most older museums have stopped supplying is a place where the town comes to add to that record — voices, oral histories, debates, recordings, public events. A reading worth testing is that the institution's collection is the conversation it produces, and the archive sits behind it as the resource.</p>
+      <p class="reveal d2">The Palo Alto Museum already has the city's archive as a reference resource. What most older museums have stopped supplying is a place where the town comes to add to that record: voices, oral histories, debates, recordings, public events. A reading worth testing is that the institution's collection is the conversation it produces, and the archive sits behind it as the resource.</p>
       <p class="lede reveal d3">The artifact is the conversation. The room is the vessel. The town fills it.</p>
       <p class="reveal d3">The evidence from comparable civic institutions points in that direction. Across <span class="cite" tabindex="0">118 cultural organizations<span class="cite__panel"><b>Mission-motivated vs. transactional members</b>IMPACTS Experience surveyed members of 118 cultural organizations that charge admission. Members whose primary motivation is mission and belonging are approximately 14% more likely to annually renew than members whose primary motivation is transactional (free admission, exclusive access, discounts). Mission-motivated members also report their memberships as approximately 14.5% more valuable, and pay roughly 42% more in annual dues on average.<span class="src">Colleen Dilenschneider for IMPACTS Experience, 2016 (n=118) and 2018.</span></span></span><sup class="fn" id="fn-9" data-fn="9">9</sup>, members whose primary motivation is mission and belonging are roughly fourteen percent more likely to renew, perceive their memberships as more valuable, and pay approximately forty-two percent more in annual dues.</p>
-      <p class="reveal d3">If this reading holds, then for the residents in the room, the product is the conversation itself, and the participation is the reason to become a member. For everyone outside the room, the product is what gets broadcast from it — published, podcast, archived, transmitted.</p>
+      <p class="reveal d3">If this reading holds, then for the residents in the room, the product is the conversation itself, and the participation is the reason to become a member. For everyone outside the room, the product is what gets broadcast from it, published, podcast, archived, transmitted.</p>
       <p class="reveal d3">Two other readings hold some of the same ground. One is the museum as the town's living archive of itself, where the collection stays the artifact and the broadcast is documentary. Another is the museum as a regional draw, built to bring visitors to Palo Alto rather than to host the town's argument with itself. Each would lead to a different building. The interviews are what choose between them.</p>
     </div>
 
     <div class="scene" data-scene="a3-3">
-      <p class="reveal">The reason this opening matters now is documented, and the numbers are not abstract. The US Surgeon General's 2023 advisory on loneliness reported that approximately half of American adults experience measurable loneliness, with the heaviest burden on the young and the old. The advisory called explicitly for investment in <span class="cite" tabindex="0">"community institutions"<span class="cite__panel"><b>The Surgeon General's 2023 advisory</b>"Our Epidemic of Loneliness and Isolation" called for investment in "community institutions including recreation leagues, parks, libraries, and playgrounds, to foster a sense of belonging." Federal policy frame for civic-platform investment.<span class="src">US Surgeon General, May 2023.</span></span></span><sup class="fn" id="fn-10" data-fn="10">10</sup>: libraries, parks, places of gathering.</p>
-      <p class="reveal d1">In <em class="it">Bowling Alone</em>, the canonical 2000 study of declining American civic association membership<sup class="fn" id="fn-11" data-fn="11">11</sup>, the same retreat from organized public life is described over a quarter-century of data. Pew Research Center reporting through 2025 confirms and extends the finding. The Palo Alto Museum opens into the consequences of that retreat, in a town whose residents have largely watched it happen.</p>
+      <p class="reveal">The US Surgeon General's 2023 advisory on loneliness found that approximately half of American adults experience measurable loneliness, with the heaviest burden on the young and the old. The advisory called explicitly for investment in <span class="cite" tabindex="0">"community institutions"<span class="cite__panel"><b>The Surgeon General's 2023 advisory</b>"Our Epidemic of Loneliness and Isolation" called for investment in "community institutions including recreation leagues, parks, libraries, and playgrounds, to foster a sense of belonging." Federal policy frame for civic-platform investment.<span class="src">US Surgeon General, May 2023.</span></span></span><sup class="fn" id="fn-10" data-fn="10">10</sup>: libraries, parks, places of gathering.</p>
+      <p class="reveal d1">In <em class="it">Bowling Alone</em>, the canonical 2000 study of declining American civic association membership<sup class="fn" id="fn-11" data-fn="11">11</sup>, the same retreat from organized public life is described across a quarter-century of data. Pew Research Center reporting through 2025 confirms and extends the finding. The Palo Alto Museum opens into the consequences of that retreat, in a town whose residents have largely watched it happen.</p>
       <p class="refrain reveal d2">If older museums are dying because they were built to display, the question is whether this one finds its purchase by being built to convene.</p>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════ ACT IV — THE PROPOSAL ═══════════════ -->
+<!-- ═══════════════ ACT IV - THE PROPOSAL ═══════════════ -->
 <section class="act dark" id="a4">
   <div class="stage">
     <!-- Scene 1: Peer institutions -->
@@ -1047,28 +1092,28 @@ sup.fn{
     <div class="scene" data-scene="a4-1">
       <div class="eyebrow reveal">Act IV · A sketch of the architecture</div>
       <h3 class="proposal reveal d1">An early read</h3>
-      <h2 class="scene-h reveal d1">There is a category Silicon Valley does not have. It is small, and it is documented.</h2>
+      <h2 class="scene-h reveal d1">Silicon Valley has no <em>civic platform</em> of its own.</h2>
       <p class="reveal d2">The institutions worth holding in the frame, alongside the Palo Alto Museum, are civic platforms with flagship buildings. They host conversation in public, broadcast it beyond the room, and fund themselves through membership at scale, named program endowments, and foundation grants rather than ticket revenue.</p>
-      <p class="reveal d3">The audited finances are public <span class="cite" tabindex="0">on the record<span class="cite__panel"><b>92NY, Aspen, Newberry, Commonwealth Club</b>Each operates at a scale that qualifies it as a peer category exemplar: 92nd Street Y serves approximately 300,000 annual participants from a contribution-heavy revenue mix. The Aspen Institute is a public charity with a substantial annual contribution base built over a 75-year proprietary leadership curriculum. The Newberry Library's First and Foremost Campaign exceeded its goal. The Commonwealth Club of California has hosted continuous public-affairs conversation since 1903 with national podcast distribution. Specific FY2024 figures available via each institution's Form 990 on ProPublica Nonprofit Explorer.<span class="src">Charity Navigator (92Y FY2023); Intellispect (Aspen FY annual revenue indicators); Newberry press materials; Commonwealth Club institutional records. Specific Form 990 line items to be confirmed for each before public citation.</span></span></span><sup class="fn" id="fn-12" data-fn="12">12</sup>. Silicon Valley has Stanford for its students, the Computer History Museum for the technology, and venture firms for the capital. It has no equivalent civic platform. That gap is what makes this reading worth opening.</p>
+      <p class="reveal d3">Their <span class="cite" tabindex="0">audited finances are public<span class="cite__panel"><b>92NY, Aspen, Newberry, Commonwealth Club</b>Each operates at a scale that qualifies it as a peer category exemplar: 92nd Street Y serves approximately 300,000 annual participants from a contribution-heavy revenue mix. The Aspen Institute is a public charity with a substantial annual contribution base built over a 75-year proprietary leadership curriculum. The Newberry Library's First and Foremost Campaign exceeded its goal. The Commonwealth Club of California has hosted continuous public-affairs conversation since 1903 with national podcast distribution. Exact FY2024 figures available via each institution's Form 990 on ProPublica Nonprofit Explorer.<span class="src">Charity Navigator (92Y FY2023); Intellispect (Aspen FY annual revenue indicators); Newberry press materials; Commonwealth Club institutional records. Aspen (EIN 84-0399006) and Newberry (EIN 36-2167814) FY2024 filings are public on ProPublica; the 92NY figure (EIN 13-1624229) is still to be confirmed before public citation.</span></span></span><sup class="fn" id="fn-12" data-fn="12">12</sup>, filed every year. Silicon Valley has Stanford for its students, the Computer History Museum for the technology, and venture firms for the capital. It has no equivalent civic platform. That gap is what makes this reading worth opening.</p>
     </div>
 
     <div class="scene" data-scene="a4-2">
       <h2 class="scene-h reveal" style="font-size:clamp(1.6rem,3.3vw,2.1rem);">Six reasons a Palo Altan, or a visitor, would walk through the door.</h2>
-      <p class="reveal d1">These six are a working hypothesis. The resident interviews described in Act V are how the hypothesis would be tested.</p>
-      <p class="reveal d2">A civic platform earns its membership by being the institution that someone in town actually wants to use on a given Tuesday. If these six are confirmed, the programming follows from them. If a different set emerges from the interviews, the programming adjusts. The institution would be built around the actual entry points, not the hypothesis of them.</p>
+      <p class="reveal d1">A civic platform only earns its membership if people in town have a concrete reason to walk in on an ordinary Tuesday. The six listed here are our working hypotheses for what those reasons are.</p>
+      <p class="reveal d2">The resident interviews in Act V are how we would test them. If these six hold, the programming follows from them. If a different set comes back, the programming follows the real entry points instead. The museum gets built around the answers, not around our guess at them.</p>
     </div>
 
     <div class="scene" data-scene="a4-3">
       <h2 class="scene-h reveal">What a funding architecture built from precedent <em>might look like</em>.</h2>
-      <p class="reveal d1">Three independent research runs, fifteen documented comparable institutions, and Form 990 data through FY2024 converge on one finding. Every documented case in our sample that exceeded its capital campaign goal did so by attaching major gifts to <span class="cite" tabindex="0">named functions — directorships, named program endowments, named gallery spaces<span class="cite__panel"><b>The named-function finding</b>OMCA: $86M raised against $85M goal (All In! campaign, closed June 2021). JANM: $85M goal reached via more than 100 leadership gifts of $100K+ ("Our Promise" campaign, originally $65M, extended to $85M). Atlanta History Center: $10M Whitaker lead gift seeded the Cyclorama project; after the endowment was secured, the balance of the $35.78M campaign closed "with relative speed" (AJC, 2014). MOHAI: $10M Bezos founding gift in 2013 named the Bezos Center for Innovation. Dia:Beacon: Leonard Riggio gift named the Riggio Galleries (figure needs primary source confirmation).<span class="src">PAM Positioning Hypotheses Evidence Brief, May 2026; OMCA press release August 2021; JANM "Our Promise" campaign page; Atlanta Journal-Constitution 2014; GeekWire / Seattle Times 2013.</span></span></span><sup class="fn" id="fn-13" data-fn="13">13</sup> with director titles, operating budgets, and measurable outputs. None of the cases in our sample succeeded through general-fund or "preserve our heritage" asks alone.</p>
-      <p class="reveal d2">Eight named founding functions sketch what such an architecture could become, each anchored in a precedent at a comparable institution. The names, the levels, and the specifics will move once the institution's own staff and board engage with the sketch.</p>
-      <p class="reveal d3">Two of the eight — the Traveling Exhibitions Program and the Digital Platform — would be the structural mechanisms that make the dual rooted-and-connected ambition real rather than rhetorical<sup class="fn" id="fn-14" data-fn="14">14</sup>. A dual mandate raises only when it is concretely operationalized.</p>
+      <p class="reveal d1">Three independent research runs, fifteen documented comparable institutions, and Form 990 data through FY2024 converge on one finding. Every documented case in our sample that exceeded its capital campaign goal did so by attaching major gifts to <span class="cite" tabindex="0">named functions (directorships, named program endowments, named gallery spaces)<span class="cite__panel"><b>The named-function finding</b>OMCA: $86M raised against $85M goal (All In! campaign, closed June 2021). JANM: $85M goal reached via more than 100 leadership gifts of $100K+ ("Our Promise" campaign, originally $65M, extended to $85M). Atlanta History Center: $10M Whitaker lead gift seeded the Cyclorama project; after the endowment was secured, the balance of the $35.78M campaign closed "with relative speed" (AJC, 2014). MOHAI: $10M Bezos founding gift in 2013 named the Bezos Center for Innovation. Dia:Beacon: a leadership gift from Leonard Riggio named the Riggio Galleries (amount undisclosed; an earlier $35M+ figure was unsourced and dropped).<span class="src">PAM Positioning Hypotheses Evidence Brief, May 2026; OMCA press release August 2021; JANM "Our Promise" campaign page; Atlanta Journal-Constitution 2014; GeekWire / Seattle Times 2013.</span></span></span><sup class="fn" id="fn-13" data-fn="13">13</sup> with director titles, operating budgets, and measurable outputs. None of the cases in our sample succeeded through general-fund or "preserve our heritage" asks alone.</p>
+      <p class="reveal d2">Eight named founding functions sketch what such an architecture could become, each anchored in a precedent at a comparable institution. The names, the levels, and the details will move once the institution's own staff and board engage with the sketch.</p>
+      <p class="reveal d3">Two of the eight, the Traveling Exhibitions Program and the Digital Platform, would be the working parts that make the dual rooted-and-connected ambition real rather than rhetorical<sup class="fn" id="fn-14" data-fn="14">14</sup>. A dual mandate raises only when it is concretely operationalized.</p>
       <p class="refrain reveal d3">Eight functions, as a working sketch. Three are spoken for already. Five would remain.</p>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════ ACT V — THE ARGUMENT ═══════════════ -->
+<!-- ═══════════════ ACT V - THE ARGUMENT ═══════════════ -->
 <section class="act" id="a5">
   <div class="stage">
     <!-- Scene 1: The Roth, opening night -->
@@ -1099,18 +1144,18 @@ sup.fn{
       <div class="eyebrow reveal">Act V · Where this points</div>
       <h2 class="scene-h reveal d1">What the evidence <em>keeps suggesting</em>.</h2>
       <p class="lede reveal d2">The Palo Alto Museum could be the civic platform Silicon Valley does not have. It opens into a field that is thinning because the institutions built to display are not the institutions a 2026 town comes to. If this reading holds, the collection is the conversation the building produces, the members are the people in the room, and the audience is everyone the broadcast reaches.</p>
-      <p class="reveal d3">A funding architecture built from precedent would attach major gifts to named functions — directorships, curatorial roles, named program endowments — modeled on the institutions that have actually closed this kind of campaign. Eight functions as a working sketch. Three are spoken for already. Five would remain.</p>
+      <p class="reveal d3">A funding architecture built from precedent would attach major gifts to named functions (directorships, curatorial roles, named program endowments) modeled on the institutions that have actually closed this kind of campaign. Eight functions as a working sketch. Three are spoken for already. Five would remain.</p>
     </div>
 
     <div class="scene" data-scene="a5-2">
-      <p class="reveal">Four open questions belong on the record.</p>
-      <p class="reveal d1">The first is whether this reading is the right one. Two other positions held some of the same ground — the museum as the town's living archive, the museum as a regional draw. The interviews would tell us which one the donors, the residents, and the board's own voices want to fund.</p>
-      <p class="reveal d2">The second is that the sector signals used to motivate the platform — the loneliness advisory, the AAM data, the closures — are field-wide. The local Palo Alto market for membership at the scale a civic platform would imply has not yet been sized. <span class="cite" tabindex="0">The next move<span class="cite__panel"><b>What we would propose next</b>Resident interviews to size the local demand: how many households at what tier, which of the six entry points dominate, what the willingness-to-pay curve looks like. The institution is built around the answers, not around our hypothesis of the answers.<span class="src">Standard market-sizing protocol for civic platforms; OMCA and Tenement Museum followed similar resident-interview procedures pre-launch.</span></span></span><sup class="fn" id="fn-15" data-fn="15">15</sup> would be a round of resident interviews, designed to size the demand at each tier before the programming is locked.</p>
+      <p class="reveal">Four questions remain open.</p>
+      <p class="reveal d1">The first is whether this reading is the right one. Two other positions held some of the same ground: the museum as the town's living archive, and the museum as a regional draw. The interviews would tell us which one the donors, the residents, and the board's own voices want to fund.</p>
+      <p class="reveal d2">The second is that the sector signals used to motivate the platform (the loneliness advisory, the AAM data, the closures) are field-wide. The local Palo Alto market for membership at the scale a civic platform would imply has not yet been sized. <span class="cite" tabindex="0">The next move<span class="cite__panel"><b>What we would propose next</b>Resident interviews to size the local demand: how many households at what tier, which of the six entry points dominate, what the willingness-to-pay curve looks like. The institution is built around the answers, not around our hypothesis of the answers.<span class="src">Standard market-sizing protocol for civic platforms; OMCA and Tenement Museum followed similar resident-interview procedures pre-launch.</span></span></span><sup class="fn" id="fn-15" data-fn="15">15</sup> would be a round of resident interviews, designed to size the demand at each tier before the programming is locked.</p>
       <p class="reveal d2">The third is that a 2020 outside review flagged two-thirds of pledges as high risk. That fact does not go away by being out-narrated. It would be addressed by delivery. The first eighteen months produce a measurable record: a defined number of conversations held in the room and broadcast, the first oral histories recorded for the archive, the first foundation grant secured for a named function, the first major-gift commitment converted. Each documented and reported to the board quarterly. Pledges convert to gifts because delivery is visible.</p>
       <p class="reveal d3">The fourth is how the donors hear it when they hear it from the board's chosen voice, not from a strategist's draft. The position has to be one the institution itself can say in its own register, and that is something the interviews and the board's own deliberation arrive at, not something a document arrives at.</p>
       <p class="reveal d3">The decisions that follow are the board's.</p>
       <div class="signoff reveal d3">
-        <em>For the conversation on Thursday.</em><br><br>
+        <em>For the conversation ahead.</em><br><br>
         Prepared in advance of the interview<br>
         with the President &amp; CEO<br>
         The Palo Alto Museum<br>
@@ -1133,11 +1178,11 @@ sup.fn{
     <p id="src-7"><a href="#fn-7" class="src-back" title="Back to text">&#8617;</a><sup>7</sup> <strong>The Bruce Museum, Greenwich CT.</strong> $60 million capital campaign for the multi-phase renovation and expansion; total reported cost approximately $67M per Greenwich Sentinel reporting. Reopened April 2023. Executive Director Robert Wolterstorff at the March 2023 reopening: "In this present fractured and fractious world, it's more important than ever to gather together." Bruce Museum press materials, March 2023; Greenwich Sentinel, March 2023; CBS News, April 2023.</p>
     <p id="src-8"><a href="#fn-8" class="src-back" title="Back to text">&#8617;</a><sup>8</sup> <strong>AAM TrendsWatch and the civic strategy frame.</strong> The American Alliance of Museums has named civic strategy as the operating frame for the field in 2024 and 2026 trend reports. AAM TrendsWatch 2024 and 2026; AAM Jencks lectures.</p>
     <p id="src-9"><a href="#fn-9" class="src-back" title="Back to text">&#8617;</a><sup>9</sup> <strong>Mission-motivated members renew at higher rates.</strong> IMPACTS Experience surveyed members of 118 cultural organizations that charge admission. Members whose primary motivation is mission and belonging are approximately 14% more likely to annually renew their membership than members whose primary benefit is transactional (free admission, discounts, exclusive access). Mission-motivated members also report their memberships as approximately 14.5% more valuable, and pay roughly 42% more for their membership on average. Sources: Colleen Dilenschneider for IMPACTS Experience, "Mission Motivated vs. Transaction Motivated Members" (2016, n=118); "The Overlooked Importance of Non-Local Members to Cultural Organizations" (2018).</p>
-    <p id="src-10"><a href="#fn-10" class="src-back" title="Back to text">&#8617;</a><sup>10</sup> <strong>The Surgeon General's 2023 loneliness advisory.</strong> "Our Epidemic of Loneliness and Isolation" called for investment in "community institutions including recreation leagues, parks, libraries, and playgrounds, to foster a sense of belonging." US Surgeon General, May 2023.</p>
-    <p id="src-11"><a href="#fn-11" class="src-back" title="Back to text">&#8617;</a><sup>11</sup> <strong>Robert D. Putnam, <em>Bowling Alone: The Collapse and Revival of American Community</em>.</strong> Touchstone, 2000. The canonical empirical study of declining US civic association membership, religious-group attendance, and informal social ties across the second half of the twentieth century. Putnam's findings have been confirmed and extended by Pew Research Center reporting through 2025 and by Joint Venture Silicon Valley's annual Silicon Valley Index.</p>
-    <p id="src-12"><a href="#fn-12" class="src-back" title="Back to text">&#8617;</a><sup>12</sup> <strong>Peer civic platforms.</strong> 92nd Street Y (92NY), New York: founded 1874, approximately 300,000 annual participants, majority of revenue from contributions and program services per Charity Navigator FY2023 profile. Aspen Institute, Washington DC and Aspen CO: founded 1949, public charity 501(c)(3), substantial annual contribution base built over a 75-year proprietary leadership curriculum (Aspen Executive Seminar). Newberry Library, Chicago: founded 1887; First and Foremost Campaign exceeded its goal. Commonwealth Club of California, San Francisco: founded 1903, oldest public-affairs forum in the United States, continuous public conversation and podcast distribution. Specific FY2024 Form 990 figures for each institution available via ProPublica Nonprofit Explorer; these will be pulled and confirmed before any public citation of dollar figures.</p>
-    <p id="src-13"><a href="#fn-13" class="src-back" title="Back to text">&#8617;</a><sup>13</sup> <strong>Named-function evidence.</strong> Oakland Museum of California (OMCA): raised more than $86M against $85M goal in the "All In! Campaign for OMCA," closed June 2021 (source: OMCA press release, August 17, 2021). Japanese American National Museum (JANM): "Our Promise" campaign — originally $65M, extended to $85M, reached the $85M goal with more than 100 leadership gifts of $100,000 and above (source: JANM "Our Promise" campaign page, accessed 2025). Atlanta History Center: $10M Whitaker lead gift seeded the Cyclorama project; total project raised $35.78M, with $10M dedicated to the endowment; "Once the endowment was secured, the balance of the campaign came with relative speed" (AJC, July 2014). Museum of History and Industry (MOHAI), Seattle: $10M founding gift from Jeff Bezos in 2013 named the Bezos Center for Innovation (Seattle Times, October 2013). Dia:Beacon, Beacon NY: Leonard Riggio gift named the Riggio Galleries (specific figure needs primary source confirmation).</p>
-    <p id="src-14"><a href="#fn-14" class="src-back" title="Back to text">&#8617;</a><sup>14</sup> <strong>Dual mandate when operationalized.</strong> JANM's national reach is structurally enabled by its traveling exhibits program and its Japan donation channel — operational mechanisms, not rhetorical commitments. The specific national-versus-Southern California contribution split (approximately $92M vs $16M) was reported in earlier research notes and requires primary source confirmation against the JANM FY2023 annual report before being cited publicly. The operational point — that a dual mandate is real only when concretely structured — holds independently of the precise dollar figures.</p>
+    <p id="src-10"><a href="#fn-10" class="src-back" title="Back to text">&#8617;</a><sup>10</sup> <strong>The Surgeon General's 2023 loneliness advisory.</strong> "Our Epidemic of Loneliness and Isolation" called for investment in "community institutions including recreation leagues, parks, libraries, and playgrounds, to foster a sense of belonging." The advisory reported that roughly half of US adults had experienced measurable loneliness, with elevated rates among younger and older adults. US Surgeon General, May 2023.</p>
+    <p id="src-11"><a href="#fn-11" class="src-back" title="Back to text">&#8617;</a><sup>11</sup> <strong>Robert D. Putnam, <em>Bowling Alone</em> (Touchstone, 2000).</strong> The canonical empirical study of declining US civic association membership, religious-group attendance, and informal social ties across the second half of the twentieth century. Putnam's findings have been confirmed and extended by Pew Research Center reporting through 2025 and by Joint Venture Silicon Valley's annual Silicon Valley Index.</p>
+    <p id="src-12"><a href="#fn-12" class="src-back" title="Back to text">&#8617;</a><sup>12</sup> <strong>Peer civic platforms.</strong> Form 990 filings are public on ProPublica Nonprofit Explorer. Fiscal-year-end months differ across these institutions, so figures should not be compared across periods. Aspen Institute (EIN 84-0399006, fiscal year ending December): FY2024 return filed October 28, 2025, showing total revenue of $443.8M, contributions of $381.3M, and program-service revenue of $48.2M; the contribution base supports the figure used here. The conference and seminar sub-lines (reported as roughly $11.9M and $8M) sit inside Part VIII of that filing and should be confirmed line by line. Founded 1949; 75-year proprietary leadership curriculum (Aspen Executive Seminar). Newberry Library (EIN 36-2167814, fiscal year ending June): FY2024 return for the year ending June 2024, filed April 15, 2025, showing total revenue of $10.9M, program-service revenue of $769,004, and net assets of $104.8M. Note that the FY2023 figures (year ending June 2023) carried higher revenue ($14.6M) and lower net assets ($102.1M); label the two years so they do not read as a contradiction. Founded 1887; First and Foremost Campaign exceeded its goal. 92NY (legal name The Young Men's and Young Women's Hebrew Association, EIN 13-1624229, fiscal year ending June): the Manhattan flagship, founded 1874, roughly 300,000 annual participants on a contribution-heavy revenue mix. The dollar figure is not yet confirmed against this EIN's filing and should be before public citation, since several borough YM-YWHAs share nearly the same name. Commonwealth Club of California, San Francisco: founded 1903, the oldest public-affairs forum in the United States, with continuous public conversation and podcast distribution.</p>
+    <p id="src-13"><a href="#fn-13" class="src-back" title="Back to text">&#8617;</a><sup>13</sup> <strong>Named-function evidence.</strong> Oakland Museum of California (OMCA): raised more than $86M against $85M goal in the "All In! Campaign for OMCA," closed June 2021 (source: OMCA press release, August 17, 2021). Japanese American National Museum (JANM): "Our Promise" campaign (originally $65M, extended to $85M) reached the $85M goal with more than 100 leadership gifts of $100,000 and above (source: JANM "Our Promise" campaign page, accessed 2025). Atlanta History Center: $10M Whitaker lead gift seeded the Cyclorama project; total project raised $35.78M, with $10M dedicated to the endowment; "Once the endowment was secured, the balance of the campaign came with relative speed" (AJC, July 2014). Museum of History and Industry (MOHAI), Seattle: $10M founding gift from Jeff Bezos in 2013 named the Bezos Center for Innovation (Seattle Times, October 2013). Dia:Beacon, Beacon NY: a leadership gift from Leonard Riggio named the Riggio Galleries; Dia's own press releases credit the Riggios' generosity but state no amount. ARTnews's August 2024 obituary separately reports a $30M Riggio gift toward art acquisition, which may not be the same as the gallery-naming gift. The earlier "$35M+" figure traced only to an AI-generated wiki and has been dropped (sources: Dia Art Foundation press release; ARTnews, August 2024).</p>
+    <p id="src-14"><a href="#fn-14" class="src-back" title="Back to text">&#8617;</a><sup>14</sup> <strong>Dual mandate when operationalized.</strong> JANM's national reach is built on its traveling exhibits program and its Japan donation channel. The contribution split is now confirmed. JANM's campaign-completion announcement (totals as of December 31, 2025) reports $16 million raised from Southern California donors and $92 million from donors across the nation, against the $108 million campaign total. Sources: Rafu Shimpo, April 2026; JANM press release, janm.org/press. An earlier draft pointed this to the JANM FY2023 annual report in error; that report predates the campaign close and cannot contain the final split.</p>
     <p id="src-15"><a href="#fn-15" class="src-back" title="Back to text">&#8617;</a><sup>15</sup> <strong>The market-sizing question.</strong> Sector signals (AAM 2025, Surgeon General 2023, peer institution audited finances) motivate the platform thesis at the category level. The local Palo Alto willingness-to-pay curve at each membership and major-gift tier remains to be measured. Resident interviews are the proposed next step before programming lock. OMCA and the Tenement Museum followed comparable resident-interview procedures before launch.</p>
 
     <div class="signoff" style="margin-top:3rem;border-top:1px solid var(--rule);padding-top:1.4rem;">
@@ -1168,7 +1213,7 @@ sup.fn{
     if (first) first.classList.add('is-active');
   });
 
-  // Sticky stage — switch viz per scene using a center trigger band.
+  // Sticky stage - switch viz per scene using a center trigger band.
   var sceneIO = new IntersectionObserver(function(entries){
     entries.forEach(function(e){
       if (!e.isIntersecting) return;
